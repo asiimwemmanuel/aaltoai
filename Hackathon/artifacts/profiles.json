@@ -1,0 +1,1146 @@
+{
+  "col_001": {
+    "statistics": {
+      "mean": 0.26018761899992093,
+      "std_dev": 0.14129174825758062,
+      "quantiles": {
+        "p25": 0.2200090038891864,
+        "p50": 0.2513874733076819,
+        "p75": 0.28096910850431067
+      },
+      "skewness": 1.8538989736529912,
+      "distinct_values": 22135,
+      "noise_level": 0.19711209309660482,
+      "plateau_ratio": 0.09191128506197,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_001_mean",
+      "std_dev": "ev_s2_col_001_stddev",
+      "distribution": "ev_s2_col_001_dist",
+      "dynamics": "ev_s2_col_001_dyn"
+    }
+  },
+  "col_002": {
+    "statistics": {
+      "mean": 3665.2878881278593,
+      "std_dev": 40.32436893713221,
+      "quantiles": {
+        "p25": 3638.310933752893,
+        "p50": 3664.5129919682404,
+        "p75": 3690.704238398849
+      },
+      "skewness": -0.016362201931880923,
+      "distinct_values": 2553,
+      "noise_level": 42.090184038779284,
+      "plateau_ratio": 0.12839204174820612,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_002_mean",
+      "std_dev": "ev_s2_col_002_stddev",
+      "distribution": "ev_s2_col_002_dist",
+      "dynamics": "ev_s2_col_002_dyn"
+    }
+  },
+  "col_003": {
+    "statistics": {
+      "mean": 4505.4154647749465,
+      "std_dev": 99.74911817026835,
+      "quantiles": {
+        "p25": 4472.130126574217,
+        "p50": 4508.234093112541,
+        "p75": 4544.9175400354425
+      },
+      "skewness": -0.5568104065282914,
+      "distinct_values": 5756,
+      "noise_level": 135.2658270665135,
+      "plateau_ratio": 0.09514024787997391,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_003_mean",
+      "std_dev": "ev_s2_col_003_stddev",
+      "distribution": "ev_s2_col_003_dist",
+      "dynamics": "ev_s2_col_003_dyn"
+    }
+  },
+  "col_004": {
+    "statistics": {
+      "mean": 9.38330174657533,
+      "std_dev": 0.4035425236543328,
+      "quantiles": {
+        "p25": 9.273958373754411,
+        "p50": 9.354767615964036,
+        "p75": 9.446172998111964
+      },
+      "skewness": 2.7016285257918815,
+      "distinct_values": 11218,
+      "noise_level": 0.5688857718542214,
+      "plateau_ratio": 0.09305283757338552,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_004_mean",
+      "std_dev": "ev_s2_col_004_stddev",
+      "distribution": "ev_s2_col_004_dist",
+      "dynamics": "ev_s2_col_004_dyn"
+    }
+  },
+  "col_005": {
+    "statistics": {
+      "mean": 26.896110029354173,
+      "std_dev": 0.2297094176979364,
+      "quantiles": {
+        "p25": 26.76042571887493,
+        "p50": 26.892784303118145,
+        "p75": 27.034564922659843
+      },
+      "skewness": 0.004191328492718294,
+      "distinct_values": 1747,
+      "noise_level": 0.2198978634533018,
+      "plateau_ratio": 0.16904761904761906,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_005_mean",
+      "std_dev": "ev_s2_col_005_stddev",
+      "distribution": "ev_s2_col_005_dist",
+      "dynamics": "ev_s2_col_005_dyn"
+    }
+  },
+  "col_006": {
+    "statistics": {
+      "mean": 42.37626446510104,
+      "std_dev": 0.3371458081578425,
+      "quantiles": {
+        "p25": 42.1914201376711,
+        "p50": 42.34924832871282,
+        "p75": 42.52451657859412
+      },
+      "skewness": 1.153900374379462,
+      "distinct_values": 2121,
+      "noise_level": 0.4100779425575562,
+      "plateau_ratio": 0.10132093933463797,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_006_mean",
+      "std_dev": "ev_s2_col_006_stddev",
+      "distribution": "ev_s2_col_006_dist",
+      "dynamics": "ev_s2_col_006_dyn"
+    }
+  },
+  "col_007": {
+    "statistics": {
+      "mean": 2720.458701891718,
+      "std_dev": 74.19938133669366,
+      "quantiles": {
+        "p25": 2697.5367856930916,
+        "p50": 2704.4395216268554,
+        "p75": 2712.396764707222
+      },
+      "skewness": 2.8087924487867344,
+      "distinct_values": 3184,
+      "noise_level": 106.76274476468654,
+      "plateau_ratio": 0.10476190476190476,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_007_mean",
+      "std_dev": "ev_s2_col_007_stddev",
+      "distribution": "ev_s2_col_007_dist",
+      "dynamics": "ev_s2_col_007_dyn"
+    }
+  },
+  "col_008": {
+    "statistics": {
+      "mean": 74.84125843118066,
+      "std_dev": 1.4684719065100975,
+      "quantiles": {
+        "p25": 74.49616146560857,
+        "p50": 74.9604091697829,
+        "p75": 75.41862927699458
+      },
+      "skewness": -1.7835885515630148,
+      "distinct_values": 6540,
+      "noise_level": 1.992742504798533,
+      "plateau_ratio": 0.10221787345075016,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_008_mean",
+      "std_dev": "ev_s2_col_008_stddev",
+      "distribution": "ev_s2_col_008_dist",
+      "dynamics": "ev_s2_col_008_dyn"
+    }
+  },
+  "col_009": {
+    "statistics": {
+      "mean": 120.40017628832636,
+      "std_dev": 0.06828478152692831,
+      "quantiles": {
+        "p25": 120.389496770253,
+        "p50": 120.4,
+        "p75": 120.41919231749003
+      },
+      "skewness": -0.9633793766710612,
+      "distinct_values": 116,
+      "noise_level": 0.09428695046977613,
+      "plateau_ratio": 0.3296966731898239,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_009_mean",
+      "std_dev": "ev_s2_col_009_stddev",
+      "distribution": "ev_s2_col_009_dist",
+      "dynamics": "ev_s2_col_009_dyn"
+    }
+  },
+  "col_010": {
+    "statistics": {
+      "mean": 0.3444725502772332,
+      "std_dev": 0.08081100881352796,
+      "quantiles": {
+        "p25": 0.3241744623236853,
+        "p50": 0.33636611700216723,
+        "p75": 0.3478502891281606
+      },
+      "skewness": 3.2045639575432108,
+      "distinct_values": 13579,
+      "noise_level": 0.11575488513876071,
+      "plateau_ratio": 0.1006033920417482,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_010_mean",
+      "std_dev": "ev_s2_col_010_stddev",
+      "distribution": "ev_s2_col_010_dist",
+      "dynamics": "ev_s2_col_010_dyn"
+    }
+  },
+  "col_011": {
+    "statistics": {
+      "mean": 79.8112523972602,
+      "std_dev": 1.7047838382248128,
+      "quantiles": {
+        "p25": 79.85880912490899,
+        "p50": 80.12293676200467,
+        "p75": 80.35418555628466
+      },
+      "skewness": -2.576475274898304,
+      "distinct_values": 5925,
+      "noise_level": 2.4070410614462876,
+      "plateau_ratio": 0.0989562948467058,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_011_mean",
+      "std_dev": "ev_s2_col_011_stddev",
+      "distribution": "ev_s2_col_011_dist",
+      "dynamics": "ev_s2_col_011_dyn"
+    }
+  },
+  "col_012": {
+    "statistics": {
+      "mean": 50.03695800717538,
+      "std_dev": 1.021222592250824,
+      "quantiles": {
+        "p25": 49.332298015803325,
+        "p50": 50.06999482322771,
+        "p75": 50.71968018260697
+      },
+      "skewness": -0.0004902394863134928,
+      "distinct_values": 5332,
+      "noise_level": 0.8965777753407338,
+      "plateau_ratio": 0.10388127853881278,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_012_mean",
+      "std_dev": "ev_s2_col_012_stddev",
+      "distribution": "ev_s2_col_012_dist",
+      "dynamics": "ev_s2_col_012_dyn"
+    }
+  },
+  "col_013": {
+    "statistics": {
+      "mean": 2648.487899543365,
+      "std_dev": 74.99368994562906,
+      "quantiles": {
+        "p25": 2625.2846689073813,
+        "p50": 2632.814347826237,
+        "p75": 2641.2240083570287
+      },
+      "skewness": 2.750302663268695,
+      "distinct_values": 3269,
+      "noise_level": 107.2310462736639,
+      "plateau_ratio": 0.09365622961513373,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_013_mean",
+      "std_dev": "ev_s2_col_013_stddev",
+      "distribution": "ev_s2_col_013_dist",
+      "dynamics": "ev_s2_col_013_dyn"
+    }
+  },
+  "col_014": {
+    "statistics": {
+      "mean": 25.0954865296804,
+      "std_dev": 1.0735818733844413,
+      "quantiles": {
+        "p25": 24.38657099821886,
+        "p50": 25.09968326774199,
+        "p75": 25.81160283834
+      },
+      "skewness": 0.02535313606750775,
+      "distinct_values": 5568,
+      "noise_level": 1.0173933073407408,
+      "plateau_ratio": 0.09825505544683627,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_014_mean",
+      "std_dev": "ev_s2_col_014_stddev",
+      "distribution": "ev_s2_col_014_dist",
+      "dynamics": "ev_s2_col_014_dyn"
+    }
+  },
+  "col_015": {
+    "statistics": {
+      "mean": 49.98154249836916,
+      "std_dev": 1.0046148625885825,
+      "quantiles": {
+        "p25": 49.32599535363773,
+        "p50": 49.9361710068131,
+        "p75": 50.67182439314586
+      },
+      "skewness": 0.023420397635494954,
+      "distinct_values": 5333,
+      "noise_level": 0.8685740529145985,
+      "plateau_ratio": 0.11298108284409654,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_015_mean",
+      "std_dev": "ev_s2_col_015_stddev",
+      "distribution": "ev_s2_col_015_dist",
+      "dynamics": "ev_s2_col_015_dyn"
+    }
+  },
+  "col_016": {
+    "statistics": {
+      "mean": 3118.4852837573317,
+      "std_dev": 76.08715373056761,
+      "quantiles": {
+        "p25": 3095.8591160294454,
+        "p50": 3101.6841632862725,
+        "p75": 3108.4374225217002
+      },
+      "skewness": 3.1946648113784755,
+      "distinct_values": 2993,
+      "noise_level": 109.63858595670271,
+      "plateau_ratio": 0.11813437703848663,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_016_mean",
+      "std_dev": "ev_s2_col_016_stddev",
+      "distribution": "ev_s2_col_016_dist",
+      "dynamics": "ev_s2_col_016_dyn"
+    }
+  },
+  "col_017": {
+    "statistics": {
+      "mean": 22.94985184279195,
+      "std_dev": 0.6488708882599892,
+      "quantiles": {
+        "p25": 22.50492869149494,
+        "p50": 22.96596918139858,
+        "p75": 23.398452899143738
+      },
+      "skewness": -0.032088225143566025,
+      "distinct_values": 3573,
+      "noise_level": 0.598830628338712,
+      "plateau_ratio": 0.11291585127201566,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_017_mean",
+      "std_dev": "ev_s2_col_017_stddev",
+      "distribution": "ev_s2_col_017_dist",
+      "dynamics": "ev_s2_col_017_dyn"
+    }
+  },
+  "col_018": {
+    "statistics": {
+      "mean": 65.97989326484024,
+      "std_dev": 1.7499922727553694,
+      "quantiles": {
+        "p25": 65.48214042242813,
+        "p50": 65.84391179808559,
+        "p75": 66.43637208582432
+      },
+      "skewness": -0.03683270845498597,
+      "distinct_values": 9269,
+      "noise_level": 2.525407739851957,
+      "plateau_ratio": 0.10079908675799087,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_018_mean",
+      "std_dev": "ev_s2_col_018_stddev",
+      "distribution": "ev_s2_col_018_dist",
+      "dynamics": "ev_s2_col_018_dyn"
+    }
+  },
+  "col_019": {
+    "statistics": {
+      "mean": 244.15498653693783,
+      "std_dev": 68.51559643536986,
+      "quantiles": {
+        "p25": 224.2726604583028,
+        "p50": 233.10000353559744,
+        "p75": 246.00994742471772
+      },
+      "skewness": 1.1944244325274345,
+      "distinct_values": 15624,
+      "noise_level": 97.07908162920234,
+      "plateau_ratio": 0.09240052185257665,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_019_mean",
+      "std_dev": "ev_s2_col_019_stddev",
+      "distribution": "ev_s2_col_019_dist",
+      "dynamics": "ev_s2_col_019_dyn"
+    }
+  },
+  "col_020": {
+    "statistics": {
+      "mean": 340.63236268754065,
+      "std_dev": 11.452224102614595,
+      "quantiles": {
+        "p25": 339.53146892818137,
+        "p50": 341.25477168180845,
+        "p75": 342.67713345027227
+      },
+      "skewness": 0.37212343757262606,
+      "distinct_values": 5146,
+      "noise_level": 16.122132240302058,
+      "plateau_ratio": 0.11875407697325506,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_020_mean",
+      "std_dev": "ev_s2_col_020_stddev",
+      "distribution": "ev_s2_col_020_dist",
+      "dynamics": "ev_s2_col_020_dyn"
+    }
+  },
+  "col_021": {
+    "statistics": {
+      "mean": 94.44051484018287,
+      "std_dev": 1.2154402017350459,
+      "quantiles": {
+        "p25": 94.44672842952869,
+        "p50": 94.5892559556726,
+        "p75": 94.72653105750956
+      },
+      "skewness": -5.928613240680207,
+      "distinct_values": 5085,
+      "noise_level": 1.6569225231470137,
+      "plateau_ratio": 0.08918786692759295,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_021_mean",
+      "std_dev": "ev_s2_col_021_stddev",
+      "distribution": "ev_s2_col_021_dist",
+      "dynamics": "ev_s2_col_021_dyn"
+    }
+  },
+  "col_022": {
+    "statistics": {
+      "mean": 77.11429494455345,
+      "std_dev": 1.2572914719847763,
+      "quantiles": {
+        "p25": 77.0149841675567,
+        "p50": 77.28232665711758,
+        "p75": 77.53206731337916
+      },
+      "skewness": -3.319143189617995,
+      "distinct_values": 5506,
+      "noise_level": 1.7778440521838599,
+      "plateau_ratio": 0.09732550554468362,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_022_mean",
+      "std_dev": "ev_s2_col_022_stddev",
+      "distribution": "ev_s2_col_022_dist",
+      "dynamics": "ev_s2_col_022_dyn"
+    }
+  },
+  "col_023": {
+    "statistics": {
+      "mean": 32.01906581865622,
+      "std_dev": 1.774640771134999,
+      "quantiles": {
+        "p25": 31.91019278324327,
+        "p50": 32.186311199118926,
+        "p75": 32.43928720414165
+      },
+      "skewness": -1.9528214826196257,
+      "distinct_values": 4959,
+      "noise_level": 2.5012801523208803,
+      "plateau_ratio": 0.11674820613176777,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_023_mean",
+      "std_dev": "ev_s2_col_023_stddev",
+      "distribution": "ev_s2_col_023_dist",
+      "dynamics": "ev_s2_col_023_dyn"
+    }
+  },
+  "col_024": {
+    "statistics": {
+      "mean": 8.874973281148076,
+      "std_dev": 0.21852653300518105,
+      "quantiles": {
+        "p25": 8.794310914034343,
+        "p50": 8.887204765991465,
+        "p75": 8.978521293111031
+      },
+      "skewness": -1.241862816508346,
+      "distinct_values": 7612,
+      "noise_level": 0.28549517705948246,
+      "plateau_ratio": 0.11671559034572733,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_024_mean",
+      "std_dev": "ev_s2_col_024_stddev",
+      "distribution": "ev_s2_col_024_dist",
+      "dynamics": "ev_s2_col_024_dyn"
+    }
+  },
+  "col_025": {
+    "statistics": {
+      "mean": 26.721395107632116,
+      "std_dev": 1.8611570941439615,
+      "quantiles": {
+        "p25": 26.111403844144295,
+        "p50": 26.389560086848327,
+        "p75": 26.706333500301497
+      },
+      "skewness": 3.4480021793064477,
+      "distinct_values": 5138,
+      "noise_level": 2.6343837314274543,
+      "plateau_ratio": 0.11912915851272016,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_025_mean",
+      "std_dev": "ev_s2_col_025_stddev",
+      "distribution": "ev_s2_col_025_dist",
+      "dynamics": "ev_s2_col_025_dyn"
+    }
+  },
+  "col_026": {
+    "statistics": {
+      "mean": 6.8714457925635815,
+      "std_dev": 0.13852151975534602,
+      "quantiles": {
+        "p25": 6.801198880425868,
+        "p50": 6.882365417458677,
+        "p75": 6.955767051216575
+      },
+      "skewness": -1.0168669689647072,
+      "distinct_values": 5879,
+      "noise_level": 0.15841947256526517,
+      "plateau_ratio": 0.10242987606001305,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_026_mean",
+      "std_dev": "ev_s2_col_026_stddev",
+      "distribution": "ev_s2_col_026_dist",
+      "dynamics": "ev_s2_col_026_dyn"
+    }
+  },
+  "col_027": {
+    "statistics": {
+      "mean": 18.690599445531664,
+      "std_dev": 0.9922163782258002,
+      "quantiles": {
+        "p25": 18.535274976084363,
+        "p50": 18.774658752338706,
+        "p75": 19.023903633176396
+      },
+      "skewness": -2.711051729735913,
+      "distinct_values": 4116,
+      "noise_level": 1.3791251965484466,
+      "plateau_ratio": 0.1107795172863666,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_027_mean",
+      "std_dev": "ev_s2_col_027_stddev",
+      "distribution": "ev_s2_col_027_dist",
+      "dynamics": "ev_s2_col_027_dyn"
+    }
+  },
+  "col_028": {
+    "statistics": {
+      "mean": 1.630277402804957,
+      "std_dev": 0.12750056500235313,
+      "quantiles": {
+        "p25": 1.6289964100453054,
+        "p50": 1.654291495982951,
+        "p75": 1.678371086551883
+      },
+      "skewness": -3.600432011106764,
+      "distinct_values": 4298,
+      "noise_level": 0.1855396360398272,
+      "plateau_ratio": 0.11325831702544031,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_028_mean",
+      "std_dev": "ev_s2_col_028_stddev",
+      "distribution": "ev_s2_col_028_dist",
+      "dynamics": "ev_s2_col_028_dyn"
+    }
+  },
+  "col_029": {
+    "statistics": {
+      "mean": 32.71551660143506,
+      "std_dev": 2.6664651212315946,
+      "quantiles": {
+        "p25": 32.64099122017952,
+        "p50": 32.94147596610348,
+        "p75": 33.250749564144655
+      },
+      "skewness": -1.8789855275739125,
+      "distinct_values": 5870,
+      "noise_level": 3.7745985460256577,
+      "plateau_ratio": 0.11333985649054142,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_029_mean",
+      "std_dev": "ev_s2_col_029_stddev",
+      "distribution": "ev_s2_col_029_dist",
+      "dynamics": "ev_s2_col_029_dyn"
+    }
+  },
+  "col_030": {
+    "statistics": {
+      "mean": 13.795380136986317,
+      "std_dev": 0.2751155357432356,
+      "quantiles": {
+        "p25": 13.711258131275004,
+        "p50": 13.814298142361036,
+        "p75": 13.909064507929395
+      },
+      "skewness": -0.8248788882169048,
+      "distinct_values": 2084,
+      "noise_level": 0.36861890947253245,
+      "plateau_ratio": 0.13153946510110895,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_030_mean",
+      "std_dev": "ev_s2_col_030_stddev",
+      "distribution": "ev_s2_col_030_dist",
+      "dynamics": "ev_s2_col_030_dyn"
+    }
+  },
+  "col_031": {
+    "statistics": {
+      "mean": 24.487923515981663,
+      "std_dev": 2.864471268933044,
+      "quantiles": {
+        "p25": 23.634277975243588,
+        "p50": 23.992668060688615,
+        "p75": 24.371383152040117
+      },
+      "skewness": 3.644957011522371,
+      "distinct_values": 5953,
+      "noise_level": 4.079343884772459,
+      "plateau_ratio": 0.10944227005870842,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_031_mean",
+      "std_dev": "ev_s2_col_031_stddev",
+      "distribution": "ev_s2_col_031_dist",
+      "dynamics": "ev_s2_col_031_dyn"
+    }
+  },
+  "col_032": {
+    "statistics": {
+      "mean": 1.2487680176125238,
+      "std_dev": 0.14821458480483143,
+      "quantiles": {
+        "p25": 1.1781194486707462,
+        "p50": 1.2557063761040028,
+        "p75": 1.3330234221948607
+      },
+      "skewness": -0.8229309639409431,
+      "distinct_values": 6406,
+      "noise_level": 0.17765247278339763,
+      "plateau_ratio": 0.1012720156555773,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_032_mean",
+      "std_dev": "ev_s2_col_032_stddev",
+      "distribution": "ev_s2_col_032_dist",
+      "dynamics": "ev_s2_col_032_dyn"
+    }
+  },
+  "col_033": {
+    "statistics": {
+      "mean": 18.46860368558382,
+      "std_dev": 1.3811896226883666,
+      "quantiles": {
+        "p25": 18.30392312039853,
+        "p50": 18.59378115700756,
+        "p75": 18.871584754778905
+      },
+      "skewness": -2.7349523280967527,
+      "distinct_values": 4828,
+      "noise_level": 1.9323476796011327,
+      "plateau_ratio": 0.11249184605348989,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_033_mean",
+      "std_dev": "ev_s2_col_033_stddev",
+      "distribution": "ev_s2_col_033_dist",
+      "dynamics": "ev_s2_col_033_dyn"
+    }
+  },
+  "col_034": {
+    "statistics": {
+      "mean": 2.2266767645140306,
+      "std_dev": 0.17366954493463427,
+      "quantiles": {
+        "p25": 2.235349700543567,
+        "p50": 2.2632895605569447,
+        "p75": 2.288282393910682
+      },
+      "skewness": -3.430285491637962,
+      "distinct_values": 5196,
+      "noise_level": 0.2564159016752497,
+      "plateau_ratio": 0.10968688845401174,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_034_mean",
+      "std_dev": "ev_s2_col_034_stddev",
+      "distribution": "ev_s2_col_034_dist",
+      "dynamics": "ev_s2_col_034_dyn"
+    }
+  },
+  "col_035": {
+    "statistics": {
+      "mean": 4.793368059360736,
+      "std_dev": 0.33451762259532414,
+      "quantiles": {
+        "p25": 4.784464242728766,
+        "p50": 4.849825211723938,
+        "p75": 4.910837914396111
+      },
+      "skewness": -2.41391654220157,
+      "distinct_values": 8074,
+      "noise_level": 0.476104795215512,
+      "plateau_ratio": 0.0960371819960861,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_035_mean",
+      "std_dev": "ev_s2_col_035_stddev",
+      "distribution": "ev_s2_col_035_dist",
+      "dynamics": "ev_s2_col_035_dyn"
+    }
+  },
+  "col_036": {
+    "statistics": {
+      "mean": 2.269630786040445,
+      "std_dev": 0.17702920492298427,
+      "quantiles": {
+        "p25": 2.248330781441195,
+        "p50": 2.297477822933629,
+        "p75": 2.3451364310724516
+      },
+      "skewness": -2.3443422810475694,
+      "distinct_values": 6131,
+      "noise_level": 0.24630196979224597,
+      "plateau_ratio": 0.09204174820613177,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_036_mean",
+      "std_dev": "ev_s2_col_036_stddev",
+      "distribution": "ev_s2_col_036_dist",
+      "dynamics": "ev_s2_col_036_dyn"
+    }
+  },
+  "col_037": {
+    "statistics": {
+      "mean": 0.018001032445637655,
+      "std_dev": 0.010108728662314605,
+      "quantiles": {
+        "p25": 0.011416695622165018,
+        "p50": 0.01817305085253832,
+        "p75": 0.024864303088656305
+      },
+      "skewness": -0.09973457869506663,
+      "distinct_values": 9053,
+      "noise_level": 0.008762196777086525,
+      "plateau_ratio": 0.10945857795172864,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_037_mean",
+      "std_dev": "ev_s2_col_037_stddev",
+      "distribution": "ev_s2_col_037_dist",
+      "dynamics": "ev_s2_col_037_dyn"
+    }
+  },
+  "col_038": {
+    "statistics": {
+      "mean": 0.8376782273320289,
+      "std_dev": 0.0927068949412938,
+      "quantiles": {
+        "p25": 0.8188073060218465,
+        "p50": 0.8362760865212495,
+        "p75": 0.853725816368671
+      },
+      "skewness": -0.4868704435720267,
+      "distinct_values": 7273,
+      "noise_level": 0.1336362748891704,
+      "plateau_ratio": 0.10652315720808872,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_038_mean",
+      "std_dev": "ev_s2_col_038_stddev",
+      "distribution": "ev_s2_col_038_dist",
+      "dynamics": "ev_s2_col_038_dyn"
+    }
+  },
+  "col_039": {
+    "statistics": {
+      "mean": 0.09724542066210048,
+      "std_dev": 0.013433243766762384,
+      "quantiles": {
+        "p25": 0.0899371077952573,
+        "p50": 0.09818932447302653,
+        "p75": 0.10577851143648688
+      },
+      "skewness": -0.6190947474369167,
+      "distinct_values": 7197,
+      "noise_level": 0.01558326325579343,
+      "plateau_ratio": 0.10642530984996738,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_039_mean",
+      "std_dev": "ev_s2_col_039_stddev",
+      "distribution": "ev_s2_col_039_dist",
+      "dynamics": "ev_s2_col_039_dyn"
+    }
+  },
+  "col_040": {
+    "statistics": {
+      "mean": 53.71625578930225,
+      "std_dev": 0.5840037427464202,
+      "quantiles": {
+        "p25": 53.35541757712065,
+        "p50": 53.6990901822452,
+        "p75": 54.095076940267774
+      },
+      "skewness": -0.1403446063710007,
+      "distinct_values": 2567,
+      "noise_level": 0.6080827575282773,
+      "plateau_ratio": 0.13093607305936072,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_040_mean",
+      "std_dev": "ev_s2_col_040_stddev",
+      "distribution": "ev_s2_col_040_dist",
+      "dynamics": "ev_s2_col_040_dyn"
+    }
+  },
+  "col_041": {
+    "statistics": {
+      "mean": 43.771837084148764,
+      "std_dev": 0.6099486253331804,
+      "quantiles": {
+        "p25": 43.37470668440899,
+        "p50": 43.77012860648741,
+        "p75": 44.159526360084364
+      },
+      "skewness": 0.11027072736258753,
+      "distinct_values": 2671,
+      "noise_level": 0.637393220521246,
+      "plateau_ratio": 0.1333007175472929,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_041_mean",
+      "std_dev": "ev_s2_col_041_stddev",
+      "distribution": "ev_s2_col_041_dist",
+      "dynamics": "ev_s2_col_041_dyn"
+    }
+  },
+  "col_042": {
+    "statistics": {
+      "mean": 63.659200880626294,
+      "std_dev": 4.530757077195409,
+      "quantiles": {
+        "p25": 62.64804740654887,
+        "p50": 63.08853358393922,
+        "p75": 63.55419022946756
+      },
+      "skewness": 7.21717071009388,
+      "distinct_values": 4889,
+      "noise_level": 6.436938038758166,
+      "plateau_ratio": 0.11727005870841488,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_042_mean",
+      "std_dev": "ev_s2_col_042_stddev",
+      "distribution": "ev_s2_col_042_dist",
+      "dynamics": "ev_s2_col_042_dyn"
+    }
+  },
+  "col_043": {
+    "statistics": {
+      "mean": 54.35692276581864,
+      "std_dev": 6.36900571217972,
+      "quantiles": {
+        "p25": 53.533207215033094,
+        "p50": 53.957719091720804,
+        "p75": 54.38719731547478
+      },
+      "skewness": 5.183743666337795,
+      "distinct_values": 7623,
+      "noise_level": 9.052835219566703,
+      "plateau_ratio": 0.11291585127201566,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_043_mean",
+      "std_dev": "ev_s2_col_043_stddev",
+      "distribution": "ev_s2_col_043_dist",
+      "dynamics": "ev_s2_col_043_dyn"
+    }
+  },
+  "col_044": {
+    "statistics": {
+      "mean": 29.708311056702556,
+      "std_dev": 19.37072003346294,
+      "quantiles": {
+        "p25": 22.291284799090306,
+        "p50": 25.153192112337564,
+        "p75": 28.44108990718853
+      },
+      "skewness": 2.4312393371431624,
+      "distinct_values": 21873,
+      "noise_level": 28.02635478935569,
+      "plateau_ratio": 0.09636333985649054,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_044_mean",
+      "std_dev": "ev_s2_col_044_stddev",
+      "distribution": "ev_s2_col_044_dist",
+      "dynamics": "ev_s2_col_044_dyn"
+    }
+  },
+  "col_045": {
+    "statistics": {
+      "mean": 63.339302804957505,
+      "std_dev": 7.834413148217639,
+      "quantiles": {
+        "p25": 60.3235771991744,
+        "p50": 61.45841866680152,
+        "p75": 62.71645592101703
+      },
+      "skewness": 3.395538058598103,
+      "distinct_values": 13380,
+      "noise_level": 10.511072640848969,
+      "plateau_ratio": 0.09639595564253098,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_045_mean",
+      "std_dev": "ev_s2_col_045_stddev",
+      "distribution": "ev_s2_col_045_dist",
+      "dynamics": "ev_s2_col_045_dyn"
+    }
+  },
+  "col_046": {
+    "statistics": {
+      "mean": 20.940072205534857,
+      "std_dev": 5.26031021296114,
+      "quantiles": {
+        "p25": 21.410547513107268,
+        "p50": 22.0611369644311,
+        "p75": 22.579317199309468
+      },
+      "skewness": -3.010787863730989,
+      "distinct_values": 9825,
+      "noise_level": 7.105806346562841,
+      "plateau_ratio": 0.09807566862361383,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_046_mean",
+      "std_dev": "ev_s2_col_046_stddev",
+      "distribution": "ev_s2_col_046_dist",
+      "dynamics": "ev_s2_col_046_dyn"
+    }
+  },
+  "col_047": {
+    "statistics": {
+      "mean": 39.650273552074374,
+      "std_dev": 12.529120503565462,
+      "quantiles": {
+        "p25": 38.426604895638945,
+        "p50": 39.99305309964766,
+        "p75": 41.43260197169548
+      },
+      "skewness": 0.378382730956048,
+      "distinct_values": 16447,
+      "noise_level": 18.608425453696235,
+      "plateau_ratio": 0.09512393998695369,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_047_mean",
+      "std_dev": "ev_s2_col_047_stddev",
+      "distribution": "ev_s2_col_047_dist",
+      "dynamics": "ev_s2_col_047_dyn"
+    }
+  },
+  "col_048": {
+    "statistics": {
+      "mean": 38.208777853881365,
+      "std_dev": 3.005317229820819,
+      "quantiles": {
+        "p25": 36.13532171669418,
+        "p50": 38.29915165053304,
+        "p75": 40.22247416395575
+      },
+      "skewness": -0.000508187918727682,
+      "distinct_values": 12928,
+      "noise_level": 2.6902581279576494,
+      "plateau_ratio": 0.10342465753424658,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_048_mean",
+      "std_dev": "ev_s2_col_048_stddev",
+      "distribution": "ev_s2_col_048_dist",
+      "dynamics": "ev_s2_col_048_dyn"
+    }
+  },
+  "col_049": {
+    "statistics": {
+      "mean": 46.491292661448014,
+      "std_dev": 2.3249686349612184,
+      "quantiles": {
+        "p25": 44.970811630263924,
+        "p50": 46.38840915213806,
+        "p75": 48.08885892580674
+      },
+      "skewness": 0.023411894998732523,
+      "distinct_values": 10678,
+      "noise_level": 2.04338670035793,
+      "plateau_ratio": 0.09763535551206784,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_049_mean",
+      "std_dev": "ev_s2_col_049_stddev",
+      "distribution": "ev_s2_col_049_dist",
+      "dynamics": "ev_s2_col_049_dyn"
+    }
+  },
+  "col_050": {
+    "statistics": {
+      "mean": 49.684086086310806,
+      "std_dev": 16.891721044756196,
+      "quantiles": {
+        "p25": 45.70656108237246,
+        "p50": 48.0281401047522,
+        "p75": 51.291417732301305
+      },
+      "skewness": 0.7609264239117031,
+      "distinct_values": 23249,
+      "noise_level": 23.564557121237627,
+      "plateau_ratio": 0.09098173515981735,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_050_mean",
+      "std_dev": "ev_s2_col_050_stddev",
+      "distribution": "ev_s2_col_050_dist",
+      "dynamics": "ev_s2_col_050_dyn"
+    }
+  },
+  "col_051": {
+    "statistics": {
+      "mean": 41.55899637981081,
+      "std_dev": 10.602126165995587,
+      "quantiles": {
+        "p25": 40.60660635361262,
+        "p50": 41.18873471815358,
+        "p75": 41.83241823926536
+      },
+      "skewness": 1.7299612444691053,
+      "distinct_values": 12138,
+      "noise_level": 15.060719989847575,
+      "plateau_ratio": 0.08522504892367906,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_051_mean",
+      "std_dev": "ev_s2_col_051_stddev",
+      "distribution": "ev_s2_col_051_dist",
+      "dynamics": "ev_s2_col_051_dyn"
+    }
+  },
+  "col_052": {
+    "statistics": {
+      "mean": 18.579529250411266,
+      "std_dev": 6.589067310195394,
+      "quantiles": {
+        "p25": 16.999519502931886,
+        "p50": 18.169269478825957,
+        "p75": 19.37757213614442
+      },
+      "skewness": 6.316048015539394,
+      "distinct_values": 10358,
+      "noise_level": 9.126592552912246,
+      "plateau_ratio": 0.09380300065231573,
+      "has_plateaus": true
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_052_mean",
+      "std_dev": "ev_s2_col_052_stddev",
+      "distribution": "ev_s2_col_052_dist",
+      "dynamics": "ev_s2_col_052_dyn"
+    }
+  }
+}

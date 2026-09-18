@@ -1,0 +1,2 @@
+{"timestamp": "2026-09-18T20:53:35.364648+00:00", "stage": "S6_Drift", "action": "detect_drift", "details": "col_009 drifted by 5 sigma from mean 120.40017628832636", "evidence_ids": ["ev_s6_0001"], "confidence": null, "model_used": null}
+{"timestamp": "2026-09-18T20:54:06.200424+00:00", "stage": "S7_Diagnosis", "action": "generate_diagnosis", "details": "Diagnosed root cause related to col_009", "evidence_ids": ["ev_s7_0001"], "confidence": null, "model_used": null}
