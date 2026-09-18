@@ -1,0 +1,117 @@
+{
+  "event_id": "sim1_run22_ev01",
+  "fault_description": {
+    "kind": "abrupt_shift",
+    "summary": "Abrupt shift starting at sample 163 (detected at sample 167). Most responsible signals: col_044 13.7% above normal; col_001 13.6% above normal; col_016 12.8% above normal."
+  },
+  "ranked_signals": [
+    {
+      "col_id": "col_044",
+      "share": 0.137
+    },
+    {
+      "col_id": "col_001",
+      "share": 0.1359
+    },
+    {
+      "col_id": "col_016",
+      "share": 0.1277
+    },
+    {
+      "col_id": "col_023",
+      "share": 0.1135
+    },
+    {
+      "col_id": "col_029",
+      "share": 0.0861
+    }
+  ],
+  "chain": [
+    {
+      "step": 1,
+      "statement": "No S5 report was provided, so data trust is not verified.",
+      "evidence_ids": []
+    },
+    {
+      "step": 2,
+      "statement": "The first change was at sample 163 and was confirmed at sample 167 (T2 statistic, severity high).",
+      "evidence_ids": [
+        "ev_s6_sim1_run22_ev01_score"
+      ]
+    },
+    {
+      "step": 3,
+      "statement": "Signals contributing most: col_044 13.7% above normal; col_001 13.6% above normal; col_016 12.8% above normal.",
+      "evidence_ids": [
+        "ev_s6_sim1_run22_ev01_attribution"
+      ]
+    },
+    {
+      "step": 4,
+      "statement": "Sensor roles are unavailable, so the signals are described by behaviour only.",
+      "evidence_ids": []
+    },
+    {
+      "step": 5,
+      "statement": "The change looks like: abrupt shift.",
+      "evidence_ids": [
+        "ev_s6_sim1_run22_ev01_score",
+        "ev_s6_limits"
+      ]
+    },
+    {
+      "step": 6,
+      "statement": "No signature library is configured, so no known fault is named (decision D3).",
+      "evidence_ids": []
+    },
+    {
+      "step": 7,
+      "statement": "Confidence is medium; weakest link: blame concentration.",
+      "evidence_ids": [
+        "ev_s6_sim1_run22_ev01_score",
+        "ev_s6_limits"
+      ]
+    }
+  ],
+  "confidence": {
+    "level": "medium",
+    "reasons": [
+      "S6 rated the detection margin as high.",
+      "The top 3 signals hold 40.1% of the blame.",
+      "No S5 report was provided, so data trust is not verified.",
+      "Sensor roles are unavailable (no S4 output)."
+    ],
+    "weakest_link": "blame concentration"
+  },
+  "critiques": [
+    {
+      "check": "top signal fails a data quality check",
+      "outcome": "not_applicable",
+      "effect": "none",
+      "note": "No S5 report was provided."
+    },
+    {
+      "check": "one signal carries almost all the blame",
+      "outcome": "passed",
+      "effect": "none"
+    },
+    {
+      "check": "another known fault matches almost as well",
+      "outcome": "not_applicable",
+      "effect": "none",
+      "note": "No signature library is configured (decision D3)."
+    },
+    {
+      "check": "weak detection margin",
+      "outcome": "passed",
+      "effect": "none"
+    }
+  ],
+  "what_would_change_our_mind": [
+    "A frozen, missing or saturated reading on col_044 in the S5 report would make this a sensor problem, not a process fault.",
+    "If the score returned below its limit and stayed there, this would be a transient disturbance rather than a sustained change.",
+    "A signature library built from labelled history could name the closest known fault and its runner-up; none is configured, so only the behaviour is described (decision D3).",
+    "Roles for the top signals from S4 (semantics.json, currently unavailable) would show whether they belong to the same part of the process."
+  ],
+  "status": "proposed"
+}
