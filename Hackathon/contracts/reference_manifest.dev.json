@@ -1,0 +1,11 @@
+{
+  "provisional": true,
+  "description": "Normal runs for the development sample. fit = train normals, calibration = one held-out test normal. The other test normals are kept out for measuring false alarms.",
+  "fit": [
+    "sim1_run40",
+    "sim2_run31"
+  ],
+  "calibration": [
+    "sim1_run41"
+  ]
+}
