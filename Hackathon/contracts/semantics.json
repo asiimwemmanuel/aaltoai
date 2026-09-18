@@ -1,0 +1,626 @@
+{
+  "col_001": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_001_mean",
+      "ev_s2_col_001_stddev",
+      "ev_s2_col_001_dist",
+      "ev_s2_col_001_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_001'.\n\nStatistical Evidence:\n- Standard Deviation: 0.14129174825758062 (Evidence ID: ev_s2_col_001_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_001_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_002": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_002_mean",
+      "ev_s2_col_002_stddev",
+      "ev_s2_col_002_dist",
+      "ev_s2_col_002_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_002'.\n\nStatistical Evidence:\n- Standard Deviation: 40.32436893713221 (Evidence ID: ev_s2_col_002_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_002_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_003": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_003_mean",
+      "ev_s2_col_003_stddev",
+      "ev_s2_col_003_dist",
+      "ev_s2_col_003_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_003'.\n\nStatistical Evidence:\n- Standard Deviation: 99.74911817026835 (Evidence ID: ev_s2_col_003_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_003_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_004": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_004_mean",
+      "ev_s2_col_004_stddev",
+      "ev_s2_col_004_dist",
+      "ev_s2_col_004_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_004'.\n\nStatistical Evidence:\n- Standard Deviation: 0.4035425236543328 (Evidence ID: ev_s2_col_004_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_004_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_005": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_005_mean",
+      "ev_s2_col_005_stddev",
+      "ev_s2_col_005_dist",
+      "ev_s2_col_005_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_005'.\n\nStatistical Evidence:\n- Standard Deviation: 0.2297094176979364 (Evidence ID: ev_s2_col_005_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_005_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_006": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_006_mean",
+      "ev_s2_col_006_stddev",
+      "ev_s2_col_006_dist",
+      "ev_s2_col_006_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_006'.\n\nStatistical Evidence:\n- Standard Deviation: 0.3371458081578425 (Evidence ID: ev_s2_col_006_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_006_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_007": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_007_mean",
+      "ev_s2_col_007_stddev",
+      "ev_s2_col_007_dist",
+      "ev_s2_col_007_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_007'.\n\nStatistical Evidence:\n- Standard Deviation: 74.19938133669366 (Evidence ID: ev_s2_col_007_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_007_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_008": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_008_mean",
+      "ev_s2_col_008_stddev",
+      "ev_s2_col_008_dist",
+      "ev_s2_col_008_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_008'.\n\nStatistical Evidence:\n- Standard Deviation: 1.4684719065100975 (Evidence ID: ev_s2_col_008_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_008_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_009": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_009_mean",
+      "ev_s2_col_009_stddev",
+      "ev_s2_col_009_dist",
+      "ev_s2_col_009_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_009'.\n\nStatistical Evidence:\n- Standard Deviation: 0.06828478152692831 (Evidence ID: ev_s2_col_009_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_009_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_010": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_010_mean",
+      "ev_s2_col_010_stddev",
+      "ev_s2_col_010_dist",
+      "ev_s2_col_010_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_010'.\n\nStatistical Evidence:\n- Standard Deviation: 0.08081100881352796 (Evidence ID: ev_s2_col_010_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_010_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_011": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_011_mean",
+      "ev_s2_col_011_stddev",
+      "ev_s2_col_011_dist",
+      "ev_s2_col_011_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_011'.\n\nStatistical Evidence:\n- Standard Deviation: 1.7047838382248128 (Evidence ID: ev_s2_col_011_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_011_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_012": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_012_mean",
+      "ev_s2_col_012_stddev",
+      "ev_s2_col_012_dist",
+      "ev_s2_col_012_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_012'.\n\nStatistical Evidence:\n- Standard Deviation: 1.021222592250824 (Evidence ID: ev_s2_col_012_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_012_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_013": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_013_mean",
+      "ev_s2_col_013_stddev",
+      "ev_s2_col_013_dist",
+      "ev_s2_col_013_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_013'.\n\nStatistical Evidence:\n- Standard Deviation: 74.99368994562906 (Evidence ID: ev_s2_col_013_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_013_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_014": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_014_mean",
+      "ev_s2_col_014_stddev",
+      "ev_s2_col_014_dist",
+      "ev_s2_col_014_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_014'.\n\nStatistical Evidence:\n- Standard Deviation: 1.0735818733844413 (Evidence ID: ev_s2_col_014_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_014_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_015": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_015_mean",
+      "ev_s2_col_015_stddev",
+      "ev_s2_col_015_dist",
+      "ev_s2_col_015_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_015'.\n\nStatistical Evidence:\n- Standard Deviation: 1.0046148625885825 (Evidence ID: ev_s2_col_015_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_015_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_016": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_016_mean",
+      "ev_s2_col_016_stddev",
+      "ev_s2_col_016_dist",
+      "ev_s2_col_016_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_016'.\n\nStatistical Evidence:\n- Standard Deviation: 76.08715373056761 (Evidence ID: ev_s2_col_016_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_016_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_017": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_017_mean",
+      "ev_s2_col_017_stddev",
+      "ev_s2_col_017_dist",
+      "ev_s2_col_017_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_017'.\n\nStatistical Evidence:\n- Standard Deviation: 0.6488708882599892 (Evidence ID: ev_s2_col_017_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_017_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_018": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_018_mean",
+      "ev_s2_col_018_stddev",
+      "ev_s2_col_018_dist",
+      "ev_s2_col_018_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_018'.\n\nStatistical Evidence:\n- Standard Deviation: 1.7499922727553694 (Evidence ID: ev_s2_col_018_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_018_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_019": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_019_mean",
+      "ev_s2_col_019_stddev",
+      "ev_s2_col_019_dist",
+      "ev_s2_col_019_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_019'.\n\nStatistical Evidence:\n- Standard Deviation: 68.51559643536986 (Evidence ID: ev_s2_col_019_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_019_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_020": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_020_mean",
+      "ev_s2_col_020_stddev",
+      "ev_s2_col_020_dist",
+      "ev_s2_col_020_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_020'.\n\nStatistical Evidence:\n- Standard Deviation: 11.452224102614595 (Evidence ID: ev_s2_col_020_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_020_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_021": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_021_mean",
+      "ev_s2_col_021_stddev",
+      "ev_s2_col_021_dist",
+      "ev_s2_col_021_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_021'.\n\nStatistical Evidence:\n- Standard Deviation: 1.2154402017350459 (Evidence ID: ev_s2_col_021_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_021_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_022": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_022_mean",
+      "ev_s2_col_022_stddev",
+      "ev_s2_col_022_dist",
+      "ev_s2_col_022_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_022'.\n\nStatistical Evidence:\n- Standard Deviation: 1.2572914719847763 (Evidence ID: ev_s2_col_022_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_022_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_023": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_023_mean",
+      "ev_s2_col_023_stddev",
+      "ev_s2_col_023_dist",
+      "ev_s2_col_023_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_023'.\n\nStatistical Evidence:\n- Standard Deviation: 1.774640771134999 (Evidence ID: ev_s2_col_023_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_023_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_024": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_024_mean",
+      "ev_s2_col_024_stddev",
+      "ev_s2_col_024_dist",
+      "ev_s2_col_024_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_024'.\n\nStatistical Evidence:\n- Standard Deviation: 0.21852653300518105 (Evidence ID: ev_s2_col_024_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_024_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_025": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_025_mean",
+      "ev_s2_col_025_stddev",
+      "ev_s2_col_025_dist",
+      "ev_s2_col_025_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_025'.\n\nStatistical Evidence:\n- Standard Deviation: 1.8611570941439615 (Evidence ID: ev_s2_col_025_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_025_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_026": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_026_mean",
+      "ev_s2_col_026_stddev",
+      "ev_s2_col_026_dist",
+      "ev_s2_col_026_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_026'.\n\nStatistical Evidence:\n- Standard Deviation: 0.13852151975534602 (Evidence ID: ev_s2_col_026_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_026_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_027": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_027_mean",
+      "ev_s2_col_027_stddev",
+      "ev_s2_col_027_dist",
+      "ev_s2_col_027_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_027'.\n\nStatistical Evidence:\n- Standard Deviation: 0.9922163782258002 (Evidence ID: ev_s2_col_027_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_027_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_028": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_028_mean",
+      "ev_s2_col_028_stddev",
+      "ev_s2_col_028_dist",
+      "ev_s2_col_028_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_028'.\n\nStatistical Evidence:\n- Standard Deviation: 0.12750056500235313 (Evidence ID: ev_s2_col_028_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_028_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_029": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_029_mean",
+      "ev_s2_col_029_stddev",
+      "ev_s2_col_029_dist",
+      "ev_s2_col_029_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_029'.\n\nStatistical Evidence:\n- Standard Deviation: 2.6664651212315946 (Evidence ID: ev_s2_col_029_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_029_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_030": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_030_mean",
+      "ev_s2_col_030_stddev",
+      "ev_s2_col_030_dist",
+      "ev_s2_col_030_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_030'.\n\nStatistical Evidence:\n- Standard Deviation: 0.2751155357432356 (Evidence ID: ev_s2_col_030_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_030_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_031": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_031_mean",
+      "ev_s2_col_031_stddev",
+      "ev_s2_col_031_dist",
+      "ev_s2_col_031_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_031'.\n\nStatistical Evidence:\n- Standard Deviation: 2.864471268933044 (Evidence ID: ev_s2_col_031_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_031_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_032": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_032_mean",
+      "ev_s2_col_032_stddev",
+      "ev_s2_col_032_dist",
+      "ev_s2_col_032_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_032'.\n\nStatistical Evidence:\n- Standard Deviation: 0.14821458480483143 (Evidence ID: ev_s2_col_032_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_032_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_033": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_033_mean",
+      "ev_s2_col_033_stddev",
+      "ev_s2_col_033_dist",
+      "ev_s2_col_033_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_033'.\n\nStatistical Evidence:\n- Standard Deviation: 1.3811896226883666 (Evidence ID: ev_s2_col_033_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_033_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_034": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_034_mean",
+      "ev_s2_col_034_stddev",
+      "ev_s2_col_034_dist",
+      "ev_s2_col_034_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_034'.\n\nStatistical Evidence:\n- Standard Deviation: 0.17366954493463427 (Evidence ID: ev_s2_col_034_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_034_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_035": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_035_mean",
+      "ev_s2_col_035_stddev",
+      "ev_s2_col_035_dist",
+      "ev_s2_col_035_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_035'.\n\nStatistical Evidence:\n- Standard Deviation: 0.33451762259532414 (Evidence ID: ev_s2_col_035_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_035_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_036": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_036_mean",
+      "ev_s2_col_036_stddev",
+      "ev_s2_col_036_dist",
+      "ev_s2_col_036_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_036'.\n\nStatistical Evidence:\n- Standard Deviation: 0.17702920492298427 (Evidence ID: ev_s2_col_036_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_036_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_037": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_037_mean",
+      "ev_s2_col_037_stddev",
+      "ev_s2_col_037_dist",
+      "ev_s2_col_037_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_037'.\n\nStatistical Evidence:\n- Standard Deviation: 0.010108728662314605 (Evidence ID: ev_s2_col_037_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_037_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_038": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_038_mean",
+      "ev_s2_col_038_stddev",
+      "ev_s2_col_038_dist",
+      "ev_s2_col_038_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_038'.\n\nStatistical Evidence:\n- Standard Deviation: 0.0927068949412938 (Evidence ID: ev_s2_col_038_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_038_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_039": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_039_mean",
+      "ev_s2_col_039_stddev",
+      "ev_s2_col_039_dist",
+      "ev_s2_col_039_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_039'.\n\nStatistical Evidence:\n- Standard Deviation: 0.013433243766762384 (Evidence ID: ev_s2_col_039_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_039_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_040": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_040_mean",
+      "ev_s2_col_040_stddev",
+      "ev_s2_col_040_dist",
+      "ev_s2_col_040_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_040'.\n\nStatistical Evidence:\n- Standard Deviation: 0.5840037427464202 (Evidence ID: ev_s2_col_040_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_040_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_041": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_041_mean",
+      "ev_s2_col_041_stddev",
+      "ev_s2_col_041_dist",
+      "ev_s2_col_041_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_041'.\n\nStatistical Evidence:\n- Standard Deviation: 0.6099486253331804 (Evidence ID: ev_s2_col_041_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_041_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_042": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_042_mean",
+      "ev_s2_col_042_stddev",
+      "ev_s2_col_042_dist",
+      "ev_s2_col_042_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_042'.\n\nStatistical Evidence:\n- Standard Deviation: 4.530757077195409 (Evidence ID: ev_s2_col_042_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_042_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_043": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_043_mean",
+      "ev_s2_col_043_stddev",
+      "ev_s2_col_043_dist",
+      "ev_s2_col_043_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_043'.\n\nStatistical Evidence:\n- Standard Deviation: 6.36900571217972 (Evidence ID: ev_s2_col_043_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_043_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_044": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_044_mean",
+      "ev_s2_col_044_stddev",
+      "ev_s2_col_044_dist",
+      "ev_s2_col_044_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_044'.\n\nStatistical Evidence:\n- Standard Deviation: 19.37072003346294 (Evidence ID: ev_s2_col_044_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_044_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_045": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_045_mean",
+      "ev_s2_col_045_stddev",
+      "ev_s2_col_045_dist",
+      "ev_s2_col_045_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_045'.\n\nStatistical Evidence:\n- Standard Deviation: 7.834413148217639 (Evidence ID: ev_s2_col_045_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_045_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_046": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_046_mean",
+      "ev_s2_col_046_stddev",
+      "ev_s2_col_046_dist",
+      "ev_s2_col_046_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_046'.\n\nStatistical Evidence:\n- Standard Deviation: 5.26031021296114 (Evidence ID: ev_s2_col_046_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_046_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_047": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_047_mean",
+      "ev_s2_col_047_stddev",
+      "ev_s2_col_047_dist",
+      "ev_s2_col_047_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_047'.\n\nStatistical Evidence:\n- Standard Deviation: 12.529120503565462 (Evidence ID: ev_s2_col_047_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_047_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_048": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_048_mean",
+      "ev_s2_col_048_stddev",
+      "ev_s2_col_048_dist",
+      "ev_s2_col_048_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_048'.\n\nStatistical Evidence:\n- Standard Deviation: 3.005317229820819 (Evidence ID: ev_s2_col_048_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_048_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_049": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_049_mean",
+      "ev_s2_col_049_stddev",
+      "ev_s2_col_049_dist",
+      "ev_s2_col_049_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_049'.\n\nStatistical Evidence:\n- Standard Deviation: 2.3249686349612184 (Evidence ID: ev_s2_col_049_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_049_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_050": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_050_mean",
+      "ev_s2_col_050_stddev",
+      "ev_s2_col_050_dist",
+      "ev_s2_col_050_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_050'.\n\nStatistical Evidence:\n- Standard Deviation: 16.891721044756196 (Evidence ID: ev_s2_col_050_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_050_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_051": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_051_mean",
+      "ev_s2_col_051_stddev",
+      "ev_s2_col_051_dist",
+      "ev_s2_col_051_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_051'.\n\nStatistical Evidence:\n- Standard Deviation: 10.602126165995587 (Evidence ID: ev_s2_col_051_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_051_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  },
+  "col_052": {
+    "inferred_role": "Manipulated Variable (Actuator/Valve)",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev_s2_col_052_mean",
+      "ev_s2_col_052_stddev",
+      "ev_s2_col_052_dist",
+      "ev_s2_col_052_dyn"
+    ],
+    "human_override": null,
+    "debug_prompt_generated": "System: You are an autonomous data agent analyzing an undocumented industrial process.\nTask: Infer the physical role of column 'col_052'.\n\nStatistical Evidence:\n- Standard Deviation: 6.589067310195394 (Evidence ID: ev_s2_col_052_stddev)\n- Has Plateaus: True (Evidence ID: ev_s2_col_052_dyn)\n- Is a leading indicator for other sensors: False\n\nStructural Pre-Analysis: Based on the math, this behaves like a Manipulated Variable (Actuator/Valve).\n\nInstructions:\n1. Validate or refine the Structural Pre-Analysis.\n2. Propose a specific functional role.\n3. If you lack evidence, you MUST declare 'low' confidence.\n\nOutput strictly as JSON: {\"role\": string, \"confidence\": \"high\"|\"low\", \"evidence_ids\": [string]}"
+  }
+}
