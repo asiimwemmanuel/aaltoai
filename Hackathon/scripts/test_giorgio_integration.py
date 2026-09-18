@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import duckdb
 from core.dq_engine import DataQualityEngine
 from core.rule_compiler import RuleCompiler

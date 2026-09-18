@@ -1,91 +1,67 @@
-import duckdb
-import json
 import os
-import pandas as pd
-from datetime import datetime
+import sys
+import json
+import duckdb
+import argparse
 
-def run_s5_data_quality():
-    print("Loading S2 profiles and S4 semantics...")
-    
-    with open('contracts/schema.json', 'r') as f:
-        schema = json.load(f)
-    
-    with open('contracts/profiles.json', 'r') as f:
-        profiles = json.load(f)
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from core.dq_engine import DataQualityEngine
+from core.rule_compiler import RuleCompiler
+
+class DataQualityMonitor:
+    def __init__(self, artifacts_dir='artifacts', contracts_dir='contracts', data_dir='data'):
+        self.artifacts_dir = artifacts_dir
+        self.contracts_dir = contracts_dir
+        self.data_dir = data_dir
+
+    def run(self, batch_id='simulationRun=2.0'):
+        print("[S5] Starting Data Quality Trust Gate...")
         
-    # We simulate receiving a new batch of data. We'll use simulationRun=2 as the "incoming batch"
-    con = duckdb.connect()
-    print("Evaluating Data Quality for incoming batch (simulationRun=2.0)...")
-    
-    query = """
-    SELECT * FROM 'data/features/simulationRun=2.0/*.parquet'
-    """
-    df = con.execute(query).df()
-    
-    checks_log = []
-    failed_checks = 0
-    
-    cols = [col for col in schema["columns"].keys() if col != "col_time"]
-    
-    for col in cols:
-        profile = profiles[col]['statistics']
-        col_data = df[col]
+        schema_path = os.path.join(self.contracts_dir, 'schema.json')
+        if not os.path.exists(schema_path):
+            schema_path = os.path.join(self.artifacts_dir, 'schema.json')
+
+        engine = DataQualityEngine(
+            schema_path=schema_path,
+            profiles_path=os.path.join(self.artifacts_dir, 'profiles.json'),
+            decision_log_path=os.path.join(self.artifacts_dir, 'decision_log.jsonl')
+        )
         
-        # Check 1: Completeness (missing values)
-        missing_count = col_data.isna().sum()
-        if missing_count > 0:
-            checks_log.append({"col": col, "check": "completeness", "status": "FAIL", "msg": f"{missing_count} missing values"})
-            failed_checks += 1
+        compiler = RuleCompiler(schema_path=schema_path)
+        
+        con = duckdb.connect()
+        print(f"[S5] Evaluating Data Quality for incoming batch ({batch_id})...")
+        
+        # Load the data for the given batch
+        query = f"SELECT * FROM '{self.data_dir}/features/{batch_id}/*.parquet'"
+        try:
+            df = con.execute(query).df()
+        except Exception as e:
+            print(f"[S5] ERROR: Could not load data for batch {batch_id}: {e}")
+            return
             
-        # Check 2: Validity (out of historical bounds)
-        min_val = profile.get('min_val', -9999)
-        max_val = profile.get('max_val', 9999)
-        range_margin = (max_val - min_val) * 0.1
-        out_of_bounds = col_data[(col_data < (min_val - range_margin)) | (col_data > (max_val + range_margin))]
+        # Compile some natural language rules
+        rules = compiler.compile_rules([
+            'col_009 must remain within operational limits',
+            'Reactor pressure must stay below 2900'
+        ])
         
-        if len(out_of_bounds) > 0:
-            checks_log.append({"col": col, "check": "validity", "status": "WARN", "msg": f"{len(out_of_bounds)} readings out of historical bounds"})
+        report = engine.check_batch(df, batch_id=batch_id, compiled_rules=rules)
+        
+        # S5 must write to contracts/dq_report.json
+        os.makedirs(self.contracts_dir, exist_ok=True)
+        with open(os.path.join(self.contracts_dir, 'dq_report.json'), 'w') as f:
+            json.dump(report, f, indent=2)
             
-        # Check 3: Frozen/Stuck Sensor
-        # If the standard deviation of this batch is 0 but historical std_dev > 0.01
-        batch_std = col_data.std()
-        if pd.notna(batch_std) and batch_std == 0 and profile.get('std_dev', 0) > 0.01:
-            checks_log.append({"col": col, "check": "frozen_sensor", "status": "FAIL", "msg": "Sensor value is frozen/stuck"})
-            failed_checks += 1
-
-    # Check 4: Timeliness (duplicate timestamps)
-    duplicate_times = df['col_time'].duplicated().sum()
-    if duplicate_times > 0:
-        checks_log.append({"col": "col_time", "check": "timeliness", "status": "FAIL", "msg": f"{duplicate_times} duplicate timestamps"})
-        failed_checks += 1
-        
-    # Check 5: Mocking Compiled Natural Language Rules
-    mock_llm_rule = {"rule_text": "col_009 must remain within operational limits unless col_001 is closed", "status": "PASS"}
-    checks_log.append({"col": "col_009", "check": "human_rule", "status": mock_llm_rule["status"], "msg": mock_llm_rule["rule_text"]})
-    
-    # Determine Trust Verdict
-    trust_verdict = "reliable"
-    if failed_checks > 0:
-        trust_verdict = "untrustworthy"
-    elif any(c["status"] == "WARN" for c in checks_log):
-        trust_verdict = "degraded"
-        
-    dq_report = {
-        "batch_id": "simulationRun=2.0",
-        "timestamp": datetime.utcnow().isoformat() + "Z",
-        "trust_verdict": trust_verdict,
-        "checks_log": checks_log,
-        "stop_pipeline": trust_verdict == "untrustworthy"
-    }
-
-    os.makedirs('contracts', exist_ok=True)
-    with open('contracts/dq_report.json', 'w') as f:
-        json.dump(dq_report, f, indent=2)
-        
-    print(f"S5 Data Quality Gate complete. Verdict: {trust_verdict.upper()}.")
-    if trust_verdict == "untrustworthy":
-        print("PIPELINE STOPPED: Data is not reliable.")
-    print("dq_report.json generated in contracts folder.")
+        trust_verdict = report['trust_verdict']
+        print(f"[S5] Data Quality Gate complete. Verdict: {trust_verdict}.")
+        if trust_verdict == "UNTRUSTED":
+            print("[S5] PIPELINE STOPPED: Data is not reliable.")
+        print("[S5] dq_report.json generated in contracts folder.")
 
 if __name__ == "__main__":
-    run_s5_data_quality()
+    parser = argparse.ArgumentParser(description="S5 Data Quality Trust Gate")
+    parser.add_argument("--batch-id", default="simulationRun=2.0", help="The batch ID (e.g. simulationRun=2.0) to evaluate")
+    args = parser.parse_args()
+    
+    DataQualityMonitor().run(batch_id=args.batch_id)
