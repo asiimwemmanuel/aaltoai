@@ -1,0 +1,20 @@
+{
+  "batch_id": "simulationRun=2.0",
+  "timestamp": "2026-09-18T20:16:37.138848Z",
+  "trust_verdict": "untrustworthy",
+  "checks_log": [
+    {
+      "col": "col_time",
+      "check": "timeliness",
+      "status": "FAIL",
+      "msg": "29700 duplicate timestamps"
+    },
+    {
+      "col": "col_009",
+      "check": "human_rule",
+      "status": "PASS",
+      "msg": "col_009 must remain within operational limits unless col_001 is closed"
+    }
+  ],
+  "stop_pipeline": true
+}
