@@ -1,6 +1,6 @@
 """S6 Drift and fault detection (PCA with T2 and SPE, persistence rule, per-signal attribution).
 
-Reads:  data/features/simulationRun=*/*.parquet, contracts/reference_manifest.dev.json
+Reads:  data/features/simulationRun=*/*.parquet, contracts/reference_manifest.json
 Writes: contracts/drift_events.json (one run, --run-id) or artifacts/drift_events/<run_id>.json (all runs)
 
 Run from the Hackathon/ folder:  python scripts/s6_drift.py
@@ -335,7 +335,7 @@ def write_json(path, obj):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--features", default="data/features")
-    ap.add_argument("--manifest", default="contracts/reference_manifest.dev.json")
+    ap.add_argument("--manifest", default="contracts/reference_manifest.json")
     ap.add_argument("--dq-report", help="S5 dq_report.json; S6 stops when its verdict is UNTRUSTED")
     ap.add_argument("--run-id", help="score one run and write contracts/drift_events.json")
     ap.add_argument("--out", default="contracts/drift_events.json")
