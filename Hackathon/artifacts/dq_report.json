@@ -1,6 +1,6 @@
 {
   "batch_id": "test_batch_rules",
-  "evaluated_at": "2026-09-18T19:42:55.262849+00:00",
+  "evaluated_at": "2026-09-18T21:27:06.986555+00:00",
   "trust_verdict": "DEGRADED",
   "total_samples": 20,
   "total_columns_checked": 52,
