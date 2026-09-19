@@ -1,18 +1,60 @@
-"""S7 Diagnosis and critique (deterministic template, no model call).
+"""S7 Diagnosis and critique.
 
-Reads:  contracts/drift_events.json, optional S5 dq_report.json, optional contracts/semantics.json
-Writes: contracts/diagnosis.json
+The decisions are deterministic: the numbered chain, the critique checks, the refusal to
+diagnose on untrusted data, and the confidence level. The model, through
+trust.gateway.call_model(), only writes a plain-language narrative and proposes alternative
+explanations. It is never asked when S5 refused the data, and if it is unavailable the
+diagnosis is complete without it.
 
-Run from the Hackathon/ folder:  python scripts/s7_diagnosis.py
+Reads:  artifacts/drift_events.json, optional artifacts/dq_report.json, optional artifacts/semantics.json
+Writes: artifacts/diagnosis.json (a list with one diagnosis, the shape contracts/diagnosis.schema.json accepts)
+
+Run from the repository root:  python pipeline/s7_diagnosis.py
 """
 import argparse
 import json
 import os
 import sys
+from datetime import datetime, timezone
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from trust.decision_log import DecisionLog
+from trust.gateway import GateViolation, call_model, load_config
 
+STAGE = "S7_diagnosis"
 LEVELS = ["low", "medium", "high"]
+STATUSES = ("inferred", "assumed", "uncertain")
+MAX_ALTERNATIVES = 3
+
+NARRATIVE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "summary": {"type": "string"},
+        "steps": {"type": "array", "items": {"type": "string"}},
+        "alternative_explanations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "explanation": {"type": "string"},
+                    "supported_if": {"type": "string"},
+                },
+                "required": ["explanation", "supported_if"],
+            },
+        },
+        "epistemic_status": {"enum": list(STATUSES)},
+    },
+    "required": ["summary", "steps", "alternative_explanations", "epistemic_status"],
+}
+
+NARRATIVE_INSTRUCTIONS = (
+    "Explain this detected change to a non-specialist in a short summary and two to four plain "
+    "sentences. Then propose up to three alternative explanations, each with the observation that "
+    "would support it. Use only the facts in this payload: the checks and the confidence were "
+    "already decided and must not be contradicted. If a role is missing for a column, describe the "
+    "column by its behaviour only. epistemic_status: 'inferred' follows from the payload, 'assumed' "
+    "is a working assumption, 'uncertain' means the payload leaves it open."
+)
 
 DEFAULTS = {
     "single_signal_share": 0.6,
@@ -41,7 +83,7 @@ def read_roles(data):
         return {}
     roles = {}
     for col_id, entry in items:
-        role = entry.get("role") or entry.get("role_hypothesis")
+        role = entry.get("role") or entry.get("inferred_role") or entry.get("role_hypothesis")
         if col_id and role:
             confidence = entry.get("confidence")
             ids = entry.get("evidence_ids", [])
@@ -251,42 +293,9 @@ def diagnose(drift, event, gate, roles, params):
         confidence = {"level": "low", "reasons": [trust_statement], "weakest_link": "data quality"}
     else:
         kind = describe_kind(event)
-        
-        # Build payload for the LLM
-        payload = {
-            "event_summary": {
-                "kind": kind,
-                "start_sample": event['start_sample'],
-                "severity": event['severity'],
-            },
-            "ranked_contributions": [
-                {
-                    "col_id": r["col_id"],
-                    "share": r["share"],
-                    "direction": r["direction"],
-                    "physical_role": roles.get(r["col_id"], {}).get("inferred_role", "Unknown") if roles else "Unknown"
-                }
-                for r in ranked[:top_n]
-            ]
-        }
-        
-        from trust.gateway import call_model
-        
-        try:
-            print("  -> Calling LLM to write the Root Cause Analysis...")
-            response = call_model(
-                purpose="Write a short, professional Root Cause Analysis summary (1-2 sentences) describing this fault event and the likely physical cause.",
-                payload=payload,
-                schema_out={"type": "object", "properties": {"summary": {"type": "string"}}, "required": ["summary"]},
-                stage="S7_Diagnosis"
-            )
-            summary = response.get("summary", "LLM failed to generate a summary.")
-        except Exception as e:
-            print(f"  -> LLM call failed: {e}")
-            summary = (f"{kind.capitalize()} starting at sample {event['start_sample']} "
-                       f"(detected at sample {event['detected_at_sample']}). "
-                       f"Most responsible signals: {signals_text(ranked, roles, top_n)}.")
-
+        summary = (f"{KIND_WORDS[kind]} starting at sample {event['start_sample']} "
+                   f"(detected at sample {event['detected_at_sample']}). Most responsible signals: "
+                   f"{signals_text(ranked, roles, top_n)}.")
         role_ids = [i for s in ranked[:top_n] for i in roles.get(s["col_id"], {}).get("evidence_ids", [])]
         role_text = ("Signal roles come from S4." if role_ids or any(s["col_id"] in roles for s in ranked)
                      else "Sensor roles are unavailable, so the signals are described by behaviour only.")
@@ -321,13 +330,103 @@ def diagnose(drift, event, gate, roles, params):
     return result
 
 
+def clean_narrative(answer):
+    """Keep only what a narrative may contain, or None if the answer is unusable."""
+    if not isinstance(answer, dict) or answer.get("_stub") or "_unparsed" in answer:
+        return None
+    summary = answer.get("summary")
+    if not isinstance(summary, str) or not summary.strip():
+        return None
+    steps = answer.get("steps") if isinstance(answer.get("steps"), list) else []
+    alternatives = []
+    for alt in answer.get("alternative_explanations") or []:
+        if isinstance(alt, dict) and isinstance(alt.get("explanation"), str) and alt["explanation"].strip():
+            supported_if = alt.get("supported_if")
+            alternatives.append({
+                "explanation": alt["explanation"].strip(),
+                "supported_if": supported_if if isinstance(supported_if, str) else "",
+                "epistemic_status": "uncertain",
+            })
+    status = answer.get("epistemic_status")
+    return {
+        "summary": summary.strip(),
+        "steps": [s.strip() for s in steps if isinstance(s, str) and s.strip()],
+        "alternative_explanations": alternatives[:MAX_ALTERNATIVES],
+        "epistemic_status": status if status in STATUSES else "uncertain",
+        "source": "model",
+        "model_call_id": answer.get("_call_id"),
+    }
+
+
+def request_narrative(result, event, roles, llm_config, log):
+    """Ask the model to explain a diagnosis that is already decided. Returns (narrative, reason)."""
+    top = event["ranked_signals"][:DEFAULTS["top_signals_in_text"]]
+    payload = {
+        "event_summary": {
+            "kind": result["fault_description"]["kind"],
+            "change_type": event["type"],
+            "start_sample": event["start_sample"],
+            "detected_at_sample": event["detected_at_sample"],
+            "end_sample": event["end_sample"],
+            "severity": event["severity"],
+            "statistic": event["statistic"],
+            "data_trust": result.get("data_trust", {}).get("verdict", "not_verified"),
+            "confidence": result["confidence"]["level"],
+        },
+        "ranked_contributions": [
+            {"col_id": s["col_id"], "share": s["share"], "direction": s["direction"],
+             **({"role": roles[s["col_id"]]["role"]} if s["col_id"] in roles else {})}
+            for s in top
+        ],
+        "check_definitions": [
+            {"check": c["check"], "outcome": c["outcome"], "effect": c["effect"]}
+            for c in result["critiques"]
+        ],
+        "instructions": NARRATIVE_INSTRUCTIONS,
+    }
+    try:
+        answer = call_model("diagnosis_narrative", payload, NARRATIVE_SCHEMA,
+                            stage=STAGE, config=llm_config, log=log)
+    except GateViolation as exc:
+        return None, f"gate refused the payload: {exc}"
+    except OSError as exc:
+        return None, f"model endpoint unreachable ({exc})"
+    narrative = clean_narrative(answer)
+    return narrative, None if narrative else "the model returned no usable narrative"
+
+
+def to_contract(result, narrative):
+    """Shape one diagnosis the way contracts/diagnosis.schema.json (Form B) accepts it."""
+    level = result["confidence"]["level"]
+    evidence = list(dict.fromkeys(i for step in result["chain"] for i in step["evidence_ids"]))
+    entry = {
+        "diagnosis_id": f"diag_{result['event_id']}",
+        "drift_event_id": result["event_id"],
+        "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "root_cause_hypothesis": result["fault_description"]["summary"],
+        "confidence": level,
+        "epistemic_status": "uncertain" if level == "low" else "inferred",
+        "supporting_evidence": evidence,
+        **{k: v for k, v in result.items() if k != "confidence"},
+        "confidence_detail": result["confidence"],
+    }
+    if narrative:
+        entry["narrative"] = {k: narrative[k] for k in
+                              ("summary", "steps", "epistemic_status", "source", "model_call_id")}
+        entry["alternative_explanations"] = narrative["alternative_explanations"]
+    return entry
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--drift", default="contracts/drift_events.json")
-    ap.add_argument("--semantics", default="contracts/semantics.json")
-    ap.add_argument("--dq-report", help="S5 dq_report.json")
+    ap.add_argument("--drift", default="artifacts/drift_events.json")
+    ap.add_argument("--semantics", default="artifacts/semantics.json")
+    ap.add_argument("--dq-report", default="artifacts/dq_report.json",
+                    help="S5 dq_report.json; if missing, data trust is reported as not verified")
     ap.add_argument("--event-id", help="event to diagnose (default: the first one)")
-    ap.add_argument("--out", default="contracts/diagnosis.json")
+    ap.add_argument("--out", default="artifacts/diagnosis.json")
+    ap.add_argument("--log", default="artifacts/decision_log.jsonl")
+    ap.add_argument("--no-model", action="store_true", help="skip the model narrative")
     args = ap.parse_args()
 
     drift = read_json(args.drift)
@@ -336,14 +435,37 @@ def main():
     roles = read_roles(read_json(args.semantics))
     gate = read_gate(read_json(args.dq_report))
     event = pick_event(drift, args.event_id)
+    log = DecisionLog(args.log)
 
     result = diagnose(drift, event, gate, roles, DEFAULTS)
+
+    narrative = None
+    if result["fault_description"]["kind"] == "sensor_problem":
+        print("[S7] Diagnosis refused on data quality grounds: the model is not asked to explain it.")
+    elif not args.no_model:
+        narrative, reason = request_narrative(result, event, roles,
+                                              load_config(os.environ.get("LLM_CONFIG")), log)
+        if reason:
+            print(f"[S7] No model narrative: {reason}")
+            log.append(stage=STAGE, kind="flag",
+                       summary=f"No model narrative for {result['event_id']}: {reason}. "
+                               f"The deterministic diagnosis is complete without it.")
+
+    entry = to_contract(result, narrative)
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w") as f:
-        json.dump(result, f, indent=2)
+        json.dump([entry], f, indent=2)
+
+    log.append(stage=STAGE, kind="diagnosis",
+               summary=f"{result['event_id']}: {result['fault_description']['kind']}, "
+                       f"confidence {entry['confidence']}",
+               subject=[s["col_id"] for s in result["ranked_signals"][:DEFAULTS["top_signals_in_text"]]],
+               evidence_ids=entry["supporting_evidence"],
+               confidence=entry["confidence"], epistemic_status=entry["epistemic_status"])
+
+    detail = result["confidence"]
     print(f"{result['event_id']}: {result['fault_description']['kind']}, "
-          f"confidence {result['confidence']['level']} (weakest link: {result['confidence']['weakest_link']}) "
-          f"-> {args.out}")
+          f"confidence {detail['level']} (weakest link: {detail['weakest_link']}) -> {args.out}")
     print(result["fault_description"]["summary"])
 
 
