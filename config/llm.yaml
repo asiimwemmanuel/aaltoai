@@ -2,30 +2,11 @@
 # Deliverable 8 is demonstrated by editing this file and re-running.
 
 llm:
-  # Swapping this line is the whole of Deliverable 8: the model layer changes
-  # by configuration, never by a rewrite. The decision log records which
-  # provider served each call and whether the payload left the machine.
-  #
-  #   local  | stub  -> no egress
-  #   google | anthropic | openai | eu_hosted -> egress, logged per call
-  #
-  # Interim setup while the local model is being installed: google.
-  # Switch back to `local` the moment Ollama answers on 11434.
-  provider: google
-  model: gemini-2.0-flash
-  endpoint: https://generativelanguage.googleapis.com/v1beta
-  # The key is NEVER written here: this file is committed. Name the environment
-  # variable instead, and export it in the shell that runs the pipeline.
-  api_key_env: GEMINI_API_KEY
-  timeout_s: 120
-
-# Kept so switching back is one edit, not a rewrite from memory.
-llm_local_profile:
   provider: local
-  model: llama3.1:8b
+  model: llama3.1:latest
   endpoint: http://localhost:11434
   api_key_env: null
-  timeout_s: 120
+  timeout_s: 600
 
 gate:
   max_payload_kb: 64

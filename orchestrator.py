@@ -44,7 +44,18 @@ def main():
     
     if args.start_ui:
         print("\nStarting the Operator UI Server...")
-        print("Navigate to http://localhost:8000/ui/ in your browser.")
+        print("Automatically opening http://localhost:8000/ui/ in your browser...")
+        
+        import threading
+        import webbrowser
+        import time
+        
+        def open_browser():
+            time.sleep(2)
+            webbrowser.open("http://localhost:8000/ui/")
+            
+        threading.Thread(target=open_browser, daemon=True).start()
+        
         try:
             subprocess.run(f"{sys.executable} ui/server.py", shell=True)
         except KeyboardInterrupt:
