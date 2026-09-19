@@ -1,20 +1,112 @@
 {
-  "batch_id": "simulationRun=2.0",
-  "timestamp": "2026-09-18T20:16:37.138848Z",
-  "trust_verdict": "untrustworthy",
-  "checks_log": [
-    {
-      "col": "col_time",
-      "check": "timeliness",
-      "status": "FAIL",
-      "msg": "29700 duplicate timestamps"
-    },
-    {
-      "col": "col_009",
-      "check": "human_rule",
-      "status": "PASS",
-      "msg": "col_009 must remain within operational limits unless col_001 is closed"
-    }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DataQualityReport",
+  "description": "Stage 5 Data Quality Trust Gate evaluation report.",
+  "type": "object",
+  "required": [
+    "batch_id",
+    "evaluated_at",
+    "trust_verdict",
+    "total_samples",
+    "total_columns_checked",
+    "checks_run_count",
+    "checks_passed_count",
+    "checks_failed_count",
+    "failures",
+    "compiled_rules_evaluated"
   ],
-  "stop_pipeline": true
+  "properties": {
+    "batch_id": {
+      "type": "string"
+    },
+    "evaluated_at": {
+      "type": "string"
+    },
+    "trust_verdict": {
+      "type": "string",
+      "enum": [
+        "TRUSTED",
+        "DEGRADED",
+        "UNTRUSTED"
+      ]
+    },
+    "total_samples": {
+      "type": "integer"
+    },
+    "total_columns_checked": {
+      "type": "integer"
+    },
+    "checks_run_count": {
+      "type": "integer"
+    },
+    "checks_passed_count": {
+      "type": "integer"
+    },
+    "checks_failed_count": {
+      "type": "integer"
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "check_type",
+          "target_col",
+          "detail",
+          "severity",
+          "action_taken"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string"
+          },
+          "check_type": {
+            "type": "string"
+          },
+          "target_col": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "action_taken": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "compiled_rules_evaluated": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "rule_id",
+          "raw_text",
+          "target_col",
+          "status"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string"
+          },
+          "raw_text": {
+            "type": "string"
+          },
+          "target_col": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "violating_samples_count": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
 }
