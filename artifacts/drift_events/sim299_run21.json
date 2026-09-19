@@ -1,0 +1,110 @@
+{
+  "batch": {
+    "batch_id": "sim299_run21",
+    "run_id": "sim299_run21",
+    "n_samples": 12,
+    "first_sample": 1,
+    "last_sample": 12
+  },
+  "detector": {
+    "family": "pca_t2_spe",
+    "parameters": {
+      "variance_target": 0.9,
+      "limit_percentile": 99.0,
+      "persistence": 5,
+      "release": 10,
+      "attribution_window": 30,
+      "top_signals": 5,
+      "shift_threshold": 1.0,
+      "variability_high": 1.5,
+      "variability_low": 0.5,
+      "ramp_lookback": 20,
+      "ramp_ratio": 0.8,
+      "ramp_min_samples": 6,
+      "severity_high_ratio": 10.0,
+      "severity_medium_ratio": 3.0,
+      "n_components": 17
+    },
+    "limits": {
+      "t2": 50.4199,
+      "spe": 15.0473
+    }
+  },
+  "events": [],
+  "score_series": {
+    "sample": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "t2": [
+      7.9558,
+      7.4253,
+      4.3163,
+      6.1936,
+      11.7994,
+      14.5216,
+      15.1684,
+      13.8989,
+      9.7422,
+      12.9893,
+      10.0162,
+      8.0121
+    ],
+    "spe": [
+      1.4559,
+      3.2528,
+      1.2378,
+      1.4513,
+      1.5292,
+      4.2457,
+      1.9968,
+      2.3143,
+      6.7852,
+      6.4525,
+      3.9199,
+      3.2586
+    ],
+    "limit_t2": 50.4199,
+    "limit_spe": 15.0473
+  },
+  "evidence": [
+    {
+      "evidence_id": "ev_s6_baseline",
+      "stage": "S6_drift",
+      "kind": "reference_baseline",
+      "subject": [],
+      "value": {
+        "n_samples": 5598,
+        "n_columns": 52,
+        "n_components": 17,
+        "variance_explained": 0.9097
+      },
+      "computed_at": "2026-09-19T19:55:06.157738Z",
+      "method": "pca_on_normal_reference_runs"
+    },
+    {
+      "evidence_id": "ev_s6_limits",
+      "stage": "S6_drift",
+      "kind": "control_limits",
+      "subject": [],
+      "value": {
+        "t2": 50.4199,
+        "spe": 15.0473,
+        "percentile": 99.0,
+        "n_samples": 3585
+      },
+      "computed_at": "2026-09-19T19:55:06.157738Z",
+      "method": "percentile_on_held_out_normal_runs"
+    }
+  ]
+}

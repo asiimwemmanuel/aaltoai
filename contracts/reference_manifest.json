@@ -1,0 +1,21 @@
+{
+  "fit": [
+    "sim100_run00",
+    "sim100_run01",
+    "sim100_run02",
+    "sim100_run03",
+    "sim100_run04",
+    "sim100_run05",
+    "sim100_run06",
+    "sim100_run07",
+    "sim100_run08",
+    "sim100_run09"
+  ],
+  "calibration": [
+    "sim100_run10",
+    "sim100_run11",
+    "sim100_run12",
+    "sim100_run13",
+    "sim100_run14"
+  ]
+}

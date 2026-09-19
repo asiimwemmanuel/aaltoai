@@ -28,7 +28,7 @@ class IngestionEngine:
         os.makedirs(labels_dir, exist_ok=True)
         os.makedirs(self.artifacts_dir, exist_ok=True)
         
-        columns = con.execute(f"SELECT * FROM read_csv_auto('{self.csv_path}') LIMIT 1").df().columns.tolist()
+        columns = con.sql(f"SELECT * FROM read_csv_auto('{self.csv_path}') LIMIT 0").columns
         xmeas_cols = [c for c in columns if c.startswith('xmeas_')]
         xmv_cols = [c for c in columns if c.startswith('xmv_')]
         

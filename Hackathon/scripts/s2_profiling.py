@@ -38,21 +38,22 @@ class ProfilingEngine:
             FROM lagged
             """
             
-            df = con.execute(query).df()
-            row = df.iloc[0]
-            
+            cursor = con.execute(query)
+            col_names = [d[0] for d in cursor.description]
+            row = dict(zip(col_names, cursor.fetchone()))
+
             profiles[col] = {
                 "statistics": {
-                    "mean": float(row["mean"]) if not df["mean"].isnull().iloc[0] else 0.0,
-                    "std_dev": float(row["std_dev"]) if not df["std_dev"].isnull().iloc[0] else 0.0,
-                    "min_val": float(row["min_val"]) if not df["min_val"].isnull().iloc[0] else 0.0,
-                    "max_val": float(row["max_val"]) if not df["max_val"].isnull().iloc[0] else 0.0,
-                    "quantiles": {"p25": float(row["p25"]) if not df["p25"].isnull().iloc[0] else 0.0, "p50": float(row["p50"]) if not df["p50"].isnull().iloc[0] else 0.0, "p75": float(row["p75"]) if not df["p75"].isnull().iloc[0] else 0.0},
-                    "skewness": float(row["skewness"]) if not df["skewness"].isnull().iloc[0] else 0.0,
+                    "mean": float(row["mean"]) if row["mean"] is not None else 0.0,
+                    "std_dev": float(row["std_dev"]) if row["std_dev"] is not None else 0.0,
+                    "min_val": float(row["min_val"]) if row["min_val"] is not None else 0.0,
+                    "max_val": float(row["max_val"]) if row["max_val"] is not None else 0.0,
+                    "quantiles": {"p25": float(row["p25"]) if row["p25"] is not None else 0.0, "p50": float(row["p50"]) if row["p50"] is not None else 0.0, "p75": float(row["p75"]) if row["p75"] is not None else 0.0},
+                    "skewness": float(row["skewness"]) if row["skewness"] is not None else 0.0,
                     "distinct_values": int(row["distinct_vals"]),
-                    "noise_level": float(row["noise_level"]) if not df["noise_level"].isnull().iloc[0] else 0.0,
-                    "plateau_ratio": float(row["plateau_ratio"]) if not df["plateau_ratio"].isnull().iloc[0] else 0.0,
-                    "has_plateaus": bool(row["plateau_ratio"] > 0.05) if not df["plateau_ratio"].isnull().iloc[0] else False
+                    "noise_level": float(row["noise_level"]) if row["noise_level"] is not None else 0.0,
+                    "plateau_ratio": float(row["plateau_ratio"]) if row["plateau_ratio"] is not None else 0.0,
+                    "has_plateaus": bool(row["plateau_ratio"] > 0.05) if row["plateau_ratio"] is not None else False
                 },
                 "evidence_ids": {"mean": f"ev_s2_{col}_mean", "std_dev": f"ev_s2_{col}_stddev", "distribution": f"ev_s2_{col}_dist", "dynamics": f"ev_s2_{col}_dyn"}
             }

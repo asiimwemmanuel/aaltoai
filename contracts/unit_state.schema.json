@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UnitState",
+  "description": "Per-machine structured memory, written only on an operator's confirmation. Owner: E. Sits beside artifacts/machine_context/<machine_id>.md, which is the human-readable half and the only half a model ever reads. This file is the index the UI renders: what physical class each channel was accepted as, what was forwarded to support, and what this unit expects to see again next shift. Added 19 Sep, CONTRACTS.md section 9.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["machine_id", "updated_at"],
+  "properties": {
+    "machine_id": { "type": "string" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "channel_hypotheses": {
+      "type": "object",
+      "description": "col_id -> the physical class an operator accepted for it. Proposed by a model from statistics alone and never from a lookup table; an entry exists only because a human confirmed it.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["physical_class", "epistemic_status"],
+        "properties": {
+          "physical_class": { "type": "string" },
+          "reasoning": { "type": "string" },
+          "confidence_pct": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "epistemic_status": { "enum": ["inferred", "assumed", "uncertain"] },
+          "evidence_ids": { "type": "array", "items": { "type": "string" } },
+          "accepted_by": { "type": "string" },
+          "accepted_at": { "type": "string" },
+          "call_id": { "type": "string" },
+          "entry_id": { "type": "string" }
+        }
+      }
+    },
+    "tickets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ticket_id", "created_at", "col_id", "reason", "status"],
+        "properties": {
+          "ticket_id": { "type": "string" },
+          "created_at": { "type": "string" },
+          "machine_id": { "type": "string" },
+          "col_id": { "type": "string", "pattern": "^col_[0-9]{3}$" },
+          "run_id": { "type": "string" },
+          "event_id": { "type": "string" },
+          "reason": { "type": "string" },
+          "physical_class": { "type": "string" },
+          "evidence_ids": { "type": "array", "items": { "type": "string" } },
+          "route_to": { "type": "string", "description": "Which desk this is addressed to. A local queue: nothing is sent anywhere." },
+          "status": { "enum": ["draft", "forwarded", "closed"] },
+          "by": { "type": "string" },
+          "entry_id": { "type": "string" },
+          "closed_note": { "type": "string" }
+        }
+      }
+    },
+    "carried_predictions": {
+      "type": "array",
+      "description": "What this unit expects to see again. Written at the end of a shift, read at the start of the next one, and shown beside the alert it predicted.",
+      "items": {
+        "type": "object",
+        "required": ["prediction_id", "created_at", "text"],
+        "properties": {
+          "prediction_id": { "type": "string" },
+          "created_at": { "type": "string" },
+          "col_id": { "type": "string" },
+          "text": { "type": "string" },
+          "from_run_id": { "type": "string" },
+          "confidence_pct": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "epistemic_status": { "enum": ["inferred", "assumed", "uncertain"] },
+          "evidence_ids": { "type": "array", "items": { "type": "string" } },
+          "expires_after_shifts": { "type": "integer", "minimum": 1 },
+          "shifts_seen": { "type": "integer", "minimum": 0 },
+          "confirmed_times": { "type": "integer", "minimum": 0 },
+          "accepted_by": { "type": "string" },
+          "entry_id": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORRIN — Diagnosis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f8fafc;
+    --bg-muted: #f1f5f9;
+    --border: #e2e8f0;
+    --border-dark: #cbd5e1;
+
+    --text: #0f172a;
+    --text-muted: #475569;
+    --text-subtle: #94a3b8;
+
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --green-border: #86efac;
+
+    --orange: #ea580c;
+    --orange-bg: #fff7ed;
+    --orange-border: #fdba74;
+
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-border: #fca5a5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 1.75rem 2.5rem 4rem;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  code, .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Header & Branding (shared shell) */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .brand-group { display: flex; align-items: center; gap: 0.8rem; }
+
+  .brand-logo-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 7px;
+    object-fit: cover;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    border: 1px solid var(--border);
+  }
+
+  .brand-info { display: flex; flex-direction: column; }
+  .brand-title { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.08em; color: var(--text); line-height: 1.1; }
+  .brand-subtitle { font-size: 0.72rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.02em; }
+
+  .view-slider {
+    display: inline-flex;
+    align-items: center;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 3px;
+    border-radius: 9999px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+  }
+
+  .slider-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 1.25rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #64748b;
+    text-decoration: none;
+    border-radius: 9999px;
+    transition: all 0.15s ease-in-out;
+    user-select: none;
+  }
+  .slider-tab:hover { color: #0f172a; }
+  .slider-tab.active {
+    background: #ffffff;
+    color: #0f172a;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  }
+
+  .operator-id-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-dark);
+    border-radius: 6px;
+    padding: 0.35rem 0.65rem;
+  }
+  .op-label { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.06em; }
+  .op-id-field {
+    border: 1px solid var(--border);
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    width: 80px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .op-id-field:focus { border-color: var(--text); box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.08); }
+
+  /* Stats strip (shared shell) */
+  .stats-strip {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+  }
+  .stat-item b { color: var(--text); font-weight: 600; font-size: 0.95rem; margin-right: 0.25rem; }
+  .stat-divider { color: var(--border-dark); }
+
+  .gate-indicator {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: var(--green);
+  }
+  .gate-indicator.untrusted { color: var(--red); }
+  .gate-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+  /* Level toggle: Operator vs Technical -- the two audiences, one screen */
+  .controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .tech-switch-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .tech-switch {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+  .tech-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .tech-switch-track {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: var(--border-dark);
+    border-radius: 999px;
+    transition: background 0.15s ease;
+  }
+  .tech-switch-track::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 3px;
+    top: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  .tech-switch input:checked + .tech-switch-track {
+    background: var(--text);
+  }
+  .tech-switch input:checked + .tech-switch-track::before {
+    transform: translateX(16px);
+  }
+  .tech-switch input:focus-visible + .tech-switch-track {
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.25);
+  }
+  .tech-switch-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .level-hint { font-size: 0.76rem; color: var(--text-subtle); }
+
+  /* Diagnosis cards */
+  .diag-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1.1rem;
+    overflow: hidden;
+    background: #fff;
+  }
+  .diag-card.reviewed { border-color: var(--border-dark); }
+
+  .diag-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.1rem;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .diag-id { font-size: 0.72rem; color: var(--text-subtle); }
+  .diag-time { font-size: 0.72rem; color: var(--text-subtle); margin-left: auto; }
+
+  .fault-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.16rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--bg-muted);
+    color: var(--text-muted);
+    border: 1px solid var(--border-dark);
+  }
+  .fault-badge.process_fault { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
+  .fault-badge.data_fault { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+  .fault-badge.indeterminate { background: var(--bg-muted); color: var(--text-muted); }
+
+  .status-pill { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 600; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .conf-high { color: var(--green); }
+  .conf-medium { color: var(--orange); }
+  .conf-low { color: var(--red); }
+  .conf-unknown { color: var(--text-subtle); }
+
+  .diag-body { padding: 1.1rem; }
+
+  .diag-headline {
+    font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+  .diag-headline-note {
+    font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;
+  }
+  .diag-headline-note.unknown { color: #85600a; }
+
+  .diag-sentence {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    line-height: 1.4;
+  }
+  .diag-confidence-sentence {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.9rem;
+  }
+
+  .diag-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-subtle);
+    margin-bottom: 0.45rem;
+    margin-top: 0.9rem;
+  }
+
+  .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text);
+  }
+  .chip .mono { color: var(--text-subtle); font-size: 0.72rem; }
+
+  .uncertainty-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .uncertainty-list li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .uncertainty-list li::before {
+    content: "?";
+    position: absolute;
+    left: 0;
+    color: var(--text-subtle);
+    font-weight: 700;
+  }
+  .no-uncertainty { font-size: 0.85rem; color: var(--text-subtle); font-style: italic; }
+
+  /* Actions (same pattern used across the app: accept / contest / red action) */
+  .actions {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .btn-act {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.34rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    border: 1px solid transparent;
+  }
+  .btn-accept { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+  .btn-accept:hover { background: var(--green); color: #fff; border-color: var(--green); }
+  .btn-contest { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
+  .btn-contest:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+  .btn-overturn { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+  .btn-overturn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+  .btn-cancel-override { background: #fff; color: var(--text-muted); border: 1px solid var(--border-dark); }
+  .btn-cancel-override:hover { background: var(--bg-muted); color: var(--text); }
+  .btn-save-override { background: var(--red); color: #fff; border: 1px solid var(--red); }
+  .btn-save-override:hover { background: #b91c1c; }
+
+  .reviewed-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.14rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .reviewed-tag.accepted { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .reviewed-tag.questioned { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+  .reviewed-tag.overridden { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+  .overturn-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    border-radius: 6px;
+  }
+  .overturn-editor textarea {
+    width: 100%;
+    min-height: 64px;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.82rem;
+    font-family: inherit;
+    border: 1.5px solid var(--red);
+    border-radius: 4px;
+    outline: none;
+    resize: vertical;
+  }
+  .overturn-editor .row { display: flex; gap: 0.4rem; justify-content: flex-end; }
+
+  .feedback-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.85rem;
+    border-radius: 5px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+  }
+  .feedback-bar.green { background: var(--green-bg); color: var(--green); border-left: 3px solid var(--green); }
+  .feedback-bar.orange { background: var(--orange-bg); color: var(--orange); border-left: 3px solid var(--orange); }
+  .feedback-bar.red { background: var(--red-bg); color: var(--red); border-left: 3px solid var(--red); }
+  .btn-dismiss-feedback { background: none; border: none; color: inherit; font-size: 0.85rem; cursor: pointer; opacity: 0.7; margin-left: 0.5rem; }
+  .btn-dismiss-feedback:hover { opacity: 1; }
+
+  /* Technical / audit panel */
+  .tech-panel {
+    border-top: 1px dashed var(--border-dark);
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+  }
+  .tech-kv {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.5rem 1rem;
+    font-size: 0.78rem;
+    margin-bottom: 0.9rem;
+  }
+  .tech-kv div b { color: var(--text-muted); font-weight: 600; margin-right: 0.3rem; }
+
+  .step-item {
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.82rem;
+  }
+  .step-item .step-n { font-weight: 700; color: var(--text-subtle); margin-right: 0.4rem; }
+  .step-evidence { margin-top: 0.4rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .ev-chip {
+    font-size: 0.7rem;
+    background: var(--bg-muted);
+    border: 1px solid var(--border-dark);
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    color: var(--text-muted);
+  }
+
+  .evidence-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+  }
+  .evidence-item {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.74rem;
+  }
+  .evidence-title { font-weight: 600; color: var(--text-muted); margin-bottom: 0.2rem; }
+
+  .critique-box {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.9rem;
+  }
+  .critique-box .alt { margin-top: 0.4rem; padding-left: 0.8rem; border-left: 2px solid var(--border-dark); }
+
+  details.prompt-details {
+    font-size: 0.78rem;
+    margin-bottom: 0.5rem;
+  }
+  details.prompt-details summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  details.prompt-details pre {
+    margin-top: 0.5rem;
+    max-height: 260px;
+    overflow: auto;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-size: 0.72rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    border: 1px dashed var(--border-dark);
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="brand-group">
+    <img src="assets/norrin_icon.png" alt="Norrin Logo" class="brand-logo-img">
+    <div class="brand-info">
+      <div class="brand-title">NORRIN</div>
+      <div class="brand-subtitle">Telemetry Guard</div>
+    </div>
+  </div>
+
+  <nav class="view-slider">
+    <a href="cockpit.html" class="slider-tab">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+      Cockpit
+    </a>
+    <a href="index.html" class="slider-tab">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Sensor report
+    </a>
+    <a href="diagnosis.html" class="slider-tab active">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Diagnosis
+    </a>
+    <a href="decision_log.html" class="slider-tab">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Decision log
+    </a>
+  </nav>
+
+  <div class="operator-id-badge">
+    <span class="op-label">OPERATOR ID:</span>
+    <input type="text" id="op-id-input" class="op-id-field mono" value="OP-01" spellcheck="false" title="Click to change Operator ID">
+  </div>
+</header>
+
+<!-- Stats Strip -->
+<div class="stats-strip">
+  <div class="stat-item"><b id="stat-total">0</b> diagnoses on record</div>
+  <div class="stat-divider">·</div>
+  <div class="stat-item"><b id="stat-reviewed">0</b> reviewed by an operator</div>
+  <div class="gate-indicator" id="gate-status">
+    <span class="gate-dot"></span>
+    <span id="gate-text">Trusted</span>
+  </div>
+</div>
+
+<!-- Single control: the audit view sits behind one toggle, closed by default -->
+<div class="controls-bar">
+  <div class="tech-switch-group">
+    <label class="tech-switch">
+      <input type="checkbox" id="tech-switch-input" onchange="setTechnicalVisible(this.checked)">
+      <span class="tech-switch-track"></span>
+    </label>
+    <label class="tech-switch-label" for="tech-switch-input">Show technical evidence</label>
+  </div>
+  <div class="level-hint" id="level-hint">Plain-language summary. No column ids, no evidence ids.</div>
+</div>
+
+<div id="cards-root">
+  <div class="empty-state">Loading diagnoses...</div>
+</div>
+
+<script>
+/* The shape the detector saw, in words an operator uses. This is a translation
+ * of a statistical term, not a claim about the plant: "abrupt_shift" and "a
+ * sudden step change" say exactly the same thing. */
+const SHAPE_WORDS = {
+  abrupt_shift: "a sudden step change",
+  abrupt: "a sudden step change",
+  drift: "a slow drift",
+  ramp: "a steady ramp",
+  variability: "a change in how much it moves",
+  variability_high: "it started moving much more than usual",
+  variability_low: "it went unusually quiet",
+  step: "a step change",
+};
+
+/* Physical identities this unit's operators have accepted, read from the same
+ * file the cockpit writes. The diagnosis page never guesses one: if nobody has
+ * accepted an identity for a channel, it says so and points at where to do it.
+ * A lookup table from statistics to equipment is exactly what the rules forbid. */
+let acceptedPhysical = {};
+
+async function loadAcceptedPhysical() {
+  const machineId = localStorage.getItem("norrin_machine_id") || "machine_01";
+  try {
+    const res = await fetch("/api/unit_state?machine_id=" + encodeURIComponent(machineId),
+                            { cache: "no-store" });
+    if (!res.ok) return;
+    const state = await res.json();
+    acceptedPhysical = state.channel_hypotheses || {};
+  } catch (err) { /* the cockpit server may not be the one serving this page */ }
+}
+
+function channelLabel(colId) {
+  const m = /^col_0*(\d+)$/.exec(colId || "");
+  return m ? "Channel " + m[1] : (colId || "a channel");
+}
+
+function shapeWords(d) {
+  const kind = (d.fault_description && d.fault_description.kind) || d.shape || d.type || "";
+  return SHAPE_WORDS[kind] || (kind ? kind.replace(/_/g, " ") : "a deviation");
+}
+
+const FAULT_CLASS_WORDS = {
+  process_fault: "A process condition",
+  data_fault: "A data quality issue",
+  indeterminate: "An unclassified condition",
+};
+
+const CONFIDENCE_SENTENCES = {
+  high: "The system is confident in this diagnosis.",
+  medium: "The system has moderate confidence in this diagnosis.",
+  low: "The system has low confidence in this diagnosis.",
+};
+
+const REVIEW_LABELS = {
+  accepted: "Accepted",
+  questioned: "Contested",
+  overridden: "Overturned",
+};
+
+function loadTechnicalPref() {
+  try {
+    return localStorage.getItem("norrin_diag_show_technical") === "true";
+  } catch (e) {
+    return false; // closed by default when storage is unavailable
+  }
+}
+
+let state = {
+  diagnoses: [],
+  semanticsByCol: {},
+  evidenceById: {},
+  driftById: {},
+  showTechnical: loadTechnicalPref(), // one control; false (closed) until the operator opts in, then remembered
+  editingOverturn: null,
+  feedbacks: {},
+};
+
+function getOperatorID() {
+  return localStorage.getItem("norrin_operator_id") || "OP-01";
+}
+
+function initOperatorID() {
+  const input = document.getElementById("op-id-input");
+  input.value = getOperatorID();
+  input.addEventListener("input", () => {
+    const val = input.value.trim() || "OP-01";
+    localStorage.setItem("norrin_operator_id", val);
+  });
+}
+
+async function loadJSON(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${url}: ${res.statusText}`);
+  return res.json();
+}
+
+async function loadWithFallback(primary, fallback) {
+  try { return await loadJSON(primary); }
+  catch (e) { return await loadJSON(fallback); }
+}
+
+function escapeHtml(str) {
+  if (str === null || str === undefined) return "";
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function escapeAttr(str) {
+  if (str === null || str === undefined) return "";
+  return String(str).replace(/"/g, "&quot;");
+}
+
+/* --- Reading the same artifacts as the sensor report screen, widened the same way. --- */
+
+function buildSemanticsLookup(semantics) {
+  const map = {};
+  if (!semantics) return map;
+  if (Array.isArray(semantics.inferences)) {
+    for (const inf of semantics.inferences) map[inf.col_id] = inf;
+    return map;
+  }
+  for (const [k, v] of Object.entries(semantics)) {
+    if (/^col_/.test(k) && v && typeof v === "object") map[k] = v;
+  }
+  return map;
+}
+
+// Bare array root (drift_events.json, relations.json), or wrapped under
+// .evidence / .profiles / .failures (dq_report.json). Same tolerance as
+// collectEvidence() in index.html, generalised to the extra shapes diagnosis
+// evidence ids point into.
+function collectEvidenceAny(container) {
+  const map = {};
+  if (!container) return map;
+  const list = Array.isArray(container) ? container
+    : Array.isArray(container.evidence) ? container.evidence
+    : Array.isArray(container.profiles) ? container.profiles
+    : Array.isArray(container.failures) ? container.failures
+    : [];
+  for (const item of list) {
+    if (item && item.evidence_id) map[item.evidence_id] = item;
+  }
+  return map;
+}
+
+function buildDriftLookup(driftEvents) {
+  const map = {};
+  const list = Array.isArray(driftEvents) ? driftEvents : [];
+  for (const ev of list) {
+    if (ev && ev.evidence_id) map[ev.evidence_id] = ev;
+  }
+  return map;
+}
+
+function roleForCol(colId) {
+  if (!colId) return null;
+  const s = state.semanticsByCol[colId];
+  if (!s) return null;
+  if (s.human_override && s.human_override.role) return s.human_override.role;
+  return s.inferred_role || s.role || null;
+}
+
+function extractColIdsFromText(text) {
+  if (!text) return [];
+  const m = String(text).match(/col_[0-9]{3}/g);
+  return m ? [...new Set(m)] : [];
+}
+
+// Defensive: even a plain-language field could carry a stray col_NNN if an
+// upstream stage regresses. Never show one in the operator view.
+function sanitizeProseColRefs(text) {
+  if (!text) return text;
+  return String(text).replace(/col_[0-9]{3}/g, (m) => {
+    const role = roleForCol(m);
+    return role ? role.toLowerCase() : "an unidentified sensor";
+  });
+}
+
+function resolvePrimaryColId(d) {
+  if (Array.isArray(d.ranked_sensors) && d.ranked_sensors.length && d.ranked_sensors[0].col_id) {
+    return d.ranked_sensors[0].col_id;
+  }
+  if (d.drift_event_id && state.driftById[d.drift_event_id]) {
+    return state.driftById[d.drift_event_id].col_id || null;
+  }
+  const fromText = extractColIdsFromText(d.root_cause_hypothesis || d.fault_type || "");
+  return fromText[0] || null;
+}
+
+function normConfidence(c) {
+  return (c || "").toString().toLowerCase();
+}
+
+function normaliseDiagnoses(diagnosisData) {
+  const rawList = Array.isArray(diagnosisData) ? diagnosisData : (diagnosisData ? [diagnosisData] : []);
+  return rawList.filter(Boolean).map((d) => {
+    const primaryColId = resolvePrimaryColId(d);
+    const primaryRole = roleForCol(primaryColId);
+
+    let sensors = [];
+    if (Array.isArray(d.ranked_sensors) && d.ranked_sensors.length) {
+      sensors = d.ranked_sensors.map((rs) => ({
+        col_id: rs.col_id,
+        role: rs.inferred_role || roleForCol(rs.col_id) || "Role not yet inferred",
+        why: rs.why || "",
+      }));
+    } else if (primaryColId) {
+      sensors = [{
+        col_id: primaryColId,
+        role: primaryRole || "Role not yet inferred",
+        why: d.root_cause_hypothesis || "",
+      }];
+    }
+
+    let sentence;
+    if (d.fault_type) {
+      sentence = sanitizeProseColRefs(d.fault_type);
+    } else {
+      const classPhrase = FAULT_CLASS_WORDS[d.fault_class] || "An issue";
+      sentence = primaryRole
+        ? `${classPhrase} was detected, most likely involving the ${primaryRole.toLowerCase()}.`
+        : `${classPhrase} was detected. The system could not identify which sensor is most responsible.`;
+    }
+
+    // The headline is the physical thing if a human has said what it is, and the
+    // channel otherwise. What it is never silently becomes what the maths called
+    // it: "Abrupt shift starting at sample 204" is a description of an equation,
+    // and it is not what an operator walks to the plant floor with.
+    const accepted = acceptedPhysical[primaryColId];
+    const headline = accepted
+      ? `${accepted.physical_class} \u2014 ${shapeWords(d)}`
+      : `${channelLabel(primaryColId)} \u2014 ${shapeWords(d)}`;
+    const headlineNote = accepted
+      ? `Identified as a ${accepted.physical_class} by ${accepted.accepted_by || "an operator"}${accepted.confidence_pct != null ? ` at ${accepted.confidence_pct}% confidence` : ""}.`
+      : `Nobody has said what ${channelLabel(primaryColId)} physically is yet. Open it in the cockpit to propose and accept an identity.`;
+
+    const confKey = normConfidence(d.confidence);
+    const confSentence = CONFIDENCE_SENTENCES[confKey]
+      || "The system did not report a confidence level for this diagnosis.";
+
+    const evidenceIds = Array.isArray(d.evidence_ids) ? d.evidence_ids
+      : Array.isArray(d.supporting_evidence) ? d.supporting_evidence
+      : [];
+
+    return {
+      id: d.diagnosis_id || d.event_id || null,
+      raw: d,
+      fault_class: d.fault_class || null,
+      confidence_raw: d.confidence != null ? String(d.confidence) : null,
+      confidence: confKey || null,
+      confSentence,
+      sentence,
+      headline,
+      headlineNote,
+      hasPhysical: !!accepted,
+      sensors,
+      primaryColId,
+      uncertainties: Array.isArray(d.uncertainties) ? d.uncertainties : [],
+      evidenceIds,
+      created_at: d.created_at || d.timestamp || null,
+      event_id: d.event_id || d.drift_event_id || null,
+      steps: Array.isArray(d.steps) ? d.steps : [],
+      critique: d.critique || null,
+      epistemic_status: d.epistemic_status || null,
+      human_review: d.human_review || null,
+    };
+  });
+}
+
+/* --- Rendering --- */
+
+function setTechnicalVisible(visible) {
+  state.showTechnical = visible;
+  try { localStorage.setItem("norrin_diag_show_technical", visible ? "true" : "false"); } catch (e) { /* per-viewer convenience only */ }
+  document.getElementById("level-hint").textContent = visible
+    ? "Full audit trail: column ids, evidence, statistics, generated prompts."
+    : "Plain-language summary. No column ids, no evidence ids.";
+  render();
+}
+
+function confClass(confKey) {
+  if (confKey === "high") return "conf-high";
+  if (confKey === "medium") return "conf-medium";
+  if (confKey === "low") return "conf-low";
+  return "conf-unknown";
+}
+
+function renderEvidenceChipsOrCards(ids, asCards) {
+  if (!ids || !ids.length) return asCards ? "" : "<span class=\"no-uncertainty\">No evidence ids recorded.</span>";
+  if (!asCards) {
+    return ids.map((id) => `<span class="ev-chip mono">${escapeHtml(id)}</span>`).join("");
+  }
+  return ids.map((id) => {
+    const ev = state.evidenceById[id];
+    if (!ev) {
+      return `<div class="evidence-item"><div class="evidence-title mono">${escapeHtml(id)}</div><div>Not resolvable in the current artifact set.</div></div>`;
+    }
+    const valStr = Object.entries(ev.value || {}).map(([k, v]) => `${k}: ${v}`).join(", ");
+    return `
+      <div class="evidence-item">
+        <div class="evidence-title mono">${escapeHtml(ev.evidence_id)} · ${escapeHtml(ev.kind || ev.check_type || ev.method || "evidence")}</div>
+        <div class="mono">${escapeHtml(valStr || ev.detail || "computed")}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+function renderCard(item) {
+  const isEditing = state.editingOverturn === item.id;
+  const fb = state.feedbacks[item.id];
+  const reviewedTag = item.human_review
+    ? `<span class="reviewed-tag ${escapeAttr(item.human_review.action)}">${escapeHtml(REVIEW_LABELS[item.human_review.action] || item.human_review.action)}</span>`
+    : "";
+
+  const operatorSensorChips = item.sensors.length
+    ? item.sensors.map((s) => `<span class="chip">${escapeHtml(s.role)}</span>`).join("")
+    : `<span class="no-uncertainty">The system could not attribute this to a specific sensor.</span>`;
+
+  const uncertaintyHtml = item.uncertainties.length
+    ? `<ul class="uncertainty-list">${item.uncertainties.map((u) => `<li>${escapeHtml(u)}</li>`).join("")}</ul>`
+    : `<div class="no-uncertainty">No caveats were recorded for this diagnosis.</div>`;
+
+  let actionsHtml = "";
+  if (isEditing) {
+    actionsHtml = `
+      <div class="overturn-editor" onclick="event.stopPropagation()">
+        <textarea id="overturn-input-${item.id}" placeholder="What actually happened, in the operator's own words...">${escapeHtml(item.raw.fault_type || "")}</textarea>
+        <div class="row">
+          <button class="btn-act btn-cancel-override" onclick="cancelOverturn('${item.id}')">Cancel</button>
+          <button class="btn-act btn-save-override" onclick="commitOverturn('${item.id}')">Save overturn</button>
+        </div>
+      </div>
+    `;
+  } else {
+    actionsHtml = `
+      <div class="actions">
+        <button class="btn-act btn-accept" onclick="doAcceptDiag('${item.id}')">Accept</button>
+        <button class="btn-act btn-contest" onclick="doContestDiag('${item.id}')">Contest</button>
+        <button class="btn-act btn-overturn" onclick="openOverturn('${item.id}')">Overturn</button>
+      </div>
+    `;
+  }
+
+  const fbHtml = fb ? `
+    <div class="feedback-bar ${fb.type}">
+      <span>${escapeHtml(fb.text)}</span>
+      <button class="btn-dismiss-feedback" onclick="dismissFeedback('${item.id}')">✕</button>
+    </div>
+  ` : "";
+
+  let techHtml = "";
+  if (state.showTechnical) {
+    const stepsHtml = item.steps.length
+      ? item.steps.map((s) => `
+          <div class="step-item">
+            <span class="step-n">#${s.n}</span>${escapeHtml(s.statement)}
+            <div class="step-evidence">${renderEvidenceChipsOrCards(s.evidence_ids, false)}</div>
+          </div>
+        `).join("")
+      : `<div class="no-uncertainty">No step-by-step derivation recorded; see root_cause_hypothesis below.</div>`;
+
+    const sensorsTechHtml = item.sensors.length
+      ? item.sensors.map((s) => `
+          <div class="chip"><span class="mono">${escapeHtml(s.col_id || "?")}</span> — ${escapeHtml(s.role)}${s.why ? ` <span class="mono" style="color:var(--text-subtle);">(${escapeHtml(s.why)})</span>` : ""}</div>
+        `).join("")
+      : `<span class="no-uncertainty">No ranked sensors recorded.</span>`;
+
+    const critiqueHtml = item.critique ? `
+      <div class="critique-box">
+        <div><b>Critique ran:</b> ${item.critique.ran ? "yes" : "no"}</div>
+        ${(item.critique.alternatives_considered || []).map((a) => `
+          <div class="alt">
+            <div><b>Alternative:</b> ${escapeHtml(a.hypothesis || "")}</div>
+            <div><b>Why rejected:</b> ${escapeHtml(a.why_rejected || "")}</div>
+            ${a.residual_doubt ? `<div><b>Residual doubt:</b> ${escapeHtml(a.residual_doubt)}</div>` : ""}
+          </div>
+        `).join("")}
+        ${item.critique.confidence_adjusted_from ? `<div style="margin-top:0.4rem;"><b>Confidence adjusted from:</b> ${escapeHtml(item.critique.confidence_adjusted_from)} — ${escapeHtml(item.critique.adjustment_reason || "")}</div>` : ""}
+      </div>
+    ` : "";
+
+    const promptsHtml = item.sensors
+      .map((s) => s.col_id)
+      .filter(Boolean)
+      .filter((colId) => state.semanticsByCol[colId] && state.semanticsByCol[colId].debug_prompt_generated)
+      .map((colId) => `
+        <details class="prompt-details">
+          <summary>Generated prompt for ${escapeHtml(colId)}</summary>
+          <pre>${escapeHtml(state.semanticsByCol[colId].debug_prompt_generated)}</pre>
+        </details>
+      `).join("");
+
+    techHtml = `
+      <div class="tech-panel">
+        <div class="diag-section-title">Raw record</div>
+        <div class="tech-kv">
+          <div><b>diagnosis_id</b><span class="mono">${escapeHtml(item.id || "—")}</span></div>
+          <div><b>event / drift id</b><span class="mono">${escapeHtml(item.event_id || "—")}</span></div>
+          <div><b>created_at</b><span class="mono">${escapeHtml(item.created_at || "—")}</span></div>
+          <div><b>fault_class</b><span class="mono">${escapeHtml(item.fault_class || "not reported")}</span></div>
+          <div><b>confidence (raw)</b><span class="mono">${escapeHtml(item.confidence_raw || "—")}</span></div>
+          <div><b>epistemic_status</b><span class="mono">${escapeHtml(item.epistemic_status || "not reported")}</span></div>
+        </div>
+
+        <div class="diag-section-title">Ranked sensors</div>
+        <div class="chip-row" style="margin-bottom:0.9rem;">${sensorsTechHtml}</div>
+
+        <div class="diag-section-title">Step-by-step derivation</div>
+        ${stepsHtml}
+
+        ${critiqueHtml}
+
+        <div class="diag-section-title">Evidence backing this diagnosis</div>
+        <div class="evidence-list">${renderEvidenceChipsOrCards(item.evidenceIds, true)}</div>
+
+        ${promptsHtml ? `<div class="diag-section-title">Generated prompts</div>${promptsHtml}` : ""}
+
+        ${item.human_review ? `
+          <div class="diag-section-title">Human review</div>
+          <div class="tech-kv">
+            <div><b>action</b><span class="mono">${escapeHtml(item.human_review.action)}</span></div>
+            <div><b>by</b><span class="mono">${escapeHtml(item.human_review.by)}</span></div>
+            <div><b>at</b><span class="mono">${escapeHtml(item.human_review.at)}</span></div>
+            ${item.human_review.rationale ? `<div><b>rationale</b><span>${escapeHtml(item.human_review.rationale)}</span></div>` : ""}
+            ${item.human_review.replacement_fault_type ? `<div><b>replacement</b><span>${escapeHtml(item.human_review.replacement_fault_type)}</span></div>` : ""}
+          </div>
+        ` : ""}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="diag-card ${item.human_review ? "reviewed" : ""}">
+      <div class="diag-head">
+        ${item.fault_class ? `<span class="fault-badge ${escapeAttr(item.fault_class)}">${escapeHtml(item.fault_class.replace("_", " "))}</span>` : ""}
+        <span class="status-pill ${confClass(item.confidence)}"><span class="dot"></span>${escapeHtml(item.confidence || "confidence not reported")}</span>
+        ${reviewedTag}
+        ${state.showTechnical ? `<span class="diag-id mono">${escapeHtml(item.id || "")}</span>` : ""}
+        <span class="diag-time">${escapeHtml(item.created_at || "")}</span>
+      </div>
+      <div class="diag-body">
+        <div class="diag-headline">${escapeHtml(item.headline)}</div>
+        <div class="diag-headline-note ${item.hasPhysical ? "" : "unknown"}">${escapeHtml(item.headlineNote)}</div>
+        <div class="diag-sentence">${escapeHtml(item.sentence)}</div>
+        <div class="diag-confidence-sentence">${escapeHtml(item.confSentence)}</div>
+
+        <div class="diag-section-title">Sensors involved</div>
+        <div class="chip-row">${operatorSensorChips}</div>
+
+        <div class="diag-section-title">What the system doesn't know</div>
+        ${uncertaintyHtml}
+
+        ${actionsHtml}
+        ${fbHtml}
+        ${techHtml}
+      </div>
+    </div>
+  `;
+}
+
+function render() {
+  const root = document.getElementById("cards-root");
+  if (!state.diagnoses.length) {
+    root.innerHTML = `<div class="empty-state">No diagnoses on record yet.</div>`;
+    return;
+  }
+  root.innerHTML = state.diagnoses.map(renderCard).join("");
+}
+
+function updateStats() {
+  document.getElementById("stat-total").textContent = state.diagnoses.length;
+  document.getElementById("stat-reviewed").textContent = state.diagnoses.filter((d) => !!d.human_review).length;
+}
+
+/* --- Actions: Accept / Contest / Overturn, same shape as the sensor report screen --- */
+
+async function postDiagnosisDecision(payload) {
+  const res = await fetch("/api/diagnosis_decision", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Request failed");
+  return data;
+}
+
+function setCardFeedback(id, type, text) {
+  state.feedbacks[id] = { type, text };
+  render();
+  setTimeout(() => {
+    if (state.feedbacks[id] && state.feedbacks[id].text === text) {
+      delete state.feedbacks[id];
+      render();
+    }
+  }, 4500);
+}
+
+function dismissFeedback(id) {
+  delete state.feedbacks[id];
+  render();
+}
+
+async function doAcceptDiag(id) {
+  const by = getOperatorID();
+  const item = state.diagnoses.find((d) => d.id === id);
+  if (item) item.human_review = { action: "accepted", by, at: new Date().toISOString() };
+  setCardFeedback(id, "green", `✓ Accepted by ${by}`);
+  updateStats();
+  render();
+  try {
+    await postDiagnosisDecision({ diagnosis_id: id, action: "accept", by });
+  } catch (e) { console.error("Accept diagnosis error:", e); }
+}
+
+async function doContestDiag(id) {
+  const by = getOperatorID();
+  const item = state.diagnoses.find((d) => d.id === id);
+  if (item) item.human_review = { action: "questioned", by, at: new Date().toISOString() };
+  setCardFeedback(id, "orange", `⚠ Contested by ${by}`);
+  updateStats();
+  render();
+  try {
+    await postDiagnosisDecision({ diagnosis_id: id, action: "contest", by, rationale: "Contested by operator" });
+  } catch (e) { console.error("Contest diagnosis error:", e); }
+}
+
+function openOverturn(id) {
+  state.editingOverturn = id;
+  render();
+  setTimeout(() => {
+    const el = document.getElementById(`overturn-input-${id}`);
+    if (el) { el.focus(); el.select(); }
+  }, 25);
+}
+
+function cancelOverturn(id) {
+  state.editingOverturn = null;
+  render();
+}
+
+async function commitOverturn(id) {
+  const el = document.getElementById(`overturn-input-${id}`);
+  const replacement = el ? el.value.trim() : "";
+  if (!replacement) { if (el) { el.focus(); el.placeholder = "Please describe what actually happened..."; } return; }
+
+  const by = getOperatorID();
+  state.editingOverturn = null;
+  const item = state.diagnoses.find((d) => d.id === id);
+  if (item) item.human_review = { action: "overridden", by, at: new Date().toISOString(), replacement_fault_type: replacement };
+  setCardFeedback(id, "red", `✎ Overturned by ${by}: "${replacement}"`);
+  updateStats();
+  render();
+  try {
+    await postDiagnosisDecision({
+      diagnosis_id: id,
+      action: "overturn",
+      by,
+      rationale: `Operator overturned diagnosis`,
+      replacement_fault_type: replacement,
+    });
+  } catch (e) { console.error("Overturn diagnosis error:", e); }
+}
+
+/* --- Init --- */
+
+async function init() {
+  initOperatorID();
+  // Read the unit's accepted identities before the cards are built: the headline
+  // depends on them, and building first would show every card as unidentified.
+  await loadAcceptedPhysical();
+  document.getElementById("tech-switch-input").checked = state.showTechnical;
+  document.getElementById("level-hint").textContent = state.showTechnical
+    ? "Full audit trail: column ids, evidence, statistics, generated prompts."
+    : "Plain-language summary. No column ids, no evidence ids.";
+
+  try {
+    const [diagnosisData, semanticsData, driftEvents, profilesData, relationsData] = await Promise.all([
+      loadWithFallback("../artifacts/diagnosis.json", "../artifacts/from_team/diagnosis.json"),
+      loadWithFallback("../artifacts/semantics.json", "../artifacts/from_team/semantics.json"),
+      loadWithFallback("../artifacts/drift_events.json", "../artifacts/from_team/drift_events.json").catch(() => []),
+      loadWithFallback("../artifacts/profiles.json", "../artifacts/from_team/profiles.json").catch(() => ({})),
+      loadWithFallback("../artifacts/relations.json", "../artifacts/from_team/relations.json").catch(() => []),
+    ]);
+
+    state.semanticsByCol = buildSemanticsLookup(semanticsData);
+    state.driftById = buildDriftLookup(driftEvents);
+    state.evidenceById = Object.assign(
+      {},
+      collectEvidenceAny(profilesData),
+      collectEvidenceAny(relationsData),
+      collectEvidenceAny(driftEvents)
+    );
+
+    state.diagnoses = normaliseDiagnoses(diagnosisData);
+
+    try {
+      const dq = await loadWithFallback("../artifacts/dq_report.json", "../artifacts/from_team/dq_report.json");
+      Object.assign(state.evidenceById, collectEvidenceAny(dq));
+      const gate = document.getElementById("gate-status");
+      const text = document.getElementById("gate-text");
+      if (dq && dq.trust_verdict === "UNTRUSTED") {
+        gate.className = "gate-indicator untrusted";
+        text.textContent = "Untrusted";
+      } else {
+        gate.className = "gate-indicator";
+        text.textContent = "Trusted";
+      }
+    } catch (e) { /* dq report optional for this screen */ }
+
+    updateStats();
+    render();
+  } catch (err) {
+    document.getElementById("cards-root").innerHTML = `
+      <div class="empty-state" style="border-color: var(--red-border); color: var(--red);">
+        Failed to load diagnosis artifacts: ${escapeHtml(err.message || String(err))}
+      </div>
+    `;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
