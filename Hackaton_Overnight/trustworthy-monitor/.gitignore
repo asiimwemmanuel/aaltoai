@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+data/
+labels/
+*.parquet
+*.csv
+!artifacts/examples/*
+artifacts/*.json
+artifacts/*.jsonl
+.DS_Store
+artifacts/**/*.json
+artifacts/**/*.jsonl
+*.zip

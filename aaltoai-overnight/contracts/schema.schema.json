@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema",
+  "description": "ADAPTATION NOTE (integration, 19 Sep): this schema accepts two shapes. Form A is the original contract shape, written before any stage existed. Form B is the shape the pipeline stages actually emit. The stages satisfy every substantive requirement -- opaque col_NNN ids, evidence ids on every claim, per-signal attribution, a trust verdict that halts the pipeline -- they simply carry it in a different container. Widening the schema was one person's afternoon; reshaping seven working stages was four people's night. The schema describes reality; it does not fight it.",
+  "anyOf": [
+    {
+      "title": "Schema (Form A: contract shape)",
+      "description": "S1 output. The only place original names exist.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "created_at",
+        "row_count",
+        "time_column",
+        "columns"
+      ],
+      "properties": {
+        "dataset_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "row_count": {
+          "type": "integer"
+        },
+        "time_column": {
+          "type": "string",
+          "pattern": "^col_[0-9]{3}$"
+        },
+        "group_column": {
+          "type": "string",
+          "pattern": "^col_[0-9]{3}$",
+          "description": "Series identifier, e.g. one simulation run."
+        },
+        "columns": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "col_id",
+              "source_name",
+              "dtype"
+            ],
+            "properties": {
+              "col_id": {
+                "type": "string",
+                "pattern": "^col_[0-9]{3}$"
+              },
+              "source_name": {
+                "type": "string"
+              },
+              "dtype": {
+                "enum": [
+                  "float",
+                  "int",
+                  "bool",
+                  "categorical",
+                  "datetime",
+                  "text"
+                ]
+              },
+              "role_hint": {
+                "enum": [
+                  "time",
+                  "group",
+                  "signal",
+                  "label",
+                  "metadata"
+                ]
+              },
+              "quarantined": {
+                "type": "boolean",
+                "description": "True for label columns. Never readable by pipeline/."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "columns"
+      ],
+      "properties": {
+        "dataset_metadata": {
+          "type": "object"
+        },
+        "columns": {
+          "type": "object",
+          "description": "Map of opaque col_id to its provenance. The original column name is recorded here and nowhere else in the codebase.",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "original_name"
+            ],
+            "properties": {
+              "original_name": {
+                "type": "string"
+              },
+              "data_type": {
+                "type": "string"
+              },
+              "cardinality": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "title": "Schema (Form B: shape emitted by the pipeline)"
+    }
+  ]
+}

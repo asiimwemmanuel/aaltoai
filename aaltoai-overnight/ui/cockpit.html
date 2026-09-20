@@ -1,0 +1,2651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORRIN — Cockpit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f8fafc;
+    --bg-muted: #f1f5f9;
+    --border: #e2e8f0;
+    --border-dark: #cbd5e1;
+
+    --text: #0b0b0b;
+    --text-muted: #52514e;
+    --text-subtle: #898781;
+
+    /* Status palette: reserved, never used for a series. Each one always
+       ships beside a word, never as colour alone. */
+    --good: #0ca30c;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+
+    --good-bg: #f0fdf4;
+    --warning-bg: #fffbeb;
+    --serious-bg: #fff5f0;
+    --critical-bg: #fef2f2;
+
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 8px 24px rgba(11,11,11,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 1.5rem 2rem 6rem;
+    max-width: 1440px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  code, .mono { font-family: 'JetBrains Mono', monospace; }
+  button { font-family: inherit; cursor: pointer; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* ---------------- header ---------------- */
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem; gap: 1.25rem; flex-wrap: wrap;
+  }
+  .brand-group { display: flex; align-items: center; gap: 0.75rem; }
+  .brand-logo-img { width: 34px; height: 34px; border-radius: 7px; object-fit: cover; border: 1px solid var(--border); }
+  .brand-title { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.08em; line-height: 1.1; }
+  .brand-subtitle { font-size: 0.7rem; font-weight: 500; color: var(--text-muted); }
+
+  .view-slider {
+    display: inline-flex; align-items: center; background: var(--bg-muted);
+    border: 1px solid var(--border-dark); padding: 3px; border-radius: 9999px;
+  }
+  .slider-tab {
+    border: none; background: transparent; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 1rem;
+    font-size: 0.8rem; font-weight: 500; color: #64748b; text-decoration: none;
+    border-radius: 9999px; transition: all 0.15s;
+  }
+  .slider-tab:hover { color: var(--text); }
+  .slider-tab.active { background: var(--bg); color: var(--text); font-weight: 600; box-shadow: 0 1px 2px rgba(11,11,11,0.10); }
+
+  .header-right { display: flex; align-items: center; gap: 0.65rem; }
+  .id-field {
+    border: 1px solid var(--border-dark); border-radius: 8px; padding: 0.35rem 0.6rem;
+    font-size: 0.78rem; font-weight: 600; background: var(--bg); color: var(--text); width: 108px;
+  }
+  .id-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; color: var(--text-subtle); display: block; margin-bottom: 2px; }
+  .ghost-btn {
+    border: 1px solid var(--border-dark); background: var(--bg); border-radius: 8px;
+    padding: 0.45rem 0.8rem; font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+  }
+  .ghost-btn:hover { background: var(--bg-muted); color: var(--text); }
+  .ghost-btn.on { background: var(--text); color: #fff; border-color: var(--text); }
+
+  /* ---------------- time bar ---------------- */
+  .timebar {
+    position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 0.7rem 0.9rem; display: flex; align-items: center; gap: 0.85rem;
+    margin-bottom: 1.25rem; flex-wrap: wrap;
+  }
+  .play-btn {
+    width: 44px; height: 44px; border-radius: 12px; border: none; background: var(--text);
+    color: #fff; display: inline-flex; align-items: center; justify-content: center; flex: none;
+  }
+  .play-btn:hover { background: #333; }
+  .speed-group { display: inline-flex; border: 1px solid var(--border-dark); border-radius: 9px; overflow: hidden; }
+  .speed-btn { border: none; background: var(--bg); padding: 0.35rem 0.6rem; font-size: 0.74rem; font-weight: 700; color: var(--text-muted); }
+  .speed-btn.on { background: var(--text); color: #fff; }
+  .scrub { flex: 1 1 260px; display: flex; align-items: center; gap: 0.7rem; min-width: 240px; }
+  input[type=range] { width: 100%; accent-color: var(--series-1); height: 22px; }
+  .clock { font-size: 0.82rem; font-weight: 700; white-space: nowrap; }
+  .clock small { display: block; font-size: 0.66rem; font-weight: 500; color: var(--text-subtle); letter-spacing: 0.04em; }
+  select.run-select {
+    border: 1px solid var(--border-dark); border-radius: 8px; padding: 0.4rem 0.55rem;
+    font-size: 0.78rem; font-weight: 600; background: var(--bg); color: var(--text); max-width: 230px;
+  }
+
+  /* ---------------- hero ---------------- */
+  .hero {
+    display: flex; align-items: center; gap: 1.25rem; padding: 1.4rem 1.5rem;
+    border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 1.5rem;
+    background: var(--bg-subtle);
+  }
+  .hero.alert { background: var(--critical-bg); border-color: #f6c6c6; }
+  .hero.calm { background: var(--good-bg); border-color: #b9e7b9; }
+  .hero-figure { font-size: 3.4rem; font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
+  .hero-text { font-size: 1.05rem; font-weight: 600; }
+  .hero-sub { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
+  .hero-actions { margin-left: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .primary-btn {
+    border: none; background: var(--text); color: #fff; border-radius: 10px;
+    padding: 0.65rem 1.1rem; font-size: 0.84rem; font-weight: 700;
+  }
+  .primary-btn:hover { background: #333; }
+
+  /* ---------------- sections ---------------- */
+  .section-head {
+    display: flex; align-items: baseline; gap: 0.7rem; margin: 0 0 0.7rem;
+  }
+  .section-head h2 { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+  .section-head .hint { font-size: 0.78rem; color: var(--text-subtle); }
+  section { margin-bottom: 2rem; }
+
+  /* ---------------- alert cards ---------------- */
+  .alert-list { display: flex; flex-direction: column; gap: 0.55rem; }
+  .alert-card {
+    display: flex; align-items: center; gap: 0.9rem; width: 100%; text-align: left;
+    border: 1px solid var(--border); border-left: 5px solid var(--border-dark);
+    border-radius: 10px; background: var(--bg); padding: 0.85rem 1rem; transition: all 0.12s;
+  }
+  .alert-card:hover { border-color: var(--border-dark); box-shadow: var(--shadow); transform: translateY(-1px); }
+  .alert-card.sev-high { border-left-color: var(--critical); }
+  .alert-card.sev-medium { border-left-color: var(--serious); }
+  .alert-card.sev-low { border-left-color: var(--warning); }
+  .alert-card.read { opacity: 0.55; }
+  .alert-main { flex: 1; min-width: 0; }
+  .alert-title { display: block; font-size: 0.95rem; font-weight: 700; }
+  .alert-meta { display: block; font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem; }
+  .alert-when { font-size: 0.74rem; color: var(--text-subtle); white-space: nowrap; }
+  .unread-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--critical); flex: none; }
+  .unread-dot.read { background: transparent; border: 1.5px solid var(--border-dark); }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.15rem 0.55rem;
+    border-radius: 9999px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em;
+    text-transform: uppercase; border: 1px solid;
+  }
+  .chip.high { color: #96201f; background: var(--critical-bg); border-color: #f0b4b4; }
+  .chip.medium { color: #9a4a22; background: var(--serious-bg); border-color: #f5cbb8; }
+  .chip.low { color: #85600a; background: var(--warning-bg); border-color: #f7dfa0; }
+  .chip.ok { color: #0a6b0a; background: var(--good-bg); border-color: #b3e3b3; }
+  .chip.neutral { color: var(--text-muted); background: var(--bg-muted); border-color: var(--border); }
+
+  /* ---------------- channel grid ---------------- */
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(216px, 1fr)); gap: 0.6rem;
+  }
+  .tile {
+    border: 1px solid var(--border); border-radius: 10px; background: var(--bg);
+    padding: 0.7rem 0.8rem; text-align: left; transition: all 0.12s;
+  }
+  .tile:hover { border-color: var(--border-dark); box-shadow: var(--shadow); transform: translateY(-1px); }
+  .tile.flagged { border-color: #f0b4b4; background: #fffafa; }
+  .tile-top { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; }
+  .tile-name { font-size: 0.88rem; font-weight: 700; }
+  .tile-role { font-size: 0.7rem; color: var(--text-subtle); margin-top: 0.1rem; height: 1.05rem; overflow: hidden; }
+  .tile-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.5rem; margin-top: 0.4rem; }
+  .tile-dev { font-size: 0.74rem; font-weight: 700; color: var(--text-muted); white-space: nowrap; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .status-dot.good { background: var(--good); }
+  .status-dot.warning { background: var(--warning); }
+  .status-dot.serious { background: var(--serious); }
+  .status-dot.critical { background: var(--critical); }
+
+  .filter-row { display: flex; gap: 0.4rem; align-items: center; margin-bottom: 0.7rem; flex-wrap: wrap; }
+  .filter-btn {
+    border: 1px solid var(--border-dark); background: var(--bg); border-radius: 9999px;
+    padding: 0.32rem 0.8rem; font-size: 0.76rem; font-weight: 600; color: var(--text-muted);
+  }
+  .filter-btn.on { background: var(--text); color: #fff; border-color: var(--text); }
+
+  /* ---------------- drawer ---------------- */
+  .scrim {
+    position: fixed; inset: 0; background: rgba(11,11,11,0.28); z-index: 60;
+    opacity: 0; pointer-events: none; transition: opacity 0.18s;
+  }
+  .scrim.open { opacity: 1; pointer-events: auto; }
+  .drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(720px, 94vw);
+    background: var(--bg); z-index: 70; box-shadow: -12px 0 40px rgba(11,11,11,0.16);
+    transform: translateX(102%); transition: transform 0.22s cubic-bezier(.4,0,.2,1);
+    display: flex; flex-direction: column;
+  }
+  .drawer.open { transform: translateX(0); }
+  .drawer-head {
+    padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 0.75rem;
+  }
+  .drawer-title { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.01em; }
+  .drawer-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.15rem; }
+  .close-btn {
+    margin-left: auto; border: 1px solid var(--border-dark); background: var(--bg);
+    width: 34px; height: 34px; border-radius: 9px; font-size: 1.05rem; color: var(--text-muted); flex: none;
+  }
+  .close-btn:hover { background: var(--bg-muted); }
+  .drawer-body { overflow-y: auto; padding: 1.1rem 1.25rem 3rem; flex: 1; }
+
+  .block { margin-bottom: 1.5rem; }
+  .block-label {
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-subtle); margin-bottom: 0.5rem;
+  }
+  .chart-frame { border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem 0.4rem 0.2rem; background: var(--bg); }
+  .nx-empty { padding: 2rem 1rem; text-align: center; color: var(--text-subtle); font-size: 0.82rem; }
+  .nx-tip {
+    position: absolute; display: none; background: var(--text); color: #fff; font-size: 0.72rem;
+    padding: 0.4rem 0.55rem; border-radius: 7px; pointer-events: none; white-space: nowrap; z-index: 5;
+    line-height: 1.35; font-variant-numeric: tabular-nums;
+  }
+  .nx-tip-sub { color: #cbd5e1; }
+  .legend { display: flex; gap: 1rem; align-items: center; font-size: 0.74rem; color: var(--text-muted); padding: 0.3rem 0.5rem 0; }
+  .legend .key { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .legend .swatch { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.5rem; }
+  .stat-box { border: 1px solid var(--border); border-radius: 9px; padding: 0.55rem 0.7rem; background: var(--bg-subtle); }
+  .stat-box .k { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-subtle); }
+  .stat-box .v { font-size: 1.02rem; font-weight: 700; margin-top: 0.1rem; font-variant-numeric: tabular-nums; }
+
+  .ai-card { border: 1px solid var(--border); border-radius: 11px; padding: 0.95rem 1.05rem; background: var(--bg-subtle); }
+  .ai-head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+  .ai-head .who { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-subtle); }
+  .ai-text { font-size: 0.97rem; font-weight: 600; line-height: 1.45; }
+  .conf-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.75rem; }
+  .conf-pct { font-size: 1.15rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .conf-word { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .check-list { margin: 0.75rem 0 0; padding-left: 1.1rem; font-size: 0.85rem; color: var(--text-muted); }
+  .check-list li { margin-bottom: 0.2rem; }
+  .overturn { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px dashed var(--border-dark); }
+
+  .chat-log { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.6rem; }
+  .bubble { padding: 0.6rem 0.8rem; border-radius: 11px; font-size: 0.87rem; max-width: 92%; line-height: 1.45; }
+  .bubble.op { background: var(--text); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+  .bubble.ai { background: var(--bg-muted); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .bubble .meta { font-size: 0.68rem; opacity: 0.7; margin-top: 0.3rem; }
+  .bubble .next-step {
+    margin-top: 0.5rem; padding-top: 0.45rem; border-top: 1px solid rgba(11,11,11,0.12);
+    font-size: 0.82rem; font-weight: 600;
+  }
+  .chat-form { display: flex; gap: 0.5rem; }
+  .chat-form input {
+    flex: 1; border: 1px solid var(--border-dark); border-radius: 10px; padding: 0.6rem 0.75rem;
+    font-size: 0.87rem; font-family: inherit; color: var(--text);
+  }
+  .chat-form input:focus { outline: 2px solid var(--series-1); outline-offset: -1px; }
+
+  .prov-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.9rem; }
+  .prov-col { border: 1px solid var(--border); border-radius: 11px; padding: 0.9rem 1rem; }
+  .prov-col.stays { background: var(--good-bg); border-color: #b9e7b9; }
+  .prov-col.leaves { background: var(--bg-subtle); }
+  .prov-head {
+    display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;
+  }
+  .prov-figure { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .prov-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; }
+  .prov-path {
+    font-size: 0.7rem; color: var(--text-subtle); margin-top: 0.5rem; word-break: break-all;
+  }
+  .prov-footer {
+    margin-top: 0.9rem; padding-top: 0.7rem; border-top: 1px solid var(--border);
+    font-size: 0.82rem; color: var(--text-muted);
+  }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 0.35rem; border: 1px solid var(--border-dark);
+    background: var(--bg); border-radius: 9999px; padding: 0.28rem 0.7rem; font-size: 0.75rem;
+    font-weight: 600; color: var(--text-muted); font-variant-numeric: tabular-nums;
+  }
+  .pill:hover { background: var(--bg-muted); color: var(--text); }
+  .pill.on { background: var(--text); color: #fff; border-color: var(--text); }
+  .pill .status-dot { width: 7px; height: 7px; }
+
+
+  /* ---------------- screens ---------------- */
+  .screen { display: none; }
+  .screen.on { display: block; }
+
+  /* The home screen has one job: say whether the plant needs you, and give you
+     somewhere to ask. Everything else is one click away and stays there. */
+  .plant-state {
+    border-radius: 18px; padding: 2.5rem 2.25rem; margin-bottom: 1.5rem;
+    border: 1px solid var(--border); background: var(--bg-subtle);
+    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .plant-state.calm { background: var(--good-bg); border-color: #b9e7b9; }
+  .plant-state.alert { background: var(--critical-bg); border-color: #f6c6c6; }
+  .plant-state.halted { background: #1a0d0d; border-color: #1a0d0d; color: #fff; }
+  .plant-state.halted .ps-sub { color: #f3c9c9; }
+  .ps-figure { font-size: 5rem; font-weight: 800; line-height: 0.95; letter-spacing: -0.045em; }
+  .ps-title { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+  .ps-sub { font-size: 0.95rem; color: var(--text-muted); margin-top: 0.4rem; max-width: 62ch; }
+  .ps-actions { margin-left: auto; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .danger-btn {
+    border: none; background: var(--critical); color: #fff; border-radius: 10px;
+    padding: 0.8rem 1.3rem; font-size: 0.9rem; font-weight: 700;
+  }
+  .danger-btn:hover { filter: brightness(1.08); }
+  .light-btn {
+    border: 1px solid rgba(255,255,255,0.45); background: transparent; color: #fff;
+    border-radius: 10px; padding: 0.8rem 1.3rem; font-size: 0.9rem; font-weight: 700;
+  }
+  .light-btn:hover { background: rgba(255,255,255,0.12); }
+
+  .home-chat {
+    border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem 1.6rem;
+    background: var(--bg);
+  }
+  .home-chat .chat-log { max-height: 46vh; overflow-y: auto; margin-bottom: 1rem; }
+  .home-chat .chat-form input { padding: 0.95rem 1.1rem; font-size: 1rem; border-radius: 12px; }
+  .home-chat .primary-btn { padding: 0.95rem 1.6rem; font-size: 0.95rem; }
+  .chat-hint { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+  .chat-hint button {
+    border: 1px solid var(--border-dark); background: var(--bg); border-radius: 9999px;
+    padding: 0.35rem 0.85rem; font-size: 0.78rem; color: var(--text-muted);
+  }
+  .chat-hint button:hover { background: var(--bg-muted); color: var(--text); }
+
+  .carried {
+    border: 1px solid var(--border-dark); border-left: 5px solid var(--series-2);
+    border-radius: 12px; padding: 0.9rem 1.1rem; margin-bottom: 1.25rem; background: var(--bg);
+  }
+  .carried h3 { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em;
+                text-transform: uppercase; color: var(--text-subtle); margin-bottom: 0.5rem; }
+  .carried-item { display: flex; gap: 0.7rem; align-items: flex-start; padding: 0.4rem 0; font-size: 0.9rem; }
+  .carried-item + .carried-item { border-top: 1px solid var(--border); }
+
+  /* ---------------- sources ---------------- */
+  .sources {
+    font-size: 0.78rem; color: var(--text-muted); margin-top: 0.7rem;
+    padding-top: 0.6rem; border-top: 1px solid var(--border);
+  }
+  .sources b { color: var(--text); font-weight: 700; }
+  .source-chip {
+    display: inline-block; background: var(--bg-muted); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.1rem 0.45rem; margin: 0.15rem 0.2rem 0 0; font-size: 0.74rem;
+  }
+  .source-chip.bad { background: var(--critical-bg); border-color: #f0b4b4; color: #96201f; }
+
+  /* ---------------- tables ---------------- */
+  table.data { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+  table.data th {
+    text-align: left; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-subtle); padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--border-dark); white-space: nowrap;
+  }
+  table.data td { padding: 0.6rem 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  table.data tr:hover td { background: var(--bg-subtle); }
+  table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .panel {
+    border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.2rem;
+    margin-bottom: 1.25rem; background: var(--bg);
+  }
+  .panel > h3 {
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-subtle); margin-bottom: 0.7rem;
+  }
+  .eval-banner {
+    border: 2px solid var(--warning); background: var(--warning-bg); border-radius: 12px;
+    padding: 0.9rem 1.1rem; margin-bottom: 1.25rem; font-size: 0.86rem;
+  }
+  .eval-banner b { display: block; font-size: 0.72rem; letter-spacing: 0.12em;
+                   text-transform: uppercase; margin-bottom: 0.25rem; }
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.6rem; }
+  .kpi {
+    border: 1px solid var(--border); border-radius: 11px; padding: 0.85rem 1rem; background: var(--bg-subtle);
+  }
+  .kpi .k { font-size: 0.66rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--text-subtle); }
+  .kpi .v { font-size: 1.8rem; font-weight: 800; line-height: 1.1; margin-top: 0.2rem; }
+  .kpi .n { font-size: 0.74rem; color: var(--text-muted); margin-top: 0.2rem; }
+  .kpi.bad .v { color: var(--critical); }
+  .kpi.good .v { color: var(--good); }
+
+  .fingerprint {
+    display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.7rem;
+    color: var(--text-muted); border: 1px solid var(--border); border-radius: 9999px;
+    padding: 0.25rem 0.7rem; font-family: 'JetBrains Mono', monospace;
+  }
+  .fingerprint.warn { border-color: var(--warning); background: var(--warning-bg); color: #85600a; }
+
+  .unit-picker { display: flex; align-items: center; gap: 0.35rem; }
+  select.unit-select, select.shift-select {
+    border: 1px solid var(--border-dark); border-radius: 8px; padding: 0.35rem 0.55rem;
+    font-size: 0.78rem; font-weight: 600; background: var(--bg); color: var(--text); max-width: 190px;
+  }
+  .mini-btn {
+    border: 1px solid var(--border-dark); background: var(--bg); border-radius: 8px;
+    width: 30px; height: 30px; font-size: 1rem; color: var(--text-muted); line-height: 1;
+  }
+  .mini-btn:hover { background: var(--bg-muted); color: var(--text); }
+
+  .tag {
+    display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 0.12rem 0.5rem; border-radius: 6px; border: 1px solid var(--border-dark);
+    color: var(--text-muted); background: var(--bg-subtle);
+  }
+  .tag.forwarded { border-color: var(--series-1); color: #1c5cab; background: #eef4fd; }
+  .tag.closed { border-color: var(--good); color: #0a6b0a; background: var(--good-bg); }
+
+  .audit-only { display: none; }
+  body.audit .audit-only { display: block; }
+  /* Same switch, for a span that sits inside a sentence. It needs its own
+     class: an inline `style="display:inline"` would win against the rule
+     above and put column ids in front of the operator. */
+  .audit-inline { display: none; }
+  body.audit .audit-inline { display: inline; }
+  .audit-box {
+    border: 1px dashed var(--border-dark); border-radius: 9px; background: var(--bg-muted);
+    padding: 0.7rem 0.8rem; font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
+    white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow: auto; color: var(--text-muted);
+  }
+  .egress-note { font-size: 0.74rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+
+  textarea.brain {
+    width: 100%; min-height: 420px; border: 1px solid var(--border-dark); border-radius: 10px;
+    padding: 0.85rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.6;
+    color: var(--text); resize: vertical;
+  }
+  textarea.brain:focus { outline: 2px solid var(--series-1); outline-offset: -1px; }
+
+  .toast {
+    position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%) translateY(140%);
+    background: var(--text); color: #fff; padding: 0.7rem 1.1rem; border-radius: 10px;
+    font-size: 0.84rem; font-weight: 600; z-index: 90; transition: transform 0.2s; max-width: 90vw;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.bad { background: var(--critical); }
+
+  .empty-state { border: 1px dashed var(--border-dark); border-radius: var(--radius); padding: 2.5rem 1rem; text-align: center; color: var(--text-subtle); }
+  .spin { display: inline-block; width: 13px; height: 13px; border: 2px solid var(--border-dark); border-top-color: var(--text); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: -2px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-group">
+    <img src="assets/norrin_icon.png" alt="" class="brand-logo-img">
+    <div>
+      <div class="brand-title">NORRIN</div>
+      <div class="brand-subtitle">Cockpit</div>
+    </div>
+  </div>
+
+  <nav class="view-slider" id="screen-nav">
+    <button class="slider-tab active" data-screen="home">Home</button>
+    <button class="slider-tab" data-screen="overview">Overview</button>
+    <button class="slider-tab" data-screen="outbox">Outbox</button>
+    <button class="slider-tab" data-screen="raw">Raw room</button>
+    <button class="slider-tab" data-screen="validation">Check</button>
+  </nav>
+
+  <div class="header-right">
+    <div>
+      <span class="id-label">UNIT</span>
+      <div class="unit-picker">
+        <select id="machine-id" class="unit-select mono"></select>
+        <button class="mini-btn" id="add-unit" title="Add another unit">+</button>
+        <input type="text" id="new-unit" class="id-field mono" placeholder="unit name"
+               style="display:none" spellcheck="false">
+      </div>
+    </div>
+    <div>
+      <span class="id-label">OPERATOR</span>
+      <input type="text" id="op-id" class="id-field mono" value="OP-01" spellcheck="false">
+    </div>
+    <button class="ghost-btn" id="brain-btn" title="The notes this unit carries between shifts">Unit notes</button>
+    <button class="ghost-btn" id="audit-btn" title="Column ids, evidence objects, and the exact payload sent to the model">Audit view</button>
+  </div>
+</header>
+
+<section class="screen on" id="screen-home">
+
+  <div class="plant-state" id="plant-state">
+    <div class="ps-figure tnum" id="ps-figure">--</div>
+    <div>
+      <div class="ps-title" id="ps-title">Reading the shift...</div>
+      <div class="ps-sub" id="ps-sub"></div>
+    </div>
+    <div class="ps-actions" id="ps-actions"></div>
+  </div>
+
+  <div class="carried" id="carried" style="display:none">
+    <h3>This unit warned you about this</h3>
+    <div id="carried-list"></div>
+  </div>
+
+  <div class="home-chat">
+    <div class="chat-hint" id="chat-hint">
+      <button data-q="What happened on this unit while I was away?">What happened while I was away?</button>
+      <button data-q="What should I check first, and why?">What should I check first?</button>
+      <button data-q="Is this the same problem as the earlier ones, or something new?">Is this the same as before?</button>
+      <button data-q="Which channels actually move together here, and which are just noise?">What actually moves together?</button>
+    </div>
+    <div class="chat-log" id="home-chat-log"></div>
+    <form class="chat-form" id="home-chat-form">
+      <input type="text" id="home-chat-input" placeholder="Ask about this unit..." autocomplete="off">
+      <button class="primary-btn" type="submit" id="home-chat-send">Ask</button>
+    </form>
+    <div style="font-size:0.78rem;color:var(--text-subtle);margin-top:0.5rem">
+      Answers are grounded in the statistics of this shift and this unit's own notes. Raw values
+      never leave this machine.
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="screen-overview">
+<div class="timebar">
+  <button class="play-btn" id="play-btn" title="Play the shift forward">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path id="play-icon" d="M8 5v14l11-7z"/></svg>
+  </button>
+  <div class="speed-group" id="speed-group">
+    <button class="speed-btn on" data-speed="1">1x</button>
+    <button class="speed-btn" data-speed="4">4x</button>
+    <button class="speed-btn" data-speed="16">16x</button>
+  </div>
+  <div class="scrub">
+    <input type="range" id="scrub" min="1" max="960" value="960" step="1">
+  </div>
+  <div class="clock">
+    <span id="clock-main" class="tnum">--</span>
+    <small id="clock-sub">sample -- of --</small>
+  </div>
+  <button class="ghost-btn" id="restart-btn">Replay from start</button>
+  <select class="run-select" id="run-select" title="Which recorded shift to replay"></select>
+  <span class="fingerprint" id="fingerprint"></span>
+</div>
+
+<div class="hero" id="hero">
+  <div class="hero-figure tnum" id="hero-figure">--</div>
+  <div>
+    <div class="hero-text" id="hero-text">Loading the shift...</div>
+    <div class="hero-sub" id="hero-sub">Reading what the detector recorded.</div>
+  </div>
+  <div class="hero-actions">
+    <button class="primary-btn" id="hero-action">Open the first alert</button>
+  </div>
+</div>
+
+<section id="inbox-section">
+  <div class="section-head">
+    <h2>Needs you</h2>
+    <span class="hint" id="inbox-hint"></span>
+  </div>
+  <div class="alert-list" id="inbox"></div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>All channels</h2>
+    <span class="hint">One tile per channel. Click any of them to go deeper.</span>
+  </div>
+  <div class="filter-row" id="filter-row">
+    <button class="filter-btn on" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="flagged">Involved in an alert</button>
+    <button class="filter-btn" data-filter="quiet">Quiet</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+</section>
+
+
+<section class="screen" id="screen-outbox">
+  <div class="section-head">
+    <h2>Forwarded to support</h2>
+    <span class="hint">A local queue. Nothing is sent anywhere from this screen.</span>
+  </div>
+  <div class="panel"><div id="outbox-table"></div></div>
+</section>
+
+<section class="screen" id="screen-raw">
+  <div class="section-head">
+    <h2>Raw room</h2>
+    <span class="hint">Everything, unfiltered. Nothing here is summarised for you.</span>
+  </div>
+
+  <div class="panel" id="provenance-panel">
+    <h3>Where everything on this screen came from</h3>
+    <div id="provenance"><div class="empty-state">Counting...</div></div>
+  </div>
+
+  <div class="panel">
+    <h3>The other views</h3>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+      <a class="ghost-btn" style="text-decoration:none" href="index.html">Sensor report</a>
+      <a class="ghost-btn" style="text-decoration:none" href="diagnosis.html">Diagnosis</a>
+      <a class="ghost-btn" style="text-decoration:none" href="decision_log.html">Decision log (full)</a>
+      <a class="ghost-btn" style="text-decoration:none" href="/artifacts/" target="_blank">Artifacts on disk</a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Channels on one axis</h3>
+    <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.7rem" id="raw-channel-picker"></div>
+    <div id="raw-chart"></div>
+    <div style="font-size:0.76rem;color:var(--text-subtle);margin-top:0.5rem">
+      Each channel is shown as its distance from its own profile mean, in standard deviations, so
+      channels with different units share one scale honestly. Pick up to six.
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Raw values</h3>
+    <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.7rem;flex-wrap:wrap">
+      <select class="shift-select" id="raw-col"></select>
+      <button class="ghost-btn" id="raw-prev">&larr;</button>
+      <span id="raw-window" class="mono" style="font-size:0.78rem;color:var(--text-muted)"></span>
+      <button class="ghost-btn" id="raw-next">&rarr;</button>
+    </div>
+    <div id="raw-table" style="max-height:420px;overflow:auto"></div>
+  </div>
+
+  <div class="panel">
+    <h3>Decision log, grouped</h3>
+    <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.7rem">
+      One row per stage and kind. The log itself is append-only and nothing is hidden: this is a
+      way of reading 1,300 lines without scrolling through 1,000 identical ones.
+    </div>
+    <div id="log-groups"></div>
+  </div>
+</section>
+
+<section class="screen" id="screen-validation">
+  <div class="eval-banner">
+    <b>Eval only &mdash; uses ground truth labels</b>
+    This page is scored against <span class="mono">data/labels/</span> by
+    <span class="mono">eval/validate_detection.py</span>. Nothing on it is visible to the pipeline,
+    and nothing on it is ever sent to a model. It exists so you can check whether the system is
+    right before you believe it.
+  </div>
+  <div id="validation-body"><div class="empty-state">Loading the ground truth report...</div></div>
+</section>
+
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="detail" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-title" id="detail-title">--</div>
+      <div class="drawer-sub" id="detail-sub"></div>
+    </div>
+    <button class="ghost-btn" id="detail-audit" style="margin-left:auto"
+            title="Column ids, evidence objects, and the exact payload sent to the model">Audit</button>
+    <button class="close-btn" id="detail-close" style="margin-left:0" aria-label="Close">&times;</button>
+  </div>
+  <div class="drawer-body" id="detail-body"></div>
+</aside>
+
+<aside class="drawer" id="brain" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-title">Unit notes</div>
+      <div class="drawer-sub" id="brain-sub">A plain Markdown file this unit carries between shifts.</div>
+    </div>
+    <button class="close-btn" id="brain-close" aria-label="Close">&times;</button>
+  </div>
+  <div class="drawer-body">
+    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:0.8rem">
+      Everything written here is read back by the assistant before it answers anything about this unit.
+      Two units that start from the same code end up answering differently, because this file diverges.
+      Nothing is written here without an operator pressing save.
+    </p>
+    <textarea class="brain mono" id="brain-text" spellcheck="false"></textarea>
+    <div style="display:flex;gap:0.5rem;margin-top:0.7rem;flex-wrap:wrap">
+      <button class="primary-btn" id="brain-save">Save notes</button>
+      <span style="flex:1"></span>
+      <span id="brain-meta" style="font-size:0.74rem;color:var(--text-subtle);align-self:center"></span>
+    </div>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script src="charts.js"></script>
+<script>
+"use strict";
+
+/* ======================================================================
+ * State. One object, and one number in it -- `tick` -- that everything
+ * else is derived from. That is what makes the replay honest: there is no
+ * second clock to fall out of step with, and reloading at the same tick
+ * gives the same screen.
+ * ==================================================================== */
+var S = {
+  runId: null,
+  runs: [],
+  nSamples: 960,
+  tick: 960,
+  playing: false,
+  speed: 1,
+  timer: null,
+
+  drift: null,
+  channels: [],
+  channelById: {},
+  overview: null,          // decimated series for every channel, whole run
+  detailSeries: {},        // col_id -> full-resolution series, fetched on demand
+
+  seen: {},                // event_id -> true
+  filter: "all",
+  open: null,              // { kind: "event"|"channel", id }
+  hypotheses: {},          // event_id -> answer
+  pending: {},             // event_id -> true while a call is in flight
+  chat: {},                // event_id -> [{role, text, meta}]
+  minutesPerSample: 3,
+
+  screen: "home",
+  halted: null,          // { event_id, at_tick } while the plant is stopped
+  unitState: null,       // tickets, carried predictions, accepted physical classes
+  physical: {},          // col_id -> the model's physical class answer
+  homeChat: [],
+  validation: null,
+  rawCols: [],
+  rawOffset: 0
+};
+
+var MINUTES_KEY = "norrin_minutes_per_sample";
+
+/* ---------------------------------------------------------------- utils */
+function $(id) { return document.getElementById(id); }
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function toast(msg, bad) {
+  var t = $("toast");
+  t.textContent = msg;
+  t.className = "toast show" + (bad ? " bad" : "");
+  clearTimeout(t._t);
+  t._t = setTimeout(function () { t.className = "toast"; }, bad ? 6000 : 2800);
+}
+async function getJSON(url) {
+  var res = await fetch(url, { cache: "no-store" });
+  var data = await res.json().catch(function () { return {}; });
+  if (!res.ok) throw new Error(data.error || (url + ": " + res.status));
+  return data;
+}
+async function postJSON(url, body) {
+  var res = await fetch(url, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
+  });
+  var data = await res.json().catch(function () { return {}; });
+  if (!res.ok) throw new Error(data.error || (url + ": " + res.status));
+  return data;
+}
+
+/* A channel id is opaque and stays opaque. "Channel 21" is a label for a
+ * human reading a screen; col_021 is the identity, and it is one toggle
+ * away in the audit view. No physical meaning is attached to either. */
+function label(colId) {
+  var m = /^col_0*(\d+)$/.exec(colId || "");
+  return m ? "Channel " + m[1] : (colId || "--");
+}
+/* The model only ever sees col ids, so its answers come back written in them.
+ * The operator view rewrites them to the same labels the rest of the screen
+ * uses; the audit view shows the answer exactly as it was returned. Nothing is
+ * added or removed -- one identifier is swapped for its own label. */
+function humanise(text) {
+  if (!text) return "";
+  if (document.body.classList.contains("audit")) return String(text);
+  // Swallow a preceding "channel"/"sensor" word when the model wrote one, so
+  // the swap does not leave "channel Channel 21" behind.
+  return String(text).replace(/\b(?:channel|sensor)\s+col_0*(\d+)\b/gi, function (_, n) { return "Channel " + n; })
+                     .replace(/\bcol_0*(\d+)\b/g, function (_, n) { return "Channel " + n; });
+}
+
+function operatorId() { return ($("op-id").value || "OP-01").trim(); }
+function machineId() { return ($("machine-id").value || "machine_01").trim(); }
+
+/* The shift dropdown used to say "simulationRun". A run is 960 contiguous
+ * samples starting where the clock resets: one production cycle, start to
+ * stop. Calling it a shift is not a rename, it is the correct noun. */
+function shiftLabel(runId) { return String(runId || "").replace(/^sim(\d+)_run(\d+)$/, "Line $1, shift $2"); }
+
+function clockText(sample) {
+  var minutes = (sample - 1) * S.minutesPerSample;
+  var d = Math.floor(minutes / 1440), h = Math.floor((minutes % 1440) / 60), m = Math.round(minutes % 60);
+  return (d > 0 ? "day " + (d + 1) + " " : "") + String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0");
+}
+function agoText(sample) {
+  var behind = S.tick - sample;
+  if (behind <= 0) return "now";
+  var minutes = behind * S.minutesPerSample;
+  if (minutes < 60) return Math.round(minutes) + " min ago";
+  if (minutes < 1440) return (minutes / 60).toFixed(1).replace(/\.0$/, "") + " h ago";
+  var days = (minutes / 1440).toFixed(1).replace(/\.0$/, "");
+  return days + (days === "1" ? " day ago" : " days ago");
+}
+
+/* ------------------------------------------------------- derived reads */
+function eventsUpTo(tick) {
+  if (!S.drift) return [];
+  return (S.drift.events || []).filter(function (e) {
+    return (e.detected_at_sample || e.start_sample) <= tick;
+  });
+}
+function activeEvents(tick) {
+  return eventsUpTo(tick).filter(function (e) { return (e.end_sample || e.start_sample) >= tick; });
+}
+function severityRank(s) { return s === "high" ? 3 : s === "medium" ? 2 : s === "low" ? 1 : 0; }
+
+/* A channel that led a high-severity event and a channel that contributed two
+ * percent of one are not in the same state, and colouring both red makes the
+ * grid useless at a glance. Leading is tracked separately from contributing,
+ * and the worst severity is kept independently of the largest share -- the two
+ * were conflated in the first version, so a channel's colour depended on which
+ * event happened to score highest rather than on the worst thing it did. */
+function flaggedChannels(tick) {
+  var out = {};
+  eventsUpTo(tick).forEach(function (e) {
+    (e.ranked_signals || []).forEach(function (sig, i) {
+      if (!sig.col_id) return;
+      var cur = out[sig.col_id];
+      if (!cur) cur = out[sig.col_id] = { score: 0, worst: null, leadWorst: null, lead: false, event_id: e.event_id, share: 0, direction: sig.direction };
+      var score = (sig.share || 0) * (i === 0 ? 1.2 : 1);
+      if (score >= cur.score) {
+        cur.score = score; cur.event_id = e.event_id;
+        cur.share = sig.share || 0; cur.direction = sig.direction;
+      }
+      if (severityRank(e.severity) > severityRank(cur.worst)) cur.worst = e.severity;
+      if (i === 0) {
+        cur.lead = true;
+        if (severityRank(e.severity) > severityRank(cur.leadWorst)) cur.leadWorst = e.severity;
+      }
+    });
+  });
+  return out;
+}
+
+function sliceTo(seriesObj, colId, tick) {
+  if (!seriesObj || !seriesObj.series || !seriesObj.series[colId]) return { sample: [], values: [] };
+  var samples = seriesObj.sample, values = seriesObj.series[colId];
+  var n = 0;
+  while (n < samples.length && samples[n] <= tick) n++;
+  return { sample: samples.slice(0, n), values: values.slice(0, n) };
+}
+
+function bandFor(colId) {
+  var ch = S.channelById[colId];
+  if (!ch || !ch.baseline || ch.baseline.mean == null || !ch.baseline.std_dev) return null;
+  var mid = ch.baseline.mean, sd = ch.baseline.std_dev;
+  return { mid: mid, sigma: sd, lo: mid - 2 * sd, hi: mid + 2 * sd };
+}
+
+function deviationSigma(colId, tick) {
+  var band = bandFor(colId);
+  var cut = sliceTo(S.overview, colId, tick);
+  if (!band || !cut.values.length) return null;
+  var last = cut.values[cut.values.length - 1];
+  return (last - band.mid) / band.sigma;
+}
+
+/* Straight-line projection from the recent past. Deliberately the dullest
+ * possible model: least squares over the last stretch of the channel,
+ * extrapolated to the edge of its own normal range. It runs in the browser
+ * on data that never leaves, it is not a model call, and it is labelled as
+ * arithmetic rather than dressed up as a prediction. */
+function project(colId, tick) {
+  var band = bandFor(colId);
+  var cut = sliceTo(S.overview, colId, tick);
+  var n = cut.values.length;
+  if (!band || n < 12) return null;
+
+  var take = Math.min(n, Math.max(12, Math.floor(n / 3)));
+  var xs = cut.sample.slice(n - take), ys = cut.values.slice(n - take);
+  var mx = xs.reduce(function (a, b) { return a + b; }, 0) / take;
+  var my = ys.reduce(function (a, b) { return a + b; }, 0) / take;
+  var num = 0, den = 0;
+  for (var i = 0; i < take; i++) { num += (xs[i] - mx) * (ys[i] - my); den += (xs[i] - mx) * (xs[i] - mx); }
+  if (!den) return null;
+  var slope = num / den;
+  var last = ys[ys.length - 1];
+
+  // Noise floor: a drift smaller than this is indistinguishable from the
+  // channel's own scatter over the window, so it is reported as steady.
+  var perWindow = Math.abs(slope) * take;
+  if (perWindow < 0.35 * band.sigma) {
+    return { steady: true, slope: slope, window: take };
+  }
+  var target = slope > 0 ? band.hi : band.lo;
+  var samplesToEdge = (target - last) / slope;
+  return {
+    steady: false,
+    slope: slope,
+    window: take,
+    rising: slope > 0,
+    outside: samplesToEdge < 0,
+    samplesToEdge: samplesToEdge,
+    target: target
+  };
+}
+
+/* ======================================================================
+ * Rendering. Every render reads S.tick and nothing else about time.
+ * ==================================================================== */
+function renderClock() {
+  $("clock-main").textContent = clockText(S.tick);
+  $("clock-sub").textContent = "sample " + S.tick + " of " + S.nSamples;
+  var scrub = $("scrub");
+  if (Number(scrub.value) !== S.tick) scrub.value = S.tick;
+}
+
+function renderHero() {
+  var unread = eventsUpTo(S.tick).filter(function (e) { return !S.seen[e.event_id]; });
+  var live = activeEvents(S.tick);
+  var hero = $("hero"), fig = $("hero-figure"), text = $("hero-text"), sub = $("hero-sub"), action = $("hero-action");
+
+  if (!S.drift) { return; }
+
+  if (unread.length) {
+    hero.className = "hero alert";
+    fig.textContent = unread.length;
+    text.textContent = unread.length === 1 ? "alert is waiting for you" : "alerts are waiting for you";
+    var worst = unread.slice().sort(function (a, b) { return severityRank(b.severity) - severityRank(a.severity); })[0];
+    sub.textContent = "Most serious: " + worst.severity + " severity, " + agoText(worst.detected_at_sample || worst.start_sample) +
+                      ", led by " + label((worst.ranked_signals || [{}])[0].col_id) + ".";
+    action.style.display = "";
+    action.textContent = "Open the most serious";
+    action.onclick = function () { openEvent(worst.event_id); };
+  } else if (live.length) {
+    hero.className = "hero alert";
+    fig.textContent = live.length;
+    text.textContent = "still deviating right now";
+    sub.textContent = "You have read them all. They have not closed yet.";
+    action.style.display = "";
+    action.textContent = "Open the live one";
+    action.onclick = function () { openEvent(live[0].event_id); };
+  } else {
+    hero.className = "hero calm";
+    fig.textContent = "0";
+    text.textContent = "Nothing is waiting for you";
+    var total = eventsUpTo(S.tick).length;
+    sub.textContent = total
+      ? "All " + total + " event" + (total === 1 ? "" : "s") + " so far this shift have been read."
+      : "The detector has flagged nothing up to this point in the shift.";
+    action.style.display = "none";
+  }
+}
+
+/* An inbox, not a log. Eighteen separate cards for the same channel is a
+ * list the operator scrolls past; one thread per channel, carrying its count
+ * and its worst severity, is a screen they read. The individual detections
+ * are not lost -- they are listed inside the thread. */
+function inboxThreads(tick) {
+  var byChannel = {};
+  eventsUpTo(tick).forEach(function (e) {
+    var lead = (e.ranked_signals || [])[0] || {};
+    var key = lead.col_id || "unattributed";
+    var g = byChannel[key];
+    if (!g) g = byChannel[key] = { colId: lead.col_id, events: [], unread: 0, worst: "low", latest: e, share: 0 };
+    g.events.push(e);
+    if (!S.seen[e.event_id]) g.unread++;
+    if (severityRank(e.severity) > severityRank(g.worst)) g.worst = e.severity;
+    if ((e.detected_at_sample || e.start_sample) >= (g.latest.detected_at_sample || g.latest.start_sample)) g.latest = e;
+    if ((lead.share || 0) > g.share) g.share = lead.share || 0;
+  });
+
+  return Object.keys(byChannel).map(function (k) { return byChannel[k]; }).sort(function (a, b) {
+    if ((b.unread > 0) !== (a.unread > 0)) return b.unread - a.unread > 0 ? 1 : -1;
+    var sev = severityRank(b.worst) - severityRank(a.worst);
+    if (sev) return sev;
+    return (b.latest.detected_at_sample || 0) - (a.latest.detected_at_sample || 0);
+  });
+}
+
+function renderInbox() {
+  var list = $("inbox");
+  var threads = inboxThreads(S.tick);
+  var events = eventsUpTo(S.tick);
+  var unread = events.filter(function (e) { return !S.seen[e.event_id]; }).length;
+
+  $("inbox-hint").textContent = events.length
+    ? unread + " unread of " + events.length + " detections, on " + threads.length +
+      " channel" + (threads.length === 1 ? "" : "s")
+    : "";
+
+  if (!threads.length) {
+    list.innerHTML = '<div class="empty-state">Nothing flagged up to sample ' + S.tick +
+      '. Move the clock forward, or press play.</div>';
+    return;
+  }
+
+  list.innerHTML = threads.map(function (g) {
+    var read = g.unread === 0;
+    var count = g.events.length;
+    return '<button class="alert-card sev-' + esc(g.worst) + (read ? " read" : "") +
+      '" onclick="openThread(\'' + esc(g.colId || "") + '\')">' +
+      '<span class="unread-dot' + (read ? " read" : "") + '"></span>' +
+      '<span class="chip ' + esc(g.worst) + '">' + esc(g.worst) + '</span>' +
+      '<span class="alert-main">' +
+        '<span class="alert-title">' + esc(label(g.colId)) + ' moved away from its normal range</span>' +
+        '<span class="alert-meta">' + count + ' detection' + (count === 1 ? "" : "s") + ' this shift' +
+          (g.unread ? ' &middot; ' + g.unread + ' unread' : "") +
+          (g.share ? ' &middot; up to ' + Math.round(g.share * 100) + '% of the deviation' : "") +
+          '<span class="audit-inline mono"> &middot; ' + esc(g.colId || "unattributed") + '</span></span>' +
+      '</span>' +
+      '<span class="alert-when">' + esc(agoText(g.latest.detected_at_sample || g.latest.start_sample)) + '</span>' +
+      '</button>';
+  }).join("");
+}
+
+function statusOf(colId, flagged, tick) {
+  var f = flagged[colId];
+  if (f && f.lead) {
+    return f.leadWorst === "high" ? "critical" : f.leadWorst === "medium" ? "serious" : "warning";
+  }
+  if (f) return "warning";
+  var dev = deviationSigma(colId, tick);
+  if (dev != null && Math.abs(dev) > 3) return "warning";
+  return "good";
+}
+
+function renderGrid() {
+  var grid = $("grid");
+  var flagged = flaggedChannels(S.tick);
+
+  var rows = S.channels.filter(function (ch) {
+    if (S.filter === "flagged") return !!flagged[ch.col_id];
+    if (S.filter === "quiet") return !flagged[ch.col_id];
+    return true;
+  });
+
+  rows.sort(function (a, b) {
+    var fa = flagged[a.col_id], fb = flagged[b.col_id];
+    var la = fa && fa.lead ? 1 : 0, lb = fb && fb.lead ? 1 : 0;
+    if (la !== lb) return lb - la;
+    var sa = fa ? fa.score : -1, sb = fb ? fb.score : -1;
+    if (sa !== sb) return sb - sa;
+    return a.col_id.localeCompare(b.col_id);
+  });
+
+  if (!rows.length) { grid.innerHTML = '<div class="empty-state">No channel matches this filter.</div>'; return; }
+
+  grid.innerHTML = rows.map(function (ch) {
+    var status = statusOf(ch.col_id, flagged, S.tick);
+    var cut = sliceTo(S.overview, ch.col_id, S.tick);
+    var dev = deviationSigma(ch.col_id, S.tick);
+    var colour = status === "good" ? NorrinCharts.colors.muted : NorrinCharts.colors[status];
+    return '<button class="tile' + (flagged[ch.col_id] ? " flagged" : "") +
+      '" onclick="openChannel(\'' + esc(ch.col_id) + '\')">' +
+      '<span class="tile-top">' +
+        '<span class="tile-name">' + esc(label(ch.col_id)) +
+          '<span class="audit-inline mono" style="font-size:0.68rem;color:var(--text-subtle)"> ' + esc(ch.col_id) + '</span>' +
+        '</span>' +
+        '<span class="status-dot ' + status + '" title="' + status + '"></span>' +
+      '</span>' +
+      '<span class="tile-role">' + esc(ch.role || "") + '</span>' +
+      '<span class="tile-foot">' +
+        NorrinCharts.sparkline(cut.values.slice(-60), { color: colour, width: 104, height: 26 }) +
+        '<span class="tile-dev">' + (dev == null ? "--" : (dev >= 0 ? "+" : "") + dev.toFixed(1) + "&sigma;") + '</span>' +
+      '</span>' +
+      '</button>';
+  }).join("");
+}
+
+function renderAll() {
+  renderClock();
+  renderHero();
+  renderInbox();
+  renderGrid();
+  renderHome();
+  if (S.open) renderDetail();
+}
+
+/* ======================================================================
+ * Drill-down
+ * ==================================================================== */
+function openThread(colId) {
+  var thread = inboxThreads(S.tick).find(function (g) { return (g.colId || "") === colId; });
+  if (!thread) return;
+  thread.events.forEach(function (e) { S.seen[e.event_id] = true; });
+  openEvent(thread.latest.event_id);
+}
+
+function openEvent(eventId) {
+  var e = (S.drift.events || []).find(function (x) { return x.event_id === eventId; });
+  if (!e) return;
+  S.seen[eventId] = true;
+  var lead = (e.ranked_signals || [{}])[0];
+  S.open = { kind: "event", id: eventId, colId: lead && lead.col_id };
+  openDrawer("detail");
+  renderDetail();
+  renderHero();
+  renderInbox();
+  renderGrid();
+  if (S.open.colId) ensureSeries(S.open.colId).then(renderDetail);
+  if (!S.hypotheses[eventId] && !S.pending[eventId]) requestHypothesis(eventId);
+}
+
+function openChannel(colId) {
+  var flagged = flaggedChannels(S.tick);
+  var linked = flagged[colId];
+  S.open = { kind: "channel", id: colId, colId: colId, eventId: linked && linked.event_id };
+  if (linked) S.seen[linked.event_id] = true;
+  openDrawer("detail");
+  renderDetail();
+  ensureSeries(colId).then(renderDetail);
+}
+
+function openDrawer(which) {
+  $("scrim").classList.add("open");
+  $(which).classList.add("open");
+  $(which).setAttribute("aria-hidden", "false");
+}
+function closeDrawers() {
+  $("scrim").classList.remove("open");
+  ["detail", "brain"].forEach(function (id) {
+    $(id).classList.remove("open");
+    $(id).setAttribute("aria-hidden", "true");
+  });
+  S.open = null;
+}
+
+async function ensureSeries(colId) {
+  if (!colId || S.detailSeries[colId]) return;
+  try {
+    S.detailSeries[colId] = await getJSON(
+      "/api/series?run_id=" + encodeURIComponent(S.runId) + "&cols=" + encodeURIComponent(colId) + "&max_points=2000");
+  } catch (err) {
+    S.detailSeries[colId] = null;
+  }
+}
+
+function eventOf(open) {
+  var id = open.kind === "event" ? open.id : open.eventId;
+  if (!id || !S.drift) return null;
+  return (S.drift.events || []).find(function (x) { return x.event_id === id; }) || null;
+}
+
+function renderDetail() {
+  if (!S.open) return;
+  var colId = S.open.colId;
+  var ch = S.channelById[colId] || {};
+  var e = eventOf(S.open);
+
+  $("detail-title").innerHTML = esc(label(colId)) +
+    '<span class="audit-inline mono" style="font-size:0.8rem;color:var(--text-subtle)"> ' + esc(colId || "") + '</span>';
+  $("detail-sub").textContent = (ch.role || "role not established") +
+    " · the system's own confidence in that role: " + (ch.confidence || "low");
+
+  var html = "";
+
+  /* --- what happened, in one line ------------------------------------ */
+  if (e) {
+    var lead = (e.ranked_signals || []).find(function (s) { return s.col_id === colId; }) || (e.ranked_signals || [{}])[0];
+    html += '<div class="block">' +
+      '<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;flex-wrap:wrap">' +
+        '<span class="chip ' + esc(e.severity) + '">' + esc(e.severity) + '</span>' +
+        '<span class="chip neutral">' + esc(e.type || "change") + '</span>' +
+        '<span style="font-size:0.8rem;color:var(--text-muted)">detected ' +
+          esc(agoText(e.detected_at_sample || e.start_sample)) + ', at ' + esc(clockText(e.detected_at_sample || e.start_sample)) + '</span>' +
+      '</div>' +
+      '<div style="font-size:0.95rem;font-weight:600">' +
+        esc(label(colId)) + ' accounts for ' +
+        (lead && lead.share != null ? Math.round(lead.share * 100) + '%' : 'an unranked share') +
+        ' of this deviation' + (lead && lead.direction && lead.direction !== "unspecified"
+          ? ', ' + esc(String(lead.direction).replace(/_/g, " ")) : "") + '.' +
+      '</div></div>';
+  }
+
+  /* --- the rest of this channel's shift ------------------------------ */
+  var siblings = eventsUpTo(S.tick).filter(function (x) {
+    var lead = (x.ranked_signals || [])[0] || {};
+    return lead.col_id === colId;
+  });
+  if (siblings.length > 1) {
+    html += '<div class="block"><div class="block-label">' + siblings.length +
+      ' detections on this channel this shift</div><div class="pill-row">' +
+      siblings.slice().sort(function (a, b) {
+        return (b.detected_at_sample || 0) - (a.detected_at_sample || 0);
+      }).map(function (x) {
+        var on = e && x.event_id === e.event_id;
+        return '<button class="pill' + (on ? " on" : "") + '" onclick="openEvent(\'' + esc(x.event_id) + '\')">' +
+          '<span class="status-dot ' + (x.severity === "high" ? "critical" : x.severity === "medium" ? "serious" : "warning") +
+          '"></span>' + esc(clockText(x.detected_at_sample || x.start_sample)) + '</button>';
+      }).join("") + '</div>' +
+      '<div style="font-size:0.76rem;color:var(--text-subtle);margin-top:0.4rem">' +
+      'The same channel was flagged repeatedly. Each one is its own detection with its own evidence.</div></div>';
+  }
+
+  /* --- the chart ----------------------------------------------------- */
+  html += '<div class="block">' +
+    '<div class="block-label">This channel through the shift</div>' +
+    '<div class="chart-frame"><div id="chart-channel"></div>' +
+      '<div class="legend"><span class="key"><span class="swatch" style="background:' + NorrinCharts.colors.series1 + '"></span>' +
+      'measured value</span><span class="key"><span class="swatch" style="background:' + NorrinCharts.colors.muted + ';opacity:0.5"></span>' +
+      'usual range (2 sigma either side of its own profile)</span></div>' +
+    '</div></div>';
+
+  /* --- projection ---------------------------------------------------- */
+  var proj = project(colId, S.tick);
+  if (proj) {
+    var projText, projChip;
+    if (proj.steady) {
+      projText = "Holding steady. Over the last " + proj.window + " samples it has not moved enough to call a trend.";
+      projChip = '<span class="chip ok">steady</span>';
+    } else if (proj.outside) {
+      projText = "Already outside its usual range and still " + (proj.rising ? "rising" : "falling") + ".";
+      projChip = '<span class="chip high">outside</span>';
+    } else {
+      var samplesToEdge = Math.round(proj.samplesToEdge);
+      var hours = (samplesToEdge * S.minutesPerSample / 60);
+      projText = "Drifting " + (proj.rising ? "up" : "down") + ". At this rate it reaches the edge of its usual range in about " +
+        samplesToEdge + " samples" + (hours >= 1 ? " (" + hours.toFixed(1).replace(/\.0$/, "") + " hours)" : "") + ".";
+      projChip = '<span class="chip ' + (samplesToEdge < 60 ? "medium" : "low") + '">drifting</span>';
+    }
+    html += '<div class="block">' +
+      '<div class="block-label">Where it is heading</div>' +
+      '<div style="display:flex;gap:0.6rem;align-items:flex-start">' + projChip +
+      '<div style="font-size:0.9rem">' + esc(projText) +
+      '<div style="font-size:0.76rem;color:var(--text-subtle);margin-top:0.25rem">' +
+      'Straight line fitted to the last ' + proj.window + ' samples, in this browser. Not a model, not a call ' +
+      'to anything: arithmetic on values that never left this machine.</div></div></div></div>';
+  }
+
+  /* --- statistics ---------------------------------------------------- */
+  var band = bandFor(colId);
+  var cut = sliceTo(S.detailSeries[colId] || S.overview, colId, S.tick);
+  var last = cut.values.length ? cut.values[cut.values.length - 1] : null;
+  var dev = deviationSigma(colId, S.tick);
+  html += '<div class="block"><div class="block-label">Now, against its own profile</div><div class="stat-row">' +
+    statBox("latest", last == null ? "--" : NorrinCharts.format(last)) +
+    statBox("usual middle", band ? NorrinCharts.format(band.mid) : "--") +
+    statBox("distance", dev == null ? "--" : (dev >= 0 ? "+" : "") + dev.toFixed(1) + " σ") +
+    statBox("usual range", band ? NorrinCharts.format(band.lo) + " – " + NorrinCharts.format(band.hi) : "--") +
+    '</div></div>';
+
+  /* --- who actually moves with it ------------------------------------ */
+  var movers = (S.physical[colId] || {}).co_movers;
+  if (movers && movers.length) {
+    var together = movers.filter(function (m) { return m.verdict === "moves together"; });
+    html += '<div class="block"><div class="block-label">Channels that really move with this one</div>' +
+      (together.length
+        ? '<table class="data"><thead><tr><th>Channel</th><th class="num">Correlation</th>' +
+          '<th>Timing</th></tr></thead><tbody>' + together.map(function (m) {
+            return '<tr><td>' + esc(label(m.col_id)) +
+              '<span class="audit-inline mono" style="font-size:0.7rem"> ' + esc(m.col_id) + '</span></td>' +
+              '<td class="num mono">' + m.correlation + '</td>' +
+              '<td>' + esc(m.leads_or_follows) +
+              (m.lag_samples ? " by " + Math.abs(m.lag_samples) + " samples" : "") + '</td></tr>';
+          }).join("") + '</tbody></table>'
+        : '<div style="font-size:0.88rem;color:var(--text-muted)">Nothing else in this shift moves with it.</div>') +
+      '<div style="font-size:0.76rem;color:var(--text-subtle);margin-top:0.4rem">' +
+      'Measured in this browser from the recorded values. The detector\'s blame list below answers a ' +
+      'different question and can name channels that have nothing to do with this one.</div></div>';
+  }
+
+  /* --- attribution --------------------------------------------------- */
+  if (e && (e.ranked_signals || []).length) {
+    html += '<div class="block"><div class="block-label">What the detector blamed, in order</div>' +
+      '<div id="chart-attrib"></div>' +
+      '<div style="font-size:0.76rem;color:var(--text-subtle);margin-top:0.4rem">' +
+      'Share of the deviation each channel accounts for, as computed by the detector. Click a row\'s channel to open it.</div></div>';
+  }
+
+  /* --- what kind of thing this is ------------------------------------ */
+  html += renderPhysicalBlock(colId);
+
+  /* --- the assistant ------------------------------------------------- */
+  if (e) html += renderAiBlock(e);
+
+  /* --- chat ---------------------------------------------------------- */
+  if (e) html += renderChatBlock(e);
+
+  /* --- audit --------------------------------------------------------- */
+  html += renderAuditBlock(colId, e);
+
+  $("detail-body").innerHTML = html;
+
+  /* charts after the HTML exists */
+  var chartEl = $("chart-channel");
+  if (chartEl) {
+    var source = S.detailSeries[colId] || S.overview;
+    var drawn = sliceTo(source, colId, S.tick);
+    NorrinCharts.channel(chartEl, {
+      samples: drawn.sample,
+      values: drawn.values,
+      band: band,
+      events: S.drift ? S.drift.events : [],
+      tick: S.tick,
+      xMin: 1,
+      xMax: S.nSamples,
+      height: 240
+    });
+  }
+  var attribEl = $("chart-attrib");
+  if (attribEl && e) {
+    NorrinCharts.attribution(attribEl, (e.ranked_signals || []).map(function (s) {
+      return { col_id: s.col_id, share: s.share, label: humanise(s.col_id) };
+    }), { labelW: 92, onSelect: function (cid) { if (cid) openChannel(cid); } });
+  }
+
+  var input = document.querySelector("#chat-form input");
+  if (input && S.open._focusChat) { input.focus(); S.open._focusChat = false; }
+}
+
+function statBox(k, v) {
+  return '<div class="stat-box"><div class="k">' + esc(k) + '</div><div class="v">' + esc(v) + '</div></div>';
+}
+
+function renderAiBlock(e) {
+  var answer = S.hypotheses[e.event_id];
+  var head = '<div class="block"><div class="block-label">What the assistant makes of it</div><div class="ai-card">';
+
+  if (S.pending[e.event_id]) {
+    return head + '<div class="ai-head"><span class="who">assistant</span></div>' +
+      '<div class="ai-text" style="color:var(--text-muted)"><span class="spin"></span> Reading the statistics for this event...</div>' +
+      '<div style="font-size:0.76rem;color:var(--text-subtle);margin-top:0.5rem">' +
+      'Aggregates only. No sample values are in the payload.</div></div></div>';
+  }
+  if (!answer) {
+    return head + '<div class="ai-text" style="color:var(--text-muted)">Not asked yet.</div>' +
+      '<div style="margin-top:0.7rem"><button class="primary-btn" onclick="requestHypothesis(\'' + esc(e.event_id) + '\')">Ask for a hypothesis</button></div>' +
+      '</div></div>';
+  }
+  if (answer.error) {
+    return head + '<div class="ai-text" style="color:var(--critical)">' + esc(answer.error) + '</div>' +
+      '<div style="margin-top:0.7rem"><button class="ghost-btn" onclick="requestHypothesis(\'' + esc(e.event_id) + '\')">Try again</button></div>' +
+      '</div></div>';
+  }
+
+  var out = head +
+    '<div class="ai-head"><span class="who">assistant</span>' +
+      '<span class="chip neutral">' + esc(answer.epistemic_status || "uncertain") + '</span></div>' +
+    '<div class="ai-text">' + esc(humanise(answer.hypothesis)) + '</div>' +
+    '<div class="conf-row">' + NorrinCharts.meter(answer.confidence_pct) +
+      '<span class="conf-pct">' + esc(answer.confidence_pct) + '%</span>' +
+      '<span class="conf-word">' + esc(answer.confidence) + ' confidence</span></div>';
+
+  if ((answer.suggested_checks || []).length) {
+    out += '<div style="margin-top:0.85rem"><div class="block-label" style="margin-bottom:0.3rem">What to check</div><ul class="check-list">' +
+      answer.suggested_checks.map(function (c) { return '<li>' + esc(humanise(c)) + '</li>'; }).join("") + '</ul></div>';
+  }
+  if (answer.what_would_change_my_mind) {
+    out += '<div class="overturn"><b>What would overturn this:</b> ' + esc(humanise(answer.what_would_change_my_mind)) + '</div>';
+  }
+  if ((answer.evidence_ids || []).length) {
+    out += '<div class="audit-only" style="margin-top:0.7rem"><div class="block-label" style="margin-bottom:0.3rem">Grounded in</div>' +
+      '<div class="mono" style="font-size:0.72rem;color:var(--text-muted)">' + esc(answer.evidence_ids.join("  ")) + '</div></div>';
+  }
+  out += renderSources(answer);
+  out += '<div style="margin-top:0.85rem;display:flex;gap:0.5rem;flex-wrap:wrap">' +
+    '<button class="primary-btn" onclick="forwardTicket(\'' +
+      esc((S.open && S.open.colId) || "") + '\')">Forward to support</button>' +
+    '<button class="ghost-btn" onclick="requestHypothesis(\'' + esc(e.event_id) + '\')">Ask again</button>' +
+    '<button class="ghost-btn" onclick="draftNote(\'' + esc(e.event_id) + '\')">Draft a note for the unit</button>' +
+    '</div>';
+
+  return out + '</div></div>';
+}
+
+/* A confidence percentage on "what model are you?" is noise dressed as rigour.
+ * It is shown only on answers that actually make a claim about the process. */
+function renderTurn(turn) {
+  if (turn.role === "operator") {
+    return '<div class="bubble op">' + esc(turn.text) + '</div>';
+  }
+  var isClaim = (turn.kind || "process") === "process";
+  return '<div class="bubble ai">' + esc(humanise(turn.text)) +
+    (turn.next ? '<div class="next-step">Next: ' + esc(humanise(turn.next)) + '</div>' : "") +
+    (turn.meta && isClaim ? '<div class="meta">' + esc(turn.meta) + '</div>' : "") + '</div>';
+}
+
+function renderChatBlock(e) {
+  var turns = S.chat[e.event_id] || [];
+  var out = '<div class="block"><div class="block-label">Ask about this</div>';
+  if (turns.length) {
+    out += '<div class="chat-log">' + turns.map(renderTurn).join("") + '</div>';
+  }
+  out += '<form class="chat-form" id="chat-form" onsubmit="return sendChat(event, \'' + esc(e.event_id) + '\')">' +
+    '<input type="text" placeholder="What should I check first?" autocomplete="off"' +
+    (S.pending["chat_" + e.event_id] ? " disabled" : "") + '>' +
+    '<button class="primary-btn" type="submit"' + (S.pending["chat_" + e.event_id] ? " disabled" : "") + '>' +
+    (S.pending["chat_" + e.event_id] ? '<span class="spin"></span>' : "Ask") + '</button></form>';
+  out += '<div style="font-size:0.76rem;color:var(--text-subtle);margin-top:0.4rem">' +
+    'Your question goes out with the same aggregates as the hypothesis and the unit notes. Nothing else.</div>';
+  return out + '</div>';
+}
+
+function renderAuditBlock(colId, e) {
+  var ch = S.channelById[colId] || {};
+  var answer = e ? S.hypotheses[e.event_id] : null;
+  var payload = answer && answer.payload_sent;
+
+  var out = '<div class="audit-only"><div class="block">' +
+    '<div class="block-label">Audit</div>' +
+    '<div class="stat-row" style="margin-bottom:0.7rem">' +
+      statBox("column id", colId || "--") +
+      statBox("role source", ch.overridden ? "operator override" : "model inference") +
+      statBox("epistemic status", ch.epistemic_status || "--") +
+    '</div>';
+
+  if ((ch.evidence_ids || []).length) {
+    out += '<div class="egress-note">Evidence behind the role for this channel:</div>' +
+      '<div class="audit-box">' + esc(ch.evidence_ids.join("\n")) + '</div><div style="height:0.7rem"></div>';
+  }
+  if (e) {
+    out += '<div class="egress-note">Detector output for this event, as S6 wrote it:</div>' +
+      '<div class="audit-box">' + esc(JSON.stringify(e, null, 2)) + '</div><div style="height:0.7rem"></div>';
+  }
+  if (payload) {
+    out += '<div class="egress-note"><b>This is the complete payload that was sent to the model</b> for the ' +
+      'hypothesis above &mdash; every byte of it, exactly as trust/gateway.py serialised it after the gate ' +
+      'passed. If a sample value appears anywhere in it, the gate has a bug and this box is where you would see it.</div>' +
+      '<div class="audit-box">' + esc(JSON.stringify(payload, null, 2)) + '</div>';
+  }
+  out += '<div class="egress-note" style="margin-top:0.7rem">' +
+    'The chart above was drawn from <span class="mono">/api/series</span>, which reads the Parquet files ' +
+    'directly and answers this browser. That path has no connection to the model path; see ' +
+    '<span class="mono">ui/cockpit_api.py</span>, where the two halves are separated by a banner and a naming rule.</div>';
+  return out + '</div></div>';
+}
+
+/* ======================================================================
+ * Model calls. Every one of them goes to a POST route that ends in
+ * trust.gateway.call_model(). There is no other way out of this page.
+ * ==================================================================== */
+async function requestHypothesis(eventId) {
+  S.pending[eventId] = true;
+  delete S.hypotheses[eventId];
+  renderDetail();
+  try {
+    var answer = await postJSON("/api/hypothesis", {
+      run_id: S.runId, event_id: eventId, machine_id: machineId(), by: operatorId()
+    });
+    S.hypotheses[eventId] = answer;
+  } catch (err) {
+    S.hypotheses[eventId] = { error: String(err.message || err) };
+    toast(String(err.message || err), true);
+  } finally {
+    delete S.pending[eventId];
+    renderDetail();
+  }
+}
+
+async function sendChat(event, eventId) {
+  event.preventDefault();
+  var input = event.target.querySelector("input");
+  var question = (input.value || "").trim();
+  if (!question) return false;
+
+  S.chat[eventId] = S.chat[eventId] || [];
+  var history = S.chat[eventId].map(function (t) { return { role: t.role, text: t.text }; });
+  S.chat[eventId].push({ role: "operator", text: question });
+  input.value = "";
+  S.pending["chat_" + eventId] = true;
+  renderDetail();
+
+  try {
+    var answer = await postJSON("/api/chat", {
+      run_id: S.runId, event_id: eventId, machine_id: machineId(), by: operatorId(),
+      question: question, history: history, col_id: S.open ? S.open.colId : null
+    });
+    // The suggestion is kept OUT of `text`. It used to be concatenated in, and
+    // `text` is what gets sent back as history -- so every turn the model read
+    // its own "Next: check the valve" and repeated it, four turns running,
+    // including when it was asked what 3+3 is. The loop was ours, not the model's.
+    S.chat[eventId].push({
+      role: "assistant",
+      text: answer.answer,
+      next: answer.next_step || null,
+      kind: answer.answer_kind || "process",
+      meta: answer.confidence_pct + "% confidence · " + answer.epistemic_status +
+            ((answer.evidence_ids || []).length ? " · " + answer.evidence_ids.length + " evidence objects" : "")
+    });
+  } catch (err) {
+    S.chat[eventId].push({ role: "assistant", text: String(err.message || err), meta: "call refused" });
+    toast(String(err.message || err), true);
+  } finally {
+    delete S.pending["chat_" + eventId];
+    S.open._focusChat = true;
+    renderDetail();
+  }
+}
+
+async function draftNote(eventId) {
+  toast("Drafting a note...");
+  try {
+    var draft = await postJSON("/api/context_append", {
+      run_id: S.runId, event_id: eventId, machine_id: machineId(),
+      accepted_hypothesis: (S.hypotheses[eventId] || {}).hypothesis || "",
+      outcome: ""
+    });
+    await openBrain();
+    var box = $("brain-text");
+    box.value = box.value.replace(/\s*$/, "") + "\n\n" + draft.markdown_append + "\n";
+    box.focus();
+    box.setSelectionRange(box.value.length, box.value.length);
+    toast("Draft added at the end. Nothing is saved until you press save.");
+  } catch (err) {
+    toast(String(err.message || err), true);
+  }
+}
+
+/* ======================================================================
+ * The unit's notes
+ * ==================================================================== */
+async function openBrain() {
+  openDrawer("brain");
+  try {
+    var data = await getJSON("/api/machine_context?machine_id=" + encodeURIComponent(machineId()));
+    $("brain-text").value = data.markdown;
+    $("brain-sub").textContent = data.path + (data.exists ? " · saved " + data.updated_at : " · not saved yet");
+    $("brain-meta").textContent = data.exists ? data.bytes + " bytes on disk" : "this file does not exist yet";
+  } catch (err) {
+    toast(String(err.message || err), true);
+  }
+}
+
+async function saveBrain() {
+  try {
+    var res = await postJSON("/api/machine_context", {
+      machine_id: machineId(), markdown: $("brain-text").value, by: operatorId()
+    });
+    $("brain-meta").textContent = res.bytes + " bytes on disk · logged as " + res.entry_id;
+    $("brain-sub").textContent = "artifacts/machine_context/" + res.machine_id + ".md · saved " + res.updated_at;
+    toast("Saved, and written to the decision log as " + res.entry_id + ".");
+  } catch (err) {
+    toast(String(err.message || err), true);
+  }
+}
+
+
+/* ======================================================================
+ * Screens. A hash router, because the operator should be able to leave a
+ * tab open on the raw room and have it still be the raw room tomorrow.
+ * ==================================================================== */
+var SCREENS = ["home", "overview", "outbox", "raw", "validation"];
+
+function showScreen(name) {
+  if (SCREENS.indexOf(name) < 0) name = "home";
+  S.screen = name;
+  SCREENS.forEach(function (s) {
+    $("screen-" + s).classList.toggle("on", s === name);
+  });
+  Array.prototype.forEach.call($("screen-nav").children, function (b) {
+    b.classList.toggle("active", b.dataset.screen === name);
+  });
+  if (location.hash !== "#" + name) location.hash = name;
+  window.scrollTo(0, 0);
+
+  if (name === "outbox") renderOutbox();
+  if (name === "raw") renderRawRoom();
+  if (name === "validation") renderValidation();
+  if (name === "home") renderHome();
+}
+
+/* ======================================================================
+ * The plant halt
+ * ==================================================================== */
+function haltPlant(event) {
+  pause();
+  S.halted = { event_id: event.event_id, at_tick: S.tick };
+  renderAll();
+  showScreen("home");
+}
+
+async function resolveHalt(action) {
+  if (!S.halted) return;
+  var event = (S.drift.events || []).find(function (e) { return e.event_id === S.halted.event_id; });
+  var lead = ((event || {}).ranked_signals || [{}])[0] || {};
+  var verb = action === "acknowledge"
+    ? "acknowledged the halt and restarted the line"
+    : "judged the halt a false alarm and let the line run";
+
+  try {
+    await postJSON("/api/unit_state", {
+      op: "ticket", machine_id: machineId(), by: operatorId(),
+      col_id: lead.col_id || "col_000",
+      run_id: S.runId, event_id: S.halted.event_id,
+      reason: (action === "acknowledge"
+        ? "Line halted on a high-severity detection and restarted by the operator."
+        : "Line halted on a high-severity detection; operator judged it a false alarm."),
+      evidence_ids: (event || {}).evidence_ids || [],
+      route_to: action === "acknowledge" ? "Control room" : "Process engineering",
+      status: action === "acknowledge" ? "forwarded" : "closed"
+    });
+  } catch (err) {
+    toast(String(err.message || err), true);
+  }
+
+  if (event) S.seen[event.event_id] = true;
+  S.halted = null;
+  await loadUnitState();
+  toast("Logged: operator " + verb + ".");
+  renderAll();
+}
+
+/* ======================================================================
+ * Home
+ * ==================================================================== */
+function renderHome() {
+  if (!S.drift) return;
+  var box = $("plant-state"), fig = $("ps-figure"), title = $("ps-title"),
+      sub = $("ps-sub"), actions = $("ps-actions");
+
+  if (S.halted) {
+    var event = (S.drift.events || []).find(function (e) { return e.event_id === S.halted.event_id; });
+    var lead = ((event || {}).ranked_signals || [{}])[0] || {};
+    box.className = "plant-state halted";
+    fig.textContent = "⏸";
+    title.textContent = "LINE STOPPED";
+    sub.innerHTML = "A high-severity deviation on <b>" + esc(label(lead.col_id)) +
+      "</b> stopped the replay at " + esc(clockText(S.tick)) + ", sample " + S.tick + ". " +
+      "It will not restart on its own.";
+    actions.innerHTML =
+      '<button class="danger-btn" onclick="resolveHalt(\'acknowledge\')">Acknowledge and restart</button>' +
+      '<button class="light-btn" onclick="resolveHalt(\'dismiss\')">False alarm, keep running</button>' +
+      '<button class="light-btn" onclick="openEvent(\'' + esc(S.halted.event_id) + '\')">Look at it first</button>';
+    renderCarried();
+    return;
+  }
+
+  var unread = eventsUpTo(S.tick).filter(function (e) { return !S.seen[e.event_id]; });
+  if (unread.length) {
+    var worst = unread.slice().sort(function (a, b) { return severityRank(b.severity) - severityRank(a.severity); })[0];
+    var leadCol = (worst.ranked_signals || [{}])[0].col_id;
+    box.className = "plant-state alert";
+    fig.textContent = unread.length;
+    title.textContent = unread.length === 1 ? "thing needs you" : "things need you";
+    sub.innerHTML = "The worst is a <b>" + esc(worst.severity) + "</b> deviation on <b>" +
+      esc(label(leadCol)) + "</b>, " + esc(agoText(worst.detected_at_sample || worst.start_sample)) +
+      ". " + esc(unread.length > 1 ? "The rest are on " +
+        (new Set(unread.map(function (e) { return (e.ranked_signals || [{}])[0].col_id; }))).size +
+        " channel(s) in total." : "");
+    actions.innerHTML =
+      '<button class="primary-btn" onclick="openEvent(\'' + esc(worst.event_id) + '\')">Look at it</button>' +
+      '<button class="ghost-btn" onclick="showScreen(\'overview\')">See everything</button>';
+  } else {
+    box.className = "plant-state calm";
+    fig.textContent = "✓";
+    title.textContent = "Nothing needs you";
+    var total = eventsUpTo(S.tick).length;
+    sub.textContent = total
+      ? "All " + total + " detection" + (total === 1 ? "" : "s") + " so far this shift have been read."
+      : "Nothing has been flagged up to this point in the shift.";
+    actions.innerHTML = '<button class="ghost-btn" onclick="showScreen(\'overview\')">See everything</button>' +
+      (eventsUpTo(S.tick).length
+        ? '<button class="ghost-btn" onclick="endOfShiftReview()">Close the shift</button>' : "");
+  }
+  renderCarried();
+}
+
+function renderCarried() {
+  var wrap = $("carried"), list = $("carried-list");
+  var carried = ((S.unitState || {}).carried_predictions) || [];
+  if (!carried.length) { wrap.style.display = "none"; return; }
+
+  var flagged = flaggedChannels(S.tick);
+  wrap.style.display = "";
+  list.innerHTML = carried.map(function (p) {
+    var hit = p.col_id && flagged[p.col_id];
+    return '<div class="carried-item">' +
+      '<span class="chip ' + (hit ? "high" : "neutral") + '">' + (hit ? "happening" : "watch") + '</span>' +
+      '<span style="flex:1">' + esc(humanise(p.text)) +
+        '<span style="display:block;font-size:0.74rem;color:var(--text-subtle);margin-top:0.15rem">' +
+        'carried from ' + esc(p.from_run_id || "an earlier shift") +
+        (p.confidence_pct != null ? " · " + p.confidence_pct + "% when written" : "") +
+        (p.confirmed_times ? " · seen again " + p.confirmed_times + "x" : "") + '</span></span>' +
+      (hit ? '<button class="ghost-btn" onclick="confirmPrediction(\'' + esc(p.prediction_id) +
+             '\')">It happened again</button>' : "") +
+      '<button class="ghost-btn" onclick="dropPrediction(\'' + esc(p.prediction_id) + '\')">Drop</button>' +
+      '</div>';
+  }).join("");
+}
+
+async function confirmPrediction(id) {
+  try {
+    var res = await postJSON("/api/unit_state", {
+      op: "confirm_prediction", machine_id: machineId(), by: operatorId(),
+      prediction_id: id, run_id: S.runId
+    });
+    S.unitState = res.state;
+    toast("Recorded. Logged as " + res.entry_id + ".");
+    renderCarried();
+  } catch (err) { toast(String(err.message || err), true); }
+}
+
+async function dropPrediction(id) {
+  try {
+    var res = await postJSON("/api/unit_state", {
+      op: "drop_prediction", machine_id: machineId(), by: operatorId(), prediction_id: id
+    });
+    S.unitState = res.state;
+    renderCarried();
+  } catch (err) { toast(String(err.message || err), true); }
+}
+
+/* The end of a shift is when a unit learns something. The model drafts, the
+ * operator keeps or discards, and only what is kept is read back next time. */
+async function endOfShiftReview() {
+  toast("Reviewing the shift...");
+  try {
+    var review = await postJSON("/api/shift_review", {
+      run_id: S.runId, machine_id: machineId(), by: operatorId()
+    });
+    if (!review.predictions.length) {
+      toast("Nothing in this shift was worth carrying forward.");
+      return;
+    }
+    var html = review.predictions.map(function (p, i) {
+      return '<div class="carried-item"><span class="chip neutral">' + p.confidence_pct + '%</span>' +
+        '<span style="flex:1">' + esc(humanise(p.text)) + '</span>' +
+        '<button class="primary-btn" onclick="keepPrediction(' + i + ')">Keep</button></div>';
+    }).join("");
+    S._draftPredictions = review.predictions;
+    $("carried").style.display = "";
+    $("carried").querySelector("h3").textContent = "Drafted for the next shift — nothing is saved until you keep it";
+    $("carried-list").innerHTML = html +
+      (review.shift_summary ? '<div style="font-size:0.82rem;color:var(--text-muted);padding-top:0.6rem">' +
+        esc(humanise(review.shift_summary)) + '</div>' : "");
+  } catch (err) { toast(String(err.message || err), true); }
+}
+
+async function keepPrediction(index) {
+  var draft = (S._draftPredictions || [])[index];
+  if (!draft) return;
+  try {
+    var res = await postJSON("/api/unit_state", {
+      op: "prediction", machine_id: machineId(), by: operatorId(), run_id: S.runId,
+      col_id: draft.col_id, text: draft.text, confidence_pct: draft.confidence_pct,
+      epistemic_status: draft.epistemic_status, evidence_ids: draft.evidence_ids
+    });
+    S.unitState = res.state;
+    $("carried").querySelector("h3").textContent = "This unit warned you about this";
+    toast("Carried to the next shift. Logged as " + res.entry_id + ".");
+    renderCarried();
+  } catch (err) { toast(String(err.message || err), true); }
+}
+
+/* ======================================================================
+ * Home chat. Same endpoint as the drawer chat; no event has to be picked.
+ * ==================================================================== */
+async function sendHomeChat(event) {
+  event.preventDefault();
+  var input = $("home-chat-input");
+  var question = (input.value || "").trim();
+  if (!question || S.pending.home) return false;
+
+  var history = S.homeChat.map(function (turn) { return { role: turn.role, text: turn.text }; });
+  S.homeChat.push({ role: "operator", text: question });
+  input.value = "";
+  S.pending.home = true;
+  renderHomeChat();
+
+  try {
+    var answer = await postJSON("/api/chat", {
+      run_id: S.runId, event_id: "latest", machine_id: machineId(), by: operatorId(),
+      question: question, history: history
+    });
+    S.homeChat.push({
+      role: "assistant",
+      text: answer.answer,
+      next: answer.next_step || null,
+      kind: answer.answer_kind || "process",
+      meta: answer.confidence_pct + "% · " + answer.epistemic_status,
+      citations: answer.citations
+    });
+  } catch (err) {
+    S.homeChat.push({ role: "assistant", text: String(err.message || err), meta: "call refused" });
+  } finally {
+    delete S.pending.home;
+    renderHomeChat();
+    $("home-chat-input").focus();
+  }
+  return false;
+}
+
+function renderHomeChat() {
+  var log = $("home-chat-log");
+  log.innerHTML = S.homeChat.map(renderTurn).join("") + (S.pending.home ? '<div class="bubble ai"><span class="spin"></span></div>' : "");
+  log.scrollTop = log.scrollHeight;
+  $("home-chat-send").disabled = !!S.pending.home;
+}
+
+/* ======================================================================
+ * Sources. The model always returned these; they were only ever shown to
+ * auditors, which is the wrong way round -- the operator is the one being
+ * asked to act on the claim.
+ * ==================================================================== */
+var EVIDENCE_WORDS = [
+  [/^ev_s2_.*_mean$/, "the channel's average, from profiling"],
+  [/^ev_s2_.*_stddev$/, "how much the channel normally moves"],
+  [/^ev_s2_.*_dist$/, "the shape of the channel's distribution"],
+  [/^ev_s2_.*_dyn$/, "the channel's behaviour over time"],
+  [/^ev_s3_/, "a measured relationship between two channels"],
+  [/^ev_s5_|^ev_dq_/, "a data quality check"],
+  [/_attribution$/, "which channels the detector blamed"],
+  [/_score$/, "the detector's score over this event"],
+  [/^ev_s6_baseline$/, "the reference the detector was fitted on"],
+  [/^ev_s6_limits$/, "the control limits"]
+];
+
+function evidenceWords(id) {
+  for (var i = 0; i < EVIDENCE_WORDS.length; i++) {
+    if (EVIDENCE_WORDS[i][0].test(id)) return EVIDENCE_WORDS[i][1];
+  }
+  return id;
+}
+
+function renderSources(answer) {
+  var citations = answer.citations || { verified: answer.evidence_ids || [], unverifiable: [] };
+  var verified = citations.verified || [];
+  var bad = citations.unverifiable || [];
+  var seen = {};
+  var words = verified.map(evidenceWords).filter(function (w) {
+    if (seen[w]) return false; seen[w] = true; return true;
+  });
+
+  var out = '<div class="sources"><b>Based on:</b> ';
+  if (words.length) {
+    out += words.map(function (w) { return '<span class="source-chip">' + esc(w) + '</span>'; }).join("");
+  } else {
+    out += '<span class="source-chip bad">nothing it could point at</span>';
+  }
+  if ((S.unitState && (S.unitState.channel_hypotheses || S.unitState.carried_predictions)) || true) {
+    out += '<span class="source-chip">this unit\'s notes</span>';
+  }
+  if (bad.length) {
+    out += '<div style="margin-top:0.35rem">' +
+      '<span class="source-chip bad">' + bad.length + ' citation' + (bad.length === 1 ? "" : "s") +
+      ' it made up</span> ' +
+      '<span class="audit-inline mono" style="font-size:0.7rem">' + esc(bad.join(" ")) + '</span></div>';
+  }
+  out += '<div class="audit-only mono" style="font-size:0.7rem;margin-top:0.35rem">' +
+    esc(verified.join("  ")) + '</div>';
+  return out + '</div>';
+}
+
+
+/* ======================================================================
+ * Outbox. What left this screen and who it was addressed to.
+ * ==================================================================== */
+function renderOutbox() {
+  var tickets = ((S.unitState || {}).tickets || []).slice().reverse();
+  var el = $("outbox-table");
+  if (!tickets.length) {
+    el.innerHTML = '<div class="empty-state">Nothing forwarded yet. Open a channel and press ' +
+      '"Forward to support" when something needs a person.</div>';
+    return;
+  }
+  el.innerHTML = '<table class="data"><thead><tr>' +
+    '<th>Unit</th><th>Channel</th><th>What it is</th><th>Reason</th><th>To</th><th>Status</th><th>When</th>' +
+    '</tr></thead><tbody>' +
+    tickets.map(function (tk) {
+      return '<tr>' +
+        '<td><b>' + esc(tk.machine_id) + '</b></td>' +
+        '<td>' + esc(label(tk.col_id)) + '<span class="audit-inline mono" style="font-size:0.7rem"> ' +
+          esc(tk.col_id) + '</span></td>' +
+        '<td>' + esc(tk.physical_class || "—") + '</td>' +
+        '<td style="max-width:32ch">' + esc(humanise(tk.reason)) +
+          (tk.closed_note ? '<div style="font-size:0.76rem;color:var(--text-subtle)">' +
+            esc(tk.closed_note) + '</div>' : "") +
+          '<div class="audit-only mono" style="font-size:0.7rem;color:var(--text-subtle)">' +
+            esc((tk.evidence_ids || []).join(" ")) + '</div></td>' +
+        '<td>' + esc(tk.route_to || "") + '</td>' +
+        '<td><span class="tag ' + esc(tk.status) + '">' + esc(tk.status) + '</span></td>' +
+        '<td style="white-space:nowrap;font-size:0.76rem;color:var(--text-subtle)">' +
+          esc((tk.created_at || "").replace("T", " ").replace("Z", "")) +
+          '<div class="audit-inline mono">' + esc(tk.entry_id || "") + '</div></td>' +
+        '</tr>' +
+        (tk.status !== "closed"
+          ? '<tr><td colspan="7" style="padding-top:0;border-bottom:1px solid var(--border)">' +
+            '<button class="ghost-btn" onclick="closeTicket(\'' + esc(tk.ticket_id) + '\')">' +
+            'Mark as handled</button></td></tr>'
+          : "");
+    }).join("") + '</tbody></table>';
+}
+
+async function closeTicket(ticketId) {
+  var tk = ((S.unitState || {}).tickets || []).find(function (x) { return x.ticket_id === ticketId; });
+  if (!tk) return;
+  try {
+    var res = await postJSON("/api/unit_state", Object.assign({}, tk, {
+      op: "ticket", by: operatorId(), status: "closed",
+      closed_note: "Marked handled by " + operatorId() + "."
+    }));
+    S.unitState = res.state;
+    renderOutbox();
+    toast("Closed. Logged as " + res.entry_id + ".");
+  } catch (err) { toast(String(err.message || err), true); }
+}
+
+async function forwardTicket(colId) {
+  var e = S.open ? eventOf(S.open) : null;
+  var physical = (S.physical[colId] || {}).physical_class ||
+                 (((S.unitState || {}).channel_hypotheses || {})[colId] || {}).physical_class;
+  var hypothesis = e ? (S.hypotheses[e.event_id] || {}).hypothesis : null;
+  var reason = hypothesis || (label(colId) + " left its normal range and has not been explained.");
+  try {
+    var res = await postJSON("/api/unit_state", {
+      op: "ticket", machine_id: machineId(), by: operatorId(), col_id: colId,
+      run_id: S.runId, event_id: e ? e.event_id : null,
+      reason: reason, physical_class: physical || null,
+      evidence_ids: (e && e.evidence_ids) || [],
+      route_to: (S.unitState && S.unitState.route_desks && S.unitState.route_desks[0]) || "Instrumentation",
+      status: "forwarded"
+    });
+    S.unitState = res.state;
+    toast("Forwarded as " + res.ticket.ticket_id + ". Logged as " + res.entry_id + ".");
+    renderDetail();
+  } catch (err) { toast(String(err.message || err), true); }
+}
+
+/* ======================================================================
+ * Raw room
+ * ==================================================================== */
+var RAW_PAGE = 60;
+
+function renderRawRoom() {
+  if (!S.channels.length) return;
+  if (!S.rawCols.length) {
+    var flagged = flaggedChannels(S.tick);
+    S.rawCols = Object.keys(flagged).slice(0, 3);
+    if (!S.rawCols.length) S.rawCols = S.channels.slice(0, 3).map(function (c) { return c.col_id; });
+  }
+
+  $("raw-channel-picker").innerHTML = S.channels.map(function (c) {
+    var on = S.rawCols.indexOf(c.col_id) >= 0;
+    return '<button class="filter-btn' + (on ? " on" : "") + '" onclick="toggleRawCol(\'' +
+      esc(c.col_id) + '\')">' + esc(label(c.col_id)) + '</button>';
+  }).join("");
+
+  var picker = $("raw-col");
+  if (picker.options.length !== S.channels.length) {
+    picker.innerHTML = S.channels.map(function (c) {
+      return '<option value="' + esc(c.col_id) + '">' + esc(label(c.col_id)) + " · " + esc(c.col_id) + '</option>';
+    }).join("");
+    picker.value = S.rawCols[0] || S.channels[0].col_id;
+  }
+
+  drawRawChart();
+  drawRawTable();
+  renderLogGroups();
+  renderProvenance();
+}
+
+/* Two ledgers side by side. Written for a specific, fair objection: if the
+ * charts redraw that fast, you cannot be looking at real data. The answer is
+ * that the speed is a consequence of the data staying here -- and both numbers
+ * are counted, not claimed. */
+async function renderProvenance() {
+  var el = $("provenance");
+  var p;
+  try {
+    p = await getJSON("/api/provenance");
+  } catch (err) {
+    el.innerHTML = '<div class="empty-state">' + esc(err.message) + '</div>';
+    return;
+  }
+  var here = p.stays_here, gone = p.leaves_here;
+
+  function bytes(n) {
+    if (n == null) return "--";
+    if (n < 1024) return n + " B";
+    if (n < 1024 * 1024) return (n / 1024).toFixed(1) + " KB";
+    return (n / 1048576).toFixed(1) + " MB";
+  }
+  function num(n) { return (n == null ? "--" : Number(n).toLocaleString("en-US")); }
+
+  el.innerHTML =
+    '<div class="prov-grid">' +
+      '<div class="prov-col stays">' +
+        '<div class="prov-head"><span class="status-dot good"></span> Never leaves this machine</div>' +
+        '<div class="prov-figure">' + num(here.values_served_to_this_browser) + '</div>' +
+        '<div class="prov-note">values read from disk and drawn in this tab, across ' +
+          num(here.chart_requests) + ' chart request(s)</div>' +
+        '<div class="prov-path mono">' + esc(here.path) + '</div>' +
+        '<table class="data" style="margin-top:0.6rem"><tbody>' +
+          here.source_files.map(function (f) {
+            return '<tr><td class="mono" style="font-size:0.74rem">' + esc(f.path) + '</td>' +
+              '<td class="num mono">' + bytes(f.bytes) + '</td></tr>';
+          }).join("") +
+          '<tr><td>' + num(here.runs) + ' shifts, ' + num(here.columns) + ' channels</td>' +
+          '<td class="num mono">' + bytes(here.source_bytes) + '</td></tr>' +
+        '</tbody></table>' +
+        '<div class="prov-note" style="margin-top:0.5rem">' + esc(here.note) + '</div>' +
+      '</div>' +
+      '<div class="prov-col leaves">' +
+        '<div class="prov-head"><span class="status-dot ' + (gone.calls_that_left ? "serious" : "good") +
+          '"></span> Left this machine</div>' +
+        '<div class="prov-figure">' + bytes(gone.bytes_that_left) + '</div>' +
+        '<div class="prov-note">across ' + num(gone.calls_that_left) + ' of ' + num(gone.model_calls) +
+          ' model calls, to ' + esc(gone.providers.join(", ") || "nobody") + '</div>' +
+        '<div class="prov-path mono">' + esc(gone.path) + '</div>' +
+        '<table class="data" style="margin-top:0.6rem"><tbody>' +
+          '<tr><td>Rows of the dataset that left</td><td class="num mono"><b>' +
+            num(gone.rows_that_left) + '</b></td></tr>' +
+          '<tr><td>Payloads the gate refused</td><td class="num mono">' + num(gone.gate_refusals) + '</td></tr>' +
+          '<tr><td>Models used</td><td class="num mono" style="font-size:0.74rem">' +
+            esc(gone.models.join(", ")) + '</td></tr>' +
+        '</tbody></table>' +
+        '<div class="prov-note" style="margin-top:0.5rem">' + esc(gone.note) + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="prov-footer">The left column is <b>' +
+      (here.source_bytes && gone.bytes_that_left
+        ? Math.round(here.source_bytes / Math.max(1, gone.bytes_that_left)) + '\u00d7'
+        : "far") +
+      '</b> larger than the right one, and the right one contains no rows at all. ' +
+      'Both numbers are counted: the left by <span class="mono">ui/series_reader.py</span> as it ' +
+      'serves each request, the right by <span class="mono">trust/gateway.py</span> as it writes ' +
+      'each call into the append-only decision log.</div>' +
+    '<div class="prov-note" style="margin-top:0.6rem">Artifacts this screen reads: ' +
+      p.artifacts_read.map(function (a) {
+        return '<span class="source-chip mono">' + esc(a.path) + ' \u00b7 ' + bytes(a.bytes) + '</span>';
+      }).join("") + '</div>';
+}
+
+function toggleRawCol(colId) {
+  var i = S.rawCols.indexOf(colId);
+  if (i >= 0) S.rawCols.splice(i, 1);
+  else if (S.rawCols.length < 6) S.rawCols.push(colId);
+  else { toast("Six at a time. Drop one first."); return; }
+  renderRawRoom();
+}
+
+/* Several channels with different units on one chart is the classic lie, so
+ * each is shown as its own distance from its own profile mean. One scale, and
+ * it means the same thing for every line on it. */
+function drawRawChart() {
+  var el = $("raw-chart");
+  if (!S.overview || !S.rawCols.length) { el.innerHTML = '<div class="nx-empty">Pick a channel.</div>'; return; }
+
+  var samples = null, series = {};
+  S.rawCols.forEach(function (colId) {
+    var band = bandFor(colId);
+    var cut = sliceTo(S.overview, colId, S.nSamples);
+    if (!cut.values.length || !band) return;
+    samples = samples || cut.sample;
+    series[colId] = cut.values.map(function (v) { return (v - band.mid) / band.sigma; });
+  });
+  if (!samples) { el.innerHTML = '<div class="nx-empty">No recorded values for these channels.</div>'; return; }
+
+  NorrinCharts.multi(el, {
+    samples: samples, series: series, labels: S.rawCols.map(label),
+    events: S.drift ? S.drift.events : [], height: 300,
+    unit: "σ from its own mean"
+  });
+}
+
+function drawRawTable() {
+  var colId = $("raw-col").value;
+  var data = S.detailSeries[colId] || S.overview;
+  var cut = sliceTo(data, colId, S.nSamples);
+  var total = cut.sample.length;
+  var start = Math.max(0, Math.min(S.rawOffset, Math.max(0, total - RAW_PAGE)));
+  S.rawOffset = start;
+  var rows = [];
+  var band = bandFor(colId);
+  for (var i = start; i < Math.min(total, start + RAW_PAGE); i++) {
+    var v = cut.values[i];
+    var dev = band ? (v - band.mid) / band.sigma : null;
+    rows.push('<tr><td class="num mono">' + cut.sample[i] + '</td>' +
+      '<td class="num mono">' + NorrinCharts.format(v) + '</td>' +
+      '<td class="num mono">' + (dev == null ? "--" : (dev >= 0 ? "+" : "") + dev.toFixed(2)) + '</td>' +
+      '<td style="font-size:0.76rem;color:var(--text-subtle)">' + esc(clockText(cut.sample[i])) + '</td></tr>');
+  }
+  $("raw-window").textContent = total
+    ? "sample " + cut.sample[start] + " – " + cut.sample[Math.min(total, start + RAW_PAGE) - 1] +
+      " of " + total + (data === S.overview ? " (thinned for drawing)" : " (full resolution)")
+    : "no values";
+  $("raw-table").innerHTML = '<table class="data"><thead><tr><th>Sample</th><th>Value</th>' +
+    '<th>&sigma; from mean</th><th>Clock</th></tr></thead><tbody>' + rows.join("") + '</tbody></table>';
+}
+
+async function rawPage(delta) {
+  var colId = $("raw-col").value;
+  if (!S.detailSeries[colId]) await ensureSeries(colId);
+  S.rawOffset += delta * RAW_PAGE;
+  drawRawTable();
+}
+
+async function renderLogGroups() {
+  var el = $("log-groups");
+  try {
+    var text = await (await fetch("/artifacts/decision_log.jsonl", { cache: "no-store" })).text();
+    var entries = text.split("\n").filter(Boolean).map(function (line) {
+      try { return JSON.parse(line); } catch (e) { return null; }
+    }).filter(Boolean);
+
+    // Two entry shapes live in this file: the contract shape (kind/summary) and
+    // the one the stages emitted before the adapter landed (action/details).
+    // Reading only the first leaves whole stages showing as "?" with no text,
+    // which is how S5 looked here until this was widened.
+    function kindOf(e) { return e.kind || e.action || "?"; }
+    function textOf(e) { return e.summary || e.details || ""; }
+
+    var groups = {};
+    entries.forEach(function (e) {
+      var key = (e.stage || "?") + " · " + kindOf(e);
+      var g = groups[key] || (groups[key] = { key: key, n: 0, first: e, last: e });
+      g.n++;
+      if (textOf(e)) g.last = e;
+    });
+
+    var rows = Object.keys(groups).map(function (k) { return groups[k]; })
+      .sort(function (a, b) { return b.n - a.n; });
+
+    el.innerHTML = '<table class="data"><thead><tr><th>Stage and kind</th><th class="num">Entries</th>' +
+      '<th>Most recent</th><th></th></tr></thead><tbody>' +
+      rows.map(function (g, i) {
+        return '<tr><td><b>' + esc(g.key) + '</b></td>' +
+          '<td class="num mono">' + g.n + '</td>' +
+          '<td style="max-width:52ch;color:var(--text-muted)">' + esc(textOf(g.last).slice(0, 150)) + '</td>' +
+          '<td><button class="ghost-btn" onclick="toggleLogGroup(' + i + ')">Open</button></td></tr>' +
+          '<tr id="lg-' + i + '" style="display:none"><td colspan="4">' +
+          '<div class="audit-box">' + esc(entries.filter(function (e) {
+            return ((e.stage || "?") + " · " + kindOf(e)) === g.key;
+          }).slice(-40).map(function (e) {
+            return (e.entry_id || "") + "  " + (e.at || e.timestamp || "") + "  " + textOf(e);
+          }).join("\n")) + '</div></td></tr>';
+      }).join("") + '</tbody></table>' +
+      '<div style="font-size:0.78rem;color:var(--text-subtle);margin-top:0.6rem">' +
+      entries.length + ' entries in total. The full file is ' +
+      '<span class="mono">artifacts/decision_log.jsonl</span>.</div>';
+  } catch (err) {
+    el.innerHTML = '<div class="empty-state">Could not read the decision log: ' + esc(err.message) + '</div>';
+  }
+}
+
+function toggleLogGroup(i) {
+  var row = $("lg-" + i);
+  row.style.display = row.style.display === "none" ? "" : "none";
+}
+
+/* ======================================================================
+ * Check (eval only)
+ * ==================================================================== */
+async function renderValidation() {
+  var el = $("validation-body");
+  if (!S.validation) {
+    try {
+      S.validation = await getJSON("/api/validation");
+    } catch (err) {
+      el.innerHTML = '<div class="empty-state">' + esc(err.message) +
+        '<div style="margin-top:0.8rem" class="mono">python -m eval.validate_detection</div></div>';
+      return;
+    }
+  }
+  var v = S.validation;
+  var det = v.detection || {};
+  var rate = det.detection_rate;
+  var fa = det.false_alarm_rate;
+
+  var html = '<div class="kpi-row">' +
+    kpi("Faults caught", rate == null ? "--" : Math.round(rate * 100) + "%",
+        (det.outcomes || {}).hit + " of " + det.runs_with_a_fault + " runs that carried a fault",
+        rate != null && rate < 0.5 ? "bad" : "good") +
+    kpi("False alarms", fa == null ? "--" : Math.round(fa * 100) + "%",
+        ((det.outcomes || {}).false_alarm || 0) + " of " + det.runs_without_a_fault + " clean runs",
+        fa === 0 ? "good" : "bad") +
+    kpi("First detection", det.median_first_detection_position == null ? "--" :
+        det.median_first_detection_position + "", "samples into the run, median", "") +
+    kpi("Runs compared", det.runs_compared + "", (v.held_out || {}).total_excluded + " held out", "") +
+    '</div>';
+
+  html += '<div class="panel" style="margin-top:1.25rem"><h3>Are we all looking at the same detector?</h3>';
+  var b = v.baselines || {};
+  if (b.all_runs_agree) {
+    html += '<p style="font-size:0.9rem">Every scored run used the same baseline. ' +
+      'Anyone else whose fingerprint matches is comparing like with like.</p>';
+  } else {
+    html += '<p style="font-size:0.9rem;color:var(--critical)"><b>No.</b> ' +
+      (b.disagreeing || []).length + ' group(s) of runs were scored against a different baseline. ' +
+      'That is almost always files left behind by an earlier pipeline run, and it is the reason ' +
+      'two people can see different channels breaking on the same data.</p>';
+  }
+  html += '<div class="fingerprint' + (b.all_runs_agree ? "" : " warn") + '" style="margin-top:0.5rem">' +
+    'components ' + (b.current || {}).n_components + ' · T2 limit ' + (b.current || {}).limit_t2 +
+    ' · SPE limit ' + (b.current || {}).limit_spe +
+    ' · fitted on ' + (b.current || {}).baseline_samples + ' samples · ' +
+    (b.current || {}).runs + ' runs</div>';
+  (b.disagreeing || []).forEach(function (g) {
+    html += '<div class="fingerprint warn" style="margin-top:0.35rem">' +
+      'components ' + g.n_components + ' · T2 ' + g.limit_t2 + ' · SPE ' + g.limit_spe +
+      ' · ' + g.baseline_samples + ' samples · ' + g.runs + ' runs: ' +
+      esc((g.files || []).slice(0, 4).join(", ")) + (g.runs > 4 ? " ..." : "") + '</div>';
+  });
+  html += '</div>';
+
+  var sem = (v.structure || {}).semantic_agreement || {};
+  html += '<div class="panel"><h3>Did the system recover the structure that is really there?</h3>' +
+    '<p style="font-size:0.95rem;font-weight:600">' + esc(sem.verdict || "unknown") + '</p>' +
+    '<table class="data" style="margin-top:0.7rem"><thead><tr><th>Family in the source naming</th>' +
+    '<th class="num">Channels</th><th>Classes the system gave them</th></tr></thead><tbody>' +
+    Object.keys((v.structure || {}).sizes || {}).map(function (family) {
+      var classes = (sem.classes_per_family || {})[family] || {};
+      return '<tr><td class="mono">' + esc(family) + '</td>' +
+        '<td class="num">' + (v.structure.sizes[family]) + '</td>' +
+        '<td>' + esc(Object.keys(classes).map(function (c) { return c + " (" + classes[c] + ")"; }).join(", ")) + '</td></tr>';
+    }).join("") + '</tbody></table></div>';
+
+  var perFault = {};
+  (v.per_run || []).forEach(function (r) {
+    if (!r.is_faulty) return;
+    var f = perFault[r.fault_number] || (perFault[r.fault_number] = { runs: 0, hits: 0, blamed: {} });
+    f.runs++;
+    if (r.detected) {
+      f.hits++;
+      (r.top_blamed || []).forEach(function (c) { f.blamed[c] = (f.blamed[c] || 0) + 1; });
+    }
+  });
+  html += '<div class="panel"><h3>Which faults does it actually catch?</h3>' +
+    '<table class="data"><thead><tr><th>Fault</th><th class="num">Runs</th><th class="num">Caught</th>' +
+    '<th>Channels it blamed</th></tr></thead><tbody>' +
+    Object.keys(perFault).sort(function (a, b) { return a - b; }).map(function (f) {
+      var d = perFault[f];
+      var blamed = Object.keys(d.blamed).sort(function (a, b) { return d.blamed[b] - d.blamed[a]; }).slice(0, 4);
+      return '<tr><td class="mono">fault ' + esc(f) + '</td><td class="num">' + d.runs + '</td>' +
+        '<td class="num"><b style="color:' + (d.hits ? "var(--good)" : "var(--text-subtle)") + '">' +
+        d.hits + '</b></td><td>' + esc(blamed.map(label).join(", ") || "—") + '</td></tr>';
+    }).join("") + '</tbody></table>' +
+    '<div style="font-size:0.78rem;color:var(--text-subtle);margin-top:0.6rem">' +
+    esc(det.position_caveat || "") + '</div></div>';
+
+  html += '<div style="font-size:0.78rem;color:var(--text-subtle)">Generated ' +
+    esc(v.generated_at || "") + ' by <span class="mono">eval/validate_detection.py</span>. ' +
+    'Re-run it after any pipeline run.</div>';
+
+  el.innerHTML = html;
+}
+
+function kpi(k, value, note, tone) {
+  return '<div class="kpi ' + (tone || "") + '"><div class="k">' + esc(k) + '</div>' +
+    '<div class="v">' + esc(value) + '</div><div class="n">' + esc(note) + '</div></div>';
+}
+
+/* ======================================================================
+ * Physical class
+ * ==================================================================== */
+async function askPhysical(colId) {
+  S.pending["phys_" + colId] = true;
+  renderDetail();
+  try {
+    S.physical[colId] = await postJSON("/api/physical", {
+      run_id: S.runId, col_id: colId, machine_id: machineId(), by: operatorId()
+    });
+  } catch (err) {
+    S.physical[colId] = { error: String(err.message || err) };
+    toast(String(err.message || err), true);
+  } finally {
+    delete S.pending["phys_" + colId];
+    renderDetail();
+  }
+}
+
+async function acceptPhysical(colId) {
+  var answer = S.physical[colId];
+  if (!answer || answer.error) return;
+  try {
+    var res = await postJSON("/api/unit_state", {
+      op: "channel_hypothesis", machine_id: machineId(), by: operatorId(), col_id: colId,
+      physical_class: answer.physical_class, reasoning: answer.reasoning,
+      confidence_pct: answer.confidence_pct, epistemic_status: answer.epistemic_status,
+      evidence_ids: answer.evidence_ids, call_id: answer.call_id
+    });
+    S.unitState = res.state;
+    toast("Accepted. This unit now calls it a " + answer.physical_class + ".");
+    renderDetail();
+  } catch (err) { toast(String(err.message || err), true); }
+}
+
+function renderPhysicalBlock(colId) {
+  var accepted = ((S.unitState || {}).channel_hypotheses || {})[colId];
+  var answer = S.physical[colId];
+  var out = '<div class="block"><div class="block-label">What kind of thing is this</div><div class="ai-card">';
+
+  if (accepted && !answer) {
+    return out + '<div class="ai-text">' + esc(accepted.physical_class) + '</div>' +
+      '<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.35rem">' +
+      esc(humanise(accepted.reasoning || "")) + '</div>' +
+      '<div class="conf-row">' + NorrinCharts.meter(accepted.confidence_pct) +
+      '<span class="conf-pct">' + esc(accepted.confidence_pct == null ? "--" : accepted.confidence_pct + "%") + '</span>' +
+      '<span class="conf-word">accepted by ' + esc(accepted.accepted_by || "an operator") + '</span></div>' +
+      '<div style="margin-top:0.7rem"><button class="ghost-btn" onclick="askPhysical(\'' + esc(colId) +
+      '\')">Ask again</button></div></div></div>';
+  }
+  if (S.pending["phys_" + colId]) {
+    return out + '<div class="ai-text" style="color:var(--text-muted)"><span class="spin"></span> ' +
+      'Working it out from the statistics...</div></div></div>';
+  }
+  if (!answer) {
+    return out + '<div class="ai-text" style="color:var(--text-muted)">' +
+      'The pipeline only knows this channel\'s statistical behaviour. Ask what kind of equipment ' +
+      'behaves that way.</div><div style="margin-top:0.7rem">' +
+      '<button class="primary-btn" onclick="askPhysical(\'' + esc(colId) + '\')">Ask</button></div></div></div>';
+  }
+  if (answer.error) {
+    return out + '<div class="ai-text" style="color:var(--critical)">' + esc(answer.error) + '</div>' +
+      '<div style="margin-top:0.7rem"><button class="ghost-btn" onclick="askPhysical(\'' + esc(colId) +
+      '\')">Try again</button></div></div></div>';
+  }
+
+  out += '<div class="ai-head"><span class="who">proposed</span>' +
+    '<span class="chip ' + (answer.determined ? "neutral" : "low") + '">' +
+    esc(answer.determined ? answer.epistemic_status : "not determined") + '</span></div>' +
+    // Below the confidence floor the class is printed as a guess, not as a
+    // headline. A card that says "recirculation valve" in bold while its own
+    // reasoning says it cannot tell is worse than one that says nothing.
+    '<div class="ai-text">' + (answer.determined
+      ? esc(answer.physical_class)
+      : 'Not determined from these statistics<span style="display:block;font-size:0.85rem;' +
+        'font-weight:500;color:var(--text-muted);margin-top:0.25rem">Best guess: ' +
+        esc(answer.physical_class) + '</span>') + '</div>' +
+    '<div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.35rem">' +
+    esc(humanise(answer.reasoning)) + '</div>' +
+    '<div class="conf-row">' + NorrinCharts.meter(answer.confidence_pct) +
+    '<span class="conf-pct">' + esc(answer.confidence_pct) + '%</span>' +
+    '<span class="conf-word">' + esc(answer.confidence) + '</span></div>';
+
+  if ((answer.alternatives || []).length) {
+    out += '<div style="font-size:0.84rem;color:var(--text-muted);margin-top:0.6rem">' +
+      '<b>Could also be:</b> ' + esc(answer.alternatives.join(", ")) + '</div>';
+  }
+  if (answer.what_would_settle_it) {
+    out += '<div class="overturn"><b>What would settle it:</b> ' +
+      esc(humanise(answer.what_would_settle_it)) + '</div>';
+  }
+  if ((answer.co_movers || []).length) {
+    var real = answer.co_movers.filter(function (m) { return m.verdict === "moves together"; });
+    out += '<div style="font-size:0.84rem;margin-top:0.7rem"><b>Moves with it:</b> ' +
+      (real.length
+        ? real.map(function (m) {
+            return esc(label(m.col_id)) + " (" + m.correlation + ", " + m.leads_or_follows + ")";
+          }).join(", ")
+        : "nothing else in this shift") + '</div>';
+  }
+  out += renderSources(answer);
+  // An undetermined answer offers nothing to accept. Letting an operator pin a
+  // 20% guess to the unit would put it into every later answer as if it were
+  // settled, which is how a hunch becomes a fact nobody remembers agreeing to.
+  out += '<div style="margin-top:0.85rem;display:flex;gap:0.5rem;flex-wrap:wrap">' +
+    (answer.determined
+      ? '<button class="primary-btn" onclick="acceptPhysical(\'' + esc(colId) + '\')">Accept for this unit</button>'
+      : '<span style="font-size:0.82rem;color:var(--text-muted);align-self:center">' +
+        'Too uncertain to pin to this unit. Ask again with more of the shift replayed.</span>') +
+    '<button class="ghost-btn" onclick="askPhysical(\'' + esc(colId) + '\')">Ask again</button></div>';
+  return out + '</div></div>';
+}
+
+/* ======================================================================
+ * Units
+ * ==================================================================== */
+async function loadUnitState() {
+  try {
+    S.unitState = await getJSON("/api/unit_state?machine_id=" + encodeURIComponent(machineId()));
+  } catch (err) {
+    S.unitState = null;
+  }
+}
+
+async function loadMachines() {
+  var known = {};
+  try {
+    var data = await getJSON("/api/machines");
+    (data.machines || []).forEach(function (m) { known[m.machine_id] = true; });
+  } catch (err) { /* first run, no units yet */ }
+  known[machineId() || "machine_01"] = true;
+
+  var select = $("machine-id");
+  var current = select.value || localStorage.getItem("norrin_machine_id") || "machine_01";
+  known[current] = true;
+  select.innerHTML = Object.keys(known).sort().map(function (id) {
+    return '<option value="' + esc(id) + '">' + esc(id) + '</option>';
+  }).join("");
+  select.value = current;
+}
+
+/* ======================================================================
+ * Time
+ * ==================================================================== */
+function setTick(value, opts) {
+  S.tick = Math.max(1, Math.min(S.nSamples, Math.round(value)));
+  if (opts && opts.markSeen === false) { /* replay leaves alerts unread */ }
+  renderAll();
+}
+
+function play() {
+  if (S.playing) return;
+  S.playing = true;
+  $("play-icon").setAttribute("d", "M6 5h4v14H6zM14 5h4v14h-4z");
+  S.timer = setInterval(function () {
+    if (S.tick >= S.nSamples) { pause(); return; }
+    var from = S.tick;
+    S.tick = Math.min(S.nSamples, S.tick + S.speed);
+
+    // Anything serious that arrives in the samples we just stepped over halts
+    // the replay where it happened, not where the step landed. Restarting is
+    // always a person's decision -- that is the whole point of the mechanic,
+    // and it is also what makes the demo stop on the interesting frame.
+    var arriving = (S.drift.events || []).filter(function (e) {
+      var at = e.detected_at_sample || e.start_sample;
+      return e.severity === "high" && at > from && at <= S.tick && !S.seen[e.event_id];
+    }).sort(function (a, b) {
+      return (a.detected_at_sample || a.start_sample) - (b.detected_at_sample || b.start_sample);
+    });
+
+    if (arriving.length) {
+      var first = arriving[0];
+      S.tick = first.detected_at_sample || first.start_sample;
+      haltPlant(first);
+      return;
+    }
+    renderAll();
+  }, 120);
+}
+function pause() {
+  S.playing = false;
+  clearInterval(S.timer);
+  $("play-icon").setAttribute("d", "M8 5v14l11-7z");
+}
+
+/* ======================================================================
+ * Boot
+ * ==================================================================== */
+async function loadRun(runId) {
+  S.runId = runId;
+  localStorage.setItem("norrin_run_id", runId);
+  S.drift = await getJSON("/api/drift?run_id=" + encodeURIComponent(runId));
+  S.nSamples = (S.drift.batch || {}).n_samples || 960;
+  $("scrub").max = S.nSamples;
+
+  var cols = S.channels.map(function (c) { return c.col_id; }).join(",");
+  try {
+    S.overview = await getJSON("/api/series?run_id=" + encodeURIComponent(runId) +
+      "&cols=" + encodeURIComponent(cols) + "&max_points=480");
+  } catch (err) {
+    S.overview = null;
+    toast("No recorded values for this shift: " + err.message, true);
+  }
+
+  S.detailSeries = {};
+  S.seen = {};
+  S.hypotheses = {};
+  S.chat = {};
+  S.physical = {};
+  S.halted = null;
+  S.rawCols = [];
+  S.rawOffset = 0;
+  renderFingerprint();
+  // You have been away all day: the shift has already happened and every
+  // alert in it is unread. That is the state this screen is built for.
+  S.tick = S.nSamples;
+  renderAll();
+}
+
+/* Six numbers that say which detector produced what you are looking at.
+ * Two people comparing notes on "which channels are breaking" need this
+ * first: runs scored against different baselines are not comparable, and a
+ * stale file from an earlier pipeline run is the usual cause. */
+function renderFingerprint() {
+  var el = $("fingerprint");
+  if (!el || !S.drift) return;
+  var detector = S.drift.detector || {};
+  var limits = detector.limits || {};
+  var baseline = (S.drift.evidence || []).find(function (e) {
+    return e && e.kind === "reference_baseline";
+  }) || {};
+  var value = baseline.value || {};
+  var degenerate = !(detector.parameters || {}).n_components;
+  el.className = "fingerprint" + (degenerate ? " warn" : "");
+  el.textContent = "k" + ((detector.parameters || {}).n_components || 0) +
+    " · T2 " + Math.round(limits.t2 || 0) +
+    " · SPE " + Math.round(limits.spe || 0) +
+    " · fit " + (value.n_samples || 0);
+  el.title = degenerate
+    ? "This shift was scored against an empty baseline: a stale file from an earlier pipeline run. Re-run S6."
+    : "The baseline these detections were scored against. If a colleague's fingerprint differs, you are not looking at the same detector.";
+}
+
+async function init() {
+  $("op-id").value = localStorage.getItem("norrin_operator_id") || "OP-01";
+  S.minutesPerSample = Number(localStorage.getItem(MINUTES_KEY)) || 3;
+
+  $("op-id").addEventListener("input", function () { localStorage.setItem("norrin_operator_id", operatorId()); });
+
+  // ---- screens
+  $("screen-nav").addEventListener("click", function (e) {
+    var btn = e.target.closest(".slider-tab");
+    if (btn) showScreen(btn.dataset.screen);
+  });
+  window.addEventListener("hashchange", function () {
+    showScreen((location.hash || "#home").slice(1));
+  });
+
+  // ---- units
+  await loadMachines();
+  $("machine-id").value = localStorage.getItem("norrin_machine_id") || "machine_01";
+  $("machine-id").addEventListener("change", async function () {
+    localStorage.setItem("norrin_machine_id", machineId());
+    S.homeChat = [];
+    await loadUnitState();
+    renderAll();
+    toast("Switched to " + machineId() + ".");
+  });
+  $("add-unit").onclick = function () {
+    var field = $("new-unit");
+    field.style.display = field.style.display === "none" ? "" : "none";
+    if (field.style.display === "") field.focus();
+  };
+  $("new-unit").addEventListener("keydown", async function (e) {
+    if (e.key !== "Enter") return;
+    var name = (this.value || "").trim().replace(/[^A-Za-z0-9_-]/g, "_");
+    if (!name) return;
+    this.value = ""; this.style.display = "none";
+    var option = document.createElement("option");
+    option.value = name; option.textContent = name;
+    $("machine-id").appendChild(option);
+    $("machine-id").value = name;
+    localStorage.setItem("norrin_machine_id", name);
+    S.homeChat = [];
+    await loadUnitState();
+    renderAll();
+    toast("New unit " + name + ". It starts with no notes and learns from here.");
+  });
+
+  // ---- home chat
+  $("home-chat-form").addEventListener("submit", sendHomeChat);
+  $("chat-hint").addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    $("home-chat-input").value = btn.dataset.q;
+    sendHomeChat(new Event("submit"));
+  });
+
+  // ---- raw room
+  $("raw-col").addEventListener("change", function () { S.rawOffset = 0; rawPage(0); });
+  $("raw-prev").onclick = function () { rawPage(-1); };
+  $("raw-next").onclick = function () { rawPage(1); };
+
+  $("play-btn").onclick = function () { S.playing ? pause() : play(); };
+  $("restart-btn").onclick = function () { S.seen = {}; setTick(1); play(); };
+  $("scrub").addEventListener("input", function () { pause(); setTick(Number(this.value)); });
+  $("detail-close").onclick = closeDrawers;
+  $("brain-close").onclick = closeDrawers;
+  $("scrim").onclick = closeDrawers;
+  $("brain-btn").onclick = openBrain;
+  $("brain-save").onclick = saveBrain;
+  // Two buttons, one switch. The header one is behind the drawer when a
+  // channel is open, which is exactly when an auditor wants it.
+  function toggleAudit() {
+    var on = document.body.classList.toggle("audit");
+    $("audit-btn").classList.toggle("on", on);
+    $("detail-audit").classList.toggle("on", on);
+    if (S.open) renderDetail();
+  }
+  $("audit-btn").onclick = toggleAudit;
+  $("detail-audit").onclick = toggleAudit;
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeDrawers();
+    if (e.key === " " && e.target === document.body) { e.preventDefault(); S.playing ? pause() : play(); }
+  });
+  $("speed-group").addEventListener("click", function (e) {
+    var btn = e.target.closest(".speed-btn");
+    if (!btn) return;
+    S.speed = Number(btn.dataset.speed);
+    Array.prototype.forEach.call(this.children, function (b) { b.classList.toggle("on", b === btn); });
+  });
+  $("filter-row").addEventListener("click", function (e) {
+    var btn = e.target.closest(".filter-btn");
+    if (!btn) return;
+    S.filter = btn.dataset.filter;
+    Array.prototype.forEach.call(this.children, function (b) { b.classList.toggle("on", b === btn); });
+    renderGrid();
+  });
+  window.addEventListener("resize", function () {
+    clearTimeout(window._rz);
+    window._rz = setTimeout(function () { if (S.open) renderDetail(); }, 150);
+  });
+
+  await loadUnitState();
+
+  try {
+    var channels = await getJSON("/api/channels");
+    S.channels = channels.channels || [];
+    S.channelById = {};
+    S.channels.forEach(function (c) { S.channelById[c.col_id] = c; });
+
+    var runs = await getJSON("/api/runs");
+    var withSeries = (runs.runs || []).filter(function (r) { return r.has_series; });
+    if (!withSeries.length) throw new Error("no recorded shifts are available");
+
+    // The full dataset is about 16,000 shifts. A dropdown with 16,000 entries is
+    // not a control, it is a wall, and /api/runs already sorts by event count.
+    // The quiet ones are still on disk and still reachable by url hash.
+    S.runsTotal = withSeries.length;
+    S.runs = withSeries.slice(0, 200);
+
+    $("run-select").innerHTML = S.runs.map(function (r) {
+      return '<option value="' + esc(r.run_id) + '">' + esc(shiftLabel(r.run_id)) + " · " +
+        r.n_events + " event" + (r.n_events === 1 ? "" : "s") + "</option>";
+    }).join("") +
+      (S.runsTotal > S.runs.length
+        ? '<option disabled>— ' + (S.runsTotal - S.runs.length).toLocaleString("en-US") +
+          ' quieter shifts not listed —</option>'
+        : "");
+
+    var saved = localStorage.getItem("norrin_run_id");
+    var start = S.runs.some(function (r) { return r.run_id === saved; }) ? saved : S.runs[0].run_id;
+    $("run-select").value = start;
+    $("run-select").onchange = function () { pause(); loadRun(this.value); };
+
+    await loadRun(start);
+    showScreen((location.hash || "#home").slice(1));
+  } catch (err) {
+    $("hero-text").textContent = "Could not load this shift.";
+    $("hero-sub").textContent = String(err.message || err);
+    $("hero-action").style.display = "none";
+    toast(String(err.message || err), true);
+  }
+}
+
+init();
+</script>
+</body>
+</html>
