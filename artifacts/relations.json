@@ -1,0 +1,370 @@
+[
+  {
+    "evidence_id": "ev_s3_0001",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_007",
+      "col_011"
+    ],
+    "value": {
+      "correlation": -0.8719621362500385,
+      "lag_samples": 3,
+      "leader": "col_011"
+    },
+    "computed_at": "2026-09-20T08:10:22.030322+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0002",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_007",
+      "col_013"
+    ],
+    "value": {
+      "correlation": 0.9973578327621848,
+      "lag_samples": 0,
+      "leader": "concurrent"
+    },
+    "computed_at": "2026-09-20T08:10:25.907892+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0003",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_007",
+      "col_016"
+    ],
+    "value": {
+      "correlation": 0.976267131391075,
+      "lag_samples": 0,
+      "leader": "concurrent"
+    },
+    "computed_at": "2026-09-20T08:10:29.659591+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0004",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_007",
+      "col_031"
+    ],
+    "value": {
+      "correlation": 0.7591658018882611,
+      "lag_samples": 5,
+      "leader": "col_031"
+    },
+    "computed_at": "2026-09-20T08:10:33.298133+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0005",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_007",
+      "col_035"
+    ],
+    "value": {
+      "correlation": -0.7509708677667115,
+      "lag_samples": 5,
+      "leader": "col_035"
+    },
+    "computed_at": "2026-09-20T08:10:36.881141+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0006",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_010",
+      "col_047"
+    ],
+    "value": {
+      "correlation": 0.9159892462992859,
+      "lag_samples": 0,
+      "leader": "concurrent"
+    },
+    "computed_at": "2026-09-20T08:10:40.725131+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0007",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_011",
+      "col_013"
+    ],
+    "value": {
+      "correlation": -0.8687935575146247,
+      "lag_samples": 3,
+      "leader": "col_011"
+    },
+    "computed_at": "2026-09-20T08:10:44.339545+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0008",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_011",
+      "col_016"
+    ],
+    "value": {
+      "correlation": -0.8582937027350686,
+      "lag_samples": 3,
+      "leader": "col_011"
+    },
+    "computed_at": "2026-09-20T08:10:47.849665+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0009",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_012",
+      "col_048"
+    ],
+    "value": {
+      "correlation": 0.9999999538209893,
+      "lag_samples": 0,
+      "leader": "concurrent"
+    },
+    "computed_at": "2026-09-20T08:10:51.491700+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0010",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_013",
+      "col_016"
+    ],
+    "value": {
+      "correlation": 0.9666061692624164,
+      "lag_samples": 0,
+      "leader": "concurrent"
+    },
+    "computed_at": "2026-09-20T08:10:54.998586+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0011",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_013",
+      "col_031"
+    ],
+    "value": {
+      "correlation": 0.7440027167799372,
+      "lag_samples": 5,
+      "leader": "col_031"
+    },
+    "computed_at": "2026-09-20T08:10:58.516187+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0012",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_013",
+      "col_035"
+    ],
+    "value": {
+      "correlation": -0.7450837609884019,
+      "lag_samples": 5,
+      "leader": "col_035"
+    },
+    "computed_at": "2026-09-20T08:11:02.094944+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0013",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_015",
+      "col_049"
+    ],
+    "value": {
+      "correlation": 0.9999999520101756,
+      "lag_samples": 0,
+      "leader": "concurrent"
+    },
+    "computed_at": "2026-09-20T08:11:05.739096+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0014",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_016",
+      "col_025"
+    ],
+    "value": {
+      "correlation": 0.7432266197753052,
+      "lag_samples": 2,
+      "leader": "col_025"
+    },
+    "computed_at": "2026-09-20T08:11:09.305483+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0015",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_016",
+      "col_031"
+    ],
+    "value": {
+      "correlation": 0.7995879448557294,
+      "lag_samples": 5,
+      "leader": "col_031"
+    },
+    "computed_at": "2026-09-20T08:11:12.747368+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0016",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_016",
+      "col_035"
+    ],
+    "value": {
+      "correlation": -0.7443985171351705,
+      "lag_samples": 5,
+      "leader": "col_035"
+    },
+    "computed_at": "2026-09-20T08:11:16.272706+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0017",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_017",
+      "col_052"
+    ],
+    "value": {
+      "correlation": -0.7353338990738879,
+      "lag_samples": 0,
+      "leader": "concurrent"
+    },
+    "computed_at": "2026-09-20T08:11:20.034435+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0018",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_018",
+      "col_019"
+    ],
+    "value": {
+      "correlation": 0.8583418328199585,
+      "lag_samples": 1,
+      "leader": "col_018"
+    },
+    "computed_at": "2026-09-20T08:11:23.571721+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0019",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_018",
+      "col_050"
+    ],
+    "value": {
+      "correlation": 0.8046545663777223,
+      "lag_samples": 1,
+      "leader": "col_018"
+    },
+    "computed_at": "2026-09-20T08:11:27.099870+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0020",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_019",
+      "col_050"
+    ],
+    "value": {
+      "correlation": 0.8446997814958029,
+      "lag_samples": 1,
+      "leader": "col_019"
+    },
+    "computed_at": "2026-09-20T08:11:30.624974+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0021",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_020",
+      "col_029"
+    ],
+    "value": {
+      "correlation": 0.734584022649853,
+      "lag_samples": 1,
+      "leader": "col_029"
+    },
+    "computed_at": "2026-09-20T08:11:34.238250+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0022",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_020",
+      "col_038"
+    ],
+    "value": {
+      "correlation": -0.7568310317343806,
+      "lag_samples": 5,
+      "leader": "col_038"
+    },
+    "computed_at": "2026-09-20T08:11:37.741882+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  },
+  {
+    "evidence_id": "ev_s3_0023",
+    "stage": "S3_relations",
+    "kind": "lagged_correlation",
+    "subject": [
+      "col_025",
+      "col_031"
+    ],
+    "value": {
+      "correlation": 0.7351476957852546,
+      "lag_samples": 2,
+      "leader": "col_031"
+    },
+    "computed_at": "2026-09-20T08:11:41.198268+00:00",
+    "method": "pearson_cross_correlation_max_lag"
+  }
+]

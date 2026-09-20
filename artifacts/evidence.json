@@ -1,0 +1,22 @@
+{
+  "evidence_id": "ev_0042",
+  "stage": "S3_relations",
+  "kind": "lagged_correlation",
+  "subject": [
+    "col_012",
+    "col_031"
+  ],
+  "value": {
+    "corr": 0.91,
+    "lag_samples": 5,
+    "p_value": 0.001
+  },
+  "computed_at": "2026-09-19T10:14:00Z",
+  "method": "pearson_cross_correlation",
+  "window": {
+    "run": 3,
+    "from": 0,
+    "to": 500
+  },
+  "n_samples": 500
+}

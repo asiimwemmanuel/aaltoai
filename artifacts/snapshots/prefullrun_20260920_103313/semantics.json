@@ -1,0 +1,824 @@
+{
+  "col_001": {
+    "inferred_role": "Measured Variable (Sensor)",
+    "structural_class": "measured",
+    "confidence": "low",
+    "epistemic_status": "uncertain",
+    "evidence_ids": [
+      "ev_s2_col_001_mean",
+      "ev_s2_col_001_stddev",
+      "ev_s2_col_001_dist"
+    ],
+    "reasoning": "The model returned 'structural_class', which is one of the field names in the request rather than a role, so no role was named here. The structural class below rests on the statistics, not on that answer. The data appears to be distributed around a mean of 0.258 and has a standard deviation of 0.141. However, the skewness is relatively high at 1.815, indicating that the distribution may not be perfectly normal. The presence of distinct values (305017) and a noise level of 0.198 suggests that the data may be noisy. Additionally, the plateau ratio is 0.079, indicating that the data may have plateaus, but the has_plateaus flag is false. Given these mixed signals, it's difficult to confidently assign a role to this column.",
+    "model_call_id": "call_0001",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_001\": {\n      \"statistics\": {\n        \"mean\": 0.2578316096104807,\n        \"std_dev\": 0.14094534820541216,\n        \"min_val\": -0.0049855,\n        \"max_val\": 1.0175,\n        \"quantiles\": {\n          \"p25\": 0.2196284411611502,\n          \"p50\": 0.2506659820216294,\n          \"p75\": 0.2805067346986097\n        },\n        \"skewness\": 1.8150587206564563,\n        \"distinct_values\": 305017,\n        \"noise_level\": 0.1984986162443243,\n        \"plateau_ratio\": 0.0796446836268754,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_001_mean\",\n        \"std_dev\": \"ev_s2_col_001_stddev\",\n        \"distribution\": \"ev_s2_col_001_dist\",\n        \"dynamics\": \"ev_s2_col_001_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_002": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_002_mean",
+      "ev_s2_col_002_stddev",
+      "ev_s2_col_002_dist"
+    ],
+    "reasoning": "The data shows a relatively low standard deviation (42.90828158415638), indicating a consistent distribution. The mean (3664.6299886631077) and median (3663.7724659829705) are also similar, suggesting that the data is not skewed. The skewness value (0.16611673121625636) is relatively low, which further supports the idea that the data is not highly skewed. The presence of a distinct plateau threshold (0.2073100782778865) and a clear separation between cohorts (plateau_separates_cohort = true) may indicate that the data has been measured rather than manipulated. However, the plateau ratio (0.09284859752120025) is relatively low, which could suggest that the data is not highly manipulated. Overall, the evidence supports a 'measured' role, but with medium confidence due to the mixed signals.",
+    "model_call_id": "call_0002",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_002\": {\n      \"statistics\": {\n        \"mean\": 3664.6299886631077,\n        \"std_dev\": 42.90828158415638,\n        \"min_val\": 3308.4,\n        \"max_val\": 3906.7,\n        \"quantiles\": {\n          \"p25\": 3637.436476298731,\n          \"p50\": 3663.7724659829705,\n          \"p75\": 3690.4213576565257\n        },\n        \"skewness\": 0.16611673121625636,\n        \"distinct_values\": 4807,\n        \"noise_level\": 49.66504663801334,\n        \"plateau_ratio\": 0.09284859752120025,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_002_mean\",\n        \"std_dev\": \"ev_s2_col_002_stddev\",\n        \"distribution\": \"ev_s2_col_002_dist\",\n        \"dynamics\": \"ev_s2_col_002_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_003": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_003_mean",
+      "ev_s2_col_003_stddev",
+      "ev_s2_col_003_dist"
+    ],
+    "reasoning": "The mean value of 4508.765881095964 is relatively consistent across all observations (std_dev = 107.00586219772188), suggesting a steady, measured process. The distribution is also relatively narrow, with a plateau ratio of 0.08595714285714286 and no plateaus separating the cohort.",
+    "model_call_id": "call_0003",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_003\": {\n      \"statistics\": {\n        \"mean\": 4508.765881095964,\n        \"std_dev\": 107.00586219772188,\n        \"min_val\": 3540.7,\n        \"max_val\": 5175.8,\n        \"quantiles\": {\n          \"p25\": 4472.343409843628,\n          \"p50\": 4509.079784801591,\n          \"p75\": 4546.569415984386\n        },\n        \"skewness\": -0.13525411052844907,\n        \"distinct_values\": 14017,\n        \"noise_level\": 146.60402471554835,\n        \"plateau_ratio\": 0.08595714285714286,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_003_mean\",\n        \"std_dev\": \"ev_s2_col_003_stddev\",\n        \"distribution\": \"ev_s2_col_003_dist\",\n        \"dynamics\": \"ev_s2_col_003_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_004": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_004_mean",
+      "ev_s2_col_004_stddev",
+      "ev_s2_col_004_dist"
+    ],
+    "reasoning": "The column has a low standard deviation (ev_s2_col_004_stddev) and a skewness of 2.170544252174251 (ev_s2_col_004_dist), indicating a relatively normal distribution. The mean is 9.381277741898208, which is close to the median of 9.355378398963378. The low noise level of 0.5158783391055315 and plateau ratio of 0.0754689497716895 suggest that the column is not platueuing more than its peers. Therefore, it is likely that this column is measured.",
+    "model_call_id": "call_0004",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_004\": {\n      \"statistics\": {\n        \"mean\": 9.381277741898208,\n        \"std_dev\": 0.36715756328367655,\n        \"min_val\": 6.6399,\n        \"max_val\": 12.24,\n        \"quantiles\": {\n          \"p25\": 9.271419410274298,\n          \"p50\": 9.355378398963378,\n          \"p75\": 9.449136984832672\n        },\n        \"skewness\": 2.170544252174251,\n        \"distinct_values\": 29636,\n        \"noise_level\": 0.5158783391055315,\n        \"plateau_ratio\": 0.0754689497716895,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_004_mean\",\n        \"std_dev\": \"ev_s2_col_004_stddev\",\n        \"distribution\": \"ev_s2_col_004_dist\",\n        \"dynamics\": \"ev_s2_col_004_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_005": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_005_mean",
+      "ev_s2_col_005_stddev",
+      "ev_s2_col_005_dist"
+    ],
+    "reasoning": "The column's values are very consistent, with a low standard deviation (0.228236131889872) and a very slight skewness (0.009346267002328658). The distribution is nearly symmetrical, as indicated by the quantiles (p25, p50, p75) being very close to the mean (26.901455842136855). The plateau ratio is low (0.1306311154598826), suggesting that the values do not plateau at any point. The dynamics of the column are also consistent, with a slight increase in values over time. Therefore, based on these statistics, the column is likely to be a measured variable.",
+    "model_call_id": "call_0005",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_005\": {\n      \"statistics\": {\n        \"mean\": 26.901455842136855,\n        \"std_dev\": 0.228236131889872,\n        \"min_val\": 25.348,\n        \"max_val\": 28.565,\n        \"quantiles\": {\n          \"p25\": 26.76198893182757,\n          \"p50\": 26.900047429463473,\n          \"p75\": 27.041343471813697\n        },\n        \"skewness\": 0.009346267002328658,\n        \"distinct_values\": 2820,\n        \"noise_level\": 0.24006302377308114,\n        \"plateau_ratio\": 0.1306311154598826,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_005_mean\",\n        \"std_dev\": \"ev_s2_col_005_stddev\",\n        \"distribution\": \"ev_s2_col_005_dist\",\n        \"dynamics\": \"ev_s2_col_005_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_006": {
+    "inferred_role": "Measured Variable (Sensor)",
+    "structural_class": "measured",
+    "confidence": "low",
+    "epistemic_status": "uncertain",
+    "evidence_ids": [
+      "ev_s2_col_006_mean",
+      "ev_s2_col_006_dist"
+    ],
+    "reasoning": "The model returned 'structural_class', which is one of the field names in the request rather than a role, so no role was named here. The structural class below rests on the statistics, not on that answer. The mean value of 42.37 is relatively stable (std_dev: 0.32), indicating that the column is likely measured. The distribution is also relatively consistent, with a skewness of 0.88, suggesting that the column is not manipulated. The evidence for this conclusion is provided by the mean and distribution statistics.",
+    "model_call_id": "call_0006",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_006\": {\n      \"statistics\": {\n        \"mean\": 42.370139516829475,\n        \"std_dev\": 0.31647903972286967,\n        \"min_val\": 39.656,\n        \"max_val\": 44.653,\n        \"quantiles\": {\n          \"p25\": 42.18752507346469,\n          \"p50\": 42.34947458193928,\n          \"p75\": 42.52318272596695\n        },\n        \"skewness\": 0.8761584824510417,\n        \"distinct_values\": 4217,\n        \"noise_level\": 0.388123036141324,\n        \"plateau_ratio\": 0.08171767775603392,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_006_mean\",\n        \"std_dev\": \"ev_s2_col_006_stddev\",\n        \"distribution\": \"ev_s2_col_006_dist\",\n        \"dynamics\": \"ev_s2_col_006_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_007": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_007_mean",
+      "ev_s2_col_007_stddev",
+      "ev_s2_col_007_dist"
+    ],
+    "reasoning": "The mean of col_007 is 2723.480013730375, which suggests a relatively stable and consistent value. The standard deviation of 76.37017320725991 is also relatively low, indicating that the values in this column are not highly variable. Additionally, the skewness is 2.7317886643531826, which is moderate to high, but not indicative of extreme outliers. The quantiles (p25, p50, p75) also show a relatively consistent distribution. Therefore, based on the evidence, it is reasonable to infer that col_007 is a measured variable.",
+    "model_call_id": "call_0007",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_007\": {\n      \"statistics\": {\n        \"mean\": 2723.480013730375,\n        \"std_dev\": 76.37017320725991,\n        \"min_val\": 2413.8,\n        \"max_val\": 3000.5,\n        \"quantiles\": {\n          \"p25\": 2698.2195971445412,\n          \"p50\": 2705.4582303450948,\n          \"p75\": 2713.8273957189526\n        },\n        \"skewness\": 2.7317886643531826,\n        \"distinct_values\": 5538,\n        \"noise_level\": 108.60786468726539,\n        \"plateau_ratio\": 0.08573770384866275,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_007_mean\",\n        \"std_dev\": \"ev_s2_col_007_stddev\",\n        \"distribution\": \"ev_s2_col_007_dist\",\n        \"dynamics\": \"ev_s2_col_007_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0002\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_013\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9832076770759098,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0003\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9798812862647108,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0001\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_011\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8807817087819456,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0006\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7908212059332609,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0005\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7835975903693158,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0004\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7490558201780345,\n        \"lag_samples\": 5,\n        \"leader\": \"col_025\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_008": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_008_mean",
+      "ev_s2_col_008_stddev",
+      "ev_s2_col_008_dist"
+    ],
+    "reasoning": "The column has a low noise level (1.7267848295778643) and a low plateau ratio (0.0768030658838878), indicating that it is likely measured. The skewness is negative (-1.2127345724305378), which is consistent with a measured variable. The mean and standard deviation are also typical for a measured variable, with a mean of 74.87145568283815 and a standard deviation of 1.2812505173828956.",
+    "model_call_id": "call_0008",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_008\": {\n      \"statistics\": {\n        \"mean\": 74.87145568283815,\n        \"std_dev\": 1.2812505173828956,\n        \"min_val\": 61.132,\n        \"max_val\": 87.189,\n        \"quantiles\": {\n          \"p25\": 74.4562552869506,\n          \"p50\": 74.95356771705781,\n          \"p75\": 75.41512503088289\n        },\n        \"skewness\": -1.2127345724305378,\n        \"distinct_values\": 21262,\n        \"noise_level\": 1.7267848295778643,\n        \"plateau_ratio\": 0.0768030658838878,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_008_mean\",\n        \"std_dev\": \"ev_s2_col_008_stddev\",\n        \"distribution\": \"ev_s2_col_008_dist\",\n        \"dynamics\": \"ev_s2_col_008_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_009": {
+    "inferred_role": "measured",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_009_mean",
+      "ev_s2_col_009_stddev",
+      "ev_s2_col_009_dist"
+    ],
+    "reasoning": "The mean value of 120.4 is very close to the median value of 120.4, indicating that the data is not skewed. The standard deviation of 0.068 is very low, indicating that the data is consistent. The skewness of -0.953 is close to zero, further indicating that the data is not skewed. The noise level of 0.094 is also low, indicating that the data is consistent. The presence of plateaus, indicated by the has_plateaus and plateau_separates_cohort values, is not typical of measured variables, which usually have a continuous distribution.",
+    "model_call_id": "call_0009",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_009\": {\n      \"statistics\": {\n        \"mean\": 120.40012273464248,\n        \"std_dev\": 0.06853335457647795,\n        \"min_val\": 119.61,\n        \"max_val\": 121.01,\n        \"quantiles\": {\n          \"p25\": 120.38313926177258,\n          \"p50\": 120.4,\n          \"p75\": 120.41999915083015\n        },\n        \"skewness\": -0.9536938145560632,\n        \"distinct_values\": 139,\n        \"noise_level\": 0.0949564546623076,\n        \"plateau_ratio\": 0.2839890410958904,\n        \"has_plateaus\": true,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_009_mean\",\n        \"std_dev\": \"ev_s2_col_009_stddev\",\n        \"distribution\": \"ev_s2_col_009_dist\",\n        \"dynamics\": \"ev_s2_col_009_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with medium confidence, because it plateaus markedly more than the other columns. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_010": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_010_mean"
+    ],
+    "reasoning": "Given that the mean of col_010 is 0.3446538234890744 (ev_s2_col_010_mean) and the standard deviation is 0.08080114687469547 (ev_s2_col_010_stddev), it is possible that col_010 is a measured variable. However, this is just a working assumption (assumed) and not strongly supported by the evidence, which is why the confidence is low.",
+    "model_call_id": "call_0010",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_010\": {\n      \"statistics\": {\n        \"mean\": 0.3446538234890744,\n        \"std_dev\": 0.08080114687469547,\n        \"min_val\": 0.018396,\n        \"max_val\": 0.82073,\n        \"quantiles\": {\n          \"p25\": 0.3236897425701743,\n          \"p50\": 0.33617974813563495,\n          \"p75\": 0.3478751963970424\n        },\n        \"skewness\": 3.2431639719945053,\n        \"distinct_values\": 68547,\n        \"noise_level\": 0.11533195514137201,\n        \"plateau_ratio\": 0.07714272667971298,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_010_mean\",\n        \"std_dev\": \"ev_s2_col_010_stddev\",\n        \"distribution\": \"ev_s2_col_010_dist\",\n        \"dynamics\": \"ev_s2_col_010_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0007\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_010\",\n        \"col_047\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8892471384010953,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_011": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0001",
+      "ev_s3_0008",
+      "ev_s3_0009"
+    ],
+    "reasoning": "The column is highly correlated with other columns with a lag, indicating it is likely manipulated. The correlations are strong, with values ranging from -0.863 to -0.880, and the lag samples are consistent, ranging from 3 to 4. This supports the statistical pre-analysis, and there is no contradicting evidence. (ev_s3_0001, ev_s3_0008, ev_s3_0009)",
+    "model_call_id": "call_0011",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_011\": {\n      \"statistics\": {\n        \"mean\": 79.73392268166448,\n        \"std_dev\": 1.7731694371521096,\n        \"min_val\": 68.097,\n        \"max_val\": 87.591,\n        \"quantiles\": {\n          \"p25\": 79.82413858037059,\n          \"p50\": 80.09223444800722,\n          \"p75\": 80.33636654097913\n        },\n        \"skewness\": -2.5255539512201457,\n        \"distinct_values\": 15751,\n        \"noise_level\": 2.515718448671469,\n        \"plateau_ratio\": 0.07692720156555773,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_011_mean\",\n        \"std_dev\": \"ev_s2_col_011_stddev\",\n        \"distribution\": \"ev_s2_col_011_dist\",\n        \"dynamics\": \"ev_s2_col_011_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0001\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_011\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8807817087819456,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0009\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": -0.865011496420715,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0008\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_013\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8635054258408394,\n        \"lag_samples\": 4,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0010\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8285606407708822,\n        \"lag_samples\": 3,\n        \"leader\": \"col_035\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with high confidence, because it leads other columns in the lagged correlations. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_012": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_012_mean",
+      "ev_s2_col_012_stddev",
+      "ev_s2_col_012_dist"
+    ],
+    "reasoning": "The distribution of 'col_012' is roughly Gaussian (skewness = 0.0149) with a small standard deviation (0.9999), indicating that it is likely a measured variable. The mean and standard deviation values ('ev_s2_col_012_mean' and 'ev_s2_col_012_stddev') support this conclusion. Additionally, the distribution ('ev_s2_col_012_dist') is relatively flat with no plateaus ('has_plateaus' = false), consistent with a measured variable.",
+    "model_call_id": "call_0012",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_012\": {\n      \"statistics\": {\n        \"mean\": 49.98552005238337,\n        \"std_dev\": 0.9998867259530415,\n        \"min_val\": 44.627,\n        \"max_val\": 55.481,\n        \"quantiles\": {\n          \"p25\": 49.29367322696738,\n          \"p50\": 50.00932916201413,\n          \"p75\": 50.63795826645723\n        },\n        \"skewness\": 0.01490265533322104,\n        \"distinct_values\": 8353,\n        \"noise_level\": 0.9686359416037452,\n        \"plateau_ratio\": 0.08408884540117417,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_012_mean\",\n        \"std_dev\": \"ev_s2_col_012_stddev\",\n        \"distribution\": \"ev_s2_col_012_dist\",\n        \"dynamics\": \"ev_s2_col_012_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0011\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_012\",\n        \"col_048\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9999999538519262,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_013": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0002"
+    ],
+    "reasoning": "The high correlation between col_013 and col_007 (0.9832076770759098) indicates that col_013 is likely being measured in concert with col_007.",
+    "model_call_id": "call_0013",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_013\": {\n      \"statistics\": {\n        \"mean\": 2651.594683196573,\n        \"std_dev\": 77.26789318090749,\n        \"min_val\": 2317.1,\n        \"max_val\": 2945.4,\n        \"quantiles\": {\n          \"p25\": 2625.954350448627,\n          \"p50\": 2633.8640510356336,\n          \"p75\": 2642.643548265905\n        },\n        \"skewness\": 2.684946663056653,\n        \"distinct_values\": 5895,\n        \"noise_level\": 109.75623157554126,\n        \"plateau_ratio\": 0.08579562948467058,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_013_mean\",\n        \"std_dev\": \"ev_s2_col_013_stddev\",\n        \"distribution\": \"ev_s2_col_013_dist\",\n        \"dynamics\": \"ev_s2_col_013_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0002\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_013\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9832076770759098,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0012\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9594370719476004,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0008\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_013\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8635054258408394,\n        \"lag_samples\": 4,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0015\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7786483496200125,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0014\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.764719414851895,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0013\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7334726003949833,\n        \"lag_samples\": 5,\n        \"leader\": \"col_025\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_014": {
+    "inferred_role": "undetermined",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_014_mean",
+      "ev_s2_col_014_dist"
+    ],
+    "reasoning": "The mean value of 25.112100445595328 suggests a consistent measure, but the skewness of -0.10455977180306897 indicates that the distribution is not perfectly normal. Additionally, the plateau ratio is low at 0.0794747553816047, indicating that there are no clear plateaus in the data. The noise level is moderate at 1.1690447807151236, but the plateau separates cohort, suggesting that the data is from a controlled environment. However, the low plateau ratio and moderate noise level do not strongly support any functional role. Therefore, I remain undetermined about the role of the column, citing the mean and distribution statistics as evidence.",
+    "model_call_id": "call_0014",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_014\": {\n      \"statistics\": {\n        \"mean\": 25.112100445595328,\n        \"std_dev\": 1.1066082868417446,\n        \"min_val\": 18.436,\n        \"max_val\": 33.092,\n        \"quantiles\": {\n          \"p25\": 24.394747694187597,\n          \"p50\": 25.12705577991853,\n          \"p75\": 25.85064942764309\n        },\n        \"skewness\": -0.10455977180306897,\n        \"distinct_values\": 10505,\n        \"noise_level\": 1.1690447807151236,\n        \"plateau_ratio\": 0.0794747553816047,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_014_mean\",\n        \"std_dev\": \"ev_s2_col_014_stddev\",\n        \"distribution\": \"ev_s2_col_014_dist\",\n        \"dynamics\": \"ev_s2_col_014_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_015": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_015_mean",
+      "ev_s2_col_015_dist"
+    ],
+    "reasoning": "The column's values are tightly clustered around the mean (49.95626844174523), with a small standard deviation (1.0144792519134596) and low skewness (0.07924881052201029). This suggests a stable and consistent measurement. Additionally, the distribution is not platueued, indicating no apparent outliers or noise. Furthermore, the lagged correlation with col_049 is high (0.9999999519250008), supporting the idea that col_015 is a measured variable. The statistics also suggest a clear and consistent measurement, with a low noise level (0.9837403954409542) and a high plateau ratio (0.08730678408349642).",
+    "model_call_id": "call_0015",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_015\": {\n      \"statistics\": {\n        \"mean\": 49.95626844174523,\n        \"std_dev\": 1.0144792519134596,\n        \"min_val\": 44.311,\n        \"max_val\": 55.912,\n        \"quantiles\": {\n          \"p25\": 49.27742888046389,\n          \"p50\": 49.913365601698956,\n          \"p75\": 50.643852267261494\n        },\n        \"skewness\": 0.07924881052201029,\n        \"distinct_values\": 8640,\n        \"noise_level\": 0.9837403954409542,\n        \"plateau_ratio\": 0.08730678408349642,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_015_mean\",\n        \"std_dev\": \"ev_s2_col_015_stddev\",\n        \"distribution\": \"ev_s2_col_015_dist\",\n        \"dynamics\": \"ev_s2_col_015_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0016\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_015\",\n        \"col_049\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9999999519250008,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_016": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0003",
+      "ev_s3_0012",
+      "ev_s3_0018"
+    ],
+    "reasoning": "The column is highly correlated with other columns, particularly col_007, col_013, and col_031, with correlation coefficients ranging from 0.9798812862647108 to 0.8139015358757378. This suggests that the column is measured, as it is strongly related to other columns.",
+    "model_call_id": "call_0016",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_016\": {\n      \"statistics\": {\n        \"mean\": 3121.2369027197433,\n        \"std_dev\": 77.70349456635331,\n        \"min_val\": 2870.4,\n        \"max_val\": 3452.7,\n        \"quantiles\": {\n          \"p25\": 3096.4534289939074,\n          \"p50\": 3102.605787946622,\n          \"p75\": 3109.773808192062\n        },\n        \"skewness\": 3.0689649584577716,\n        \"distinct_values\": 5635,\n        \"noise_level\": 110.84379874033634,\n        \"plateau_ratio\": 0.08839138943248533,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_016_mean\",\n        \"std_dev\": \"ev_s2_col_016_stddev\",\n        \"distribution\": \"ev_s2_col_016_dist\",\n        \"dynamics\": \"ev_s2_col_016_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0003\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9798812862647108,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0012\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9594370719476004,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0009\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": -0.865011496420715,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0018\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8139015358757378,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0019\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7826363982948007,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0017\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7714123607737844,\n        \"lag_samples\": 3,\n        \"leader\": \"col_025\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_017": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_017_mean",
+      "ev_s2_col_017_stddev",
+      "ev_s2_col_017_dist"
+    ],
+    "reasoning": "The distribution of col_017 is fairly consistent, with a low standard deviation (0.6471774023798998) and skewness (0.004861320869381099). This suggests a 'measured' role, as it appears to be a consistent and stable quantity. Additionally, the mean value (22.931477422894154) and median (22.931739054654045) are very close, indicating a lack of outliers. The plateau_ratio (0.0884071754729289) is low, indicating that there are no distinct plateaus in the data.",
+    "model_call_id": "call_0017",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_017\": {\n      \"statistics\": {\n        \"mean\": 22.931477422894154,\n        \"std_dev\": 0.6471774023798998,\n        \"min_val\": 19.137,\n        \"max_val\": 27.239,\n        \"quantiles\": {\n          \"p25\": 22.49729879293548,\n          \"p50\": 22.931739054654045,\n          \"p75\": 23.365328093247143\n        },\n        \"skewness\": 0.004861320869381099,\n        \"distinct_values\": 6261,\n        \"noise_level\": 0.6624632416291979,\n        \"plateau_ratio\": 0.0884071754729289,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_017_mean\",\n        \"std_dev\": \"ev_s2_col_017_stddev\",\n        \"distribution\": \"ev_s2_col_017_dist\",\n        \"dynamics\": \"ev_s2_col_017_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0020\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_017\",\n        \"col_052\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7181430132821028,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_018": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0021"
+    ],
+    "reasoning": "The statistics show a low standard deviation (1.728) and a plateau ratio of 0.0789, indicating a likely plateau. However, the dynamics summary suggests that the plateau separates a cohort, which is consistent with a manipulated variable. The lagged correlation with col_019 has a high correlation of 0.852, which supports the hypothesis that col_018 is a manipulated variable, leading other columns in the lagged correlations.",
+    "model_call_id": "call_0018",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_018\": {\n      \"statistics\": {\n        \"mean\": 66.00394001774481,\n        \"std_dev\": 1.728007651242871,\n        \"min_val\": 52.119,\n        \"max_val\": 74.699,\n        \"quantiles\": {\n          \"p25\": 65.43356985588609,\n          \"p50\": 65.84448031211386,\n          \"p75\": 66.43260942489114\n        },\n        \"skewness\": 0.21122197196203632,\n        \"distinct_values\": 20038,\n        \"noise_level\": 2.430425262610274,\n        \"plateau_ratio\": 0.07892641878669276,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_018_mean\",\n        \"std_dev\": \"ev_s2_col_018_stddev\",\n        \"distribution\": \"ev_s2_col_018_dist\",\n        \"dynamics\": \"ev_s2_col_018_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0021\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_018\",\n        \"col_019\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8522019834886648,\n        \"lag_samples\": 1,\n        \"leader\": \"col_018\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0022\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_018\",\n        \"col_050\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7434427631651063,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with high confidence, because it leads other columns in the lagged correlations. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_019": {
+    "inferred_role": "measured",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_019_mean",
+      "ev_s2_col_019_stddev",
+      "ev_s2_col_019_dist",
+      "ev_s2_col_019_dyn",
+      "ev_s3_0021",
+      "ev_s3_0023"
+    ],
+    "reasoning": "The high standard deviation (ev_s2_col_019_stddev) and skewness (ev_s2_col_019_dyn) suggest a high degree of variation in the data, which is consistent with a measured variable. The mean (ev_s2_col_019_mean) is not particularly high or low, and the distribution (ev_s2_col_019_dist) does not suggest any unusual patterns. The lagged correlations (ev_s3_0021 and ev_s3_0023) suggest a relationship between col_019 and other columns, which is consistent with a measured variable. The plateau ratio (ev_s2_col_019_plateau_ratio) is low, which suggests that the data does not exhibit any plateaus. Overall, the evidence supports a measured role with high confidence.",
+    "model_call_id": "call_0019",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_019\": {\n      \"statistics\": {\n        \"mean\": 246.08193041309053,\n        \"std_dev\": 67.13360141989212,\n        \"min_val\": -3.5372,\n        \"max_val\": 466.71,\n        \"quantiles\": {\n          \"p25\": 223.7131552170508,\n          \"p50\": 233.38185100387363,\n          \"p75\": 247.53284094461418\n        },\n        \"skewness\": 1.3541056568956589,\n        \"distinct_values\": 122563,\n        \"noise_level\": 95.1653768145607,\n        \"plateau_ratio\": 0.0753600782778865,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_019_mean\",\n        \"std_dev\": \"ev_s2_col_019_stddev\",\n        \"distribution\": \"ev_s2_col_019_dist\",\n        \"dynamics\": \"ev_s2_col_019_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0021\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_018\",\n        \"col_019\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8522019834886648,\n        \"lag_samples\": 1,\n        \"leader\": \"col_018\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0023\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_019\",\n        \"col_050\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7659384065313253,\n        \"lag_samples\": 1,\n        \"leader\": \"col_019\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with high confidence, because it leads other columns in the lagged correlations. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_020": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_020_mean",
+      "ev_s2_col_020_stddev",
+      "ev_s2_col_020_dist",
+      "ev_s3_0025",
+      "ev_s3_0024"
+    ],
+    "reasoning": "The distribution of column col_020 is roughly normal, as indicated by the skewness of 0.12437911134117643 (ev_s2_col_020_dist). The mean is 340.81898157141995 (ev_s2_col_020_mean), and the standard deviation is 11.137602793215041 (ev_s2_col_020_stddev). The column also has a high number of distinct values (13403), indicating a high level of variability. The lagged correlations with col_029 (ev_s3_0025) and col_023 (ev_s3_0024) indicate that col_020 is related to these columns, but the leader is concurrent, suggesting that col_020 is being measured in response to changes in these columns. The lagged correlation with col_038 (ev_s3_0026) is negative, which is consistent with the idea that col_020 is being measured, as it would be negatively affected by changes in col_038.",
+    "model_call_id": "call_0020",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_020\": {\n      \"statistics\": {\n        \"mean\": 340.81898157141995,\n        \"std_dev\": 11.137602793215041,\n        \"min_val\": 230.15,\n        \"max_val\": 400.71,\n        \"quantiles\": {\n          \"p25\": 339.52657739085464,\n          \"p50\": 341.3111817216616,\n          \"p75\": 342.9097978159914\n        },\n        \"skewness\": 0.12437911134117643,\n        \"distinct_values\": 13403,\n        \"noise_level\": 15.756070328290196,\n        \"plateau_ratio\": 0.07955479452054795,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_020_mean\",\n        \"std_dev\": \"ev_s2_col_020_stddev\",\n        \"distribution\": \"ev_s2_col_020_dist\",\n        \"dynamics\": \"ev_s2_col_020_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0026\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_038\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7748051365655811,\n        \"lag_samples\": 5,\n        \"leader\": \"col_038\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0025\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_029\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7740107815491061,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0024\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_023\"\n      ],\n      \"value\": {\n        \"correlation\": 0.724259425195186,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_021": {
+    "inferred_role": "Measured Variable (Sensor)",
+    "structural_class": "measured",
+    "confidence": "low",
+    "epistemic_status": "uncertain",
+    "evidence_ids": [
+      "ev_s2_col_021_mean",
+      "ev_s2_col_021_stddev"
+    ],
+    "reasoning": "The model returned 'structural_class', which is one of the field names in the request rather than a role, so no role was named here. The structural class below rests on the statistics, not on that answer. The data distribution is very narrow, with a low standard deviation of 1.2383031858801687, suggesting that the values are tightly clustered around the mean. The skewness is -5.941536432104341, which is high but not extremely high, and the quantiles suggest a nearly normal distribution. This is consistent with a 'measured' role, as the values are likely being recorded or reported from some external source rather than being manipulated or generated internally. The lack of plateaus and the plateau ratio of 0.0755529028049576 also support this interpretation.",
+    "model_call_id": "call_0021",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_021\": {\n      \"statistics\": {\n        \"mean\": 94.43661220737393,\n        \"std_dev\": 1.2383031858801687,\n        \"min_val\": 79.898,\n        \"max_val\": 100.28,\n        \"quantiles\": {\n          \"p25\": 94.44399628948321,\n          \"p50\": 94.58969512330631,\n          \"p75\": 94.73120694876935\n        },\n        \"skewness\": -5.941536432104341,\n        \"distinct_values\": 18924,\n        \"noise_level\": 1.7421293630169703,\n        \"plateau_ratio\": 0.0755529028049576,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_021_mean\",\n        \"std_dev\": \"ev_s2_col_021_stddev\",\n        \"distribution\": \"ev_s2_col_021_dist\",\n        \"dynamics\": \"ev_s2_col_021_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_022": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_022_mean",
+      "ev_s2_col_022_stddev"
+    ],
+    "reasoning": "The mean and standard deviation of the column are very low (1.317552148387086), indicating a narrow distribution. The skewness is also low (-3.091274118627279), which suggests that the data is not heavily skewed. The plateau ratio is also very low (0.07764657534246576), indicating that the column does not plateau. Additionally, the plateau separates cohort is true, which further supports the idea that this column is measured.",
+    "model_call_id": "call_0022",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_022\": {\n      \"statistics\": {\n        \"mean\": 77.06384846275124,\n        \"std_dev\": 1.317552148387086,\n        \"min_val\": 62.636,\n        \"max_val\": 83.808,\n        \"quantiles\": {\n          \"p25\": 77.00578520121122,\n          \"p50\": 77.27073100016682,\n          \"p75\": 77.51850694652303\n        },\n        \"skewness\": -3.091274118627279,\n        \"distinct_values\": 18426,\n        \"noise_level\": 1.8615686013355115,\n        \"plateau_ratio\": 0.07764657534246576,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_022_mean\",\n        \"std_dev\": \"ev_s2_col_022_stddev\",\n        \"distribution\": \"ev_s2_col_022_dist\",\n        \"dynamics\": \"ev_s2_col_022_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_023": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_023_mean",
+      "ev_s2_col_023_dist"
+    ],
+    "reasoning": "The distribution of col_023 (ev_s2_col_023_dist) is nearly Gaussian, with a mean of 32.02088473620535 and a standard deviation of 1.739639166182616. The skewness is -2.311914472047268, which is slightly negative but not extreme. This suggests that the data is primarily measured, as it lacks the extreme outliers and plateaus often associated with manipulated data. Furthermore, the relation lagged_correlation (ev_s3_0024) indicates a correlation of 0.724259425195186 with col_020, suggesting that col_023 is likely being measured concurrently with other variables.",
+    "model_call_id": "call_0023",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_023\": {\n      \"statistics\": {\n        \"mean\": 32.02088473620535,\n        \"std_dev\": 1.739639166182616,\n        \"min_val\": 23.225,\n        \"max_val\": 40.211,\n        \"quantiles\": {\n          \"p25\": 31.917853996450493,\n          \"p50\": 32.183331955329685,\n          \"p75\": 32.443807862959495\n        },\n        \"skewness\": -2.311914472047268,\n        \"distinct_values\": 15548,\n        \"noise_level\": 2.4697930212102435,\n        \"plateau_ratio\": 0.0898334637964775,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_023_mean\",\n        \"std_dev\": \"ev_s2_col_023_stddev\",\n        \"distribution\": \"ev_s2_col_023_dist\",\n        \"dynamics\": \"ev_s2_col_023_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0027\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_023\",\n        \"col_029\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7509844249597328,\n        \"lag_samples\": 2,\n        \"leader\": \"col_029\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0024\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_023\"\n      ],\n      \"value\": {\n        \"correlation\": 0.724259425195186,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_024": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_024_mean",
+      "ev_s2_col_024_stddev",
+      "ev_s2_col_024_dist"
+    ],
+    "reasoning": "The mean and standard deviation of the column are relatively low (8.87 and 0.23), suggesting a small range. The skewness is negative (-1.32), indicating a slightly asymmetric distribution. The minimum and maximum values are 7.44 and 10.35, respectively, with a quantile range of 8.80-9.00. These statistics indicate a relatively narrow and roughly symmetric distribution, consistent with a measured variable.",
+    "model_call_id": "call_0024",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_024\": {\n      \"statistics\": {\n        \"mean\": 8.870600310163262,\n        \"std_dev\": 0.22550692510278578,\n        \"min_val\": 7.4438,\n        \"max_val\": 10.345,\n        \"quantiles\": {\n          \"p25\": 8.795110162488223,\n          \"p50\": 8.887413731682194,\n          \"p75\": 8.97426761820126\n        },\n        \"skewness\": -1.3178492593101987,\n        \"distinct_values\": 24202,\n        \"noise_level\": 0.30028048687116843,\n        \"plateau_ratio\": 0.0835917808219178,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_024_mean\",\n        \"std_dev\": \"ev_s2_col_024_stddev\",\n        \"distribution\": \"ev_s2_col_024_dist\",\n        \"dynamics\": \"ev_s2_col_024_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_025": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0028",
+      "ev_s3_0017",
+      "ev_s3_0004",
+      "ev_s3_0013"
+    ],
+    "reasoning": "The column's high values in lagged correlations (evidence_id: ev_s3_0028, ev_s3_0017, ev_s3_0004, ev_s3_0013) suggest it is manipulated. However, the low plateau ratio and absence of plateaus (column_summaries.col_025.plateau_ratio and column_summaries.col_025.has_plateaus) contradict the high correlation values. These factors balance the confidence to 'medium'.",
+    "model_call_id": "call_0025",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_025\": {\n      \"statistics\": {\n        \"mean\": 26.77069742257205,\n        \"std_dev\": 1.8829537326990187,\n        \"min_val\": 16.909,\n        \"max_val\": 36.469,\n        \"quantiles\": {\n          \"p25\": 26.138522646275476,\n          \"p50\": 26.420412542098237,\n          \"p75\": 26.733538221099185\n        },\n        \"skewness\": 3.3261596718819613,\n        \"distinct_values\": 16932,\n        \"noise_level\": 2.6769745484896235,\n        \"plateau_ratio\": 0.09032791911285062,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_025_mean\",\n        \"std_dev\": \"ev_s2_col_025_stddev\",\n        \"distribution\": \"ev_s2_col_025_dist\",\n        \"dynamics\": \"ev_s2_col_025_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0028\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_025\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.786296558060287,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0017\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7714123607737844,\n        \"lag_samples\": 3,\n        \"leader\": \"col_025\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0004\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7490558201780345,\n        \"lag_samples\": 5,\n        \"leader\": \"col_025\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0013\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7334726003949833,\n        \"lag_samples\": 5,\n        \"leader\": \"col_025\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with high confidence, because it leads other columns in the lagged correlations. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_026": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_026_mean",
+      "ev_s2_col_026_stddev",
+      "ev_s2_col_026_dist"
+    ],
+    "reasoning": "The column's mean value of 6.871069122778515 has a relatively low standard deviation of 0.13503463853754355, suggesting a stable and consistent measurement. The distribution is slightly skewed with a skewness of -0.653574095981782, but this does not rule out a measured role. The plateau ratio is low at 0.08517123287671233, indicating that the column does not plateau more than its peers. Overall, these statistics support a measured role, but with some uncertainty due to the skewed distribution and low plateau ratio.",
+    "model_call_id": "call_0026",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_026\": {\n      \"statistics\": {\n        \"mean\": 6.871069122778515,\n        \"std_dev\": 0.13503463853754355,\n        \"min_val\": 5.8989,\n        \"max_val\": 7.8854,\n        \"quantiles\": {\n          \"p25\": 6.796482280679021,\n          \"p50\": 6.877160836201836,\n          \"p75\": 6.955732698279793\n        },\n        \"skewness\": -0.653574095981782,\n        \"distinct_values\": 15055,\n        \"noise_level\": 0.15554459112176675,\n        \"plateau_ratio\": 0.08517123287671233,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_026_mean\",\n        \"std_dev\": \"ev_s2_col_026_stddev\",\n        \"distribution\": \"ev_s2_col_026_dist\",\n        \"dynamics\": \"ev_s2_col_026_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_027": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_027_mean",
+      "ev_s2_col_027_stddev",
+      "ev_s2_col_027_dist",
+      "ev_s2_col_027_dyn"
+    ],
+    "reasoning": "The distribution of column 027 is relatively normal (skewness: -2.655), with a small standard deviation (0.994) and a plateau ratio of 0.089, indicating a steady increase. Additionally, the lagged correlation with column 033 is strong (0.705), suggesting a functional relationship. This is consistent with the column being measured, as it does not plateau more than its peers and exhibits a strong correlation with another column. However, the evidence is not decisive, and the low plateau ratio and noise level suggest some level of disturbance or fluctuation in the data, leading to a medium confidence.",
+    "model_call_id": "call_0027",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_027\": {\n      \"statistics\": {\n        \"mean\": 18.67646297155941,\n        \"std_dev\": 0.9945414885935747,\n        \"min_val\": 12.047,\n        \"max_val\": 26.922,\n        \"quantiles\": {\n          \"p25\": 18.518457763490968,\n          \"p50\": 18.77805000192207,\n          \"p75\": 19.03250138021908\n        },\n        \"skewness\": -2.6552648715988068,\n        \"distinct_values\": 12863,\n        \"noise_level\": 1.377578803699498,\n        \"plateau_ratio\": 0.0897839530332681,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_027_mean\",\n        \"std_dev\": \"ev_s2_col_027_stddev\",\n        \"distribution\": \"ev_s2_col_027_dist\",\n        \"dynamics\": \"ev_s2_col_027_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0029\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_027\",\n        \"col_033\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7059889439612724,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_028": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_028_mean",
+      "ev_s2_col_028_stddev",
+      "ev_s2_col_028_dist"
+    ],
+    "reasoning": "The column has a relatively low standard deviation (0.12681486996789626) and a skewness of -3.666860431526485, which suggests it may be measured. Additionally, the mean is 1.6286026131272082, which is close to the median (1.6546422913829077). However, the evidence is not strong enough to support a high confidence level, and other columns may lead to a different conclusion. The pre-analysis suggested 'measured' with low confidence, which aligns with this assessment.",
+    "model_call_id": "call_0028",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_028\": {\n      \"statistics\": {\n        \"mean\": 1.6286026131272082,\n        \"std_dev\": 0.12681486996789626,\n        \"min_val\": 0.8848,\n        \"max_val\": 2.1649,\n        \"quantiles\": {\n          \"p25\": 1.6287990220559014,\n          \"p50\": 1.6546422913829077,\n          \"p75\": 1.677470553388532\n        },\n        \"skewness\": -3.666860431526485,\n        \"distinct_values\": 18207,\n        \"noise_level\": 0.18068163523954198,\n        \"plateau_ratio\": 0.09078388780169602,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_028_mean\",\n        \"std_dev\": \"ev_s2_col_028_stddev\",\n        \"distribution\": \"ev_s2_col_028_dist\",\n        \"dynamics\": \"ev_s2_col_028_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_029": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0027"
+    ],
+    "reasoning": "The high correlation between col_029 and other columns, as seen in ev_s3_0027, suggests that col_029 is likely manipulated. However, the evidence is not conclusive, as seen in the statistics for col_029, which show a relatively low standard deviation and skewness. The instructions also suggest that a statistical pre-analysis suggests 'manipulated' with high confidence, but this is just one input and may not be accurate. Given the conflicting information, I am not confident enough to assign a 'high' confidence level.",
+    "model_call_id": "call_0029",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_029\": {\n      \"statistics\": {\n        \"mean\": 32.71400053946407,\n        \"std_dev\": 2.6191043295969605,\n        \"min_val\": 20.001,\n        \"max_val\": 45.408,\n        \"quantiles\": {\n          \"p25\": 32.62815351943147,\n          \"p50\": 32.94756447926501,\n          \"p75\": 33.25983328479342\n        },\n        \"skewness\": -2.2429857747690862,\n        \"distinct_values\": 22835,\n        \"noise_level\": 3.733390697242334,\n        \"plateau_ratio\": 0.08633352902804958,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_029_mean\",\n        \"std_dev\": \"ev_s2_col_029_stddev\",\n        \"distribution\": \"ev_s2_col_029_dist\",\n        \"dynamics\": \"ev_s2_col_029_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0025\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_029\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7740107815491061,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0027\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_023\",\n        \"col_029\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7509844249597328,\n        \"lag_samples\": 2,\n        \"leader\": \"col_029\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with high confidence, because it leads other columns in the lagged correlations. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_030": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_030_mean",
+      "ev_s2_col_030_stddev",
+      "ev_s2_col_030_dist"
+    ],
+    "reasoning": "The evidence suggests a normal distribution (ev_s2_col_030_dist) with a low standard deviation (ev_s2_col_030_stddev), indicating a consistent and precise measurement. The mean value is 13.789 (ev_s2_col_030_mean), which is neither extremely high nor low, further supporting the idea of a measured variable.",
+    "model_call_id": "call_0030",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_030\": {\n      \"statistics\": {\n        \"mean\": 13.789649326158315,\n        \"std_dev\": 0.2892214707725567,\n        \"min_val\": 11.786,\n        \"max_val\": 15.823,\n        \"quantiles\": {\n          \"p25\": 13.711307669701924,\n          \"p50\": 13.813481806275064,\n          \"p75\": 13.906814722483059\n        },\n        \"skewness\": -1.071840957685594,\n        \"distinct_values\": 3393,\n        \"noise_level\": 0.3929194597149894,\n        \"plateau_ratio\": 0.09704977168949772,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_030_mean\",\n        \"std_dev\": \"ev_s2_col_030_stddev\",\n        \"distribution\": \"ev_s2_col_030_dist\",\n        \"dynamics\": \"ev_s2_col_030_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_031": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s3_0018",
+      "ev_s3_0028",
+      "ev_s3_0005",
+      "ev_s3_0014"
+    ],
+    "reasoning": "The column has a high correlation with other columns (0.8139, 0.7863, 0.7836, 0.7647), which suggests it may be manipulated. However, the statistics (mean: 24.56, std_dev: 2.89, skewness: 3.51) do not strongly support this conclusion, and the distribution (p25: 23.67, p50: 24.02, p75: 24.42) appears to be relatively normal. Furthermore, the plateaus in the data are not strongly indicative of manipulation (plateau_ratio: 0.0865, has_plateaus: false). Overall, the evidence is thin and does not strongly support a confident answer, so I am assuming a manipulated role with low confidence.",
+    "model_call_id": "call_0031",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_031\": {\n      \"statistics\": {\n        \"mean\": 24.563410858448744,\n        \"std_dev\": 2.8925794197882877,\n        \"min_val\": 10.296,\n        \"max_val\": 39.239,\n        \"quantiles\": {\n          \"p25\": 23.672951043961223,\n          \"p50\": 24.022683285335905,\n          \"p75\": 24.419752237740106\n        },\n        \"skewness\": 3.5133429027281404,\n        \"distinct_values\": 24985,\n        \"noise_level\": 4.122689937044333,\n        \"plateau_ratio\": 0.08654494455316374,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_031_mean\",\n        \"std_dev\": \"ev_s2_col_031_stddev\",\n        \"distribution\": \"ev_s2_col_031_dist\",\n        \"dynamics\": \"ev_s2_col_031_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0018\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8139015358757378,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0028\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_025\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.786296558060287,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0005\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7835975903693158,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0014\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.764719414851895,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with high confidence, because it leads other columns in the lagged correlations. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_032": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_032_mean",
+      "ev_s2_col_032_stddev",
+      "ev_s2_col_032_dist"
+    ],
+    "reasoning": "The mean is relatively high (1.248) and the standard deviation is relatively low (0.149), indicating a relatively stable and consistent value. The skewness is slightly negative (-0.865), suggesting a slight asymmetry in the distribution. Additionally, the distribution has a plateau, which is a characteristic of measured variables. This evidence supports the role of 'measured', but the relatively low noise level (0.184) and plateau ratio (0.079) suggest that the evidence is not overwhelming, hence the medium confidence.",
+    "model_call_id": "call_0032",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_032\": {\n      \"statistics\": {\n        \"mean\": 1.2480066550697466,\n        \"std_dev\": 0.14949362311453826,\n        \"min_val\": 0.24694,\n        \"max_val\": 2.6509,\n        \"quantiles\": {\n          \"p25\": 1.176117790247749,\n          \"p50\": 1.2562461155392077,\n          \"p75\": 1.3341808546593072\n        },\n        \"skewness\": -0.8651979919631182,\n        \"distinct_values\": 63015,\n        \"noise_level\": 0.18413400091435517,\n        \"plateau_ratio\": 0.07922361382909328,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_032_mean\",\n        \"std_dev\": \"ev_s2_col_032_stddev\",\n        \"distribution\": \"ev_s2_col_032_dist\",\n        \"dynamics\": \"ev_s2_col_032_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_033": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_033_mean",
+      "ev_s2_col_033_stddev",
+      "ev_s2_col_033_dist"
+    ],
+    "reasoning": "The column has a relatively low standard deviation (1.3952275709025606) and a mean that is close to the median (18.422828418956108 and 18.57396718724938, respectively), suggesting a narrow and symmetric distribution. Additionally, the skewness is negative (-2.7560711631741386), which could indicate a normal distribution. Furthermore, there is no indication of plateaus (has_plateaus is false). This suggests that the column is likely to be a measured quantity, as it does not exhibit the characteristics of a manipulated variable (e.g. outliers, skewness).",
+    "model_call_id": "call_0033",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_033\": {\n      \"statistics\": {\n        \"mean\": 18.422828418956108,\n        \"std_dev\": 1.3952275709025606,\n        \"min_val\": 9.6631,\n        \"max_val\": 29.76,\n        \"quantiles\": {\n          \"p25\": 18.273062345901867,\n          \"p50\": 18.57396718724938,\n          \"p75\": 18.86358026130071\n        },\n        \"skewness\": -2.7560711631741386,\n        \"distinct_values\": 17538,\n        \"noise_level\": 1.9455677400606342,\n        \"plateau_ratio\": 0.0847764514024788,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_033_mean\",\n        \"std_dev\": \"ev_s2_col_033_stddev\",\n        \"distribution\": \"ev_s2_col_033_dist\",\n        \"dynamics\": \"ev_s2_col_033_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0029\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_027\",\n        \"col_033\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7059889439612724,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_034": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_034_mean",
+      "ev_s2_col_034_stddev",
+      "ev_s2_col_034_dist"
+    ],
+    "reasoning": "The mean of 2.2221433227660827 and standard deviation of 0.1729272638093051 suggest a relatively consistent distribution (low noise_level: 0.24774684930081367). The distribution is not platykurtic (skewness: -3.488440320973777), which supports the conclusion that the data is measured, as it is not likely to be a manipulated dataset with a platykurtic distribution. The evidence also suggests that the data does not plateau (has_plateaus: false), which further supports the conclusion that the data is measured.",
+    "model_call_id": "call_0034",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_034\": {\n      \"statistics\": {\n        \"mean\": 2.2221433227660827,\n        \"std_dev\": 0.1729272638093051,\n        \"min_val\": 1.2549,\n        \"max_val\": 2.973,\n        \"quantiles\": {\n          \"p25\": 2.2328656037274737,\n          \"p50\": 2.2610077187424364,\n          \"p75\": 2.285682424779301\n        },\n        \"skewness\": -3.488440320973777,\n        \"distinct_values\": 15231,\n        \"noise_level\": 0.24774684930081367,\n        \"plateau_ratio\": 0.08796014350945858,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_034_mean\",\n        \"std_dev\": \"ev_s2_col_034_stddev\",\n        \"distribution\": \"ev_s2_col_034_dist\",\n        \"dynamics\": \"ev_s2_col_034_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_035": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0010",
+      "ev_s3_0006",
+      "ev_s3_0019",
+      "ev_s3_0015"
+    ],
+    "reasoning": "The statistics of column col_035 show a normal distribution with low skewness and a high plateau ratio, indicating that it may be manipulated. However, the most compelling evidence is the lagged correlations, where col_035 leads other columns in 4 out of 4 relations, suggesting that it is the manipulated column. This conclusion is supported by the statistical pre-analysis, which also suggested 'manipulated' as the most likely role.",
+    "model_call_id": "call_0035",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_035\": {\n      \"statistics\": {\n        \"mean\": 4.7761422821656385,\n        \"std_dev\": 0.3430050671176461,\n        \"min_val\": 3.0393,\n        \"max_val\": 6.4972,\n        \"quantiles\": {\n          \"p25\": 4.773632426601484,\n          \"p50\": 4.841285817663434,\n          \"p75\": 4.904126843932386\n        },\n        \"skewness\": -2.3599782855376543,\n        \"distinct_values\": 28172,\n        \"noise_level\": 0.4834963504243402,\n        \"plateau_ratio\": 0.08127090671885193,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_035_mean\",\n        \"std_dev\": \"ev_s2_col_035_stddev\",\n        \"distribution\": \"ev_s2_col_035_dist\",\n        \"dynamics\": \"ev_s2_col_035_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0010\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8285606407708822,\n        \"lag_samples\": 3,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0006\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7908212059332609,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0019\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7826363982948007,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0015\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7786483496200125,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with high confidence, because it leads other columns in the lagged correlations. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_036": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_036_mean",
+      "ev_s2_col_036_dist"
+    ],
+    "reasoning": "The column's mean value of 2.263345127292798 has a relatively low standard deviation of 0.18173592848983866, indicating a consistent value. Additionally, the skewness is -2.3113973245865442, which suggests a slight skew to the left, but the distribution is still generally symmetric. The fact that the plateau ratio is 0.08182576647097195 and the column has plateaus separates cohort true also supports this conclusion.",
+    "model_call_id": "call_0036",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_036\": {\n      \"statistics\": {\n        \"mean\": 2.263345127292798,\n        \"std_dev\": 0.18173592848983866,\n        \"min_val\": 1.3402,\n        \"max_val\": 3.1193,\n        \"quantiles\": {\n          \"p25\": 2.2449943971422535,\n          \"p50\": 2.2959349828915903,\n          \"p75\": 2.3436625393862287\n        },\n        \"skewness\": -2.3113973245865442,\n        \"distinct_values\": 15730,\n        \"noise_level\": 0.2533537904833766,\n        \"plateau_ratio\": 0.08182576647097195,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_036_mean\",\n        \"std_dev\": \"ev_s2_col_036_stddev\",\n        \"distribution\": \"ev_s2_col_036_dist\",\n        \"dynamics\": \"ev_s2_col_036_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_037": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "low",
+    "epistemic_status": "uncertain",
+    "evidence_ids": [
+      "ev_s2_col_037_mean"
+    ],
+    "reasoning": "The mean value of the column is very close to zero (0.017869074754930978), which is not indicative of a manipulated or undetermined column. However, the fact that the mean is not zero, but rather a small positive value, combined with the skewness of -0.008176532098178282, suggests that the column may not be completely random or uniform. This is not conclusive evidence, but it is the best evidence I have to suggest that the column is measured, although with low confidence.",
+    "model_call_id": "call_0037",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_037\": {\n      \"statistics\": {\n        \"mean\": 0.017869074754930978,\n        \"std_dev\": 0.010197328496754223,\n        \"min_val\": -0.030974,\n        \"max_val\": 0.066926,\n        \"quantiles\": {\n          \"p25\": 0.010989463459408816,\n          \"p50\": 0.017877847959960592,\n          \"p75\": 0.024780818348125684\n        },\n        \"skewness\": -0.008176532098178282,\n        \"distinct_values\": 223331,\n        \"noise_level\": 0.010013675608936368,\n        \"plateau_ratio\": 0.08835616438356164,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_037_mean\",\n        \"std_dev\": \"ev_s2_col_037_stddev\",\n        \"distribution\": \"ev_s2_col_037_dist\",\n        \"dynamics\": \"ev_s2_col_037_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_038": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "low",
+    "epistemic_status": "uncertain",
+    "evidence_ids": [
+      "ev_s2_col_038_mean",
+      "ev_s2_col_038_stddev",
+      "ev_s3_0026"
+    ],
+    "reasoning": "The pre-analysis suggests 'manipulated' with high confidence due to leading other columns in lagged correlations. However, the distribution of column_038 is fairly narrow (std_dev=0.0916342509917962) and skewed (skewness=-0.4622037833747397), which might be more typical of a measured variable. Furthermore, the lagged correlation with col_020 is strong (correlation=-0.7748051365655811), but does not necessarily imply manipulation.",
+    "model_call_id": "call_0038",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_038\": {\n      \"statistics\": {\n        \"mean\": 0.8364804510666133,\n        \"std_dev\": 0.0916342509917962,\n        \"min_val\": 0.38907,\n        \"max_val\": 1.7097,\n        \"quantiles\": {\n          \"p25\": 0.8183503045607663,\n          \"p50\": 0.8358871158616522,\n          \"p75\": 0.853959308313829\n        },\n        \"skewness\": -0.4622037833747397,\n        \"distinct_values\": 61903,\n        \"noise_level\": 0.1288488561614455,\n        \"plateau_ratio\": 0.085108871493803,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_038_mean\",\n        \"std_dev\": \"ev_s2_col_038_stddev\",\n        \"distribution\": \"ev_s2_col_038_dist\",\n        \"dynamics\": \"ev_s2_col_038_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0026\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_038\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7748051365655811,\n        \"lag_samples\": 5,\n        \"leader\": \"col_038\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'manipulated' with high confidence, because it leads other columns in the lagged correlations. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_039": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_039_mean",
+      "ev_s2_col_039_stddev",
+      "ev_s2_col_039_dist"
+    ],
+    "reasoning": "The distribution of the column values is relatively normal (mean: 0.097, std_dev: 0.013), with a low skewness (-0.603). This is consistent with a measured variable, which is typically assumed to have a normal distribution. However, the statistics do not provide strong evidence for this conclusion, hence the low confidence.",
+    "model_call_id": "call_0039",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_039\": {\n      \"statistics\": {\n        \"mean\": 0.09734161446476505,\n        \"std_dev\": 0.013301296173208793,\n        \"min_val\": 0.020311,\n        \"max_val\": 0.17369,\n        \"quantiles\": {\n          \"p25\": 0.09009470145804596,\n          \"p50\": 0.09820936604147144,\n          \"p75\": 0.10582977831940983\n        },\n        \"skewness\": -0.6029620130178578,\n        \"distinct_values\": 62907,\n        \"noise_level\": 0.015779176698399733,\n        \"plateau_ratio\": 0.08839054142204827,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_039_mean\",\n        \"std_dev\": \"ev_s2_col_039_stddev\",\n        \"distribution\": \"ev_s2_col_039_dist\",\n        \"dynamics\": \"ev_s2_col_039_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_040": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_040_mean",
+      "ev_s2_col_040_stddev",
+      "ev_s2_col_040_dist"
+    ],
+    "reasoning": "The column has a low standard deviation (0.5857630866731486) and a low noise level (0.6401572864120928), indicating a consistent and reliable measurement. The mean (53.73542711644167) and median (53.36354112942647, 53.73552660161664) are similar, suggesting a normal distribution (ev_s2_col_040_dist). The skewness is close to 0 (-0.09334374234392441), further supporting a normal distribution. The plateau threshold is low (0.2073100782778865), indicating a consistent signal without plateaus.",
+    "model_call_id": "call_0040",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_040\": {\n      \"statistics\": {\n        \"mean\": 53.73542711644167,\n        \"std_dev\": 0.5857630866731486,\n        \"min_val\": 50.03,\n        \"max_val\": 57.124,\n        \"quantiles\": {\n          \"p25\": 53.36354112942647,\n          \"p50\": 53.73552660161664,\n          \"p75\": 54.11426498062872\n        },\n        \"skewness\": -0.09334374234392441,\n        \"distinct_values\": 5453,\n        \"noise_level\": 0.6401572864120928,\n        \"plateau_ratio\": 0.10385499021526419,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_040_mean\",\n        \"std_dev\": \"ev_s2_col_040_stddev\",\n        \"distribution\": \"ev_s2_col_040_dist\",\n        \"dynamics\": \"ev_s2_col_040_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_041": {
+    "inferred_role": "Measured Variable (Sensor)",
+    "structural_class": "measured",
+    "confidence": "low",
+    "epistemic_status": "uncertain",
+    "evidence_ids": [
+      "ev_s2_col_041_mean",
+      "ev_s2_col_041_stddev",
+      "ev_s2_col_041_dist"
+    ],
+    "reasoning": "The model returned 'structural_class', which is one of the field names in the request rather than a role, so no role was named here. The structural class below rests on the statistics, not on that answer. The statistics show a low noise level (0.6886389017782545), which suggests that the column is not randomly generated. However, the plateau ratio is also low (0.10109562948467057), which could indicate that the column does not plateau significantly. Furthermore, the skewness is close to 0 (-0.03617807343581997), which could suggest that the column is more or less symmetric. However, I do not have enough evidence to confidently infer the role of the column, and therefore I must resort to making an assumption. Additionally, the mean and standard deviation are relatively consistent (mean 43.80436072929605, std_dev 0.6115602218517477), which could suggest that the column is measured. However, I do not have enough evidence to support this with high confidence.",
+    "model_call_id": "call_0041",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_041\": {\n      \"statistics\": {\n        \"mean\": 43.80436072929605,\n        \"std_dev\": 0.6115602218517477,\n        \"min_val\": 40.024,\n        \"max_val\": 47.344,\n        \"quantiles\": {\n          \"p25\": 43.42500849064295,\n          \"p50\": 43.815119954951015,\n          \"p75\": 44.189394461779145\n        },\n        \"skewness\": -0.03617807343581997,\n        \"distinct_values\": 5705,\n        \"noise_level\": 0.6886389017782545,\n        \"plateau_ratio\": 0.10109562948467057,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_041_mean\",\n        \"std_dev\": \"ev_s2_col_041_stddev\",\n        \"distribution\": \"ev_s2_col_041_dist\",\n        \"dynamics\": \"ev_s2_col_041_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_042": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_042_mean",
+      "ev_s2_col_042_stddev"
+    ],
+    "reasoning": "The high mean and low standard deviation suggest a single, well-defined value. The distribution is relatively flat, with a skewness of 6.2988412265976175, which is not unusually high. The plateau ratio is 0.08969941291585128, indicating that the column does not plateau significantly. The plateau separates cohort, which suggests that the column is indeed measured. The mean value of 63.85588841585065 is also relatively high, indicating that the column is not manipulated.",
+    "model_call_id": "call_0042",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_042\": {\n      \"statistics\": {\n        \"mean\": 63.85588841585065,\n        \"std_dev\": 4.755545631379111,\n        \"min_val\": 28.116,\n        \"max_val\": 100.0,\n        \"quantiles\": {\n          \"p25\": 62.63830994748219,\n          \"p50\": 63.089600578695034,\n          \"p75\": 63.56437525392958\n        },\n        \"skewness\": 6.2988412265976175,\n        \"distinct_values\": 45344,\n        \"noise_level\": 6.686223127047166,\n        \"plateau_ratio\": 0.08969941291585128,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_042_mean\",\n        \"std_dev\": \"ev_s2_col_042_stddev\",\n        \"distribution\": \"ev_s2_col_042_dist\",\n        \"dynamics\": \"ev_s2_col_042_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_043": {
+    "inferred_role": "undetermined",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_043_mean",
+      "ev_s2_col_043_stddev",
+      "ev_s2_col_043_dist",
+      "ev_s2_col_043_dyn"
+    ],
+    "reasoning": "The distribution of the column is highly skewed (skewness: 5.115454148749192), which suggests that it may not be normally distributed. The presence of a plateau (plateau_ratio: 0.08743365949119374) and the fact that it separates cohorts (plateau_separates_cohort: true) indicate that the column may be manipulated or controlled. However, the mean and standard deviation are not unusually high or low, and there is no evidence of a clear threshold or plateau. Therefore, I am unable to confidently determine the functional role of the column, and I assume it to be undetermined for now.",
+    "model_call_id": "call_0043",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_043\": {\n      \"statistics\": {\n        \"mean\": 54.563976663497336,\n        \"std_dev\": 6.753466723340139,\n        \"min_val\": 7.3484,\n        \"max_val\": 100.0,\n        \"quantiles\": {\n          \"p25\": 53.537036683405745,\n          \"p50\": 53.9780101236741,\n          \"p75\": 54.42788446888238\n        },\n        \"skewness\": 5.115454148749192,\n        \"distinct_values\": 67098,\n        \"noise_level\": 9.60325987901163,\n        \"plateau_ratio\": 0.08743365949119374,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_043_mean\",\n        \"std_dev\": \"ev_s2_col_043_stddev\",\n        \"distribution\": \"ev_s2_col_043_dist\",\n        \"dynamics\": \"ev_s2_col_043_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_044": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_044_mean",
+      "ev_s2_col_044_stddev",
+      "ev_s2_col_044_dist"
+    ],
+    "reasoning": "The evidence suggests that the column is measured because it has a high standard deviation (28.8), indicating a spread of values, and a skewness of 2.42, which is higher than expected. The mean value is 29.48, and the distribution is not perfectly normal, as indicated by the quantiles (p25: 22.25, p50: 25.08, p75: 28.30). The plateau ratio is low (0.078), and the column does not plateau (has_plateaus: false). These statistics are consistent with a measured column, which typically has a high degree of variation and does not plateau.",
+    "model_call_id": "call_0044",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_044\": {\n      \"statistics\": {\n        \"mean\": 29.480435721233317,\n        \"std_dev\": 19.395444251158217,\n        \"min_val\": -0.35866,\n        \"max_val\": 100.21,\n        \"quantiles\": {\n          \"p25\": 22.252397173806006,\n          \"p50\": 25.075566363864628,\n          \"p75\": 28.295955099741693\n        },\n        \"skewness\": 2.422075414521621,\n        \"distinct_values\": 230849,\n        \"noise_level\": 27.604263438816947,\n        \"plateau_ratio\": 0.07811748206131768,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_044_mean\",\n        \"std_dev\": \"ev_s2_col_044_stddev\",\n        \"distribution\": \"ev_s2_col_044_dist\",\n        \"dynamics\": \"ev_s2_col_044_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_045": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_045_mean",
+      "ev_s2_col_045_stddev",
+      "ev_s2_col_045_dist"
+    ],
+    "reasoning": "The column's mean (63.46107132857007) and standard deviation (8.219345479948313) suggest a relatively stable distribution, as indicated by a low noise level (11.46693150215239) and a plateau threshold (0.2073100782778865) that separates the cohort. However, the skewness (3.1017825420920135) is relatively high, which may indicate some degree of manipulation or disturbance. Given the uncertainty in the data, I'm inclined to infer a 'measured' role, but with a medium confidence level.",
+    "model_call_id": "call_0045",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_045\": {\n      \"statistics\": {\n        \"mean\": 63.46107132857007,\n        \"std_dev\": 8.219345479948313,\n        \"min_val\": -0.0052226,\n        \"max_val\": 100.02,\n        \"quantiles\": {\n          \"p25\": 60.350088981340875,\n          \"p50\": 61.48402459074343,\n          \"p75\": 62.75743035535771\n        },\n        \"skewness\": 3.1017825420920135,\n        \"distinct_values\": 63452,\n        \"noise_level\": 11.46693150215239,\n        \"plateau_ratio\": 0.07631213307240704,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_045_mean\",\n        \"std_dev\": \"ev_s2_col_045_stddev\",\n        \"distribution\": \"ev_s2_col_045_dist\",\n        \"dynamics\": \"ev_s2_col_045_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_046": {
+    "inferred_role": "manipulated",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_046_dyn"
+    ],
+    "reasoning": "The high skewness (5.125338999264526) and plateau_ratio (0.0747279843444227) indicate that the distribution is not uniform. The presence of a plateau (has_plateaus: false) and the plateau_threshold (0.2073100782778865) suggest that the column is likely manipulated.",
+    "model_call_id": "call_0046",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_046\": {\n      \"statistics\": {\n        \"mean\": 23.125057857112292,\n        \"std_dev\": 11.922722381411205,\n        \"min_val\": -0.10688,\n        \"max_val\": 100.11,\n        \"quantiles\": {\n          \"p25\": 21.528289589986024,\n          \"p50\": 22.140517387267018,\n          \"p75\": 22.69424418614107\n        },\n        \"skewness\": 5.125338999264526,\n        \"distinct_values\": 97020,\n        \"noise_level\": 16.85072795935444,\n        \"plateau_ratio\": 0.0747279843444227,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_046_mean\",\n        \"std_dev\": \"ev_s2_col_046_stddev\",\n        \"distribution\": \"ev_s2_col_046_dist\",\n        \"dynamics\": \"ev_s2_col_046_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_047": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_047_mean",
+      "ev_s2_col_047_stddev",
+      "ev_s2_col_047_dist"
+    ],
+    "reasoning": "The column has a relatively low noise level (18.23) and a plateau threshold of 0.21, indicating some degree of stability. However, the skewness (0.27) and plateau ratio (0.08) suggest that the distribution may not be perfectly normal. The lagged correlation with col_010 is 0.89, but this is not strong evidence for measured or manipulated roles. The statistical pre-analysis suggested measured with low confidence, but our analysis suggests a moderate confidence in this classification.",
+    "model_call_id": "call_0047",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_047\": {\n      \"statistics\": {\n        \"mean\": 39.50934852152138,\n        \"std_dev\": 12.795152639818788,\n        \"min_val\": 0.0,\n        \"max_val\": 97.528,\n        \"quantiles\": {\n          \"p25\": 38.387902791390424,\n          \"p50\": 39.94586088242154,\n          \"p75\": 41.38850166133177\n        },\n        \"skewness\": 0.27273083444105933,\n        \"distinct_values\": 189224,\n        \"noise_level\": 18.230909343696116,\n        \"plateau_ratio\": 0.07570841487279843,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_047_mean\",\n        \"std_dev\": \"ev_s2_col_047_stddev\",\n        \"distribution\": \"ev_s2_col_047_dist\",\n        \"dynamics\": \"ev_s2_col_047_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0007\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_010\",\n        \"col_047\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8892471384010953,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_048": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_048_mean",
+      "ev_s2_col_048_dist"
+    ],
+    "reasoning": "The column's mean is very close to its median (38.0573859 vs 38.1190993), indicating a relatively normal distribution. The standard deviation is relatively low (2.9425253), suggesting that the values are not spread out too much. Additionally, the skewness is very low (0.0149020493), indicating that the distribution is not heavily skewed. The column's distribution is further supported by the relation summary, which shows a high lagged correlation (0.9999999538519262) with another column, indicating that the values are highly related to each other.",
+    "model_call_id": "call_0048",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_048\": {\n      \"statistics\": {\n        \"mean\": 38.057385906130975,\n        \"std_dev\": 2.942525306028853,\n        \"min_val\": 22.288,\n        \"max_val\": 54.23,\n        \"quantiles\": {\n          \"p25\": 36.021391542282124,\n          \"p50\": 38.11909925280265,\n          \"p75\": 39.977995734506166\n        },\n        \"skewness\": 0.014902049323446912,\n        \"distinct_values\": 23169,\n        \"noise_level\": 2.8373664777691547,\n        \"plateau_ratio\": 0.07847488584474886,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_048_mean\",\n        \"std_dev\": \"ev_s2_col_048_stddev\",\n        \"distribution\": \"ev_s2_col_048_dist\",\n        \"dynamics\": \"ev_s2_col_048_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0011\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_012\",\n        \"col_048\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9999999538519262,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_049": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_049_mean",
+      "ev_s2_col_049_stddev",
+      "ev_s2_col_049_dist"
+    ],
+    "reasoning": "The distribution of col_049 is approximately normal (skewness: 0.079, evidence_id: ev_s2_col_049_dist), and the noise level is relatively low (noise_level: 2.29, evidence_id: ev_s2_col_049_stddev). This suggests that col_049 is a measured column, as measured columns tend to have a normal distribution and low noise level. Additionally, the mean and standard deviation of col_049 are relatively stable (mean: 46.43, stddev: 2.35, evidence_id: ev_s2_col_049_mean), indicating that it is not subject to manipulation or other external factors.",
+    "model_call_id": "call_0049",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_049\": {\n      \"statistics\": {\n        \"mean\": 46.43279241474045,\n        \"std_dev\": 2.3477959988738175,\n        \"min_val\": 33.369,\n        \"max_val\": 60.216,\n        \"quantiles\": {\n          \"p25\": 44.863627356644656,\n          \"p50\": 46.3314439389926,\n          \"p75\": 48.02452205743188\n        },\n        \"skewness\": 0.07924809487169882,\n        \"distinct_values\": 18990,\n        \"noise_level\": 2.2902265244135562,\n        \"plateau_ratio\": 0.08032961513372472,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_049_mean\",\n        \"std_dev\": \"ev_s2_col_049_stddev\",\n        \"distribution\": \"ev_s2_col_049_dist\",\n        \"dynamics\": \"ev_s2_col_049_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0016\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_015\",\n        \"col_049\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9999999519250008,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_050": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_050_mean",
+      "ev_s2_col_050_stddev",
+      "ev_s2_col_050_dist",
+      "ev_s2_col_050_dyn"
+    ],
+    "reasoning": "The column's distribution is unimodal (skewness: 0.7752975669574915) with a relatively low noise level (24.295604577450266) and a plateau ratio of 0.07452328767123288, indicating a relatively stable and consistent pattern. Additionally, the column's mean and standard deviation are not extreme (mean: 49.87649130722751, std_dev: 17.14415049017605), which further supports the idea that this column is measured. Moreover, there is a lagged correlation of 0.7659384065313253 between col_019 and col_050, indicating that col_050 is likely a measured variable that is correlated with col_019.",
+    "model_call_id": "call_0050",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_050\": {\n      \"statistics\": {\n        \"mean\": 49.87649130722751,\n        \"std_dev\": 17.14415049017605,\n        \"min_val\": -0.68342,\n        \"max_val\": 100.58,\n        \"quantiles\": {\n          \"p25\": 45.466039325154334,\n          \"p50\": 48.04248183262289,\n          \"p75\": 51.413927353992186\n        },\n        \"skewness\": 0.7752975669574915,\n        \"distinct_values\": 184310,\n        \"noise_level\": 24.295604577450266,\n        \"plateau_ratio\": 0.07452328767123288,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_050_mean\",\n        \"std_dev\": \"ev_s2_col_050_stddev\",\n        \"distribution\": \"ev_s2_col_050_dist\",\n        \"dynamics\": \"ev_s2_col_050_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0023\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_019\",\n        \"col_050\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7659384065313253,\n        \"lag_samples\": 1,\n        \"leader\": \"col_019\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0022\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_018\",\n        \"col_050\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7434427631651063,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_051": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_051_mean",
+      "ev_s2_col_051_stddev",
+      "ev_s2_col_051_dist"
+    ],
+    "reasoning": "The column's mean is centered around 41.96, with a relatively low standard deviation of 11.00. While the skewness is high at 2.23, indicating some asymmetry in the distribution, the quantiles suggest a fairly normal distribution. The presence of a plateau, indicated by a plateau ratio of 0.07 and a plateau threshold of 0.21, supports the idea that the column is measured. The fact that the plateau separates the cohort adds further evidence to this conclusion.",
+    "model_call_id": "call_0051",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_051\": {\n      \"statistics\": {\n        \"mean\": 41.96304970126214,\n        \"std_dev\": 11.003192691499194,\n        \"min_val\": -0.51565,\n        \"max_val\": 100.61,\n        \"quantiles\": {\n          \"p25\": 40.61296411763889,\n          \"p50\": 41.18921543178203,\n          \"p75\": 41.84915751286867\n        },\n        \"skewness\": 2.2267119673418057,\n        \"distinct_values\": 193879,\n        \"noise_level\": 15.559412381489507,\n        \"plateau_ratio\": 0.07174807566862361,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_051_mean\",\n        \"std_dev\": \"ev_s2_col_051_stddev\",\n        \"distribution\": \"ev_s2_col_051_dist\",\n        \"dynamics\": \"ev_s2_col_051_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  },
+  "col_052": {
+    "inferred_role": "measured",
+    "structural_class": "measured",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_052_mean",
+      "ev_s2_col_052_stddev",
+      "ev_s2_col_052_dist"
+    ],
+    "reasoning": "The mean of col_052 is 19.16 (ev_s2_col_052_mean), which is close to the median (18.26, ev_s2_col_052_dist). The standard deviation is 7.64 (ev_s2_col_052_stddev), which is relatively small compared to the range (max 100.01, min -0.007). The skewness is 6.92, indicating a highly asymmetric distribution. The plateau ratio is 0.08 (ev_s2_col_052_plateau_ratio), suggesting that col_052 does not plateau significantly. Furthermore, there is a lagged correlation of -0.72 between col_052 and col_017 (ev_s3_0020), indicating that col_052 is likely a response variable. Therefore, I infer that col_052 is measured.",
+    "model_call_id": "call_0052",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_052\": {\n      \"statistics\": {\n        \"mean\": 19.15970678079607,\n        \"std_dev\": 7.642518592848267,\n        \"min_val\": -0.0067742,\n        \"max_val\": 100.01,\n        \"quantiles\": {\n          \"p25\": 17.12392285767042,\n          \"p50\": 18.26370168758467,\n          \"p75\": 19.480075757992342\n        },\n        \"skewness\": 6.9200109580016305,\n        \"distinct_values\": 133491,\n        \"noise_level\": 10.68181358603318,\n        \"plateau_ratio\": 0.08123320287018918,\n        \"has_plateaus\": false,\n        \"plateau_separates_cohort\": true,\n        \"plateau_threshold\": 0.2073100782778865\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_052_mean\",\n        \"std_dev\": \"ev_s2_col_052_stddev\",\n        \"distribution\": \"ev_s2_col_052_dist\",\n        \"dynamics\": \"ev_s2_col_052_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0020\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_017\",\n        \"col_052\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7181430132821028,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. A statistical pre-analysis suggests 'measured' with low confidence, because it neither leads other columns nor plateaus more than its peers. Weigh that against the statistics and relations above; it is one input, not the answer, and disagreeing with it is a valid response.\"\n}"
+  }
+}

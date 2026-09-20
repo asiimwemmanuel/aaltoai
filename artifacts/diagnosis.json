@@ -1,0 +1,277 @@
+[
+  {
+    "diagnosis_id": "diag_sim147_run41_ev01",
+    "drift_event_id": "sim147_run41_ev01",
+    "timestamp": "2026-09-20T08:20:38Z",
+    "root_cause_hypothesis": "Abrupt shift starting at sample 186 (detected at sample 190). Most responsible signals: col_046 (measured) 39.9% below normal; col_020 (measured) 9.7% below normal; col_007 (measured) 7.2% unspecified.",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "supporting_evidence": [
+      "ev_dq_simulationRun=2.0_timeliness",
+      "ev_dq_simulationRun=2.0_col_001_range",
+      "ev_dq_simulationRun=2.0_col_002_range",
+      "ev_dq_simulationRun=2.0_col_003_range",
+      "ev_dq_simulationRun=2.0_col_004_range",
+      "ev_dq_simulationRun=2.0_col_005_range",
+      "ev_dq_simulationRun=2.0_col_006_range",
+      "ev_dq_simulationRun=2.0_col_008_range",
+      "ev_dq_simulationRun=2.0_col_009_range",
+      "ev_dq_simulationRun=2.0_col_010_range",
+      "ev_dq_simulationRun=2.0_col_011_range",
+      "ev_dq_simulationRun=2.0_col_014_range",
+      "ev_dq_simulationRun=2.0_col_017_range",
+      "ev_dq_simulationRun=2.0_col_018_range",
+      "ev_dq_simulationRun=2.0_col_020_range",
+      "ev_dq_simulationRun=2.0_col_021_range",
+      "ev_dq_simulationRun=2.0_col_022_range",
+      "ev_dq_simulationRun=2.0_col_023_range",
+      "ev_dq_simulationRun=2.0_col_024_range",
+      "ev_dq_simulationRun=2.0_col_025_range",
+      "ev_dq_simulationRun=2.0_col_026_range",
+      "ev_dq_simulationRun=2.0_col_027_range",
+      "ev_dq_simulationRun=2.0_col_028_range",
+      "ev_dq_simulationRun=2.0_col_029_range",
+      "ev_dq_simulationRun=2.0_col_030_range",
+      "ev_dq_simulationRun=2.0_col_031_range",
+      "ev_dq_simulationRun=2.0_col_032_range",
+      "ev_dq_simulationRun=2.0_col_033_range",
+      "ev_dq_simulationRun=2.0_col_034_range",
+      "ev_dq_simulationRun=2.0_col_035_range",
+      "ev_dq_simulationRun=2.0_col_036_range",
+      "ev_dq_simulationRun=2.0_col_038_range",
+      "ev_dq_simulationRun=2.0_col_039_range",
+      "ev_dq_simulationRun=2.0_col_040_range",
+      "ev_dq_simulationRun=2.0_col_041_range",
+      "ev_dq_simulationRun=2.0_col_042_range",
+      "ev_dq_simulationRun=2.0_col_043_range",
+      "ev_dq_simulationRun=2.0_col_051_range",
+      "ev_s6_sim147_run41_ev01_score",
+      "ev_s6_sim147_run41_ev01_attribution",
+      "ev_s2_col_046_mean",
+      "ev_s2_col_046_stddev",
+      "ev_s2_col_046_dist",
+      "ev_s2_col_020_mean",
+      "ev_s2_col_020_stddev",
+      "ev_s2_col_020_dist",
+      "ev_s3_0021",
+      "ev_s3_0022",
+      "ev_s2_col_007_mean",
+      "ev_s2_col_007_stddev",
+      "ev_s2_col_007_dist",
+      "ev_s3_0002",
+      "ev_s6_limits"
+    ],
+    "event_id": "sim147_run41_ev01",
+    "fault_description": {
+      "kind": "abrupt_shift",
+      "summary": "Abrupt shift starting at sample 186 (detected at sample 190). Most responsible signals: col_046 (measured) 39.9% below normal; col_020 (measured) 9.7% below normal; col_007 (measured) 7.2% unspecified."
+    },
+    "ranked_signals": [
+      {
+        "col_id": "col_046",
+        "share": 0.3988,
+        "role_hypothesis": "measured",
+        "role_confidence": "high"
+      },
+      {
+        "col_id": "col_020",
+        "share": 0.0972,
+        "role_hypothesis": "measured",
+        "role_confidence": "high"
+      },
+      {
+        "col_id": "col_007",
+        "share": 0.0719,
+        "role_hypothesis": "measured",
+        "role_confidence": "high"
+      },
+      {
+        "col_id": "col_029",
+        "share": 0.0572,
+        "role_hypothesis": "manipulated",
+        "role_confidence": "medium"
+      },
+      {
+        "col_id": "col_023",
+        "share": 0.0433,
+        "role_hypothesis": "measured",
+        "role_confidence": "low"
+      }
+    ],
+    "chain": [
+      {
+        "step": 1,
+        "statement": "S5 reports the data as degraded with 38 failed check(s).",
+        "evidence_ids": [
+          "ev_dq_simulationRun=2.0_timeliness",
+          "ev_dq_simulationRun=2.0_col_001_range",
+          "ev_dq_simulationRun=2.0_col_002_range",
+          "ev_dq_simulationRun=2.0_col_003_range",
+          "ev_dq_simulationRun=2.0_col_004_range",
+          "ev_dq_simulationRun=2.0_col_005_range",
+          "ev_dq_simulationRun=2.0_col_006_range",
+          "ev_dq_simulationRun=2.0_col_008_range",
+          "ev_dq_simulationRun=2.0_col_009_range",
+          "ev_dq_simulationRun=2.0_col_010_range",
+          "ev_dq_simulationRun=2.0_col_011_range",
+          "ev_dq_simulationRun=2.0_col_014_range",
+          "ev_dq_simulationRun=2.0_col_017_range",
+          "ev_dq_simulationRun=2.0_col_018_range",
+          "ev_dq_simulationRun=2.0_col_020_range",
+          "ev_dq_simulationRun=2.0_col_021_range",
+          "ev_dq_simulationRun=2.0_col_022_range",
+          "ev_dq_simulationRun=2.0_col_023_range",
+          "ev_dq_simulationRun=2.0_col_024_range",
+          "ev_dq_simulationRun=2.0_col_025_range",
+          "ev_dq_simulationRun=2.0_col_026_range",
+          "ev_dq_simulationRun=2.0_col_027_range",
+          "ev_dq_simulationRun=2.0_col_028_range",
+          "ev_dq_simulationRun=2.0_col_029_range",
+          "ev_dq_simulationRun=2.0_col_030_range",
+          "ev_dq_simulationRun=2.0_col_031_range",
+          "ev_dq_simulationRun=2.0_col_032_range",
+          "ev_dq_simulationRun=2.0_col_033_range",
+          "ev_dq_simulationRun=2.0_col_034_range",
+          "ev_dq_simulationRun=2.0_col_035_range",
+          "ev_dq_simulationRun=2.0_col_036_range",
+          "ev_dq_simulationRun=2.0_col_038_range",
+          "ev_dq_simulationRun=2.0_col_039_range",
+          "ev_dq_simulationRun=2.0_col_040_range",
+          "ev_dq_simulationRun=2.0_col_041_range",
+          "ev_dq_simulationRun=2.0_col_042_range",
+          "ev_dq_simulationRun=2.0_col_043_range",
+          "ev_dq_simulationRun=2.0_col_051_range"
+        ]
+      },
+      {
+        "step": 2,
+        "statement": "The first change was at sample 186 and was confirmed at sample 190 (SPE statistic, severity high).",
+        "evidence_ids": [
+          "ev_s6_sim147_run41_ev01_score"
+        ]
+      },
+      {
+        "step": 3,
+        "statement": "Signals contributing most: col_046 39.9% below normal; col_020 9.7% below normal; col_007 7.2% unspecified.",
+        "evidence_ids": [
+          "ev_s6_sim147_run41_ev01_attribution"
+        ]
+      },
+      {
+        "step": 4,
+        "statement": "Signal roles come from S4.",
+        "evidence_ids": [
+          "ev_s2_col_046_mean",
+          "ev_s2_col_046_stddev",
+          "ev_s2_col_046_dist",
+          "ev_s2_col_020_mean",
+          "ev_s2_col_020_stddev",
+          "ev_s2_col_020_dist",
+          "ev_s3_0021",
+          "ev_s3_0022",
+          "ev_s2_col_007_mean",
+          "ev_s2_col_007_stddev",
+          "ev_s2_col_007_dist",
+          "ev_s3_0002"
+        ]
+      },
+      {
+        "step": 5,
+        "statement": "The change looks like: abrupt shift.",
+        "evidence_ids": [
+          "ev_s6_sim147_run41_ev01_score",
+          "ev_s6_limits"
+        ]
+      },
+      {
+        "step": 6,
+        "statement": "No signature library is configured, so no known fault is named (decision D3).",
+        "evidence_ids": []
+      },
+      {
+        "step": 7,
+        "statement": "Confidence is medium; weakest link: data quality.",
+        "evidence_ids": [
+          "ev_s6_sim147_run41_ev01_score",
+          "ev_s6_limits"
+        ]
+      }
+    ],
+    "critiques": [
+      {
+        "check": "top signal fails a data quality check",
+        "outcome": "passed",
+        "effect": "none"
+      },
+      {
+        "check": "one signal carries almost all the blame",
+        "outcome": "passed",
+        "effect": "none"
+      },
+      {
+        "check": "another known fault matches almost as well",
+        "outcome": "not_applicable",
+        "effect": "none",
+        "note": "No signature library is configured (decision D3)."
+      },
+      {
+        "check": "weak detection margin",
+        "outcome": "passed",
+        "effect": "none"
+      }
+    ],
+    "what_would_change_our_mind": [
+      "A frozen, missing or saturated reading on col_046 in the S5 report would make this a sensor problem, not a process fault.",
+      "The event ended at sample 207; a longer event would change the assessment of severity.",
+      "A signature library built from labelled history could name the closest known fault and its runner-up; none is configured, so only the behaviour is described (decision D3)."
+    ],
+    "status": "proposed",
+    "data_trust": {
+      "verdict": "degraded"
+    },
+    "confidence_detail": {
+      "level": "medium",
+      "reasons": [
+        "S6 rated the detection margin as high.",
+        "The top 3 signals hold 56.8% of the blame.",
+        "S5 verdict is degraded.",
+        "Role confidence of the top signals, taken from S4."
+      ],
+      "weakest_link": "data quality"
+    },
+    "narrative": {
+      "summary": "The system experienced a high-severity abrupt shift in the SPE statistic, starting at sample 186 and detected at sample 190. The shift ended at sample 207.",
+      "steps": [
+        "The abrupt shift was detected in the SPE statistic, which is a measure of the system's performance.",
+        "The shift was high-severity, indicating a significant change in the system's behavior.",
+        "The shift started at sample 186 and was detected at sample 190, indicating a rapid change in the system's behavior.",
+        "The shift ended at sample 207, indicating that the system returned to normal behavior after the abrupt change."
+      ],
+      "epistemic_status": "inferred",
+      "source": "model",
+      "model_call_id": "call_0001"
+    },
+    "alternative_explanations": [
+      {
+        "explanation": "The abrupt shift may have been caused by a faulty measurement in column col_046, which contributed 39.88% to the shift.",
+        "supported_if": "If the measurement in column col_046 was faulty, it could have caused the abrupt shift in the SPE statistic.",
+        "epistemic_status": "uncertain"
+      },
+      {
+        "explanation": "The abrupt shift may have been caused by a combination of faulty measurements in columns col_046 and col_020, which contributed 49.6% to the shift.",
+        "supported_if": "If the measurements in columns col_046 and col_020 were faulty, it could have caused the abrupt shift in the SPE statistic.",
+        "epistemic_status": "uncertain"
+      },
+      {
+        "explanation": "The abrupt shift may have been caused by a combination of faulty measurements in columns col_046 and col_007, which contributed 47.07% to the shift.",
+        "supported_if": "If the measurements in columns col_046 and col_007 were faulty, it could have caused the abrupt shift in the SPE statistic.",
+        "epistemic_status": "uncertain"
+      }
+    ],
+    "human_review": {
+      "action": "accepted",
+      "by": "OP-4",
+      "at": "2026-09-20T08:47:21Z"
+    }
+  }
+]

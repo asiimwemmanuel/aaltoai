@@ -1,0 +1,273 @@
+{
+  "dataset_metadata": {
+    "total_columns_processed": 52,
+    "time_column_id": "col_time"
+  },
+  "columns": {
+    "col_time": {
+      "original_name": "sample",
+      "data_type": "int64",
+      "cardinality": "incremental"
+    },
+    "col_001": {
+      "original_name": "xmeas_1",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_002": {
+      "original_name": "xmeas_2",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_003": {
+      "original_name": "xmeas_3",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_004": {
+      "original_name": "xmeas_4",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_005": {
+      "original_name": "xmeas_5",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_006": {
+      "original_name": "xmeas_6",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_007": {
+      "original_name": "xmeas_7",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_008": {
+      "original_name": "xmeas_8",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_009": {
+      "original_name": "xmeas_9",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_010": {
+      "original_name": "xmeas_10",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_011": {
+      "original_name": "xmeas_11",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_012": {
+      "original_name": "xmeas_12",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_013": {
+      "original_name": "xmeas_13",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_014": {
+      "original_name": "xmeas_14",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_015": {
+      "original_name": "xmeas_15",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_016": {
+      "original_name": "xmeas_16",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_017": {
+      "original_name": "xmeas_17",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_018": {
+      "original_name": "xmeas_18",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_019": {
+      "original_name": "xmeas_19",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_020": {
+      "original_name": "xmeas_20",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_021": {
+      "original_name": "xmeas_21",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_022": {
+      "original_name": "xmeas_22",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_023": {
+      "original_name": "xmeas_23",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_024": {
+      "original_name": "xmeas_24",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_025": {
+      "original_name": "xmeas_25",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_026": {
+      "original_name": "xmeas_26",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_027": {
+      "original_name": "xmeas_27",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_028": {
+      "original_name": "xmeas_28",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_029": {
+      "original_name": "xmeas_29",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_030": {
+      "original_name": "xmeas_30",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_031": {
+      "original_name": "xmeas_31",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_032": {
+      "original_name": "xmeas_32",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_033": {
+      "original_name": "xmeas_33",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_034": {
+      "original_name": "xmeas_34",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_035": {
+      "original_name": "xmeas_35",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_036": {
+      "original_name": "xmeas_36",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_037": {
+      "original_name": "xmeas_37",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_038": {
+      "original_name": "xmeas_38",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_039": {
+      "original_name": "xmeas_39",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_040": {
+      "original_name": "xmeas_40",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_041": {
+      "original_name": "xmeas_41",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_042": {
+      "original_name": "xmv_1",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_043": {
+      "original_name": "xmv_2",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_044": {
+      "original_name": "xmv_3",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_045": {
+      "original_name": "xmv_4",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_046": {
+      "original_name": "xmv_5",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_047": {
+      "original_name": "xmv_6",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_048": {
+      "original_name": "xmv_7",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_049": {
+      "original_name": "xmv_8",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_050": {
+      "original_name": "xmv_9",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_051": {
+      "original_name": "xmv_10",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    },
+    "col_052": {
+      "original_name": "xmv_11",
+      "data_type": "float64",
+      "cardinality": "continuous"
+    }
+  }
+}

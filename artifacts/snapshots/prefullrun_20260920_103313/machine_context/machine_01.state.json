@@ -1,0 +1,195 @@
+{
+  "machine_id": "machine_01",
+  "updated_at": "2026-09-20T07:08:21Z",
+  "channel_hypotheses": {
+    "col_021": {
+      "physical_class": "recirculation valve",
+      "reasoning": "Repeated sharp one-sided dips from a stable plateau, recovering on their own.",
+      "confidence_pct": 80,
+      "epistemic_status": "inferred",
+      "evidence_ids": [
+        "ev_s2_col_021_dyn",
+        "ev_s2_col_021_dist"
+      ],
+      "accepted_by": "OP-01",
+      "accepted_at": "2026-09-19T18:42:42Z",
+      "entry_id": "log_1315"
+    },
+    "col_002": {
+      "physical_class": "recirculation valve",
+      "reasoning": "Channel 21 on the recirculation loop shows recurring dips and valve-related anomalies described in the unit history. I cannot confidently determine the physical class for col_002 from the provided statistics alone.",
+      "confidence_pct": 20,
+      "epistemic_status": "uncertain",
+      "evidence_ids": [
+        "ev_s2_col_002_dyn"
+      ],
+      "accepted_by": "OP-4",
+      "accepted_at": "2026-09-19T19:01:15Z",
+      "call_id": "call_0013",
+      "entry_id": "log_1350"
+    }
+  },
+  "tickets": [
+    {
+      "ticket_id": "tkt_0001",
+      "created_at": "2026-09-19T18:36:19Z",
+      "machine_id": "machine_01",
+      "col_id": "col_021",
+      "reason": "Repeated dips, suspect a sticking valve on the loop.",
+      "run_id": "sim2_run38",
+      "event_id": "sim2_run38_ev18",
+      "evidence_ids": [
+        "ev_s6_sim2_run38_ev18_attribution"
+      ],
+      "route_to": "Mechanical",
+      "status": "closed",
+      "by": "OP-4",
+      "entry_id": "log_1334",
+      "closed_note": "Marked handled by OP-4."
+    },
+    {
+      "ticket_id": "tkt_0002",
+      "created_at": "2026-09-19T18:48:39Z",
+      "machine_id": "machine_01",
+      "col_id": "col_021",
+      "reason": "The event originates from a sticking valve on the recirculation loop causing Channel col_021 to drop below normal operation. This accounts for the high SPE severity attribution share pointing primarily to col_021.",
+      "run_id": "sim1_run16",
+      "event_id": "sim1_run16_ev01",
+      "physical_class": "recirculation valve",
+      "evidence_ids": [
+        "ev_s6_baseline",
+        "ev_s6_limits",
+        "ev_s6_sim1_run16_ev01_score",
+        "ev_s6_sim1_run16_ev01_attribution"
+      ],
+      "route_to": "Instrumentation",
+      "status": "closed",
+      "by": "OP-4",
+      "entry_id": "log_1333",
+      "closed_note": "Marked handled by OP-4."
+    },
+    {
+      "ticket_id": "tkt_0003",
+      "created_at": "2026-09-19T18:48:59Z",
+      "machine_id": "machine_01",
+      "col_id": "col_021",
+      "reason": "Line halted on a high-severity detection and restarted by the operator.",
+      "run_id": "sim1_run16",
+      "event_id": "sim1_run16_ev01",
+      "evidence_ids": [
+        "ev_s6_baseline",
+        "ev_s6_limits",
+        "ev_s6_sim1_run16_ev01_score",
+        "ev_s6_sim1_run16_ev01_attribution"
+      ],
+      "route_to": "Control room",
+      "status": "closed",
+      "by": "OP-4",
+      "entry_id": "log_1332",
+      "closed_note": "Marked handled by OP-4."
+    },
+    {
+      "ticket_id": "tkt_0004",
+      "created_at": "2026-09-19T18:49:18Z",
+      "machine_id": "machine_01",
+      "col_id": "col_021",
+      "reason": "Line halted on a high-severity detection; operator judged it a false alarm.",
+      "run_id": "sim1_run16",
+      "event_id": "sim1_run16_ev02",
+      "evidence_ids": [
+        "ev_s6_baseline",
+        "ev_s6_limits",
+        "ev_s6_sim1_run16_ev02_score",
+        "ev_s6_sim1_run16_ev02_attribution"
+      ],
+      "route_to": "Process engineering",
+      "status": "closed",
+      "by": "OP-4",
+      "entry_id": "log_1329"
+    },
+    {
+      "ticket_id": "tkt_0005",
+      "created_at": "2026-09-19T18:51:39Z",
+      "machine_id": "machine_01",
+      "col_id": "col_021",
+      "reason": "The abrupt SPE anomaly is caused by a recurrence of the sticking recirculation loop valve affecting col_021, mirroring the previous failure mode noted on Unit 4. Channel col_021 dominates the attribution share at 0.745 and drops below normal operation.",
+      "run_id": "sim1_run16",
+      "event_id": "sim1_run16_ev03",
+      "physical_class": "recirculation valve",
+      "evidence_ids": [
+        "ev_s6_baseline",
+        "ev_s6_limits",
+        "ev_s6_sim1_run16_ev03_score",
+        "ev_s6_sim1_run16_ev03_attribution"
+      ],
+      "route_to": "Instrumentation",
+      "status": "closed",
+      "by": "OP-4",
+      "entry_id": "log_0245",
+      "closed_note": "Marked handled by OP-4."
+    },
+    {
+      "ticket_id": "tkt_0006",
+      "created_at": "2026-09-19T20:32:31Z",
+      "machine_id": "machine_01",
+      "col_id": "col_021",
+      "reason": "The abrupt SPE anomaly is caused by a recurrence of the sticking valve on the recirculation loop, indicated by col_021 dropping significantly below its normal baseline. This matches historical patterns where Channel 21 drops during valve-related incidents.",
+      "run_id": "sim194_run27",
+      "event_id": "sim194_run27_ev18",
+      "physical_class": "recirculation valve",
+      "evidence_ids": [
+        "ev_s6_baseline",
+        "ev_s6_limits",
+        "ev_s6_sim194_run27_ev18_score",
+        "ev_s6_sim194_run27_ev18_attribution"
+      ],
+      "route_to": "Instrumentation",
+      "status": "closed",
+      "by": "OP-4",
+      "entry_id": "log_0244",
+      "closed_note": "Marked handled by OP-4."
+    },
+    {
+      "ticket_id": "tkt_0007",
+      "created_at": "2026-09-19T20:50:34Z",
+      "machine_id": "machine_01",
+      "col_id": "col_021",
+      "reason": "The abrupt SPE anomaly is driven by col_021 dropping below normal operation on the recirculation loop. This matches the known historical pattern of a sticking recirculation loop valve.",
+      "run_id": "sim86_run38",
+      "event_id": "sim86_run38_ev18",
+      "physical_class": "recirculation valve",
+      "evidence_ids": [
+        "ev_s6_baseline",
+        "ev_s6_limits",
+        "ev_s6_sim86_run38_ev18_score",
+        "ev_s6_sim86_run38_ev18_attribution"
+      ],
+      "route_to": "Instrumentation",
+      "status": "closed",
+      "by": "OP-4",
+      "entry_id": "log_0255",
+      "closed_note": "Marked handled by OP-4."
+    },
+    {
+      "ticket_id": "tkt_0008",
+      "created_at": "2026-09-20T07:08:21Z",
+      "machine_id": "machine_01",
+      "col_id": "col_039",
+      "reason": "Gradual low-severity event in sim320_run24 driven primarily by sensor col_039 dropping below normal alongside shifts in col_010 and col_019. The event peaks above the T2 control limit at sample 395.",
+      "run_id": "sim320_run24",
+      "event_id": "sim320_run24_ev01",
+      "physical_class": "not determined",
+      "evidence_ids": [
+        "ev_s6_baseline",
+        "ev_s6_limits",
+        "ev_s6_sim320_run24_ev01_score",
+        "ev_s6_sim320_run24_ev01_attribution"
+      ],
+      "route_to": "Instrumentation",
+      "status": "forwarded",
+      "by": "OP-4",
+      "entry_id": "log_0382"
+    }
+  ],
+  "carried_predictions": []
+}

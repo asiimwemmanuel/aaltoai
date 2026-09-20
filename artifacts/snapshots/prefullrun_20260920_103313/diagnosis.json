@@ -1,0 +1,260 @@
+[
+  {
+    "diagnosis_id": "diag_sim75_run34_ev01",
+    "drift_event_id": "sim75_run34_ev01",
+    "timestamp": "2026-09-20T06:44:43Z",
+    "root_cause_hypothesis": "Gradual drift starting at sample 505 (detected at sample 509). Most responsible signals: col_039 (measured) 27.6% below normal; col_010 (measured) 14.8% above normal; col_028 (measured) 8.5% below normal.",
+    "confidence": "low",
+    "epistemic_status": "uncertain",
+    "supporting_evidence": [
+      "ev_dq_simulationRun=2.0_timeliness",
+      "ev_dq_simulationRun=2.0_col_001_range",
+      "ev_dq_simulationRun=2.0_col_002_range",
+      "ev_dq_simulationRun=2.0_col_003_range",
+      "ev_dq_simulationRun=2.0_col_004_range",
+      "ev_dq_simulationRun=2.0_col_005_range",
+      "ev_dq_simulationRun=2.0_col_006_range",
+      "ev_dq_simulationRun=2.0_col_008_range",
+      "ev_dq_simulationRun=2.0_col_009_range",
+      "ev_dq_simulationRun=2.0_col_010_range",
+      "ev_dq_simulationRun=2.0_col_011_range",
+      "ev_dq_simulationRun=2.0_col_014_range",
+      "ev_dq_simulationRun=2.0_col_017_range",
+      "ev_dq_simulationRun=2.0_col_018_range",
+      "ev_dq_simulationRun=2.0_col_020_range",
+      "ev_dq_simulationRun=2.0_col_021_range",
+      "ev_dq_simulationRun=2.0_col_022_range",
+      "ev_dq_simulationRun=2.0_col_023_range",
+      "ev_dq_simulationRun=2.0_col_024_range",
+      "ev_dq_simulationRun=2.0_col_025_range",
+      "ev_dq_simulationRun=2.0_col_026_range",
+      "ev_dq_simulationRun=2.0_col_027_range",
+      "ev_dq_simulationRun=2.0_col_028_range",
+      "ev_dq_simulationRun=2.0_col_029_range",
+      "ev_dq_simulationRun=2.0_col_030_range",
+      "ev_dq_simulationRun=2.0_col_031_range",
+      "ev_dq_simulationRun=2.0_col_032_range",
+      "ev_dq_simulationRun=2.0_col_033_range",
+      "ev_dq_simulationRun=2.0_col_034_range",
+      "ev_dq_simulationRun=2.0_col_035_range",
+      "ev_dq_simulationRun=2.0_col_036_range",
+      "ev_dq_simulationRun=2.0_col_038_range",
+      "ev_dq_simulationRun=2.0_col_039_range",
+      "ev_dq_simulationRun=2.0_col_040_range",
+      "ev_dq_simulationRun=2.0_col_041_range",
+      "ev_dq_simulationRun=2.0_col_042_range",
+      "ev_dq_simulationRun=2.0_col_043_range",
+      "ev_dq_simulationRun=2.0_col_051_range",
+      "ev_s6_sim75_run34_ev01_score",
+      "ev_s6_sim75_run34_ev01_attribution",
+      "ev_s2_col_039_mean",
+      "ev_s2_col_039_stddev",
+      "ev_s2_col_039_dist",
+      "ev_s2_col_010_mean",
+      "ev_s2_col_028_mean",
+      "ev_s2_col_028_stddev",
+      "ev_s2_col_028_dist",
+      "ev_s6_limits"
+    ],
+    "event_id": "sim75_run34_ev01",
+    "fault_description": {
+      "kind": "gradual_drift",
+      "summary": "Gradual drift starting at sample 505 (detected at sample 509). Most responsible signals: col_039 (measured) 27.6% below normal; col_010 (measured) 14.8% above normal; col_028 (measured) 8.5% below normal."
+    },
+    "ranked_signals": [
+      {
+        "col_id": "col_039",
+        "share": 0.2761,
+        "role_hypothesis": "measured",
+        "role_confidence": "low"
+      },
+      {
+        "col_id": "col_010",
+        "share": 0.1478,
+        "role_hypothesis": "measured",
+        "role_confidence": "low"
+      },
+      {
+        "col_id": "col_028",
+        "share": 0.085,
+        "role_hypothesis": "measured",
+        "role_confidence": "low"
+      },
+      {
+        "col_id": "col_019",
+        "share": 0.0746,
+        "role_hypothesis": "measured",
+        "role_confidence": "high"
+      },
+      {
+        "col_id": "col_018",
+        "share": 0.0627,
+        "role_hypothesis": "manipulated",
+        "role_confidence": "medium"
+      }
+    ],
+    "chain": [
+      {
+        "step": 1,
+        "statement": "S5 reports the data as degraded with 38 failed check(s).",
+        "evidence_ids": [
+          "ev_dq_simulationRun=2.0_timeliness",
+          "ev_dq_simulationRun=2.0_col_001_range",
+          "ev_dq_simulationRun=2.0_col_002_range",
+          "ev_dq_simulationRun=2.0_col_003_range",
+          "ev_dq_simulationRun=2.0_col_004_range",
+          "ev_dq_simulationRun=2.0_col_005_range",
+          "ev_dq_simulationRun=2.0_col_006_range",
+          "ev_dq_simulationRun=2.0_col_008_range",
+          "ev_dq_simulationRun=2.0_col_009_range",
+          "ev_dq_simulationRun=2.0_col_010_range",
+          "ev_dq_simulationRun=2.0_col_011_range",
+          "ev_dq_simulationRun=2.0_col_014_range",
+          "ev_dq_simulationRun=2.0_col_017_range",
+          "ev_dq_simulationRun=2.0_col_018_range",
+          "ev_dq_simulationRun=2.0_col_020_range",
+          "ev_dq_simulationRun=2.0_col_021_range",
+          "ev_dq_simulationRun=2.0_col_022_range",
+          "ev_dq_simulationRun=2.0_col_023_range",
+          "ev_dq_simulationRun=2.0_col_024_range",
+          "ev_dq_simulationRun=2.0_col_025_range",
+          "ev_dq_simulationRun=2.0_col_026_range",
+          "ev_dq_simulationRun=2.0_col_027_range",
+          "ev_dq_simulationRun=2.0_col_028_range",
+          "ev_dq_simulationRun=2.0_col_029_range",
+          "ev_dq_simulationRun=2.0_col_030_range",
+          "ev_dq_simulationRun=2.0_col_031_range",
+          "ev_dq_simulationRun=2.0_col_032_range",
+          "ev_dq_simulationRun=2.0_col_033_range",
+          "ev_dq_simulationRun=2.0_col_034_range",
+          "ev_dq_simulationRun=2.0_col_035_range",
+          "ev_dq_simulationRun=2.0_col_036_range",
+          "ev_dq_simulationRun=2.0_col_038_range",
+          "ev_dq_simulationRun=2.0_col_039_range",
+          "ev_dq_simulationRun=2.0_col_040_range",
+          "ev_dq_simulationRun=2.0_col_041_range",
+          "ev_dq_simulationRun=2.0_col_042_range",
+          "ev_dq_simulationRun=2.0_col_043_range",
+          "ev_dq_simulationRun=2.0_col_051_range"
+        ]
+      },
+      {
+        "step": 2,
+        "statement": "The first change was at sample 505 and was confirmed at sample 509 (T2 statistic, severity low).",
+        "evidence_ids": [
+          "ev_s6_sim75_run34_ev01_score"
+        ]
+      },
+      {
+        "step": 3,
+        "statement": "Signals contributing most: col_039 27.6% below normal; col_010 14.8% above normal; col_028 8.5% below normal.",
+        "evidence_ids": [
+          "ev_s6_sim75_run34_ev01_attribution"
+        ]
+      },
+      {
+        "step": 4,
+        "statement": "Signal roles come from S4.",
+        "evidence_ids": [
+          "ev_s2_col_039_mean",
+          "ev_s2_col_039_stddev",
+          "ev_s2_col_039_dist",
+          "ev_s2_col_010_mean",
+          "ev_s2_col_028_mean",
+          "ev_s2_col_028_stddev",
+          "ev_s2_col_028_dist"
+        ]
+      },
+      {
+        "step": 5,
+        "statement": "The change looks like: gradual drift.",
+        "evidence_ids": [
+          "ev_s6_sim75_run34_ev01_score",
+          "ev_s6_limits"
+        ]
+      },
+      {
+        "step": 6,
+        "statement": "No signature library is configured, so no known fault is named (decision D3).",
+        "evidence_ids": []
+      },
+      {
+        "step": 7,
+        "statement": "Confidence is low; weakest link: detection margin.",
+        "evidence_ids": [
+          "ev_s6_sim75_run34_ev01_score",
+          "ev_s6_limits"
+        ]
+      }
+    ],
+    "critiques": [
+      {
+        "check": "top signal fails a data quality check",
+        "outcome": "raised",
+        "effect": "lowered_confidence",
+        "note": "S5 flagged col_039: OUT_OF_RANGE"
+      },
+      {
+        "check": "one signal carries almost all the blame",
+        "outcome": "passed",
+        "effect": "none"
+      },
+      {
+        "check": "another known fault matches almost as well",
+        "outcome": "not_applicable",
+        "effect": "none",
+        "note": "No signature library is configured (decision D3)."
+      },
+      {
+        "check": "weak detection margin",
+        "outcome": "raised",
+        "effect": "lowered_confidence",
+        "note": "The score barely exceeded its limit; nearly invisible faults look like this."
+      }
+    ],
+    "what_would_change_our_mind": [
+      "A frozen, missing or saturated reading on col_039 in the S5 report would make this a sensor problem, not a process fault.",
+      "The event ended at sample 512; a longer event would change the assessment of severity.",
+      "A signature library built from labelled history could name the closest known fault and its runner-up; none is configured, so only the behaviour is described (decision D3)."
+    ],
+    "status": "proposed",
+    "data_trust": {
+      "verdict": "degraded"
+    },
+    "confidence_detail": {
+      "level": "low",
+      "reasons": [
+        "S6 rated the detection margin as low.",
+        "The top 3 signals hold 50.9% of the blame.",
+        "S5 verdict is degraded.",
+        "Role confidence of the top signals, taken from S4.",
+        "Critique raised: top signal fails a data quality check.",
+        "Critique raised: weak detection margin."
+      ],
+      "weakest_link": "detection margin"
+    },
+    "narrative": {
+      "summary": "A gradual change has been detected in the data, starting at sample 505 and ending at sample 512. The change is of low severity and affects the statistic 't2'. The data trust is degraded, and the confidence in the detection is low.",
+      "steps": [
+        "The gradual change has been detected in the data, starting at sample 505 and ending at sample 512. (Evidence ID: event_summary.start_sample: 505, event_summary.end_sample: 512)",
+        "The change is of low severity and affects the statistic 't2'. (Evidence ID: event_summary.severity: 'low', event_summary.statistic: 't2')",
+        "The data trust is degraded, which may have contributed to the low confidence in the detection. (Evidence ID: event_summary.data_trust: 'degraded')"
+      ],
+      "epistemic_status": "inferred",
+      "source": "model",
+      "model_call_id": "call_0001"
+    },
+    "alternative_explanations": [
+      {
+        "explanation": "The gradual change may be caused by a gradual shift in the underlying distribution of the data.",
+        "supported_if": "Further analysis of the data distribution would be required to confirm this explanation.",
+        "epistemic_status": "uncertain"
+      },
+      {
+        "explanation": "The low confidence in the detection may be due to the fact that the data is degraded, making it difficult to accurately detect changes.",
+        "supported_if": "The data trust is degraded (Evidence ID: event_summary.data_trust: 'degraded').",
+        "epistemic_status": "uncertain"
+      }
+    ]
+  }
+]

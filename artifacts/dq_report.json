@@ -1,0 +1,334 @@
+{
+  "batch_id": "simulationRun=2.0",
+  "evaluated_at": "2026-09-20T08:19:25.821532+00:00",
+  "trust_verdict": "DEGRADED",
+  "total_samples": 30660,
+  "total_columns_checked": 52,
+  "checks_run_count": 157,
+  "checks_passed_count": 119,
+  "checks_failed_count": 38,
+  "failures": [
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_timeliness",
+      "check_type": "TIMELINESS_GAP",
+      "target_col": "col_time",
+      "detail": "Sample sequence gap/jump detected at indices [499, 999, 1499, 1999, 2499]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_TIMING_IRREGULARITY"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_001_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_001",
+      "detail": "110 readings outside operational envelope [-0.38, 0.89]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_002_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_002",
+      "detail": "10 readings outside operational envelope [3471.54, 3857.72]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_003_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_003",
+      "detail": "72 readings outside operational envelope [4027.24, 4990.29]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_004_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_004",
+      "detail": "615 readings outside operational envelope [7.73, 11.03]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_005_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_005",
+      "detail": "21 readings outside operational envelope [25.87, 27.93]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_006_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_006",
+      "detail": "30 readings outside operational envelope [40.95, 43.79]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_008_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_008",
+      "detail": "725 readings outside operational envelope [69.11, 80.64]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_009_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_009",
+      "detail": "549 readings outside operational envelope [120.09, 120.71]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_010_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_010",
+      "detail": "343 readings outside operational envelope [-0.02, 0.71]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_011_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_011",
+      "detail": "4 readings outside operational envelope [71.75, 87.71]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_014_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_014",
+      "detail": "2 readings outside operational envelope [20.13, 30.09]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_017_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_017",
+      "detail": "2 readings outside operational envelope [20.02, 25.84]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_018_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_018",
+      "detail": "83 readings outside operational envelope [58.23, 73.78]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_020_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_020",
+      "detail": "37 readings outside operational envelope [290.7, 390.94]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_021_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_021",
+      "detail": "335 readings outside operational envelope [88.86, 100.01]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_022_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_022",
+      "detail": "181 readings outside operational envelope [71.13, 82.99]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_023_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_023",
+      "detail": "158 readings outside operational envelope [24.19, 39.85]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_024_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_024",
+      "detail": "104 readings outside operational envelope [7.86, 9.89]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_025_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_025",
+      "detail": "698 readings outside operational envelope [18.3, 35.24]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_026_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_026",
+      "detail": "140 readings outside operational envelope [6.26, 7.48]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_027_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_027",
+      "detail": "612 readings outside operational envelope [14.2, 23.15]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_028_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_028",
+      "detail": "804 readings outside operational envelope [1.06, 2.2]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_029_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_029",
+      "detail": "74 readings outside operational envelope [20.93, 44.5]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_030_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_030",
+      "detail": "50 readings outside operational envelope [12.49, 15.09]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_031_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_031",
+      "detail": "984 readings outside operational envelope [11.55, 37.58]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_032_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_032",
+      "detail": "108 readings outside operational envelope [0.58, 1.92]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_033_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_033",
+      "detail": "618 readings outside operational envelope [12.14, 24.7]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_034_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_034",
+      "detail": "756 readings outside operational envelope [1.44, 3.0]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_035_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_035",
+      "detail": "2 readings outside operational envelope [3.23, 6.32]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_036_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_036",
+      "detail": "4 readings outside operational envelope [1.45, 3.08]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_038_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_038",
+      "detail": "45 readings outside operational envelope [0.42, 1.25]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_039_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_039",
+      "detail": "10 readings outside operational envelope [0.04, 0.16]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_040_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_040",
+      "detail": "5 readings outside operational envelope [51.1, 56.37]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_041_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_041",
+      "detail": "5 readings outside operational envelope [41.05, 46.56]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_042_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_042",
+      "detail": "488 readings outside operational envelope [42.46, 85.26]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_043_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_043",
+      "detail": "512 readings outside operational envelope [24.17, 84.95]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    },
+    {
+      "evidence_id": "ev_dq_simulationRun=2.0_col_051_range",
+      "check_type": "OUT_OF_RANGE",
+      "target_col": "col_051",
+      "detail": "314 readings outside operational envelope [-7.55, 91.48]",
+      "severity": "WARNING",
+      "action_taken": "FLAG_RANGE_VIOLATION"
+    }
+  ],
+  "compiled_rules_evaluated": [
+    {
+      "rule_id": "RULE_001",
+      "raw_text": "col_009 must remain within operational limits",
+      "target_col": "col_009",
+      "status": "NEEDS_OPERATOR_INPUT",
+      "violating_samples_count": 0,
+      "operator_prompt": "What limit does this rule set for col_009? \"col_009 must remain within operational limits\" contains no number to check against."
+    },
+    {
+      "rule_id": "RULE_002",
+      "raw_text": "Reactor pressure must stay below 2900",
+      "target_col": null,
+      "status": "NEEDS_OPERATOR_INPUT",
+      "violating_samples_count": 0,
+      "operator_prompt": "Which column does this rule refer to? \"Reactor pressure must stay below 2900\". The inferred roles did not match any wording in it."
+    }
+  ]
+}

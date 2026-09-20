@@ -1,0 +1,186 @@
+[
+  {
+    "diagnosis_id": "diag_sim263_run38_ev01",
+    "drift_event_id": "sim263_run38_ev01",
+    "timestamp": "2026-09-19T21:19:35Z",
+    "root_cause_hypothesis": "Abrupt shift starting at sample 193 (detected at sample 197). Most responsible signals: col_021 (manipulated variable or discrete-valued input parameter) 82.2% below normal; col_002 (manipulated variable) 3.0% less variable; col_042 (feature or input variable) 2.2% unspecified.",
+    "confidence": "low",
+    "epistemic_status": "uncertain",
+    "supporting_evidence": [
+      "ev_dq_test_batch_rules_RULE_003_fail",
+      "ev_s6_sim263_run38_ev01_score",
+      "ev_s6_sim263_run38_ev01_attribution",
+      "ev_s2_col_021_dyn",
+      "ev_s2_col_021_dist",
+      "ev_s2_col_002_dyn",
+      "ev_s2_col_042_dyn",
+      "ev_s3_0066",
+      "ev_s6_limits"
+    ],
+    "event_id": "sim263_run38_ev01",
+    "fault_description": {
+      "kind": "abrupt_shift",
+      "summary": "Abrupt shift starting at sample 193 (detected at sample 197). Most responsible signals: col_021 (manipulated variable or discrete-valued input parameter) 82.2% below normal; col_002 (manipulated variable) 3.0% less variable; col_042 (feature or input variable) 2.2% unspecified."
+    },
+    "ranked_signals": [
+      {
+        "col_id": "col_021",
+        "share": 0.8223,
+        "role_hypothesis": "manipulated variable or discrete-valued input parameter",
+        "role_confidence": "low"
+      },
+      {
+        "col_id": "col_002",
+        "share": 0.0305,
+        "role_hypothesis": "manipulated variable",
+        "role_confidence": "medium"
+      },
+      {
+        "col_id": "col_042",
+        "share": 0.0219,
+        "role_hypothesis": "feature or input variable",
+        "role_confidence": "medium"
+      },
+      {
+        "col_id": "col_006",
+        "share": 0.0207,
+        "role_hypothesis": "manipulated",
+        "role_confidence": "medium"
+      },
+      {
+        "col_id": "col_027",
+        "share": 0.011,
+        "role_hypothesis": "manipulated",
+        "role_confidence": "medium"
+      }
+    ],
+    "chain": [
+      {
+        "step": 1,
+        "statement": "S5 reports the data as degraded with 1 failed check(s).",
+        "evidence_ids": [
+          "ev_dq_test_batch_rules_RULE_003_fail"
+        ]
+      },
+      {
+        "step": 2,
+        "statement": "The first change was at sample 193 and was confirmed at sample 197 (SPE statistic, severity high).",
+        "evidence_ids": [
+          "ev_s6_sim263_run38_ev01_score"
+        ]
+      },
+      {
+        "step": 3,
+        "statement": "Signals contributing most: col_021 82.2% below normal; col_002 3.0% less variable; col_042 2.2% unspecified.",
+        "evidence_ids": [
+          "ev_s6_sim263_run38_ev01_attribution"
+        ]
+      },
+      {
+        "step": 4,
+        "statement": "Signal roles come from S4.",
+        "evidence_ids": [
+          "ev_s2_col_021_dyn",
+          "ev_s2_col_021_dist",
+          "ev_s2_col_002_dyn",
+          "ev_s2_col_042_dyn",
+          "ev_s3_0066"
+        ]
+      },
+      {
+        "step": 5,
+        "statement": "The change looks like: abrupt shift.",
+        "evidence_ids": [
+          "ev_s6_sim263_run38_ev01_score",
+          "ev_s6_limits"
+        ]
+      },
+      {
+        "step": 6,
+        "statement": "No signature library is configured, so no known fault is named (decision D3).",
+        "evidence_ids": []
+      },
+      {
+        "step": 7,
+        "statement": "Confidence is low; weakest link: signal roles.",
+        "evidence_ids": [
+          "ev_s6_sim263_run38_ev01_score",
+          "ev_s6_limits"
+        ]
+      }
+    ],
+    "critiques": [
+      {
+        "check": "top signal fails a data quality check",
+        "outcome": "passed",
+        "effect": "none"
+      },
+      {
+        "check": "one signal carries almost all the blame",
+        "outcome": "raised",
+        "effect": "lowered_confidence",
+        "note": "col_021 holds 82.2%; typical of a sensor problem."
+      },
+      {
+        "check": "another known fault matches almost as well",
+        "outcome": "not_applicable",
+        "effect": "none",
+        "note": "No signature library is configured (decision D3)."
+      },
+      {
+        "check": "weak detection margin",
+        "outcome": "passed",
+        "effect": "none"
+      }
+    ],
+    "what_would_change_our_mind": [
+      "A frozen, missing or saturated reading on col_021 in the S5 report would make this a sensor problem, not a process fault.",
+      "The event ended at sample 274; a longer event would change the assessment of severity.",
+      "A signature library built from labelled history could name the closest known fault and its runner-up; none is configured, so only the behaviour is described (decision D3)."
+    ],
+    "status": "proposed",
+    "data_trust": {
+      "verdict": "degraded"
+    },
+    "confidence_detail": {
+      "level": "low",
+      "reasons": [
+        "S6 rated the detection margin as high.",
+        "The top 3 signals hold 87.5% of the blame.",
+        "S5 verdict is degraded.",
+        "Role confidence of the top signals, taken from S4.",
+        "Critique raised: one signal carries almost all the blame."
+      ],
+      "weakest_link": "signal roles"
+    },
+    "narrative": {
+      "summary": "An abrupt, high-severity shift was detected starting around sample 193 and lasting until sample 274, though data trust is degraded and overall confidence is low.",
+      "steps": [
+        "An abrupt change in the statistical process error was detected between samples 193 and 274, triggering a detection alert around sample 197.",
+        "Col_021, acting as a manipulated variable or discrete-valued input parameter, accounts for 82.23% of the contribution by falling below normal levels.",
+        "Col_002 contributes 3.05% as a less variable manipulated variable, and col_042 contributes 2.19% as a feature or input variable.",
+        "Data quality checks passed for the top signal and detection margin, but confidence was lowered because one signal carries almost all the blame."
+      ],
+      "epistemic_status": "inferred",
+      "source": "model",
+      "model_call_id": "call_0001"
+    },
+    "alternative_explanations": [
+      {
+        "explanation": "The event was primarily driven by an intentional reduction or drop in the manipulated variable col_021.",
+        "supported_if": "col_021 is observed to drop significantly below its normal operating range during the event window.",
+        "epistemic_status": "uncertain"
+      },
+      {
+        "explanation": "A stabilizing effect occurred in col_002, reducing its normal variability.",
+        "supported_if": "col_002 shows a noticeable decrease in fluctuation or variance starting around sample 193.",
+        "epistemic_status": "uncertain"
+      },
+      {
+        "explanation": "An unmodeled shift in the feature or input variable col_042 contributed minor secondary effects.",
+        "supported_if": "col_042 exhibits anomalous patterns coinciding with the abrupt shift timeframe.",
+        "epistemic_status": "uncertain"
+      }
+    ]
+  }
+]

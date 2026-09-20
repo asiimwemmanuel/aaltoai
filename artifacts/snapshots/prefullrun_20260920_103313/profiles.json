@@ -1,0 +1,1354 @@
+{
+  "col_001": {
+    "statistics": {
+      "mean": 0.2578316096104807,
+      "std_dev": 0.14094534820541216,
+      "min_val": -0.0049855,
+      "max_val": 1.0175,
+      "quantiles": {
+        "p25": 0.2196284411611502,
+        "p50": 0.2506659820216294,
+        "p75": 0.2805067346986097
+      },
+      "skewness": 1.8150587206564563,
+      "distinct_values": 305017,
+      "noise_level": 0.1984986162443243,
+      "plateau_ratio": 0.0796446836268754,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_001_mean",
+      "std_dev": "ev_s2_col_001_stddev",
+      "distribution": "ev_s2_col_001_dist",
+      "dynamics": "ev_s2_col_001_dyn"
+    }
+  },
+  "col_002": {
+    "statistics": {
+      "mean": 3664.6299886631077,
+      "std_dev": 42.90828158415638,
+      "min_val": 3308.4,
+      "max_val": 3906.7,
+      "quantiles": {
+        "p25": 3637.436476298731,
+        "p50": 3663.7724659829705,
+        "p75": 3690.4213576565257
+      },
+      "skewness": 0.16611673121625636,
+      "distinct_values": 4807,
+      "noise_level": 49.66504663801334,
+      "plateau_ratio": 0.09284859752120025,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_002_mean",
+      "std_dev": "ev_s2_col_002_stddev",
+      "distribution": "ev_s2_col_002_dist",
+      "dynamics": "ev_s2_col_002_dyn"
+    }
+  },
+  "col_003": {
+    "statistics": {
+      "mean": 4508.765881095964,
+      "std_dev": 107.00586219772188,
+      "min_val": 3540.7,
+      "max_val": 5175.8,
+      "quantiles": {
+        "p25": 4472.343409843628,
+        "p50": 4509.079784801591,
+        "p75": 4546.569415984386
+      },
+      "skewness": -0.13525411052844907,
+      "distinct_values": 14017,
+      "noise_level": 146.60402471554835,
+      "plateau_ratio": 0.08595714285714286,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_003_mean",
+      "std_dev": "ev_s2_col_003_stddev",
+      "distribution": "ev_s2_col_003_dist",
+      "dynamics": "ev_s2_col_003_dyn"
+    }
+  },
+  "col_004": {
+    "statistics": {
+      "mean": 9.381277741898208,
+      "std_dev": 0.36715756328367655,
+      "min_val": 6.6399,
+      "max_val": 12.24,
+      "quantiles": {
+        "p25": 9.271419410274298,
+        "p50": 9.355378398963378,
+        "p75": 9.449136984832672
+      },
+      "skewness": 2.170544252174251,
+      "distinct_values": 29636,
+      "noise_level": 0.5158783391055315,
+      "plateau_ratio": 0.0754689497716895,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_004_mean",
+      "std_dev": "ev_s2_col_004_stddev",
+      "distribution": "ev_s2_col_004_dist",
+      "dynamics": "ev_s2_col_004_dyn"
+    }
+  },
+  "col_005": {
+    "statistics": {
+      "mean": 26.901455842136855,
+      "std_dev": 0.228236131889872,
+      "min_val": 25.348,
+      "max_val": 28.565,
+      "quantiles": {
+        "p25": 26.76198893182757,
+        "p50": 26.900047429463473,
+        "p75": 27.041343471813697
+      },
+      "skewness": 0.009346267002328658,
+      "distinct_values": 2820,
+      "noise_level": 0.24006302377308114,
+      "plateau_ratio": 0.1306311154598826,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_005_mean",
+      "std_dev": "ev_s2_col_005_stddev",
+      "distribution": "ev_s2_col_005_dist",
+      "dynamics": "ev_s2_col_005_dyn"
+    }
+  },
+  "col_006": {
+    "statistics": {
+      "mean": 42.370139516829475,
+      "std_dev": 0.31647903972286967,
+      "min_val": 39.656,
+      "max_val": 44.653,
+      "quantiles": {
+        "p25": 42.18752507346469,
+        "p50": 42.34947458193928,
+        "p75": 42.52318272596695
+      },
+      "skewness": 0.8761584824510417,
+      "distinct_values": 4217,
+      "noise_level": 0.388123036141324,
+      "plateau_ratio": 0.08171767775603392,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_006_mean",
+      "std_dev": "ev_s2_col_006_stddev",
+      "distribution": "ev_s2_col_006_dist",
+      "dynamics": "ev_s2_col_006_dyn"
+    }
+  },
+  "col_007": {
+    "statistics": {
+      "mean": 2723.480013730375,
+      "std_dev": 76.37017320725991,
+      "min_val": 2413.8,
+      "max_val": 3000.5,
+      "quantiles": {
+        "p25": 2698.2195971445412,
+        "p50": 2705.4582303450948,
+        "p75": 2713.8273957189526
+      },
+      "skewness": 2.7317886643531826,
+      "distinct_values": 5538,
+      "noise_level": 108.60786468726539,
+      "plateau_ratio": 0.08573770384866275,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_007_mean",
+      "std_dev": "ev_s2_col_007_stddev",
+      "distribution": "ev_s2_col_007_dist",
+      "dynamics": "ev_s2_col_007_dyn"
+    }
+  },
+  "col_008": {
+    "statistics": {
+      "mean": 74.87145568283815,
+      "std_dev": 1.2812505173828956,
+      "min_val": 61.132,
+      "max_val": 87.189,
+      "quantiles": {
+        "p25": 74.4562552869506,
+        "p50": 74.95356771705781,
+        "p75": 75.41512503088289
+      },
+      "skewness": -1.2127345724305378,
+      "distinct_values": 21262,
+      "noise_level": 1.7267848295778643,
+      "plateau_ratio": 0.0768030658838878,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_008_mean",
+      "std_dev": "ev_s2_col_008_stddev",
+      "distribution": "ev_s2_col_008_dist",
+      "dynamics": "ev_s2_col_008_dyn"
+    }
+  },
+  "col_009": {
+    "statistics": {
+      "mean": 120.40012273464248,
+      "std_dev": 0.06853335457647795,
+      "min_val": 119.61,
+      "max_val": 121.01,
+      "quantiles": {
+        "p25": 120.38313926177258,
+        "p50": 120.4,
+        "p75": 120.41999915083015
+      },
+      "skewness": -0.9536938145560632,
+      "distinct_values": 139,
+      "noise_level": 0.0949564546623076,
+      "plateau_ratio": 0.2839890410958904,
+      "has_plateaus": true,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_009_mean",
+      "std_dev": "ev_s2_col_009_stddev",
+      "distribution": "ev_s2_col_009_dist",
+      "dynamics": "ev_s2_col_009_dyn"
+    }
+  },
+  "col_010": {
+    "statistics": {
+      "mean": 0.3446538234890744,
+      "std_dev": 0.08080114687469547,
+      "min_val": 0.018396,
+      "max_val": 0.82073,
+      "quantiles": {
+        "p25": 0.3236897425701743,
+        "p50": 0.33617974813563495,
+        "p75": 0.3478751963970424
+      },
+      "skewness": 3.2431639719945053,
+      "distinct_values": 68547,
+      "noise_level": 0.11533195514137201,
+      "plateau_ratio": 0.07714272667971298,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_010_mean",
+      "std_dev": "ev_s2_col_010_stddev",
+      "distribution": "ev_s2_col_010_dist",
+      "dynamics": "ev_s2_col_010_dyn"
+    }
+  },
+  "col_011": {
+    "statistics": {
+      "mean": 79.73392268166448,
+      "std_dev": 1.7731694371521096,
+      "min_val": 68.097,
+      "max_val": 87.591,
+      "quantiles": {
+        "p25": 79.82413858037059,
+        "p50": 80.09223444800722,
+        "p75": 80.33636654097913
+      },
+      "skewness": -2.5255539512201457,
+      "distinct_values": 15751,
+      "noise_level": 2.515718448671469,
+      "plateau_ratio": 0.07692720156555773,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_011_mean",
+      "std_dev": "ev_s2_col_011_stddev",
+      "distribution": "ev_s2_col_011_dist",
+      "dynamics": "ev_s2_col_011_dyn"
+    }
+  },
+  "col_012": {
+    "statistics": {
+      "mean": 49.98552005238337,
+      "std_dev": 0.9998867259530415,
+      "min_val": 44.627,
+      "max_val": 55.481,
+      "quantiles": {
+        "p25": 49.29367322696738,
+        "p50": 50.00932916201413,
+        "p75": 50.63795826645723
+      },
+      "skewness": 0.01490265533322104,
+      "distinct_values": 8353,
+      "noise_level": 0.9686359416037452,
+      "plateau_ratio": 0.08408884540117417,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_012_mean",
+      "std_dev": "ev_s2_col_012_stddev",
+      "distribution": "ev_s2_col_012_dist",
+      "dynamics": "ev_s2_col_012_dyn"
+    }
+  },
+  "col_013": {
+    "statistics": {
+      "mean": 2651.594683196573,
+      "std_dev": 77.26789318090749,
+      "min_val": 2317.1,
+      "max_val": 2945.4,
+      "quantiles": {
+        "p25": 2625.954350448627,
+        "p50": 2633.8640510356336,
+        "p75": 2642.643548265905
+      },
+      "skewness": 2.684946663056653,
+      "distinct_values": 5895,
+      "noise_level": 109.75623157554126,
+      "plateau_ratio": 0.08579562948467058,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_013_mean",
+      "std_dev": "ev_s2_col_013_stddev",
+      "distribution": "ev_s2_col_013_dist",
+      "dynamics": "ev_s2_col_013_dyn"
+    }
+  },
+  "col_014": {
+    "statistics": {
+      "mean": 25.112100445595328,
+      "std_dev": 1.1066082868417446,
+      "min_val": 18.436,
+      "max_val": 33.092,
+      "quantiles": {
+        "p25": 24.394747694187597,
+        "p50": 25.12705577991853,
+        "p75": 25.85064942764309
+      },
+      "skewness": -0.10455977180306897,
+      "distinct_values": 10505,
+      "noise_level": 1.1690447807151236,
+      "plateau_ratio": 0.0794747553816047,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_014_mean",
+      "std_dev": "ev_s2_col_014_stddev",
+      "distribution": "ev_s2_col_014_dist",
+      "dynamics": "ev_s2_col_014_dyn"
+    }
+  },
+  "col_015": {
+    "statistics": {
+      "mean": 49.95626844174523,
+      "std_dev": 1.0144792519134596,
+      "min_val": 44.311,
+      "max_val": 55.912,
+      "quantiles": {
+        "p25": 49.27742888046389,
+        "p50": 49.913365601698956,
+        "p75": 50.643852267261494
+      },
+      "skewness": 0.07924881052201029,
+      "distinct_values": 8640,
+      "noise_level": 0.9837403954409542,
+      "plateau_ratio": 0.08730678408349642,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_015_mean",
+      "std_dev": "ev_s2_col_015_stddev",
+      "distribution": "ev_s2_col_015_dist",
+      "dynamics": "ev_s2_col_015_dyn"
+    }
+  },
+  "col_016": {
+    "statistics": {
+      "mean": 3121.2369027197433,
+      "std_dev": 77.70349456635331,
+      "min_val": 2870.4,
+      "max_val": 3452.7,
+      "quantiles": {
+        "p25": 3096.4534289939074,
+        "p50": 3102.605787946622,
+        "p75": 3109.773808192062
+      },
+      "skewness": 3.0689649584577716,
+      "distinct_values": 5635,
+      "noise_level": 110.84379874033634,
+      "plateau_ratio": 0.08839138943248533,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_016_mean",
+      "std_dev": "ev_s2_col_016_stddev",
+      "distribution": "ev_s2_col_016_dist",
+      "dynamics": "ev_s2_col_016_dyn"
+    }
+  },
+  "col_017": {
+    "statistics": {
+      "mean": 22.931477422894154,
+      "std_dev": 0.6471774023798998,
+      "min_val": 19.137,
+      "max_val": 27.239,
+      "quantiles": {
+        "p25": 22.49729879293548,
+        "p50": 22.931739054654045,
+        "p75": 23.365328093247143
+      },
+      "skewness": 0.004861320869381099,
+      "distinct_values": 6261,
+      "noise_level": 0.6624632416291979,
+      "plateau_ratio": 0.0884071754729289,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_017_mean",
+      "std_dev": "ev_s2_col_017_stddev",
+      "distribution": "ev_s2_col_017_dist",
+      "dynamics": "ev_s2_col_017_dyn"
+    }
+  },
+  "col_018": {
+    "statistics": {
+      "mean": 66.00394001774481,
+      "std_dev": 1.728007651242871,
+      "min_val": 52.119,
+      "max_val": 74.699,
+      "quantiles": {
+        "p25": 65.43356985588609,
+        "p50": 65.84448031211386,
+        "p75": 66.43260942489114
+      },
+      "skewness": 0.21122197196203632,
+      "distinct_values": 20038,
+      "noise_level": 2.430425262610274,
+      "plateau_ratio": 0.07892641878669276,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_018_mean",
+      "std_dev": "ev_s2_col_018_stddev",
+      "distribution": "ev_s2_col_018_dist",
+      "dynamics": "ev_s2_col_018_dyn"
+    }
+  },
+  "col_019": {
+    "statistics": {
+      "mean": 246.08193041309053,
+      "std_dev": 67.13360141989212,
+      "min_val": -3.5372,
+      "max_val": 466.71,
+      "quantiles": {
+        "p25": 223.7131552170508,
+        "p50": 233.38185100387363,
+        "p75": 247.53284094461418
+      },
+      "skewness": 1.3541056568956589,
+      "distinct_values": 122563,
+      "noise_level": 95.1653768145607,
+      "plateau_ratio": 0.0753600782778865,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_019_mean",
+      "std_dev": "ev_s2_col_019_stddev",
+      "distribution": "ev_s2_col_019_dist",
+      "dynamics": "ev_s2_col_019_dyn"
+    }
+  },
+  "col_020": {
+    "statistics": {
+      "mean": 340.81898157141995,
+      "std_dev": 11.137602793215041,
+      "min_val": 230.15,
+      "max_val": 400.71,
+      "quantiles": {
+        "p25": 339.52657739085464,
+        "p50": 341.3111817216616,
+        "p75": 342.9097978159914
+      },
+      "skewness": 0.12437911134117643,
+      "distinct_values": 13403,
+      "noise_level": 15.756070328290196,
+      "plateau_ratio": 0.07955479452054795,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_020_mean",
+      "std_dev": "ev_s2_col_020_stddev",
+      "distribution": "ev_s2_col_020_dist",
+      "dynamics": "ev_s2_col_020_dyn"
+    }
+  },
+  "col_021": {
+    "statistics": {
+      "mean": 94.43661220737393,
+      "std_dev": 1.2383031858801687,
+      "min_val": 79.898,
+      "max_val": 100.28,
+      "quantiles": {
+        "p25": 94.44399628948321,
+        "p50": 94.58969512330631,
+        "p75": 94.73120694876935
+      },
+      "skewness": -5.941536432104341,
+      "distinct_values": 18924,
+      "noise_level": 1.7421293630169703,
+      "plateau_ratio": 0.0755529028049576,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_021_mean",
+      "std_dev": "ev_s2_col_021_stddev",
+      "distribution": "ev_s2_col_021_dist",
+      "dynamics": "ev_s2_col_021_dyn"
+    }
+  },
+  "col_022": {
+    "statistics": {
+      "mean": 77.06384846275124,
+      "std_dev": 1.317552148387086,
+      "min_val": 62.636,
+      "max_val": 83.808,
+      "quantiles": {
+        "p25": 77.00578520121122,
+        "p50": 77.27073100016682,
+        "p75": 77.51850694652303
+      },
+      "skewness": -3.091274118627279,
+      "distinct_values": 18426,
+      "noise_level": 1.8615686013355115,
+      "plateau_ratio": 0.07764657534246576,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_022_mean",
+      "std_dev": "ev_s2_col_022_stddev",
+      "distribution": "ev_s2_col_022_dist",
+      "dynamics": "ev_s2_col_022_dyn"
+    }
+  },
+  "col_023": {
+    "statistics": {
+      "mean": 32.02088473620535,
+      "std_dev": 1.739639166182616,
+      "min_val": 23.225,
+      "max_val": 40.211,
+      "quantiles": {
+        "p25": 31.917853996450493,
+        "p50": 32.183331955329685,
+        "p75": 32.443807862959495
+      },
+      "skewness": -2.311914472047268,
+      "distinct_values": 15548,
+      "noise_level": 2.4697930212102435,
+      "plateau_ratio": 0.0898334637964775,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_023_mean",
+      "std_dev": "ev_s2_col_023_stddev",
+      "distribution": "ev_s2_col_023_dist",
+      "dynamics": "ev_s2_col_023_dyn"
+    }
+  },
+  "col_024": {
+    "statistics": {
+      "mean": 8.870600310163262,
+      "std_dev": 0.22550692510278578,
+      "min_val": 7.4438,
+      "max_val": 10.345,
+      "quantiles": {
+        "p25": 8.795110162488223,
+        "p50": 8.887413731682194,
+        "p75": 8.97426761820126
+      },
+      "skewness": -1.3178492593101987,
+      "distinct_values": 24202,
+      "noise_level": 0.30028048687116843,
+      "plateau_ratio": 0.0835917808219178,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_024_mean",
+      "std_dev": "ev_s2_col_024_stddev",
+      "distribution": "ev_s2_col_024_dist",
+      "dynamics": "ev_s2_col_024_dyn"
+    }
+  },
+  "col_025": {
+    "statistics": {
+      "mean": 26.77069742257205,
+      "std_dev": 1.8829537326990187,
+      "min_val": 16.909,
+      "max_val": 36.469,
+      "quantiles": {
+        "p25": 26.138522646275476,
+        "p50": 26.420412542098237,
+        "p75": 26.733538221099185
+      },
+      "skewness": 3.3261596718819613,
+      "distinct_values": 16932,
+      "noise_level": 2.6769745484896235,
+      "plateau_ratio": 0.09032791911285062,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_025_mean",
+      "std_dev": "ev_s2_col_025_stddev",
+      "distribution": "ev_s2_col_025_dist",
+      "dynamics": "ev_s2_col_025_dyn"
+    }
+  },
+  "col_026": {
+    "statistics": {
+      "mean": 6.871069122778515,
+      "std_dev": 0.13503463853754355,
+      "min_val": 5.8989,
+      "max_val": 7.8854,
+      "quantiles": {
+        "p25": 6.796482280679021,
+        "p50": 6.877160836201836,
+        "p75": 6.955732698279793
+      },
+      "skewness": -0.653574095981782,
+      "distinct_values": 15055,
+      "noise_level": 0.15554459112176675,
+      "plateau_ratio": 0.08517123287671233,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_026_mean",
+      "std_dev": "ev_s2_col_026_stddev",
+      "distribution": "ev_s2_col_026_dist",
+      "dynamics": "ev_s2_col_026_dyn"
+    }
+  },
+  "col_027": {
+    "statistics": {
+      "mean": 18.67646297155941,
+      "std_dev": 0.9945414885935747,
+      "min_val": 12.047,
+      "max_val": 26.922,
+      "quantiles": {
+        "p25": 18.518457763490968,
+        "p50": 18.77805000192207,
+        "p75": 19.03250138021908
+      },
+      "skewness": -2.6552648715988068,
+      "distinct_values": 12863,
+      "noise_level": 1.377578803699498,
+      "plateau_ratio": 0.0897839530332681,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_027_mean",
+      "std_dev": "ev_s2_col_027_stddev",
+      "distribution": "ev_s2_col_027_dist",
+      "dynamics": "ev_s2_col_027_dyn"
+    }
+  },
+  "col_028": {
+    "statistics": {
+      "mean": 1.6286026131272082,
+      "std_dev": 0.12681486996789626,
+      "min_val": 0.8848,
+      "max_val": 2.1649,
+      "quantiles": {
+        "p25": 1.6287990220559014,
+        "p50": 1.6546422913829077,
+        "p75": 1.677470553388532
+      },
+      "skewness": -3.666860431526485,
+      "distinct_values": 18207,
+      "noise_level": 0.18068163523954198,
+      "plateau_ratio": 0.09078388780169602,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_028_mean",
+      "std_dev": "ev_s2_col_028_stddev",
+      "distribution": "ev_s2_col_028_dist",
+      "dynamics": "ev_s2_col_028_dyn"
+    }
+  },
+  "col_029": {
+    "statistics": {
+      "mean": 32.71400053946407,
+      "std_dev": 2.6191043295969605,
+      "min_val": 20.001,
+      "max_val": 45.408,
+      "quantiles": {
+        "p25": 32.62815351943147,
+        "p50": 32.94756447926501,
+        "p75": 33.25983328479342
+      },
+      "skewness": -2.2429857747690862,
+      "distinct_values": 22835,
+      "noise_level": 3.733390697242334,
+      "plateau_ratio": 0.08633352902804958,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_029_mean",
+      "std_dev": "ev_s2_col_029_stddev",
+      "distribution": "ev_s2_col_029_dist",
+      "dynamics": "ev_s2_col_029_dyn"
+    }
+  },
+  "col_030": {
+    "statistics": {
+      "mean": 13.789649326158315,
+      "std_dev": 0.2892214707725567,
+      "min_val": 11.786,
+      "max_val": 15.823,
+      "quantiles": {
+        "p25": 13.711307669701924,
+        "p50": 13.813481806275064,
+        "p75": 13.906814722483059
+      },
+      "skewness": -1.071840957685594,
+      "distinct_values": 3393,
+      "noise_level": 0.3929194597149894,
+      "plateau_ratio": 0.09704977168949772,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_030_mean",
+      "std_dev": "ev_s2_col_030_stddev",
+      "distribution": "ev_s2_col_030_dist",
+      "dynamics": "ev_s2_col_030_dyn"
+    }
+  },
+  "col_031": {
+    "statistics": {
+      "mean": 24.563410858448744,
+      "std_dev": 2.8925794197882877,
+      "min_val": 10.296,
+      "max_val": 39.239,
+      "quantiles": {
+        "p25": 23.672951043961223,
+        "p50": 24.022683285335905,
+        "p75": 24.419752237740106
+      },
+      "skewness": 3.5133429027281404,
+      "distinct_values": 24985,
+      "noise_level": 4.122689937044333,
+      "plateau_ratio": 0.08654494455316374,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_031_mean",
+      "std_dev": "ev_s2_col_031_stddev",
+      "distribution": "ev_s2_col_031_dist",
+      "dynamics": "ev_s2_col_031_dyn"
+    }
+  },
+  "col_032": {
+    "statistics": {
+      "mean": 1.2480066550697466,
+      "std_dev": 0.14949362311453826,
+      "min_val": 0.24694,
+      "max_val": 2.6509,
+      "quantiles": {
+        "p25": 1.176117790247749,
+        "p50": 1.2562461155392077,
+        "p75": 1.3341808546593072
+      },
+      "skewness": -0.8651979919631182,
+      "distinct_values": 63015,
+      "noise_level": 0.18413400091435517,
+      "plateau_ratio": 0.07922361382909328,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_032_mean",
+      "std_dev": "ev_s2_col_032_stddev",
+      "distribution": "ev_s2_col_032_dist",
+      "dynamics": "ev_s2_col_032_dyn"
+    }
+  },
+  "col_033": {
+    "statistics": {
+      "mean": 18.422828418956108,
+      "std_dev": 1.3952275709025606,
+      "min_val": 9.6631,
+      "max_val": 29.76,
+      "quantiles": {
+        "p25": 18.273062345901867,
+        "p50": 18.57396718724938,
+        "p75": 18.86358026130071
+      },
+      "skewness": -2.7560711631741386,
+      "distinct_values": 17538,
+      "noise_level": 1.9455677400606342,
+      "plateau_ratio": 0.0847764514024788,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_033_mean",
+      "std_dev": "ev_s2_col_033_stddev",
+      "distribution": "ev_s2_col_033_dist",
+      "dynamics": "ev_s2_col_033_dyn"
+    }
+  },
+  "col_034": {
+    "statistics": {
+      "mean": 2.2221433227660827,
+      "std_dev": 0.1729272638093051,
+      "min_val": 1.2549,
+      "max_val": 2.973,
+      "quantiles": {
+        "p25": 2.2328656037274737,
+        "p50": 2.2610077187424364,
+        "p75": 2.285682424779301
+      },
+      "skewness": -3.488440320973777,
+      "distinct_values": 15231,
+      "noise_level": 0.24774684930081367,
+      "plateau_ratio": 0.08796014350945858,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_034_mean",
+      "std_dev": "ev_s2_col_034_stddev",
+      "distribution": "ev_s2_col_034_dist",
+      "dynamics": "ev_s2_col_034_dyn"
+    }
+  },
+  "col_035": {
+    "statistics": {
+      "mean": 4.7761422821656385,
+      "std_dev": 0.3430050671176461,
+      "min_val": 3.0393,
+      "max_val": 6.4972,
+      "quantiles": {
+        "p25": 4.773632426601484,
+        "p50": 4.841285817663434,
+        "p75": 4.904126843932386
+      },
+      "skewness": -2.3599782855376543,
+      "distinct_values": 28172,
+      "noise_level": 0.4834963504243402,
+      "plateau_ratio": 0.08127090671885193,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_035_mean",
+      "std_dev": "ev_s2_col_035_stddev",
+      "distribution": "ev_s2_col_035_dist",
+      "dynamics": "ev_s2_col_035_dyn"
+    }
+  },
+  "col_036": {
+    "statistics": {
+      "mean": 2.263345127292798,
+      "std_dev": 0.18173592848983866,
+      "min_val": 1.3402,
+      "max_val": 3.1193,
+      "quantiles": {
+        "p25": 2.2449943971422535,
+        "p50": 2.2959349828915903,
+        "p75": 2.3436625393862287
+      },
+      "skewness": -2.3113973245865442,
+      "distinct_values": 15730,
+      "noise_level": 0.2533537904833766,
+      "plateau_ratio": 0.08182576647097195,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_036_mean",
+      "std_dev": "ev_s2_col_036_stddev",
+      "distribution": "ev_s2_col_036_dist",
+      "dynamics": "ev_s2_col_036_dyn"
+    }
+  },
+  "col_037": {
+    "statistics": {
+      "mean": 0.017869074754930978,
+      "std_dev": 0.010197328496754223,
+      "min_val": -0.030974,
+      "max_val": 0.066926,
+      "quantiles": {
+        "p25": 0.010989463459408816,
+        "p50": 0.017877847959960592,
+        "p75": 0.024780818348125684
+      },
+      "skewness": -0.008176532098178282,
+      "distinct_values": 223331,
+      "noise_level": 0.010013675608936368,
+      "plateau_ratio": 0.08835616438356164,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_037_mean",
+      "std_dev": "ev_s2_col_037_stddev",
+      "distribution": "ev_s2_col_037_dist",
+      "dynamics": "ev_s2_col_037_dyn"
+    }
+  },
+  "col_038": {
+    "statistics": {
+      "mean": 0.8364804510666133,
+      "std_dev": 0.0916342509917962,
+      "min_val": 0.38907,
+      "max_val": 1.7097,
+      "quantiles": {
+        "p25": 0.8183503045607663,
+        "p50": 0.8358871158616522,
+        "p75": 0.853959308313829
+      },
+      "skewness": -0.4622037833747397,
+      "distinct_values": 61903,
+      "noise_level": 0.1288488561614455,
+      "plateau_ratio": 0.085108871493803,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_038_mean",
+      "std_dev": "ev_s2_col_038_stddev",
+      "distribution": "ev_s2_col_038_dist",
+      "dynamics": "ev_s2_col_038_dyn"
+    }
+  },
+  "col_039": {
+    "statistics": {
+      "mean": 0.09734161446476505,
+      "std_dev": 0.013301296173208793,
+      "min_val": 0.020311,
+      "max_val": 0.17369,
+      "quantiles": {
+        "p25": 0.09009470145804596,
+        "p50": 0.09820936604147144,
+        "p75": 0.10582977831940983
+      },
+      "skewness": -0.6029620130178578,
+      "distinct_values": 62907,
+      "noise_level": 0.015779176698399733,
+      "plateau_ratio": 0.08839054142204827,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_039_mean",
+      "std_dev": "ev_s2_col_039_stddev",
+      "distribution": "ev_s2_col_039_dist",
+      "dynamics": "ev_s2_col_039_dyn"
+    }
+  },
+  "col_040": {
+    "statistics": {
+      "mean": 53.73542711644167,
+      "std_dev": 0.5857630866731486,
+      "min_val": 50.03,
+      "max_val": 57.124,
+      "quantiles": {
+        "p25": 53.36354112942647,
+        "p50": 53.73552660161664,
+        "p75": 54.11426498062872
+      },
+      "skewness": -0.09334374234392441,
+      "distinct_values": 5453,
+      "noise_level": 0.6401572864120928,
+      "plateau_ratio": 0.10385499021526419,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_040_mean",
+      "std_dev": "ev_s2_col_040_stddev",
+      "distribution": "ev_s2_col_040_dist",
+      "dynamics": "ev_s2_col_040_dyn"
+    }
+  },
+  "col_041": {
+    "statistics": {
+      "mean": 43.80436072929605,
+      "std_dev": 0.6115602218517477,
+      "min_val": 40.024,
+      "max_val": 47.344,
+      "quantiles": {
+        "p25": 43.42500849064295,
+        "p50": 43.815119954951015,
+        "p75": 44.189394461779145
+      },
+      "skewness": -0.03617807343581997,
+      "distinct_values": 5705,
+      "noise_level": 0.6886389017782545,
+      "plateau_ratio": 0.10109562948467057,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_041_mean",
+      "std_dev": "ev_s2_col_041_stddev",
+      "distribution": "ev_s2_col_041_dist",
+      "dynamics": "ev_s2_col_041_dyn"
+    }
+  },
+  "col_042": {
+    "statistics": {
+      "mean": 63.85588841585065,
+      "std_dev": 4.755545631379111,
+      "min_val": 28.116,
+      "max_val": 100.0,
+      "quantiles": {
+        "p25": 62.63830994748219,
+        "p50": 63.089600578695034,
+        "p75": 63.56437525392958
+      },
+      "skewness": 6.2988412265976175,
+      "distinct_values": 45344,
+      "noise_level": 6.686223127047166,
+      "plateau_ratio": 0.08969941291585128,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_042_mean",
+      "std_dev": "ev_s2_col_042_stddev",
+      "distribution": "ev_s2_col_042_dist",
+      "dynamics": "ev_s2_col_042_dyn"
+    }
+  },
+  "col_043": {
+    "statistics": {
+      "mean": 54.563976663497336,
+      "std_dev": 6.753466723340139,
+      "min_val": 7.3484,
+      "max_val": 100.0,
+      "quantiles": {
+        "p25": 53.537036683405745,
+        "p50": 53.9780101236741,
+        "p75": 54.42788446888238
+      },
+      "skewness": 5.115454148749192,
+      "distinct_values": 67098,
+      "noise_level": 9.60325987901163,
+      "plateau_ratio": 0.08743365949119374,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_043_mean",
+      "std_dev": "ev_s2_col_043_stddev",
+      "distribution": "ev_s2_col_043_dist",
+      "dynamics": "ev_s2_col_043_dyn"
+    }
+  },
+  "col_044": {
+    "statistics": {
+      "mean": 29.480435721233317,
+      "std_dev": 19.395444251158217,
+      "min_val": -0.35866,
+      "max_val": 100.21,
+      "quantiles": {
+        "p25": 22.252397173806006,
+        "p50": 25.075566363864628,
+        "p75": 28.295955099741693
+      },
+      "skewness": 2.422075414521621,
+      "distinct_values": 230849,
+      "noise_level": 27.604263438816947,
+      "plateau_ratio": 0.07811748206131768,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_044_mean",
+      "std_dev": "ev_s2_col_044_stddev",
+      "distribution": "ev_s2_col_044_dist",
+      "dynamics": "ev_s2_col_044_dyn"
+    }
+  },
+  "col_045": {
+    "statistics": {
+      "mean": 63.46107132857007,
+      "std_dev": 8.219345479948313,
+      "min_val": -0.0052226,
+      "max_val": 100.02,
+      "quantiles": {
+        "p25": 60.350088981340875,
+        "p50": 61.48402459074343,
+        "p75": 62.75743035535771
+      },
+      "skewness": 3.1017825420920135,
+      "distinct_values": 63452,
+      "noise_level": 11.46693150215239,
+      "plateau_ratio": 0.07631213307240704,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_045_mean",
+      "std_dev": "ev_s2_col_045_stddev",
+      "distribution": "ev_s2_col_045_dist",
+      "dynamics": "ev_s2_col_045_dyn"
+    }
+  },
+  "col_046": {
+    "statistics": {
+      "mean": 23.125057857112292,
+      "std_dev": 11.922722381411205,
+      "min_val": -0.10688,
+      "max_val": 100.11,
+      "quantiles": {
+        "p25": 21.528289589986024,
+        "p50": 22.140517387267018,
+        "p75": 22.69424418614107
+      },
+      "skewness": 5.125338999264526,
+      "distinct_values": 97020,
+      "noise_level": 16.85072795935444,
+      "plateau_ratio": 0.0747279843444227,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_046_mean",
+      "std_dev": "ev_s2_col_046_stddev",
+      "distribution": "ev_s2_col_046_dist",
+      "dynamics": "ev_s2_col_046_dyn"
+    }
+  },
+  "col_047": {
+    "statistics": {
+      "mean": 39.50934852152138,
+      "std_dev": 12.795152639818788,
+      "min_val": 0.0,
+      "max_val": 97.528,
+      "quantiles": {
+        "p25": 38.387902791390424,
+        "p50": 39.94586088242154,
+        "p75": 41.38850166133177
+      },
+      "skewness": 0.27273083444105933,
+      "distinct_values": 189224,
+      "noise_level": 18.230909343696116,
+      "plateau_ratio": 0.07570841487279843,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_047_mean",
+      "std_dev": "ev_s2_col_047_stddev",
+      "distribution": "ev_s2_col_047_dist",
+      "dynamics": "ev_s2_col_047_dyn"
+    }
+  },
+  "col_048": {
+    "statistics": {
+      "mean": 38.057385906130975,
+      "std_dev": 2.942525306028853,
+      "min_val": 22.288,
+      "max_val": 54.23,
+      "quantiles": {
+        "p25": 36.021391542282124,
+        "p50": 38.11909925280265,
+        "p75": 39.977995734506166
+      },
+      "skewness": 0.014902049323446912,
+      "distinct_values": 23169,
+      "noise_level": 2.8373664777691547,
+      "plateau_ratio": 0.07847488584474886,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_048_mean",
+      "std_dev": "ev_s2_col_048_stddev",
+      "distribution": "ev_s2_col_048_dist",
+      "dynamics": "ev_s2_col_048_dyn"
+    }
+  },
+  "col_049": {
+    "statistics": {
+      "mean": 46.43279241474045,
+      "std_dev": 2.3477959988738175,
+      "min_val": 33.369,
+      "max_val": 60.216,
+      "quantiles": {
+        "p25": 44.863627356644656,
+        "p50": 46.3314439389926,
+        "p75": 48.02452205743188
+      },
+      "skewness": 0.07924809487169882,
+      "distinct_values": 18990,
+      "noise_level": 2.2902265244135562,
+      "plateau_ratio": 0.08032961513372472,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_049_mean",
+      "std_dev": "ev_s2_col_049_stddev",
+      "distribution": "ev_s2_col_049_dist",
+      "dynamics": "ev_s2_col_049_dyn"
+    }
+  },
+  "col_050": {
+    "statistics": {
+      "mean": 49.87649130722751,
+      "std_dev": 17.14415049017605,
+      "min_val": -0.68342,
+      "max_val": 100.58,
+      "quantiles": {
+        "p25": 45.466039325154334,
+        "p50": 48.04248183262289,
+        "p75": 51.413927353992186
+      },
+      "skewness": 0.7752975669574915,
+      "distinct_values": 184310,
+      "noise_level": 24.295604577450266,
+      "plateau_ratio": 0.07452328767123288,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_050_mean",
+      "std_dev": "ev_s2_col_050_stddev",
+      "distribution": "ev_s2_col_050_dist",
+      "dynamics": "ev_s2_col_050_dyn"
+    }
+  },
+  "col_051": {
+    "statistics": {
+      "mean": 41.96304970126214,
+      "std_dev": 11.003192691499194,
+      "min_val": -0.51565,
+      "max_val": 100.61,
+      "quantiles": {
+        "p25": 40.61296411763889,
+        "p50": 41.18921543178203,
+        "p75": 41.84915751286867
+      },
+      "skewness": 2.2267119673418057,
+      "distinct_values": 193879,
+      "noise_level": 15.559412381489507,
+      "plateau_ratio": 0.07174807566862361,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_051_mean",
+      "std_dev": "ev_s2_col_051_stddev",
+      "distribution": "ev_s2_col_051_dist",
+      "dynamics": "ev_s2_col_051_dyn"
+    }
+  },
+  "col_052": {
+    "statistics": {
+      "mean": 19.15970678079607,
+      "std_dev": 7.642518592848267,
+      "min_val": -0.0067742,
+      "max_val": 100.01,
+      "quantiles": {
+        "p25": 17.12392285767042,
+        "p50": 18.26370168758467,
+        "p75": 19.480075757992342
+      },
+      "skewness": 6.9200109580016305,
+      "distinct_values": 133491,
+      "noise_level": 10.68181358603318,
+      "plateau_ratio": 0.08123320287018918,
+      "has_plateaus": false,
+      "plateau_separates_cohort": true,
+      "plateau_threshold": 0.2073100782778865
+    },
+    "evidence_ids": {
+      "mean": "ev_s2_col_052_mean",
+      "std_dev": "ev_s2_col_052_stddev",
+      "distribution": "ev_s2_col_052_dist",
+      "dynamics": "ev_s2_col_052_dyn"
+    }
+  }
+}
