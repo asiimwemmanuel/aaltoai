@@ -9,28 +9,23 @@ llm:
   #   local  | stub  -> no egress
   #   google | anthropic | openai | eu_hosted -> egress, logged per call
   #
-  # Interim setup while the local model is being installed: google.
-  # Switch back to `local` the moment Ollama answers on 11434.
-  provider: google
-  # gemini-2.0-flash was retired by Google (calls now 404); moved to the
-  # replacement the API itself names. Unrelated to the operator question box,
-  # found while verifying it -- every call through this gateway was broken.
-  #
-  # gemini-3.6-flash's free-tier quota (5 req/min, and its daily quota was
-  # already exhausted while testing this) makes a 52-column S4 run
-  # impractical on a free key. gemini-flash-lite-latest answers the same API
-  # shape with a much higher free-tier ceiling (8 back-to-back calls with no
-  # 429). Swap back to gemini-3.6-flash once on a paid tier.
-  model: gemini-flash-lite-latest
-  endpoint: https://generativelanguage.googleapis.com/v1beta
+  # Active since 20 Sep: the local model. Nothing leaves the machine, there is
+  # no key to lose and no quota to pace around. The hosted profile below is
+  # kept whole so switching back is one edit or one click in the cockpit.
+  provider: local
+  # Pulled with tools/setup_ollama.sh; 4.9 GB, answers in ~2 s per call on
+  # Apple silicon. Proven through call_model(), not through curl: the decision
+  # log records provider=local, egress=false for every call it serves.
+  model: llama3.1:8b
+  endpoint: http://localhost:11434
   # The key is NEVER written here: this file is committed. Name the environment
   # variable instead, and export it in the shell that runs the pipeline.
-  api_key_env: GEMINI_API_KEY
+  # A local model needs none, hence null.
+  api_key_env: null
   timeout_s: 120
-  # Conservative client-side pacing so a free-tier quota is respected
-  # proactively instead of discovered via 429s. Raise once on a paid tier
-  # or back on `local`.
-  rate_limit_per_min: 15
+  # Client-side pacing exists only for hosted free-tier quotas. On a local
+  # model it would turn a 52-column S4 into a four-minute wait for nothing.
+  rate_limit_per_min: 0
 
 # Kept so switching back is one edit, not a rewrite from memory.
 llm_local_profile:
@@ -39,6 +34,27 @@ llm_local_profile:
   endpoint: http://localhost:11434
   api_key_env: null
   timeout_s: 120
+
+# The hosted profile, and the reasoning that settled on this model. Kept whole
+# so the second option in the cockpit's model switch is a tested one rather
+# than a guess.
+#
+# gemini-2.0-flash was retired by Google (calls now 404); moved to the
+# replacement the API itself names. Every call through this gateway was broken
+# until that was found.
+#
+# gemini-3.6-flash's free-tier quota (5 req/min, and its daily quota was
+# already exhausted while testing this) makes a 52-column S4 run impractical on
+# a free key. gemini-flash-lite-latest answers the same API shape with a much
+# higher free-tier ceiling (8 back-to-back calls with no 429). Swap back to
+# gemini-3.6-flash once on a paid tier.
+llm_hosted_profile:
+  provider: google
+  model: gemini-flash-lite-latest
+  endpoint: https://generativelanguage.googleapis.com/v1beta
+  api_key_env: GEMINI_API_KEY
+  timeout_s: 120
+  rate_limit_per_min: 15
 
 gate:
   max_payload_kb: 64

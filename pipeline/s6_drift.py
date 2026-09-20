@@ -7,14 +7,19 @@ Run from the Hackathon/ folder:  python scripts/s6_drift.py
 """
 import argparse
 import glob
+import hashlib
 import json
 import os
 import re
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
 import numpy as np
 import polars as pl
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from pipeline.lib.run_boundaries import rebuild_runs
 
 TIME_COL = "col_time"
 
@@ -43,39 +48,85 @@ DEFAULTS = {
 }
 
 
-def load_runs(features_dir):
-    """Rebuild each run from the Parquet files. A run starts when col_time is 1."""
-    runs = {}
-    col_ids = None
+def partition_dirs(features_dir, sims=None):
+    """The partition directories, in a stable order, optionally only some sims."""
+    out = []
     for sim_dir in sorted(glob.glob(os.path.join(features_dir, "simulationRun=*"))):
         sim_match = re.search(r"simulationRun=([\d.]+)", sim_dir)
-        if not sim_match: continue
+        if not sim_match:
+            continue
         sim = int(float(sim_match.group(1)))
+        if sims is not None and sim not in sims:
+            continue
+        out.append((sim, sim_dir))
+    return out
+
+
+def sim_of(run_id):
+    """sim100_run07 -> 100. The partition a run id came out of."""
+    m = re.match(r"sim(\d+)_run\d+$", run_id)
+    if not m:
+        raise SystemExit(f"{run_id}: not a run id this stage produces (sim<N>_run<KK>).")
+    return int(m.group(1))
+
+
+def discover_run_ids(features_dir):
+    """Every run id, reading only the time column.
+
+    The full dataset is 15.3 M rows across 53 columns. Materialising all of it
+    to answer "which runs exist" costs about 6 GB of resident memory and pushes
+    a 16 GB machine into swap -- which is what made this stage and
+    make_manifest.py look hung rather than slow. The boundaries live in
+    col_time alone, so read that one column.
+    """
+    ids = []
+    for sim, sim_dir in partition_dirs(features_dir):
+        t = pl.read_parquet(os.path.join(sim_dir, "*.parquet"),
+                            columns=[TIME_COL])[TIME_COL].to_numpy()
+        n = len(rebuild_runs(t, sim_dir))
+        ids.extend(f"sim{sim}_run{k:02d}" for k in range(n))
+    return ids
+
+
+def iter_partitions(features_dir, sims=None, col_ids=None):
+    """Yield (col_ids, runs) one partition at a time.
+
+    Holding all 500 partitions at once is 6.4 GB of float64 for no reason:
+    scoring is per run and the reference baseline needs fifteen of them. The
+    caller keeps only what it is using, so peak memory is one partition.
+    """
+    for sim, sim_dir in partition_dirs(features_dir, sims):
         # NOT sorted by TIME_COL: col_time resets to 1 at each sub-run boundary
         # within a simulationRun partition, so a global sort by col_time
         # interleaves all sub-runs together and destroys the very boundaries
         # this function looks for below. The Parquet file's natural (ingestion)
         # row order already keeps each sub-run's samples contiguous.
+        # NOT sorted by TIME_COL: col_time resets to 1 at each sub-run
+        # boundary, so a global sort interleaves every sub-run together.
+        # rebuild_runs() below recovers the boundaries from col_time without
+        # sorting and without trusting the Parquet row order.
         df = pl.read_parquet(os.path.join(sim_dir, "*.parquet"))
         cols = [c for c in df.columns if c not in (TIME_COL, "simulationRun")]
         if col_ids is None:
             col_ids = cols
         elif cols != col_ids:
             raise ValueError(f"{sim_dir}: columns differ from the other partitions")
-            
+
         t = df[TIME_COL].to_numpy()
         x = df.select(cols).to_numpy()
-        
-        cuts = np.where(t == 1)[0]
-        if len(cuts) == 0:
-            continue
-            
-        pieces = list(zip(np.split(t, cuts[1:]), np.split(x, cuts[1:])))
-        for k, (t_piece, x_piece) in enumerate(pieces):
-            runs[f"sim{sim}_run{k:02d}"] = {
-                "t": t_piece,
-                "x": x_piece,
-            }
+        del df
+
+        runs = {}
+        for k, idx in enumerate(rebuild_runs(t, sim_dir)):
+            runs[f"sim{sim}_run{k:02d}"] = {"t": t[idx], "x": x[idx]}
+        yield col_ids, runs
+
+
+def load_runs(features_dir, sims=None):
+    """Every run, in memory at once. Only for the reference set -- see iter_partitions."""
+    runs, col_ids = {}, None
+    for col_ids, part in iter_partitions(features_dir, sims, col_ids):
+        runs.update(part)
     return runs, col_ids
 
 
@@ -89,6 +140,10 @@ class ReferenceModel:
     eigenvalues: np.ndarray
     variance_explained: float
     n_samples: int
+    # Set by main(). Every artifact can then say which baseline produced it,
+    # which is what makes two runs comparable.
+    fingerprint: str = ""
+    fitted_at: str = ""
 
     def score(self, x):
         z = (x[:, self.keep] - self.mean) / self.std
@@ -249,7 +304,8 @@ def detect_run(run_id, run, model, limits, params, now, gate=None):
             "ev_s6_baseline", "reference_baseline", [],
             {"n_samples": model.n_samples, "n_columns": len(model.col_ids),
              "n_components": int(model.components.shape[1]),
-             "variance_explained": round(model.variance_explained, 4)},
+             "variance_explained": round(model.variance_explained, 4),
+             "fingerprint": model.fingerprint, "fitted_at": model.fitted_at},
             "pca_on_normal_reference_runs", now),
         evidence_item(
             "ev_s6_limits", "control_limits", [],
@@ -327,6 +383,59 @@ def write_json(path, obj):
         json.dump(obj, f, indent=2)
 
 
+REFERENCE_MODEL = "contracts/reference_model.json"
+
+
+def model_fingerprint(fit_ids, cal_ids, col_ids, params):
+    """Identity of a baseline: the runs it was fitted on, the columns, the parameters.
+
+    Two runs of this stage are comparable only if this string matches. It is
+    written into the saved model and into every drift event.
+    """
+    payload = json.dumps({
+        "fit": list(fit_ids),
+        "calibration": list(cal_ids),
+        "columns": list(col_ids),
+        "variance_target": params["variance_target"],
+        "limit_percentile": params["limit_percentile"],
+    }, sort_keys=True)
+    return hashlib.sha256(payload.encode()).hexdigest()[:16]
+
+
+def save_reference(path, model, limits, fingerprint, now):
+    write_json(path, {
+        "fingerprint": fingerprint,
+        "fitted_at": now,
+        "col_ids": model.col_ids,
+        "mean": model.mean.tolist(),
+        "std": model.std.tolist(),
+        "keep": [bool(k) for k in model.keep],
+        "components": model.components.tolist(),
+        "eigenvalues": model.eigenvalues.tolist(),
+        "variance_explained": model.variance_explained,
+        "n_samples": model.n_samples,
+        "limits": limits,
+    })
+
+
+def load_reference(path):
+    with open(path) as f:
+        d = json.load(f)
+    model = ReferenceModel(
+        col_ids=d["col_ids"],
+        mean=np.array(d["mean"], dtype=float),
+        std=np.array(d["std"], dtype=float),
+        keep=np.array(d["keep"], dtype=bool),
+        components=np.array(d["components"], dtype=float),
+        eigenvalues=np.array(d["eigenvalues"], dtype=float),
+        variance_explained=float(d["variance_explained"]),
+        n_samples=int(d["n_samples"]),
+        fingerprint=d.get("fingerprint", ""),
+        fitted_at=d.get("fitted_at", ""),
+    )
+    return model, d["limits"]
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--features", default="data/features")
@@ -337,6 +446,10 @@ def main():
     ap.add_argument("--out-dir", default="artifacts/drift_events")
     ap.add_argument("--persistence", type=int, default=DEFAULTS["persistence"])
     ap.add_argument("--percentile", type=float, default=DEFAULTS["limit_percentile"])
+    ap.add_argument("--model", default=REFERENCE_MODEL,
+                    help="saved PCA baseline; reused unless --refit")
+    ap.add_argument("--refit", action="store_true",
+                    help="fit the baseline again and overwrite the saved one")
     args = ap.parse_args()
 
     params = dict(DEFAULTS, persistence=args.persistence, limit_percentile=args.percentile)
@@ -347,31 +460,87 @@ def main():
         raise SystemExit(f"DATA ALARM: S5 verdict is UNTRUSTED ({gate['source_batch_id']}). "
                          "S6 does not reason about the process on broken data.")
 
-    runs, col_ids = load_runs(args.features)
     with open(args.manifest) as f:
         manifest = json.load(f)
     fit_ids, cal_ids = manifest["fit"], manifest["calibration"]
+    reference_ids = set(fit_ids) | set(cal_ids)
 
-    model = fit_reference(np.concatenate([runs[r]["x"] for r in fit_ids]), col_ids, params["variance_target"])
-    limits = calibrate_limits(model, [runs[r]["x"] for r in cal_ids], params["limit_percentile"])
-    print(f"Reference: {model.n_samples} samples, {len(model.col_ids)} columns, "
-          f"{model.components.shape[1]} components ({model.variance_explained:.1%} variance)")
+    # Only the reference partitions are held in memory. Everything else is
+    # streamed one partition at a time further down.
+    ref_runs, col_ids = load_runs(args.features, {sim_of(r) for r in reference_ids})
+    missing = [r for r in fit_ids + cal_ids if r not in ref_runs]
+    if missing:
+        raise SystemExit(
+            f"{args.manifest} names {len(missing)} run(s) that are not in "
+            f"{args.features}: {', '.join(missing[:5])}"
+            f"{' ...' if len(missing) > 5 else ''}. Re-run make_manifest.py.")
+
+    # What normal means is decided once and then held still. Refitting on every
+    # batch lets slow drift walk into the definition of normal, which is the
+    # exact failure this challenge is about: the monitor adapts to the fault and
+    # stops seeing it. It also makes two runs incomparable, which is how a
+    # re-ingest silently changed every limit and the blamed signal overnight.
+    fingerprint = model_fingerprint(fit_ids, cal_ids, col_ids, params)
+
+    if os.path.exists(args.model) and not args.refit:
+        model, limits = load_reference(args.model)
+        if model.fingerprint != fingerprint:
+            raise SystemExit(
+                f"{args.model} was fitted for a different configuration "
+                f"({model.fingerprint or 'unknown'} != {fingerprint}). The "
+                f"reference runs, the column set or the limit parameters have "
+                f"changed since. Pass --refit if that is intended; the baseline "
+                f"must never move without someone deciding that it should.")
+        print(f"Reference: loaded {args.model}, fitted {model.fitted_at}, "
+              f"{model.n_samples} samples, {len(model.col_ids)} columns, "
+              f"{model.components.shape[1]} components "
+              f"({model.variance_explained:.1%} variance)")
+    else:
+        model = fit_reference(np.concatenate([ref_runs[r]["x"] for r in fit_ids]),
+                              col_ids, params["variance_target"])
+        limits = calibrate_limits(model, [ref_runs[r]["x"] for r in cal_ids],
+                                  params["limit_percentile"])
+        model.fingerprint, model.fitted_at = fingerprint, now
+        save_reference(args.model, model, limits, fingerprint, now)
+        print(f"Reference: FITTED and saved to {args.model}. "
+              f"{model.n_samples} samples, {len(model.col_ids)} columns, "
+              f"{model.components.shape[1]} components "
+              f"({model.variance_explained:.1%} variance)")
     print(f"Limits (p{params['limit_percentile']} on {limits['n_samples']} held-out normal samples): "
           f"T2={limits['t2']:.2f} SPE={limits['spe']:.2f}")
 
     if args.run_id:
-        result = detect_run(args.run_id, runs[args.run_id], model, limits, params, now, gate)
+        one, _ = load_runs(args.features, {sim_of(args.run_id)})
+        if args.run_id not in one:
+            raise SystemExit(f"{args.run_id}: no such run in {args.features}.")
+        result = detect_run(args.run_id, one[args.run_id], model, limits, params, now, gate)
         write_json(args.out, result)
         print(f"{args.run_id}: {len(result['events'])} event(s) -> {args.out}")
         return
 
-    scored = [r for r in runs if r not in set(fit_ids) | set(cal_ids)]
-    total = 0
-    for run_id in scored:
-        result = detect_run(run_id, runs[run_id], model, limits, params, now, gate)
-        write_json(os.path.join(args.out_dir, f"{run_id}.json"), result)
-        total += len(result["events"])
-    print(f"Scored {len(scored)} runs, {total} events -> {args.out_dir}/")
+    del ref_runs
+
+    # Everything already in out_dir was scored against whatever baseline was
+    # current at the time. Leaving it there mixes two operating points in one
+    # directory and eval reports "BASELINES DISAGREE" -- or worse, does not,
+    # because the stale files happen to be from runs this pass no longer
+    # scores. A scoring pass owns its output directory.
+    stale = glob.glob(os.path.join(args.out_dir, "*.json"))
+    for path in stale:
+        os.unlink(path)
+    if stale:
+        print(f"Cleared {len(stale)} run(s) scored against an earlier baseline.")
+
+    n_scored = total = 0
+    for _, part in iter_partitions(args.features, col_ids=col_ids):
+        for run_id, run in part.items():
+            if run_id in reference_ids:
+                continue
+            result = detect_run(run_id, run, model, limits, params, now, gate)
+            write_json(os.path.join(args.out_dir, f"{run_id}.json"), result)
+            total += len(result["events"])
+            n_scored += 1
+    print(f"Scored {n_scored} runs, {total} events -> {args.out_dir}/")
 
 
 if __name__ == "__main__":

@@ -60,13 +60,19 @@ def _now() -> str:
 def load_label_runs() -> dict[str, dict]:
     """Split the label Parquet into runs exactly the way S6 splits the features.
 
-    Same rule, same order: a run starts where col_time returns to 1, numbered in
-    file order. If this drifts from `pipeline/s6_drift.load_runs`, every number
-    below is aligned to the wrong run and the report is worse than useless, so
-    the rule is restated here rather than imported -- eval does not reach into
-    a stage either.
+    Restating the rule here is how it drifted: the copy in this file still
+    split on col_time == 1 in row order, which mis-assigns runs in 54 of the
+    500 partitions and lines every number below up against the wrong labels.
+    `pipeline.lib.run_boundaries` is a library, not a stage, so eval can share
+    the one definition without reaching into S6.
     """
+    import sys
+
+    import numpy as np
     import polars as pl
+
+    sys.path.append(str(ROOT))
+    from pipeline.lib.run_boundaries import rebuild_runs
 
     runs: dict[str, dict] = {}
     for sim_dir in sorted(glob.glob(str(LABELS_DIR / "simulationRun=*"))):
@@ -80,16 +86,12 @@ def load_label_runs() -> dict[str, dict]:
         fault = frame[LABEL_COL].to_list() if LABEL_COL in frame.columns else [None] * len(t)
         status = frame[STATUS_COL].to_list() if STATUS_COL in frame.columns else [None] * len(t)
 
-        cuts = [i for i, v in enumerate(t) if v == 1]
-        if not cuts:
-            continue
-        bounds = cuts + [len(t)]
-        for k in range(len(cuts)):
-            lo, hi = bounds[k], bounds[k + 1]
+        for k, idx in enumerate(rebuild_runs(np.asarray(t), sim_dir)):
+            rows = idx.tolist()
             runs[f"sim{sim}_run{k:02d}"] = {
-                "time": t[lo:hi],
-                "fault": fault[lo:hi],
-                "status": status[lo:hi],
+                "time": [t[i] for i in rows],
+                "fault": [fault[i] for i in rows],
+                "status": [status[i] for i in rows],
             }
     return runs
 

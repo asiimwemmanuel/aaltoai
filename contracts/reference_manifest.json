@@ -1,21 +1,29 @@
 {
   "fit": [
-    "sim100_run00",
-    "sim100_run01",
-    "sim100_run02",
-    "sim100_run03",
-    "sim100_run04",
-    "sim100_run05",
-    "sim100_run06",
-    "sim100_run07",
-    "sim100_run08",
-    "sim100_run09"
+    "sim102_run00",
+    "sim105_run00",
+    "sim107_run00",
+    "sim109_run00",
+    "sim110_run00",
+    "sim111_run00",
+    "sim112_run00",
+    "sim113_run00",
+    "sim114_run00",
+    "sim11_run00"
   ],
   "calibration": [
-    "sim100_run10",
-    "sim100_run11",
-    "sim100_run12",
-    "sim100_run13",
-    "sim100_run14"
-  ]
+    "sim101_run00",
+    "sim108_run00",
+    "sim118_run00",
+    "sim119_run00",
+    "sim120_run00"
+  ],
+  "selection": {
+    "rule": "the first run of each batch, one per batch",
+    "assumption": "The first run of each batch is a reference period. This is an operator convention about how batches are recorded, not something inferred from the data, and it is the one assumption the baseline rests on. If batches are not recorded that way, name the reference runs explicitly instead.",
+    "epistemic_status": "assumed",
+    "note": "25 candidates, 0 rejected above a modified z of 3.5",
+    "rejected": [],
+    "uses_labels": false
+  }
 }

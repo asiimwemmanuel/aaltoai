@@ -918,15 +918,6 @@ def ask_context_append(body: dict, log) -> dict:
 VALIDATION_REPORT = ROOT / "eval" / "validation_report.json"
 ROUTE_DESKS = ["Instrumentation", "Mechanical", "Control room", "Process engineering"]
 
-# What an operator can answer when the line has stopped. The wording is the
-# wording the log carries, so it is written here once rather than in the UI.
-HALT_ACTIONS = {
-    "acknowledge": "acknowledged it and restarted the line",
-    "investigate": "kept the line stopped and opened the evidence",
-    "ignore_once": "let the line run and left the detection unread",
-    "ignore_always": "let the line run and asked never to be stopped by this again",
-}
-
 
 def unit_state_path(machine_id: str) -> Path:
     return MACHINE_CONTEXT_DIR / f"{_safe_id(machine_id, 'machine_01')}.state.json"
@@ -934,8 +925,7 @@ def unit_state_path(machine_id: str) -> Path:
 
 def _empty_state(machine_id: str) -> dict:
     return {"machine_id": machine_id, "updated_at": _now(),
-            "channel_hypotheses": {}, "tickets": [], "carried_predictions": [],
-            "standing_orders": []}
+            "channel_hypotheses": {}, "tickets": [], "carried_predictions": []}
 
 
 def _load_state(machine_id: str) -> dict:
@@ -949,7 +939,6 @@ def _load_state(machine_id: str) -> dict:
     state.setdefault("channel_hypotheses", {})
     state.setdefault("tickets", [])
     state.setdefault("carried_predictions", [])
-    state.setdefault("standing_orders", [])
     state["machine_id"] = machine_id
     return state
 
@@ -1082,122 +1071,6 @@ def put_unit_state(body: dict, log) -> dict:
         _save_state(state)
         return {"ok": True, "ticket": ticket, "entry_id": ticket["entry_id"], "state": state}
 
-    # A halt is the one place the software stops the line, so what an operator
-    # decided there is the one thing that must be legible afterwards. All four
-    # choices are logged identically; only "ignore_always" leaves a rule behind.
-    if op == "halt_decision":
-        action = (body.get("action") or "").strip()
-        if action not in HALT_ACTIONS:
-            raise ValueError("action must be one of: " + ", ".join(HALT_ACTIONS))
-        col_id = str(body.get("col_id") or "")
-        if not col_id:
-            raise ValueError("col_id is required")
-        severity = (body.get("severity") or "high").strip()
-        if severity not in ("low", "medium", "high"):
-            raise ValueError("severity must be low, medium or high")
-        event_id = str(body.get("event_id") or "")
-        evidence_ids = body.get("evidence_ids") or []
-        note = (body.get("note") or "").strip()
-
-        entry_id = log.append(
-            stage="UI_halt", kind="human_review",
-            summary=(f"Line halted on a {severity}-severity detection led by {col_id}"
-                     f"{' (' + event_id + ')' if event_id else ''}. "
-                     f"Operator chose: {HALT_ACTIONS[action]}."
-                     + (f" Note: {note}" if note else ""))[:4000],
-            actor_type="human", actor_name=by, subject=[col_id],
-            evidence_ids=evidence_ids,
-            epistemic_status="assumed" if action.startswith("ignore") else "inferred",
-            context={"machine_id": machine_id, "run_id": body.get("run_id") or "",
-                     "event_id": event_id, "halt_action": action,
-                     "at_sample": str(body.get("at_sample") or "")},
-        )
-
-        order = None
-        if action == "ignore_always":
-            signature = f"{col_id}:{severity}"
-            existing = next((o for o in state["standing_orders"]
-                             if o.get("signature") == signature), None)
-            if existing is None:
-                order = {
-                    "order_id": _next_id(state["standing_orders"], "order_id", "ord_"),
-                    "created_at": _now(),
-                    "signature": signature,
-                    "col_id": col_id,
-                    "severity": severity,
-                    "action": "notify_only",
-                    "reason": note or ("Operator judged this detection not worth stopping "
-                                       "the line for, and said so for every future one "
-                                       "with the same signature."),
-                    "from_event_id": event_id or None,
-                    "from_run_id": body.get("run_id") or None,
-                    "evidence_ids": evidence_ids,
-                    "epistemic_status": "assumed",
-                    "accepted_by": by,
-                    "times_suppressed": 0,
-                }
-                order["entry_id"] = log.append(
-                    stage="UI_halt", kind="config_change",
-                    summary=(f"Standing order {order['order_id']}: a {severity}-severity "
-                             f"detection led by {col_id} notifies the operator but no "
-                             f"longer halts the line. Set by an operator, removable from "
-                             f"the same screen.")[:4000],
-                    actor_type="human", actor_name=by, subject=[col_id],
-                    evidence_ids=evidence_ids, epistemic_status="assumed",
-                    context={"machine_id": machine_id, "signature": signature},
-                )
-                state["standing_orders"].append(order)
-            else:
-                order = existing
-
-        _save_state(state)
-        return {"ok": True, "entry_id": entry_id, "standing_order": order, "state": state}
-
-    # A suppressed detection is still an event the record has to carry: this is
-    # what makes "ignore always" an audit trail rather than a silence.
-    if op == "note_suppression":
-        signature = str(body.get("signature") or "")
-        order = next((o for o in state["standing_orders"]
-                      if o.get("signature") == signature), None)
-        if order is None:
-            raise NotFound(f"no standing order for {signature!r}")
-        order["times_suppressed"] = int(order.get("times_suppressed") or 0) + 1
-        entry_id = log.append(
-            stage="UI_halt", kind="override",
-            summary=(f"A {order.get('severity')}-severity detection led by "
-                     f"{order.get('col_id')} did not halt the line: standing order "
-                     f"{order['order_id']} was in force. The operator was notified "
-                     f"instead ({order['times_suppressed']}x so far).")[:4000],
-            actor_type="system", actor_name="cockpit",
-            subject=[order.get("col_id")] if order.get("col_id") else None,
-            evidence_ids=body.get("evidence_ids") or [],
-            context={"machine_id": machine_id, "run_id": body.get("run_id") or "",
-                     "event_id": body.get("event_id") or "", "signature": signature},
-        )
-        order["last_entry_id"] = entry_id
-        _save_state(state)
-        return {"ok": True, "entry_id": entry_id, "state": state}
-
-    if op == "drop_standing_order":
-        order_id = body.get("order_id")
-        order = next((o for o in state["standing_orders"]
-                      if o.get("order_id") == order_id), None)
-        if order is None:
-            raise NotFound(f"no standing order {order_id!r}")
-        state["standing_orders"] = [o for o in state["standing_orders"]
-                                    if o.get("order_id") != order_id]
-        entry_id = log.append(
-            stage="UI_halt", kind="config_change",
-            summary=(f"Standing order {order_id} removed: a "
-                     f"{order.get('severity')}-severity detection led by "
-                     f"{order.get('col_id')} halts the line again."),
-            actor_type="human", actor_name=by,
-            subject=[order.get("col_id")] if order.get("col_id") else None,
-            context={"machine_id": machine_id},
-        )
-        _save_state(state)
-        return {"ok": True, "entry_id": entry_id, "state": state}
-
     if op == "prediction":
         text = (body.get("text") or "").strip()
         if not text:
@@ -1260,8 +1133,7 @@ def put_unit_state(body: dict, log) -> dict:
         _save_state(state)
         return {"ok": True, "entry_id": entry_id, "state": state}
 
-    raise ValueError("op must be one of: channel_hypothesis, ticket, halt_decision, "
-                     "note_suppression, drop_standing_order, prediction, "
+    raise ValueError("op must be one of: channel_hypothesis, ticket, prediction, "
                      "confirm_prediction, drop_prediction")
 
 

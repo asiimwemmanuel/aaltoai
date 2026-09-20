@@ -102,7 +102,11 @@ def main():
         # process must read differently, and S6 reads S5's verdict before scoring.
         ("S5: Data Quality Gate", f"{sys.executable} pipeline/s5_data_quality.py"),
         ("S6 (Pre-req): Manifest Generator", f"{sys.executable} make_manifest.py"),
-        ("S6: Statistical Drift Monitor (PCA)", f"{sys.executable} pipeline/s6_drift.py"),
+        # --dq-report is what makes the S5 line above mean anything: without it
+        # S6 scores happily on data S5 has already called untrustworthy, and the
+        # gate's evidence never reaches the drift events or the UI.
+        ("S6: Statistical Drift Monitor (PCA)",
+         f"{sys.executable} pipeline/s6_drift.py --dq-report artifacts/dq_report.json"),
         # s6_drift.py (run with no --run-id) writes one file per scored run
         # under artifacts/drift_events/. S7 and the UI read a single combined
         # artifacts/drift_events.json instead, so bridge the two here.

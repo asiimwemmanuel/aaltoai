@@ -186,7 +186,12 @@ def check_scale(est_rows: int) -> None:
             pass
 
     est_runs = max(1, est_rows // SAMPLES_PER_RUN)
-    working_set = est_rows * n_columns * BYTES_PER_VALUE
+    # S6 streams one partition at a time; it no longer holds the dataset. The
+    # peak is the largest partition plus the fifteen reference runs, not
+    # est_rows. This check used to report the whole-dataset figure and warned
+    # about 6 GB on a run that now peaks near a tenth of that.
+    est_partitions = max(1, len(list(FEATURES.glob("simulationRun=*"))))
+    working_set = int(est_rows / est_partitions * n_columns * BYTES_PER_VALUE * 2)
 
     try:
         total_ram = os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES")
@@ -202,12 +207,13 @@ def check_scale(est_rows: int) -> None:
 
     if total_ram and working_set > total_ram * 0.6:
         fail("S6 memory",
-             f"S6 rebuilds every run into NumPy and keeps them all: that is "
-             f"{human(working_set)} as float64 against {human(total_ram)} of RAM. "
-             f"It will swap or be killed. Either give S6 a --max-runs bound "
-             f"(owner D) or ingest a subset.")
+             f"one partition is about {human(working_set)} as float64 against "
+             f"{human(total_ram)} of RAM. S6 streams, so this is the floor: it "
+             f"cannot be lowered by scoring fewer runs. Ingest fewer rows per "
+             f"partition.")
     elif total_ram:
-        warn("S6 memory", f"working set about {human(working_set)} of {human(total_ram)} RAM")
+        ok("S6 memory", f"streams one partition at a time, peak about "
+                        f"{human(working_set)} of {human(total_ram)} RAM")
 
     if est_runs > 2000:
         warn("S6 output",
@@ -222,9 +228,17 @@ def check_scale(est_rows: int) -> None:
                               f"capped to the most eventful 200.")
 
 
+# Every third-party module the pipeline imports, not a subset of them. pandas
+# and pyarrow were missing here, and the cost was exact: a prod run passed
+# preflight, spent four minutes in S1 rebuilding 2.3 GB of Parquet, and died in
+# S3 on `import pyarrow`. S1 and S2 survive without it because DuckDB and Polars
+# read Parquet themselves; S3 reads it through pandas, which cannot.
+_REQUIRED = ("duckdb", "polars", "pandas", "numpy", "pyarrow", "yaml", "jsonschema")
+
+
 def check_dependencies() -> None:
     missing = []
-    for module in ("duckdb", "polars", "numpy", "yaml", "jsonschema"):
+    for module in _REQUIRED:
         try:
             __import__(module)
         except ImportError:
@@ -232,7 +246,7 @@ def check_dependencies() -> None:
     if missing:
         fail("dependencies", f"missing: {', '.join(missing)}. Run: make setup")
     else:
-        ok("dependencies", "duckdb, polars, numpy, pyyaml, jsonschema all import")
+        ok("dependencies", f"{', '.join(_REQUIRED)} all import")
 
 
 def check_model(probe: bool) -> None:
@@ -276,6 +290,12 @@ def check_model(probe: bool) -> None:
         ok("model pacing", f"{rate} calls/min, so S4's {n_columns} columns take about "
                            f"{minutes(pace)}. The column count does not grow with the "
                            f"dataset, so the model cost is the same as a dev run.")
+    elif provider in ("local", "stub"):
+        # Pacing exists for hosted free-tier quotas. On a model running here
+        # there is no quota to respect, and throttling would only turn S4's
+        # column loop into a wait for nothing. Unset is the right answer.
+        ok("model pacing", f"off, correctly: {provider!r} has no quota to pace against, "
+                           f"so S4's {n_columns} columns run at the model's own speed")
     else:
         warn("model pacing", "no rate_limit_per_min set; a free-tier key will hit 429s")
 

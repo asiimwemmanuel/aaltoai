@@ -333,80 +333,6 @@
   }
   .light-btn:hover { background: rgba(255,255,255,0.12); }
 
-  /* ---------------- the other reports, from the overview ----------------
-     Three screens already existed and were reachable only from the raw room,
-     which is the last place an operator looks. This is the same three links,
-     one corner away from where the shift is actually watched. */
-  .reports-bar { display: flex; justify-content: flex-end; margin-bottom: 0.6rem; }
-  .reports-wrap { position: relative; }
-  .reports-btn.on { background: var(--text); color: #fff; border-color: var(--text); }
-  .reports-menu {
-    position: absolute; right: 0; top: calc(100% + 0.4rem); width: min(330px, 86vw);
-    background: var(--bg); border: 1px solid var(--border-dark); border-radius: var(--radius);
-    box-shadow: var(--shadow); padding: 0.4rem; z-index: 50;
-  }
-  .reports-menu[hidden] { display: none; }
-  .reports-menu a {
-    display: block; text-decoration: none; color: inherit; padding: 0.6rem 0.7rem;
-    border-radius: 9px;
-  }
-  .reports-menu a:hover { background: var(--bg-muted); }
-  .reports-menu b { display: block; font-size: 0.86rem; font-weight: 700; }
-  .reports-menu span { display: block; font-size: 0.76rem; color: var(--text-muted); margin-top: 0.1rem; }
-
-  /* ---------------- the halt ----------------
-     The line stopping is the one moment the software takes something away from
-     the operator, so it is the one moment that covers the whole screen: no tab
-     is reachable behind it, and it goes away only on a decision. */
-  .halt-scrim {
-    position: fixed; inset: 0; background: rgba(11,11,11,0.62); z-index: 100;
-    display: none; align-items: center; justify-content: center; padding: 1.5rem;
-    backdrop-filter: blur(3px);
-  }
-  .halt-scrim.open { display: flex; }
-  .halt-modal {
-    background: #1a0d0d; color: #fff; border-radius: 18px; width: min(680px, 100%);
-    max-height: 90vh; overflow-y: auto; padding: 2rem 2.1rem;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
-  }
-  .halt-kicker {
-    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #f19a9a;
-  }
-  .halt-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin: 0.35rem 0 0.6rem; }
-  .halt-sub { font-size: 0.95rem; color: #f3c9c9; max-width: 62ch; }
-  .halt-facts {
-    display: flex; gap: 1.6rem; flex-wrap: wrap; margin: 1.2rem 0;
-    padding: 0.9rem 0; border-top: 1px solid rgba(255,255,255,0.16);
-    border-bottom: 1px solid rgba(255,255,255,0.16);
-  }
-  .halt-facts div { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #c9a3a3; }
-  .halt-facts b { display: block; font-size: 1rem; letter-spacing: 0; text-transform: none; color: #fff; margin-top: 0.15rem; }
-  .halt-choices { display: grid; gap: 0.5rem; margin-top: 0.4rem; }
-  .halt-choice {
-    display: flex; align-items: baseline; gap: 0.7rem; text-align: left; width: 100%;
-    border: 1px solid rgba(255,255,255,0.28); background: transparent; color: #fff;
-    border-radius: 12px; padding: 0.85rem 1rem;
-  }
-  .halt-choice:hover { background: rgba(255,255,255,0.1); }
-  .halt-choice.primary { background: var(--critical); border-color: var(--critical); }
-  .halt-choice.primary:hover { filter: brightness(1.08); }
-  .halt-choice b { font-size: 0.92rem; font-weight: 700; white-space: nowrap; }
-  .halt-choice span { font-size: 0.8rem; color: #e7c9c9; }
-  .halt-choice.primary span { color: #ffe3e3; }
-  .halt-note { font-size: 0.76rem; color: #c9a3a3; margin-top: 1rem; }
-
-  /* A detection a standing order let through. It is never silent: it says so
-     here, and the order that let it through is one click from being revoked. */
-  .notified-bar {
-    border: 1px solid var(--border-dark); border-left: 4px solid var(--warning);
-    background: var(--warning-bg); border-radius: var(--radius);
-    padding: 0.8rem 1rem; margin-bottom: 1.25rem; font-size: 0.85rem;
-  }
-  .notified-bar h3 { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
-  .notified-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; flex-wrap: wrap; }
-  .notified-row span { flex: 1; min-width: 200px; }
-
   .home-chat {
     border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem 1.6rem;
     background: var(--bg);
@@ -631,29 +557,6 @@
 </section>
 
 <section class="screen" id="screen-overview">
-<div class="reports-bar">
-  <div class="reports-wrap">
-    <button class="ghost-btn reports-btn" id="reports-btn" aria-expanded="false"
-            aria-controls="reports-menu" title="The three standing reports">Reports &#9662;</button>
-    <div class="reports-menu" id="reports-menu" hidden>
-      <a href="index.html" target="_blank" rel="noopener">
-        <b>Sensor report</b>
-        <span>What each channel is, how it behaves, and how sure the system is.</span>
-      </a>
-      <a href="diagnosis.html" target="_blank" rel="noopener">
-        <b>Diagnosis</b>
-        <span>What the system thinks went wrong this shift, and the evidence under it.</span>
-      </a>
-      <a href="decision_log.html" target="_blank" rel="noopener">
-        <b>Control &mdash; decision log</b>
-        <span>Every call made by a model or a person, in the order it was made.</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<div id="notified-bar"></div>
-
 <div class="timebar">
   <button class="play-btn" id="play-btn" title="Play the shift forward">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path id="play-icon" d="M8 5v14l11-7z"/></svg>
@@ -780,20 +683,6 @@
   <div id="validation-body"><div class="empty-state">Loading the ground truth report...</div></div>
 </section>
 
-<div class="halt-scrim" id="halt-scrim" aria-hidden="true">
-  <div class="halt-modal" role="alertdialog" aria-modal="true" aria-labelledby="halt-title">
-    <div class="halt-kicker">The line is stopped</div>
-    <h2 class="halt-title" id="halt-title">LINE STOPPED</h2>
-    <div class="halt-sub" id="halt-sub"></div>
-    <div class="halt-facts" id="halt-facts"></div>
-    <div class="halt-choices" id="halt-choices"></div>
-    <div class="halt-note">
-      Whichever of the four you press is written to the decision log with your operator id,
-      the sample it happened at, and the evidence the detection was raised on.
-    </div>
-  </div>
-</div>
-
 <div class="scrim" id="scrim"></div>
 
 <aside class="drawer" id="detail" aria-hidden="true">
@@ -868,8 +757,7 @@ var S = {
   minutesPerSample: 3,
 
   screen: "home",
-  halted: null,          // { event_id, at_tick, investigating } while the line is stopped
-  notified: {},          // event_id -> order_id, for detections a standing order let through
+  halted: null,          // { event_id, at_tick } while the plant is stopped
   unitState: null,       // tickets, carried predictions, accepted physical classes
   physical: {},          // col_id -> the model's physical class answer
   homeChat: [],
@@ -1224,8 +1112,6 @@ function renderAll() {
   renderInbox();
   renderGrid();
   renderHome();
-  renderNotified();
-  renderHalt();
   if (S.open) renderDetail();
 }
 
@@ -1270,17 +1156,12 @@ function openDrawer(which) {
   $(which).setAttribute("aria-hidden", "false");
 }
 function closeDrawers() {
-  // While the line is stopped, closing the evidence returns you to the
-  // decision. There is no way back to a running screen that does not go
-  // through one of the four answers.
-  if (S.halted && S.halted.investigating) S.halted.investigating = false;
   $("scrim").classList.remove("open");
   ["detail", "brain"].forEach(function (id) {
     $(id).classList.remove("open");
     $(id).setAttribute("aria-hidden", "true");
   });
   S.open = null;
-  if (S.halted) renderHalt();
 }
 
 async function ensureSeries(colId) {
@@ -1719,167 +1600,43 @@ function showScreen(name) {
 
 /* ======================================================================
  * The plant halt
- *
- * A high-severity detection stops the replay where it happened, and the
- * screen stays stopped until a person answers one of four questions. Three
- * of them are about this detection; the fourth is about every future one
- * like it. Nothing here decides anything on its own: the only thing the
- * software does by itself is stop, and stopping is reversible.
  * ==================================================================== */
-
-/* The identity of "one like it". Statistical only -- the leading channel's
- * opaque id and the severity it was raised at. No physical meaning is read
- * into either, and none is needed for two detections to be the same kind. */
-function haltSignature(event) {
-  var lead = ((event || {}).ranked_signals || [{}])[0] || {};
-  return (lead.col_id || "col_000") + ":" + ((event || {}).severity || "high");
-}
-function standingOrders() {
-  return ((S.unitState || {}).standing_orders) || [];
-}
-function standingOrderFor(event) {
-  var sig = haltSignature(event);
-  return standingOrders().find(function (o) { return o.signature === sig; }) || null;
-}
-
 function haltPlant(event) {
   pause();
-  S.halted = { event_id: event.event_id, at_tick: S.tick, investigating: false };
+  S.halted = { event_id: event.event_id, at_tick: S.tick };
   renderAll();
+  showScreen("home");
 }
 
-/* An order was left saying not to stop for this. The detection still happens,
- * still shows up in "Needs you", and still goes in the log -- the only thing
- * that changes is that the operator is told instead of interrupted. */
-async function notifyWithoutHalting(event, order) {
-  S.notified[event.event_id] = order.order_id;
-  toast("A " + (event.severity || "high") + "-severity detection on " +
-        label(((event.ranked_signals || [{}])[0] || {}).col_id) +
-        " did not stop the line: you asked to be notified instead.");
-  renderNotified();
-  try {
-    var res = await postJSON("/api/unit_state", {
-      op: "note_suppression", machine_id: machineId(), by: operatorId(),
-      signature: order.signature, run_id: S.runId, event_id: event.event_id,
-      evidence_ids: event.evidence_ids || []
-    });
-    S.unitState = res.state;
-  } catch (err) {
-    toast(String(err.message || err), true);
-  }
-}
-
-function renderHalt() {
-  var scrim = $("halt-scrim");
-  if (!S.halted || S.halted.investigating) {
-    scrim.classList.remove("open");
-    scrim.setAttribute("aria-hidden", "true");
-    return;
-  }
-  var event = (S.drift.events || []).find(function (e) { return e.event_id === S.halted.event_id; }) || {};
-  var lead = ((event.ranked_signals || [{}])[0] || {});
-
-  $("halt-sub").innerHTML =
-    "A <b>" + esc(event.severity || "high") + "</b>-severity deviation on <b>" +
-    esc(label(lead.col_id)) + "</b> stopped the replay. It will not restart on its own, " +
-    "and nothing else on this screen is reachable until you answer.";
-
-  $("halt-facts").innerHTML =
-    '<div>Channel<b>' + esc(label(lead.col_id)) + '</b></div>' +
-    '<div>Stopped at<b>' + esc(clockText(S.tick)) + ' &middot; sample ' + S.tick + '</b></div>' +
-    '<div>Detection<b class="mono" style="font-size:0.84rem">' + esc(event.event_id || "--") + '</b></div>' +
-    '<div>Evidence<b>' + ((event.evidence_ids || []).length) + ' object(s)</b></div>';
-
-  $("halt-choices").innerHTML =
-    choice("acknowledge", "primary", "Accept and restart",
-           "You have seen it. The line runs on and the detection is marked read.") +
-    choice("investigate", "", "Investigate",
-           "The line stays stopped. Opens the evidence, the channels that moved with it, " +
-           "and the assistant.") +
-    choice("ignore_once", "", "Ignore this one",
-           "The line runs on. The detection stays unread, and the next one like it stops you again.") +
-    choice("ignore_always", "", "Ignore always",
-           "The line runs on, and a detection like this one never stops it again -- you are " +
-           "notified instead. Revocable from the overview.");
-
-  scrim.classList.add("open");
-  scrim.setAttribute("aria-hidden", "false");
-
-  function choice(action, cls, title, note) {
-    return '<button class="halt-choice ' + cls + '" onclick="chooseHalt(\'' + action + '\')">' +
-      '<b>' + esc(title) + '</b><span>' + esc(note) + '</span></button>';
-  }
-}
-
-async function chooseHalt(action) {
+async function resolveHalt(action) {
   if (!S.halted) return;
-  var eventId = S.halted.event_id;
-  var event = (S.drift.events || []).find(function (e) { return e.event_id === eventId; }) || {};
-  var lead = ((event.ranked_signals || [{}])[0] || {});
+  var event = (S.drift.events || []).find(function (e) { return e.event_id === S.halted.event_id; });
+  var lead = ((event || {}).ranked_signals || [{}])[0] || {};
+  var verb = action === "acknowledge"
+    ? "acknowledged the halt and restarted the line"
+    : "judged the halt a false alarm and let the line run";
 
   try {
-    var res = await postJSON("/api/unit_state", {
-      op: "halt_decision", machine_id: machineId(), by: operatorId(),
-      action: action, col_id: lead.col_id || "col_000",
-      severity: event.severity || "high",
-      run_id: S.runId, event_id: eventId, at_sample: S.halted.at_tick,
-      evidence_ids: event.evidence_ids || []
+    await postJSON("/api/unit_state", {
+      op: "ticket", machine_id: machineId(), by: operatorId(),
+      col_id: lead.col_id || "col_000",
+      run_id: S.runId, event_id: S.halted.event_id,
+      reason: (action === "acknowledge"
+        ? "Line halted on a high-severity detection and restarted by the operator."
+        : "Line halted on a high-severity detection; operator judged it a false alarm."),
+      evidence_ids: (event || {}).evidence_ids || [],
+      route_to: action === "acknowledge" ? "Control room" : "Process engineering",
+      status: action === "acknowledge" ? "forwarded" : "closed"
     });
-    S.unitState = res.state;
-    toast("Logged as " + res.entry_id + ".");
   } catch (err) {
     toast(String(err.message || err), true);
-    return;
   }
 
-  if (action === "investigate") {
-    // The stop stands. The modal steps out of the way so the drawer behind it
-    // can be read, and comes back when the drawer closes.
-    S.halted.investigating = true;
-    renderHalt();
-    openEvent(eventId);
-    return;
-  }
-
-  if (action === "acknowledge") S.seen[eventId] = true;
+  if (event) S.seen[event.event_id] = true;
   S.halted = null;
+  await loadUnitState();
+  toast("Logged: operator " + verb + ".");
   renderAll();
-}
-
-function renderNotified() {
-  var box = $("notified-bar");
-  var orders = standingOrders();
-  var notified = Object.keys(S.notified || {});
-  if (!orders.length && !notified.length) { box.innerHTML = ""; return; }
-
-  var rows = orders.map(function (o) {
-    var hits = notified.filter(function (id) { return S.notified[id] === o.order_id; }).length;
-    return '<div class="notified-row"><span>A <b>' + esc(o.severity) + '</b>-severity detection on <b>' +
-      esc(label(o.col_id)) + '</b> notifies you but does not stop the line' +
-      (hits ? ' &middot; ' + hits + ' this shift' : '') +
-      (o.times_suppressed ? ' &middot; ' + o.times_suppressed + ' in total' : '') +
-      '</span><button class="ghost-btn" onclick="dropStandingOrder(\'' + esc(o.order_id) +
-      '\')">Stop the line on this again</button></div>';
-  }).join("");
-
-  box.innerHTML = '<div class="notified-bar"><h3>Notified, not stopped</h3>' +
-    '<div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem">' +
-    'Standing orders you left. Every detection they let through is still detected, still ' +
-    'listed below, and still written to the decision log.</div>' + rows + '</div>';
-}
-
-async function dropStandingOrder(orderId) {
-  try {
-    var res = await postJSON("/api/unit_state", {
-      op: "drop_standing_order", machine_id: machineId(), by: operatorId(), order_id: orderId
-    });
-    S.unitState = res.state;
-    Object.keys(S.notified).forEach(function (id) {
-      if (S.notified[id] === orderId) delete S.notified[id];
-    });
-    toast("Removed. A detection like that stops the line again.");
-    renderAll();
-  } catch (err) { toast(String(err.message || err), true); }
 }
 
 /* ======================================================================
@@ -1900,7 +1657,9 @@ function renderHome() {
       "</b> stopped the replay at " + esc(clockText(S.tick)) + ", sample " + S.tick + ". " +
       "It will not restart on its own.";
     actions.innerHTML =
-      '<button class="danger-btn" onclick="reopenHalt()">Answer the stop</button>';
+      '<button class="danger-btn" onclick="resolveHalt(\'acknowledge\')">Acknowledge and restart</button>' +
+      '<button class="light-btn" onclick="resolveHalt(\'dismiss\')">False alarm, keep running</button>' +
+      '<button class="light-btn" onclick="openEvent(\'' + esc(S.halted.event_id) + '\')">Look at it first</button>';
     renderCarried();
     return;
   }
@@ -2670,16 +2429,8 @@ function setTick(value, opts) {
   renderAll();
 }
 
-function reopenHalt() {
-  if (!S.halted) return;
-  S.halted.investigating = false;
-  closeDrawers();
-  renderHalt();
-}
-
 function play() {
   if (S.playing) return;
-  if (S.halted) { toast("The line is stopped. Answer the stop first."); renderHalt(); return; }
   S.playing = true;
   $("play-icon").setAttribute("d", "M6 5h4v14H6zM14 5h4v14h-4z");
   S.timer = setInterval(function () {
@@ -2698,22 +2449,10 @@ function play() {
       return (a.detected_at_sample || a.start_sample) - (b.detected_at_sample || b.start_sample);
     });
 
-    // A standing order the operator left does not hide a detection, it only
-    // takes away its power to stop the line: the ones it covers are notified
-    // and stepped past, and the first one it does not cover still halts here.
-    var blocking = null;
-    for (var i = 0; i < arriving.length; i++) {
-      var order = standingOrderFor(arriving[i]);
-      if (order) {
-        if (!S.notified[arriving[i].event_id]) notifyWithoutHalting(arriving[i], order);
-      } else if (!blocking) {
-        blocking = arriving[i];
-      }
-    }
-
-    if (blocking) {
-      S.tick = blocking.detected_at_sample || blocking.start_sample;
-      haltPlant(blocking);
+    if (arriving.length) {
+      var first = arriving[0];
+      S.tick = first.detected_at_sample || first.start_sample;
+      haltPlant(first);
       return;
     }
     renderAll();
@@ -2918,27 +2657,6 @@ async function init() {
     if (!btn) return;
     $("home-chat-input").value = btn.dataset.q;
     sendHomeChat(new Event("submit"));
-  });
-
-  // ---- the three reports, from the overview corner
-  $("reports-btn").onclick = function (e) {
-    e.stopPropagation();
-    var menu = $("reports-menu");
-    var open = menu.hasAttribute("hidden");
-    menu.toggleAttribute("hidden", !open);
-    this.setAttribute("aria-expanded", String(open));
-    this.classList.toggle("on", open);
-  };
-  document.addEventListener("click", function (e) {
-    if (e.target.closest("#reports-menu") || e.target.closest("#reports-btn")) return;
-    $("reports-menu").setAttribute("hidden", "");
-    $("reports-btn").setAttribute("aria-expanded", "false");
-    $("reports-btn").classList.remove("on");
-  });
-  document.addEventListener("keydown", function (e) {
-    if (e.key !== "Escape") return;
-    $("reports-menu").setAttribute("hidden", "");
-    $("reports-btn").classList.remove("on");
   });
 
   // ---- raw room

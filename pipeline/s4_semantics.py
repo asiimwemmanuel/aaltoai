@@ -64,13 +64,57 @@ INSTRUCTIONS = (
 )
 
 
-def structural_guess(is_leader, has_plateaus):
-    """Statistical pre-analysis: returns (structural_class, confidence, basis)."""
+def structural_guess(is_leader, has_plateaus, plateau_separates=True):
+    """Statistical pre-analysis: returns (structural_class, confidence, basis).
+
+    This function's output is written into the prompt, so its confidence is not
+    cosmetic: it is the strength of the hint the model is anchored by. The old
+    version answered "manipulated, high" whenever has_plateaus was set, and S2
+    set it for all 52 columns, so every column arrived at the model with a
+    high-confidence answer already attached. Both a hosted model and a local one
+    agreed with it and structural_class collapsed to a single class.
+
+    So each branch now carries the confidence its evidence actually supports,
+    and the case where the statistic separates nothing is a branch of its own
+    rather than being silently read as "plateaus, therefore manipulated".
+    """
     if is_leader:
+        # Leading other columns in the lagged correlations is a directional
+        # claim about this column specifically. It survives as the strong one.
         return "manipulated", "high", "it leads other columns in the lagged correlations"
+    if not plateau_separates:
+        return ("undetermined", "low",
+                "the plateau statistic takes nearly the same value on every column here, "
+                "so it distinguishes none of them, and nothing else in the profile speaks "
+                "to this question")
     if has_plateaus:
-        return "manipulated", "high", "it shows plateaus (discrete steps)"
-    return "measured", "low", "it neither leads other columns nor shows plateaus"
+        # One statistic, above a boundary the cohort itself drew. Suggestive,
+        # not conclusive: medium is what one piece of evidence buys.
+        return "manipulated", "medium", "it plateaus markedly more than the other columns"
+    return "measured", "low", "it neither leads other columns nor plateaus more than its peers"
+
+
+# Words that are ours, not an answer. On the full run 13 of 52 columns came back
+# with `role` set to "structural_class", "semantic_role_inference" or "inference":
+# the model echoing the field it was asked to fill, or the purpose of the call,
+# instead of naming a role. A hosted model did the same thing in its own way.
+# Nothing downstream could tell those from a real answer, so they were written
+# into the artifact as though they were one.
+#
+# The list is built from our own vocabulary -- the keys we put in the payload and
+# in ROLE_SCHEMA, plus the purpose string -- so it stays correct if the payload
+# changes and carries no assumption about what the data is.
+_OUR_OWN_WORDS = frozenset(
+    list(ROLE_SCHEMA["properties"])
+    + ["column_summaries", "relation_summaries", "candidate_roles", "instructions",
+       "semantic_role_inference", "inference", "statistics", "evidence"]
+)
+
+
+def is_echo(role):
+    """Did the model name a role, or hand one of our own words back to us?"""
+    normalised = role.strip().lower().replace(" ", "_").replace("-", "_")
+    return normalised in _OUR_OWN_WORDS
 
 
 def relations_for(col_id, relations):
@@ -80,7 +124,7 @@ def relations_for(col_id, relations):
     return mine[:MAX_RELATIONS]
 
 
-def build_payload(col_id, profile, related, guess, basis):
+def build_payload(col_id, profile, related, guess, basis, guess_confidence="low"):
     """Generate the outbound payload from the profile. Nothing here is hand-written per dataset."""
     return {
         "column_summaries": {
@@ -92,7 +136,14 @@ def build_payload(col_id, profile, related, guess, basis):
             for r in related
         ],
         "candidate_roles": list(CLASSES),
-        "instructions": f"{INSTRUCTIONS} The statistical pre-analysis suggests '{guess}' because {basis}.",
+        # The hint goes in with its own strength attached. Handing a model a bare
+        # "the pre-analysis suggests X" reads as settled and it agrees; saying how
+        # much the statistics actually support X leaves it free to disagree, which
+        # is the whole point of asking it.
+        "instructions": (f"{INSTRUCTIONS} A statistical pre-analysis suggests '{guess}' "
+                         f"with {guess_confidence} confidence, because {basis}. Weigh that "
+                         f"against the statistics and relations above; it is one input, "
+                         f"not the answer, and disagreeing with it is a valid response."),
     }
 
 
@@ -117,14 +168,31 @@ def interpret(answer, allowed_ids, guess):
         status = "assumed"
 
     structural = answer.get("structural_class")
+    structural = structural if structural in CLASSES else guess
     reasoning = answer.get("reasoning")
+    reasoning = reasoning if isinstance(reasoning, str) else ""
+
+    inferred_role = role.strip()
+    if is_echo(inferred_role):
+        # An echo is not a wrong answer, it is an absent one. Keeping it at the
+        # model's own confidence would put a field name in front of an operator
+        # with "high" beside it. The structural class still stands on its own
+        # evidence, so the entry survives -- it just stops claiming to name a role.
+        reasoning = (f"The model returned '{inferred_role}', which is one of the field names "
+                     f"in the request rather than a role, so no role was named here. "
+                     f"The structural class below rests on the statistics, not on that answer. "
+                     + reasoning).strip()
+        inferred_role = STRUCTURAL_LABELS.get(structural, "Undetermined")
+        confidence = "low"
+        status = "uncertain"
+
     return {
-        "inferred_role": role.strip(),
-        "structural_class": structural if structural in CLASSES else guess,
+        "inferred_role": inferred_role,
+        "structural_class": structural,
         "confidence": confidence,
         "epistemic_status": status,
         "evidence_ids": evidence_ids,
-        "reasoning": reasoning if isinstance(reasoning, str) else "",
+        "reasoning": reasoning,
     }
 
 
@@ -177,9 +245,14 @@ class SemanticEngine:
         for col_id, profile in profiles.items():
             is_leader = col_id in leaders
             has_plateaus = profile['statistics'].get('has_plateaus', False)
-            guess, guess_confidence, basis = structural_guess(is_leader, has_plateaus)
+            # Profiles written before S2 recorded this default to True, which is
+            # the old behaviour: absent information must not silently become
+            # "the statistic separates nothing".
+            plateau_separates = profile['statistics'].get('plateau_separates_cohort', True)
+            guess, guess_confidence, basis = structural_guess(
+                is_leader, has_plateaus, plateau_separates)
             related = relations_for(col_id, relations)
-            payload = build_payload(col_id, profile, related, guess, basis)
+            payload = build_payload(col_id, profile, related, guess, basis, guess_confidence)
             allowed_ids = set(profile['evidence_ids'].values()) | {r['evidence_id'] for r in related}
 
             entry = None

@@ -13,10 +13,10 @@ When a model needs to know something about a channel it gets `window_stats()`
 instead -- eight numbers, no series -- and that is the only function in this
 file whose output is allowed anywhere near a payload.
 
-Run splitting comes from pipeline/lib/run_boundaries.py, the same function S6
-scores with, because the chart has to line up with the drift scores S6 wrote
-for the same run. That is a library and not a stage, so ui/ may import it; the
-copy of the rule that used to live here had already drifted from S6's.
+Run splitting matches pipeline/s6_drift.py exactly (a run starts where col_time
+returns to 1, numbered in file order), because the chart has to line up with
+the drift scores S6 wrote for the same run. It is reimplemented rather than
+imported: stages talk through disk, and ui/ is not allowed to reach into one.
 """
 
 from __future__ import annotations
@@ -28,15 +28,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import sys
-
 import numpy as np
 import polars as pl
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.append(str(ROOT))
-from pipeline.lib.run_boundaries import rebuild_runs  # noqa: E402
-
 FEATURES_DIR = ROOT / "data" / "features"
 TIME_COL = "col_time"
 PARTITION_COL = "simulationRun"
@@ -93,11 +88,10 @@ def _load() -> dict[str, Any]:
             continue
         sim = int(float(match.group(1)))
 
-        # Never sorted by TIME_COL: col_time resets to 1 at every sub-run
-        # boundary, so a global sort interleaves the sub-runs. The boundaries
-        # come from rebuild_runs(), the same function S6 scores with -- when
-        # this file had its own copy of the rule the UI drew one run and the
-        # detector had scored another.
+        # Natural row order, never sorted by TIME_COL: col_time resets to 1 at
+        # every sub-run boundary, so a global sort interleaves the sub-runs and
+        # destroys the boundaries this function is looking for. Same reasoning,
+        # same comment, as s6_drift.load_runs -- if one changes so must the other.
         frame = pl.read_parquet(os.path.join(sim_dir, "*.parquet"))
         cols = [c for c in frame.columns if c not in (TIME_COL, PARTITION_COL)]
         if col_ids is None:
@@ -107,8 +101,13 @@ def _load() -> dict[str, Any]:
 
         t = frame[TIME_COL].to_numpy()
         x = frame.select(cols).to_numpy()
-        for k, idx in enumerate(rebuild_runs(t, sim_dir)):
-            runs[f"sim{sim}_run{k:02d}"] = {"t": t[idx], "x": x[idx]}
+        cuts = np.where(t == 1)[0]
+        if len(cuts) == 0:
+            continue
+
+        pieces = list(zip(np.split(t, cuts[1:]), np.split(x, cuts[1:])))
+        for k, (t_piece, x_piece) in enumerate(pieces):
+            runs[f"sim{sim}_run{k:02d}"] = {"t": t_piece, "x": x_piece}
 
     if not runs:
         raise SeriesUnavailable(f"no runs found under {FEATURES_DIR.relative_to(ROOT)}")

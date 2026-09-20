@@ -57,6 +57,24 @@ class IngestionEngine:
         features_select = "simulationRun, sample as col_time, " + ", ".join([f"{c} as {col_mapping[c]}" for c in xmeas_cols + xmv_cols])
         labels_select = "simulationRun, sample as col_time, faultNumber, fault_status, source"
         
+        # Row order in data/features is not cosmetic: it is load-bearing.
+        # S6 rebuilds sub-run boundaries from it, by looking for col_time
+        # resetting to 1. DuckDB's default parallel writer splits one partition
+        # across threads and writes the pieces in completion order, so the same
+        # input produced four files on 19 Sep and five on 20 Sep, with a
+        # partition that began at col_time=206 instead of 1. Two hundred and
+        # ninety-five orphan rows were then glued onto the first sub-run, which
+        # is a reference run, which is the PCA baseline. Every control limit
+        # moved and the blamed signal changed. Nothing in the data was wrong;
+        # only the order was, and nothing said so.
+        #
+        # One writer thread with insertion order preserved: same input, same
+        # bytes, same boundaries, every time. The ingest is slower and runs
+        # once. S6 now also refuses to score a partition that does not begin
+        # at col_time=1, so if this ever regresses it stops instead of lying.
+        con.execute("SET preserve_insertion_order = true;")
+        con.execute("SET threads TO 1;")
+
         con.execute(f"COPY (SELECT {features_select} FROM read_csv_auto('{self.csv_path}') {where_clause}) TO '{features_dir}' (FORMAT PARQUET, PARTITION_BY (simulationRun));")
         con.execute(f"COPY (SELECT {labels_select} FROM read_csv_auto('{self.csv_path}') {where_clause}) TO '{labels_dir}' (FORMAT PARQUET, PARTITION_BY (simulationRun));")
         
