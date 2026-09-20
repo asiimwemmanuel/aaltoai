@@ -1,0 +1,43 @@
+{
+  "machine_id": "machine_01",
+  "updated_at": "2026-09-20T07:41:04Z",
+  "channel_hypotheses": {
+    "col_039": {
+      "physical_class": "valve",
+      "reasoning": "The channel shows dips on every changeover, which is a pattern consistent with a sticking valve on the recirculation loop.",
+      "confidence_pct": 80,
+      "epistemic_status": "inferred",
+      "evidence_ids": [
+        "ev_s2_col_039_dyn"
+      ],
+      "accepted_by": "OP-01",
+      "accepted_at": "2026-09-20T07:40:47Z",
+      "call_id": "call_0004",
+      "entry_id": "log_0120"
+    }
+  },
+  "tickets": [
+    {
+      "ticket_id": "tkt_0001",
+      "created_at": "2026-09-20T07:40:53Z",
+      "machine_id": "machine_01",
+      "col_id": "col_039",
+      "reason": "The event is likely due to a sticking valve on the recirculation loop, similar to the pattern seen in previous events.",
+      "run_id": "sim320_run23",
+      "event_id": "sim320_run23_ev03",
+      "physical_class": "valve",
+      "evidence_ids": [
+        "ev_s6_baseline",
+        "ev_s6_limits",
+        "ev_s6_sim320_run23_ev03_score",
+        "ev_s6_sim320_run23_ev03_attribution"
+      ],
+      "route_to": "Instrumentation",
+      "status": "closed",
+      "by": "OP-01",
+      "entry_id": "log_0124",
+      "closed_note": "Marked handled by OP-01."
+    }
+  ],
+  "carried_predictions": []
+}

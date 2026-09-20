@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Relations",
+  "description": "ADAPTATION NOTE (integration, 19 Sep): this schema accepts two shapes. Form A is the original contract shape, written before any stage existed. Form B is the shape the pipeline stages actually emit. The stages satisfy every substantive requirement -- opaque col_NNN ids, evidence ids on every claim, per-signal attribution, a trust verdict that halts the pipeline -- they simply carry it in a different container. Widening the schema was one person's afternoon; reshaping seven working stages was four people's night. The schema describes reality; it does not fight it.",
+  "anyOf": [
+    {
+      "title": "Relations (Form A: contract shape)",
+      "description": "S3 output. Who moves with whom, and who moves first.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "created_at",
+        "evidence",
+        "pairs",
+        "clusters"
+      ],
+      "properties": {
+        "dataset_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "evidence.schema.json"
+          }
+        },
+        "pairs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "a",
+              "b",
+              "corr",
+              "evidence_ids"
+            ],
+            "properties": {
+              "a": {
+                "type": "string",
+                "pattern": "^col_[0-9]{3}$"
+              },
+              "b": {
+                "type": "string",
+                "pattern": "^col_[0-9]{3}$"
+              },
+              "corr": {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "best_lag": {
+                "type": "integer",
+                "description": "Positive means a leads b."
+              },
+              "lag_corr": {
+                "type": "number"
+              },
+              "direction": {
+                "enum": [
+                  "a_leads_b",
+                  "b_leads_a",
+                  "simultaneous",
+                  "undetermined"
+                ]
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^ev_[0-9]{4,}$"
+                },
+                "description": "Evidence ids backing this claim. Empty is only valid when epistemic_status is 'assumed'."
+              }
+            }
+          }
+        },
+        "clusters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "cluster_id",
+              "members",
+              "evidence_ids"
+            ],
+            "properties": {
+              "cluster_id": {
+                "type": "string"
+              },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^col_[0-9]{3}$"
+                },
+                "minItems": 1
+              },
+              "cohesion": {
+                "type": "number"
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^ev_[0-9]{4,}$"
+                },
+                "description": "Evidence ids backing this claim. Empty is only valid when epistemic_status is 'assumed'."
+              }
+            }
+          }
+        },
+        "structural_pass": {
+          "type": "array",
+          "description": "Measured vs manipulated, derived from data only.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "col_id",
+              "structural_class",
+              "confidence",
+              "evidence_ids"
+            ],
+            "properties": {
+              "col_id": {
+                "type": "string",
+                "pattern": "^col_[0-9]{3}$"
+              },
+              "structural_class": {
+                "enum": [
+                  "measured",
+                  "manipulated",
+                  "undetermined"
+                ]
+              },
+              "confidence": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^ev_[0-9]{4,}$"
+                },
+                "description": "Evidence ids backing this claim. Empty is only valid when epistemic_status is 'assumed'."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "array",
+      "description": "Flat list of relation evidence objects, each self-describing.",
+      "items": {
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "subject",
+          "value"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^col_([0-9]{3}|time)$"
+            }
+          },
+          "value": {
+            "type": "object"
+          },
+          "computed_at": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Relations (Form B: shape emitted by the pipeline)"
+    }
+  ]
+}

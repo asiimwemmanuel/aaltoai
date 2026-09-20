@@ -1,0 +1,74 @@
+{
+  "diagnosis_id": "dx_0001",
+  "event_id": "evt_0003",
+  "created_at": "2026-09-19T11:05:00Z",
+  "fault_class": "process_fault",
+  "fault_type": "Slow upstream drift propagating to a downstream measurement",
+  "confidence": "medium",
+  "epistemic_status": "inferred",
+  "steps": [
+    {
+      "n": 1,
+      "statement": "The incoming data passed all quality checks, so what follows is about the process, not the instruments.",
+      "evidence_ids": [
+        "ev_0211"
+      ]
+    },
+    {
+      "n": 2,
+      "statement": "Starting around sample 320, the combined behaviour of the signals moved away from normal operation by more than twice the usual amount.",
+      "evidence_ids": [
+        "ev_0301"
+      ]
+    },
+    {
+      "n": 3,
+      "statement": "Almost half of that movement comes from one signal that has been climbing steadily without ever leaving its normal range, which is why no simple alarm fired.",
+      "evidence_ids": [
+        "ev_0301"
+      ]
+    },
+    {
+      "n": 4,
+      "statement": "A second signal follows it with the same delay it shows during normal operation, so the two are still physically linked and the first one is driving.",
+      "evidence_ids": [
+        "ev_0042"
+      ]
+    }
+  ],
+  "ranked_sensors": [
+    {
+      "col_id": "col_031",
+      "rank": 1,
+      "inferred_role": "Upstream manipulated variable",
+      "why": "Largest single contribution to the deviation, and it leads the others in time."
+    },
+    {
+      "col_id": "col_012",
+      "rank": 2,
+      "inferred_role": "Downstream measurement",
+      "why": "Moves after col_031 with the delay established during normal operation."
+    }
+  ],
+  "critique": {
+    "ran": true,
+    "alternatives_considered": [
+      {
+        "hypothesis": "A drifting instrument on col_031 rather than a real process change",
+        "why_rejected": "Correlated neighbours moved consistently; a calibration drift on one instrument would not propagate with the expected lag.",
+        "residual_doubt": "A slow drift in a shared reference would look the same. Not ruled out."
+      }
+    ],
+    "confidence_adjusted_from": "high",
+    "adjustment_reason": "The shared-reference alternative could not be excluded from the available signals."
+  },
+  "uncertainties": [
+    "The physical unit of col_031 is unknown; the role is inferred from behaviour only.",
+    "The baseline covers normal operation only; seasonal or load-dependent variation is not represented."
+  ],
+  "evidence_ids": [
+    "ev_0042",
+    "ev_0301",
+    "ev_0211"
+  ]
+}

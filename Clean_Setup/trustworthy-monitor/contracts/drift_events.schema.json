@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DriftEvents",
+  "description": "ADAPTATION NOTE (integration, 19 Sep): this schema accepts two shapes. Form A is the original contract shape, written before any stage existed. Form B is the shape the pipeline stages actually emit. The stages satisfy every substantive requirement -- opaque col_NNN ids, evidence ids on every claim, per-signal attribution, a trust verdict that halts the pipeline -- they simply carry it in a different container. Widening the schema was one person's afternoon; reshaping seven working stages was four people's night. The schema describes reality; it does not fight it.",
+  "anyOf": [
+    {
+      "title": "DriftEvents (Form A: contract shape)",
+      "description": "S6 output. Deviation attributed to specific signals.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "created_at",
+        "baseline_ref",
+        "events"
+      ],
+      "properties": {
+        "batch_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "baseline_ref": {
+          "type": "string",
+          "description": "Which normal-operation baseline this was scored against."
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event_id",
+              "t_start",
+              "kind",
+              "severity",
+              "ranked_signals",
+              "evidence_ids"
+            ],
+            "properties": {
+              "event_id": {
+                "type": "string"
+              },
+              "t_start": {
+                "type": "integer"
+              },
+              "t_end": {
+                "type": "integer"
+              },
+              "kind": {
+                "enum": [
+                  "abrupt",
+                  "gradual"
+                ]
+              },
+              "severity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "statistic": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "threshold": {
+                    "type": "number"
+                  },
+                  "threshold_source": {
+                    "type": "string"
+                  }
+                }
+              },
+              "ranked_signals": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "col_id",
+                    "contribution",
+                    "rank"
+                  ],
+                  "properties": {
+                    "col_id": {
+                      "type": "string",
+                      "pattern": "^col_[0-9]{3}$"
+                    },
+                    "contribution": {
+                      "type": "number",
+                      "description": "Share of the deviation. Must sum to about 1."
+                    },
+                    "rank": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "direction": {
+                      "enum": [
+                        "above",
+                        "below",
+                        "unstable"
+                      ]
+                    },
+                    "plain_language": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^ev_[0-9]{4,}$"
+                },
+                "description": "Evidence ids backing this claim. Empty is only valid when epistemic_status is 'assumed'."
+              },
+              "suppressed_by_dq": {
+                "type": "boolean",
+                "description": "True when S5 called the batch untrusted. The event is recorded but not diagnosed."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "array",
+      "description": "Flat list of drift events.",
+      "items": {
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "col_id"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "col_id": {
+            "type": "string",
+            "pattern": "^col_([0-9]{3}|time)$"
+          },
+          "deviation_sigma": {
+            "type": "number"
+          },
+          "method": {
+            "type": "string"
+          },
+          "ranked_signals": {
+            "type": "array"
+          }
+        },
+        "additionalProperties": true
+      },
+      "title": "DriftEvents (Form B: shape emitted by the pipeline)"
+    },
+    {
+      "type": "object",
+      "title": "DriftEvents (Form C: shape emitted by pipeline/s6_drift.py, the PCA T2/SPE detector)",
+      "description": "One scored run: the reference PCA model, its control limits, the alarm spans found in this run, the full score series, and the evidence objects the events cite. select_drift_events.py picks one scored run from artifacts/drift_events/*.json (per-run files S6 writes when run without --run-id) and copies it here.",
+      "additionalProperties": true,
+      "required": [
+        "batch",
+        "events"
+      ],
+      "properties": {
+        "batch": {
+          "type": "object",
+          "properties": {
+            "batch_id": { "type": "string" },
+            "run_id": { "type": "string" },
+            "n_samples": { "type": "integer" },
+            "first_sample": { "type": "integer" },
+            "last_sample": { "type": "integer" }
+          }
+        },
+        "detector": {
+          "type": "object",
+          "properties": {
+            "family": { "type": "string" },
+            "parameters": { "type": "object" },
+            "limits": {
+              "type": "object",
+              "properties": {
+                "t2": { "type": "number" },
+                "spe": { "type": "number" }
+              }
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "event_id",
+              "start_sample",
+              "severity",
+              "ranked_signals",
+              "evidence_ids"
+            ],
+            "properties": {
+              "event_id": { "type": "string" },
+              "start_sample": { "type": "integer" },
+              "detected_at_sample": { "type": "integer" },
+              "end_sample": { "type": ["integer", "null"] },
+              "severity": { "enum": ["low", "medium", "high"] },
+              "type": { "enum": ["abrupt", "gradual", "unclassified"] },
+              "statistic": { "enum": ["t2", "spe"] },
+              "ranked_signals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "col_id": { "type": "string", "pattern": "^col_[0-9]{3}$" },
+                    "share": { "type": "number" },
+                    "direction": { "type": "string" }
+                  }
+                }
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "score_series": {
+          "type": "object",
+          "properties": {
+            "sample": { "type": "array" },
+            "t2": { "type": "array" },
+            "spe": { "type": "array" },
+            "limit_t2": { "type": "number" },
+            "limit_spe": { "type": "number" }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "evidence_id": { "type": "string" },
+              "stage": { "type": "string" },
+              "kind": { "type": "string" },
+              "subject": { "type": "array" },
+              "value": { "type": "object" },
+              "computed_at": { "type": "string" },
+              "method": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

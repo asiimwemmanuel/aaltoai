@@ -1,0 +1,134 @@
+{
+  "batch": {
+    "batch_id": "sim82_run04",
+    "run_id": "sim82_run04",
+    "n_samples": 20,
+    "first_sample": 1,
+    "last_sample": 20
+  },
+  "detector": {
+    "family": "pca_t2_spe",
+    "parameters": {
+      "variance_target": 0.9,
+      "limit_percentile": 99.0,
+      "persistence": 5,
+      "release": 10,
+      "attribution_window": 30,
+      "top_signals": 5,
+      "shift_threshold": 1.0,
+      "variability_high": 1.5,
+      "variability_low": 0.5,
+      "ramp_lookback": 20,
+      "ramp_ratio": 0.8,
+      "ramp_min_samples": 6,
+      "severity_high_ratio": 10.0,
+      "severity_medium_ratio": 3.0,
+      "n_components": 17
+    },
+    "limits": {
+      "t2": 101.2257,
+      "spe": 747.2261
+    }
+  },
+  "events": [],
+  "score_series": {
+    "sample": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "t2": [
+      3.6434,
+      7.5242,
+      7.6541,
+      7.4546,
+      11.2983,
+      10.5853,
+      10.8566,
+      6.2123,
+      4.1135,
+      17.4473,
+      2.9401,
+      11.0624,
+      3.9114,
+      5.2914,
+      9.2574,
+      8.0196,
+      8.3192,
+      3.7489,
+      12.3039,
+      6.7451
+    ],
+    "spe": [
+      0.961,
+      0.4036,
+      2.8538,
+      3.5822,
+      2.4081,
+      3.4258,
+      1.834,
+      2.0129,
+      2.1094,
+      1.9617,
+      2.0512,
+      2.518,
+      3.1136,
+      3.0231,
+      2.2915,
+      3.2505,
+      4.3248,
+      4.9618,
+      3.8484,
+      3.7716
+    ],
+    "limit_t2": 101.2257,
+    "limit_spe": 747.2261
+  },
+  "evidence": [
+    {
+      "evidence_id": "ev_s6_baseline",
+      "stage": "S6_drift",
+      "kind": "reference_baseline",
+      "subject": [],
+      "value": {
+        "n_samples": 6353,
+        "n_columns": 52,
+        "n_components": 17,
+        "variance_explained": 0.9055
+      },
+      "computed_at": "2026-09-20T06:44:18.366441Z",
+      "method": "pca_on_normal_reference_runs"
+    },
+    {
+      "evidence_id": "ev_s6_limits",
+      "stage": "S6_drift",
+      "kind": "control_limits",
+      "subject": [],
+      "value": {
+        "t2": 101.2257,
+        "spe": 747.2261,
+        "percentile": 99.0,
+        "n_samples": 4800
+      },
+      "computed_at": "2026-09-20T06:44:18.366441Z",
+      "method": "percentile_on_held_out_normal_runs"
+    }
+  ]
+}

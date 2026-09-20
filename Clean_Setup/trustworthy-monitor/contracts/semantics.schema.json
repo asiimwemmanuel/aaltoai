@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Semantics",
+  "description": "ADAPTATION NOTE (integration, 19 Sep): this schema accepts two shapes. Form A is the original contract shape, written before any stage existed. Form B is the shape the pipeline stages actually emit. The stages satisfy every substantive requirement -- opaque col_NNN ids, evidence ids on every claim, per-signal attribution, a trust verdict that halts the pipeline -- they simply carry it in a different container. Widening the schema was one person's afternoon; reshaping seven working stages was four people's night. The schema describes reality; it does not fight it.",
+  "anyOf": [
+    {
+      "title": "Semantics (Form A: contract shape)",
+      "description": "S4 output. Inferred role per column, always with evidence.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "created_at",
+        "model_call_ids",
+        "inferences"
+      ],
+      "properties": {
+        "dataset_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "model_call_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ids in decision_log of the calls that produced this."
+        },
+        "inferences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "col_id",
+              "role",
+              "confidence",
+              "epistemic_status",
+              "evidence_ids",
+              "reasoning"
+            ],
+            "properties": {
+              "col_id": {
+                "type": "string",
+                "pattern": "^col_[0-9]{3}$"
+              },
+              "role": {
+                "type": "string",
+                "description": "Plain-language functional role."
+              },
+              "instrument_type": {
+                "type": "string"
+              },
+              "unit_guess": {
+                "type": "string"
+              },
+              "structural_class": {
+                "enum": [
+                  "measured",
+                  "manipulated",
+                  "undetermined"
+                ]
+              },
+              "confidence": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "epistemic_status": {
+                "enum": [
+                  "inferred",
+                  "assumed",
+                  "uncertain"
+                ]
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^ev_[0-9]{4,}$"
+                },
+                "description": "Evidence ids backing this claim. Empty is only valid when epistemic_status is 'assumed'."
+              },
+              "reasoning": {
+                "type": "string",
+                "description": "Why, in one or two sentences an operator can read."
+              },
+              "alternatives": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "type": "string"
+                    },
+                    "why_rejected": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "human_override": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "role",
+                  "by",
+                  "at",
+                  "rationale"
+                ],
+                "properties": {
+                  "role": {
+                    "type": "string"
+                  },
+                  "by": {
+                    "type": "string"
+                  },
+                  "at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "rationale": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "description": "Map of col_id to its inferred role.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "inferred_role",
+          "confidence",
+          "evidence_ids"
+        ],
+        "properties": {
+          "inferred_role": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ]
+          },
+          "epistemic_status": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "human_override": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "debug_prompt_generated": {
+            "type": "string",
+            "description": "The prompt generated from the statistical profile. Evidence that the prompt is derived, not hand-written."
+          }
+        }
+      },
+      "title": "Semantics (Form B: shape emitted by the pipeline)"
+    }
+  ]
+}

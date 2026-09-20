@@ -1,0 +1,55 @@
+{
+  "dataset_id": "te_process",
+  "created_at": "2026-09-19T09:20:00Z",
+  "evidence": [
+    {
+      "evidence_id": "ev_0101",
+      "stage": "S2_profiling",
+      "kind": "distribution_shape",
+      "subject": [
+        "col_012"
+      ],
+      "value": {
+        "skewness": 0.04,
+        "kurtosis": 2.9,
+        "n_modes": 1
+      },
+      "computed_at": "2026-09-19T09:20:00Z",
+      "method": "moment_estimation",
+      "n_samples": 500000
+    }
+  ],
+  "profiles": [
+    {
+      "col_id": "col_012",
+      "stats": {
+        "count": 500000,
+        "missing_pct": 0.0,
+        "mean": 2705.1,
+        "std": 18.4,
+        "min": 2611.0,
+        "max": 2799.0,
+        "q01": 2662.0,
+        "q25": 2693.0,
+        "q50": 2705.0,
+        "q75": 2717.0,
+        "q99": 2748.0,
+        "skewness": 0.04,
+        "kurtosis": 2.9,
+        "n_distinct": 48211,
+        "noise_level": 0.31,
+        "autocorr_lag1": 0.88,
+        "stationarity_p": 0.02,
+        "longest_plateau": 2,
+        "step_count": 0
+      },
+      "dynamics": {
+        "class": "continuous",
+        "confidence": "high"
+      },
+      "evidence_ids": [
+        "ev_0101"
+      ]
+    }
+  ]
+}

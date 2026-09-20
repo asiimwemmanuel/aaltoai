@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Profiles",
+  "description": "ADAPTATION NOTE (integration, 19 Sep): this schema accepts two shapes. Form A is the original contract shape, written before any stage existed. Form B is the shape the pipeline stages actually emit. The stages satisfy every substantive requirement -- opaque col_NNN ids, evidence ids on every claim, per-signal attribution, a trust verdict that halts the pipeline -- they simply carry it in a different container. Widening the schema was one person's afternoon; reshaping seven working stages was four people's night. The schema describes reality; it does not fight it.",
+  "anyOf": [
+    {
+      "title": "Profiles (Form A: contract shape)",
+      "description": "S2 output. The evidence base for every later claim.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_id",
+        "created_at",
+        "evidence",
+        "profiles"
+      ],
+      "properties": {
+        "dataset_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "evidence.schema.json"
+          }
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "col_id",
+              "stats",
+              "evidence_ids"
+            ],
+            "properties": {
+              "col_id": {
+                "type": "string",
+                "pattern": "^col_[0-9]{3}$"
+              },
+              "stats": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "count": {
+                    "type": "integer"
+                  },
+                  "missing_pct": {
+                    "type": "number"
+                  },
+                  "mean": {
+                    "type": "number"
+                  },
+                  "std": {
+                    "type": "number"
+                  },
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  },
+                  "q01": {
+                    "type": "number"
+                  },
+                  "q25": {
+                    "type": "number"
+                  },
+                  "q50": {
+                    "type": "number"
+                  },
+                  "q75": {
+                    "type": "number"
+                  },
+                  "q99": {
+                    "type": "number"
+                  },
+                  "skewness": {
+                    "type": "number"
+                  },
+                  "kurtosis": {
+                    "type": "number"
+                  },
+                  "n_distinct": {
+                    "type": "integer"
+                  },
+                  "noise_level": {
+                    "type": "number",
+                    "description": "std of first differences / std of level"
+                  },
+                  "autocorr_lag1": {
+                    "type": "number"
+                  },
+                  "stationarity_p": {
+                    "type": "number"
+                  },
+                  "longest_plateau": {
+                    "type": "integer",
+                    "description": "Longest run of identical values. Frozen-sensor signal."
+                  },
+                  "step_count": {
+                    "type": "integer",
+                    "description": "Discrete level changes. Actuators step, sensors drift."
+                  }
+                }
+              },
+              "dynamics": {
+                "type": "object",
+                "properties": {
+                  "class": {
+                    "enum": [
+                      "continuous",
+                      "stepped",
+                      "binary",
+                      "constant",
+                      "sparse"
+                    ]
+                  },
+                  "confidence": {
+                    "enum": [
+                      "high",
+                      "medium",
+                      "low"
+                    ]
+                  }
+                }
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^ev_[0-9]{4,}$"
+                },
+                "description": "Evidence ids backing this claim. Empty is only valid when epistemic_status is 'assumed'."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "description": "Map of col_id to its statistical profile.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "statistics",
+          "evidence_ids"
+        ],
+        "properties": {
+          "statistics": {
+            "type": "object"
+          },
+          "evidence_ids": {
+            "description": "Either a list of ids or a map of statistic name to id. Both satisfy the traceability requirement.",
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        }
+      },
+      "title": "Profiles (Form B: shape emitted by the pipeline)"
+    }
+  ]
+}

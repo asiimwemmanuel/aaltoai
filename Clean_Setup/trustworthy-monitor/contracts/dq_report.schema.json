@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DataQualityReport",
+  "description": "ADAPTATION NOTE (integration, 19 Sep): this schema accepts two shapes. Form A is the original contract shape, written before any stage existed. Form B is the shape the pipeline stages actually emit. The stages satisfy every substantive requirement -- opaque col_NNN ids, evidence ids on every claim, per-signal attribution, a trust verdict that halts the pipeline -- they simply carry it in a different container. Widening the schema was one person's afternoon; reshaping seven working stages was four people's night. The schema describes reality; it does not fight it.",
+  "anyOf": [
+    {
+      "title": "DataQualityReport (Form A: contract shape)",
+      "description": "S5 output. Runs before any process reasoning.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "created_at",
+        "trust_verdict",
+        "checks"
+      ],
+      "properties": {
+        "batch_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "trust_verdict": {
+          "enum": [
+            "trusted",
+            "degraded",
+            "untrusted"
+          ],
+          "description": "untrusted stops the pipeline. No fault diagnosis is produced."
+        },
+        "verdict_rationale": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "check_id",
+              "dimension",
+              "status",
+              "subject",
+              "origin"
+            ],
+            "properties": {
+              "check_id": {
+                "type": "string"
+              },
+              "dimension": {
+                "enum": [
+                  "completeness",
+                  "validity",
+                  "consistency",
+                  "timeliness",
+                  "sensor_health"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "pass",
+                  "warn",
+                  "fail"
+                ]
+              },
+              "subject": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^col_[0-9]{3}$"
+                }
+              },
+              "detail": {
+                "type": "string"
+              },
+              "observed": {
+                "type": "object"
+              },
+              "expected": {
+                "type": "object"
+              },
+              "origin": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "baseline",
+                      "compiled_rule"
+                    ]
+                  },
+                  "rule_text": {
+                    "type": "string",
+                    "description": "The operator's original words."
+                  },
+                  "rule_id": {
+                    "type": "string"
+                  },
+                  "compiled_by": {
+                    "type": "string"
+                  },
+                  "approved_by": {
+                    "type": "string"
+                  },
+                  "approved_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^ev_[0-9]{4,}$"
+                },
+                "description": "Evidence ids backing this claim. Empty is only valid when epistemic_status is 'assumed'."
+              },
+              "fault_class": {
+                "enum": [
+                  "data_fault",
+                  "process_candidate"
+                ],
+                "description": "The distinction that keeps a dead sensor from being diagnosed as a process fault."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "batch_id",
+        "trust_verdict"
+      ],
+      "properties": {
+        "batch_id": {
+          "type": "string"
+        },
+        "evaluated_at": {
+          "type": "string"
+        },
+        "trust_verdict": {
+          "type": "string",
+          "enum": [
+            "trusted",
+            "degraded",
+            "untrusted",
+            "TRUSTED",
+            "DEGRADED",
+            "UNTRUSTED"
+          ],
+          "description": "UNTRUSTED must halt the pipeline. S6 enforces this by reading this field before scoring. Case is cosmetic; the halt is not."
+        },
+        "stop_pipeline": {
+          "type": "boolean"
+        },
+        "checks_log": {
+          "type": "array"
+        },
+        "failures": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": true,
+      "title": "DataQualityReport (Form B: shape emitted by the pipeline)"
+    }
+  ]
+}

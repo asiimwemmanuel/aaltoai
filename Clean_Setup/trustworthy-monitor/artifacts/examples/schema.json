@@ -1,0 +1,40 @@
+{
+  "dataset_id": "te_process",
+  "created_at": "2026-09-19T09:00:00Z",
+  "row_count": 15840000,
+  "time_column": "col_000",
+  "group_column": "col_001",
+  "columns": [
+    {
+      "col_id": "col_000",
+      "source_name": "sample",
+      "dtype": "int",
+      "role_hint": "time"
+    },
+    {
+      "col_id": "col_001",
+      "source_name": "simulationRun",
+      "dtype": "int",
+      "role_hint": "group"
+    },
+    {
+      "col_id": "col_012",
+      "source_name": "REDACTED_SIGNAL_12",
+      "dtype": "float",
+      "role_hint": "signal"
+    },
+    {
+      "col_id": "col_031",
+      "source_name": "REDACTED_SIGNAL_31",
+      "dtype": "float",
+      "role_hint": "signal"
+    },
+    {
+      "col_id": "col_099",
+      "source_name": "faultNumber",
+      "dtype": "int",
+      "role_hint": "label",
+      "quarantined": true
+    }
+  ]
+}

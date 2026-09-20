@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DecisionLogEntry",
+  "description": "ADAPTATION NOTE (integration, 19 Sep): this schema accepts two shapes. Form A is the original contract shape, written before any stage existed. Form B is the shape the pipeline stages actually emit. The stages satisfy every substantive requirement -- opaque col_NNN ids, evidence ids on every claim, per-signal attribution, a trust verdict that halts the pipeline -- they simply carry it in a different container. Widening the schema was one person's afternoon; reshaping seven working stages was four people's night. The schema describes reality; it does not fight it. Form B is what core/logger.py emitted before it was replaced by the adapter in pipeline/lib/logger.py. New entries use Form A.",
+  "anyOf": [
+    {
+      "title": "DecisionLogEntry (Form A: contract shape)",
+      "description": "One line of decision_log.jsonl. Append-only.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entry_id",
+        "at",
+        "actor",
+        "stage",
+        "kind",
+        "summary"
+      ],
+      "properties": {
+        "entry_id": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "actor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "system",
+                "model",
+                "human"
+              ]
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "stage": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "inference",
+            "check",
+            "flag",
+            "diagnosis",
+            "model_call",
+            "human_review",
+            "override",
+            "config_change",
+            "qa",
+            "hypothesis",
+            "context_write"
+          ],
+          "description": "'qa' (added 19 Sep, operator question box): an operator's natural-language question over the audit trail, answered via call_model() like any other stage. Logged separately from the 'model_call' entry the same call already produces, so the exchange itself -- question, answer, which entries backed it -- is legible without cross-referencing call_id. 'hypothesis' and 'context_write' (added 19 Sep, live cockpit): a model's synthetic hypothesis for one detected event, and an operator's edit to a machine's own context notes. Both are separate from the 'model_call' entry the same call produces, for the same reason 'qa' is."
+        },
+        "summary": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^col_[0-9]{3}$"
+          }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^ev_[A-Za-z0-9_]+$"
+          },
+          "description": "Evidence ids backing this claim. Empty is only valid when epistemic_status is 'assumed'."
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "epistemic_status": {
+          "enum": [
+            "inferred",
+            "assumed",
+            "uncertain"
+          ]
+        },
+        "model_call": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Present on every outbound model call. This is deliverable 8.",
+          "required": [
+            "call_id",
+            "provider",
+            "model",
+            "purpose",
+            "payload_kinds",
+            "payload_bytes",
+            "egress"
+          ],
+          "properties": {
+            "call_id": {
+              "type": "string"
+            },
+            "provider": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "endpoint": {
+              "type": "string"
+            },
+            "purpose": {
+              "type": "string"
+            },
+            "payload_kinds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Which derived artifact kinds were sent. Never raw rows."
+            },
+            "payload_bytes": {
+              "type": "integer"
+            },
+            "payload_sha256": {
+              "type": "string"
+            },
+            "egress": {
+              "type": "boolean",
+              "description": "False when the model ran locally."
+            },
+            "latency_ms": {
+              "type": "integer"
+            }
+          }
+        },
+        "override": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "from",
+            "to",
+            "rationale"
+          ],
+          "properties": {
+            "target": {
+              "type": "string",
+              "description": "e.g. semantics/col_012/role"
+            },
+            "from": {},
+            "to": {},
+            "rationale": {
+              "type": "string"
+            }
+          }
+        },
+        "cites": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^log_[0-9]{4,}$"
+          },
+          "description": "entry_ids of other decision_log lines an answer was grounded in. Used by kind: 'qa'."
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "What this entry is about beyond its columns: run_id, event_id, machine_id, diagnosis_id. Kept out of 'subject' so that field stays a clean list of col_NNN ids and the log remains filterable by channel.",
+          "properties": {
+            "run_id": {
+              "type": "string"
+            },
+            "event_id": {
+              "type": "string"
+            },
+            "machine_id": {
+              "type": "string"
+            },
+            "diagnosis_id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "stage"
+      ],
+      "properties": {
+        "timestamp": {
+          "type": "string"
+        },
+        "stage": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low",
+                "HIGH",
+                "MEDIUM",
+                "LOW"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "model_used": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "title": "DecisionLogEntry (Form B: shape emitted by the pipeline)"
+    }
+  ]
+}

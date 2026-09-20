@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence",
+  "description": "The atomic unit of the system. Every claim points at these.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_id",
+    "stage",
+    "kind",
+    "subject",
+    "value",
+    "computed_at",
+    "method"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^ev_[0-9]{4,}$"
+    },
+    "stage": {
+      "enum": [
+        "S1_ingest",
+        "S2_profiling",
+        "S3_relations",
+        "S4_semantics",
+        "S5_quality",
+        "S6_drift",
+        "S7_diagnosis"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "description": "e.g. distribution_shape, lagged_correlation, variance_ratio, plateau_run, range_violation"
+    },
+    "subject": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^col_[0-9]{3}$"
+      },
+      "minItems": 1
+    },
+    "value": {
+      "type": "object",
+      "description": "Aggregate numbers only. Never raw rows."
+    },
+    "computed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "method": {
+      "type": "string",
+      "description": "Named, reproducible procedure."
+    },
+    "window": {
+      "type": "object",
+      "properties": {
+        "run": {
+          "type": "integer"
+        },
+        "from": {
+          "type": "integer"
+        },
+        "to": {
+          "type": "integer"
+        }
+      }
+    },
+    "n_samples": {
+      "type": "integer"
+    }
+  }
+}
