@@ -1,0 +1,74 @@
+# The only place a model is chosen. Swapping provider must never require a code change.
+# Deliverable 8 is demonstrated by editing this file and re-running.
+
+llm:
+  provider: local
+  model: llama3.1:latest
+  endpoint: http://localhost:11434
+  api_key_env: null
+  timeout_s: 120
+  rate_limit_per_min: 0
+
+# Kept so switching back is one edit, not a rewrite from memory.
+llm_local_profile:
+  provider: local
+  model: llama3.1:8b
+  endpoint: http://localhost:11434
+  api_key_env: null
+  timeout_s: 120
+
+gate:
+  max_payload_kb: 64
+  # Only these top-level keys may appear in an outbound payload.
+  allowed_payload_keys:
+    - purpose
+    - column_summaries
+    - relation_summaries
+    - cluster_summaries
+    - check_definitions
+    - rule_text
+    - event_summary
+    - ranked_contributions
+    - candidate_roles
+    - instructions
+    # Operator question box (trust/gateway.py is still the only door): the
+    # operator's own words, plus decision_log entries and the evidence they
+    # cite. Same category as rule_text -- human-authored input, not a hint we
+    # injected -- and still run through every check below.
+    - question
+    - log_entries
+    - evidence
+    # Live cockpit (ui/cockpit_api.py). Same category again -- every one of
+    # these is an aggregate a stage already wrote, a window statistic from
+    # series_reader.window_stats(), text an operator typed, or the unit's own
+    # notes file. No series, no rows. The four checks below still run on all
+    # of it, and `machine_context` is deliberately subject to the forbidden
+    # substring list: if an operator pastes an original column name into the
+    # notes, the call is refused rather than quietly sent.
+    - event_context
+    - sensor_summary
+    - machine_context
+    - chat_history
+    # Action layer (trust/actions.py). The assistant cannot read the plant, so
+    # it names an action and the server runs it HERE, locally, returning only
+    # aggregates. Three keys carry that exchange:
+    #   available_actions            the menu -- names and shapes, no data
+    #   channels_the_operator_named  profiles for channels named in the question
+    #   requested_data               results of what the assistant asked for
+    # Every action is defined to return aggregates; none returns a series or a
+    # row, and the four checks below still run on the results.
+    - available_actions
+    - channels_the_operator_named
+    - requested_data
+  # A payload containing more than this many numbers in one array looks like raw data.
+  max_array_len: 32
+  # Refuse anything that smells like a record dump, whatever it is called.
+  forbidden_substrings:
+    - "xmeas"
+    - "xmv"
+    - "faultNumber"
+    - "fault_status"
+
+logging:
+  decision_log: artifacts/decision_log.jsonl
+  redact_payloads: false     # payloads are derived-only by construction, so we keep them for the judges

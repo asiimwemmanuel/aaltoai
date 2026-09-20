@@ -1,0 +1,796 @@
+{
+  "col_001": {
+    "inferred_role": "structural_class",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_001_mean",
+      "ev_s2_col_001_stddev",
+      "ev_s2_col_001_dist"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the distribution suggests that the column has been manipulated. This is supported by the statistics, particularly the plateau ratio (0.08863613829093281) and the fact that the distribution is not smooth. However, the skewness (1.8150587206501385) is high, which could indicate that the column has been manipulated in a way that introduces non-linear relationships. The evidence is not entirely conclusive, hence the medium confidence.",
+    "model_call_id": "call_0001",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_001\": {\n      \"statistics\": {\n        \"mean\": 0.2578316096104814,\n        \"std_dev\": 0.14094534820541127,\n        \"min_val\": -0.0049855,\n        \"max_val\": 1.0175,\n        \"quantiles\": {\n          \"p25\": 0.21964491135574032,\n          \"p50\": 0.2506657397762374,\n          \"p75\": 0.2804296814053019\n        },\n        \"skewness\": 1.8150587206501385,\n        \"distinct_values\": 305017,\n        \"noise_level\": 0.197314247583402,\n        \"plateau_ratio\": 0.08863613829093281,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_001_mean\",\n        \"std_dev\": \"ev_s2_col_001_stddev\",\n        \"distribution\": \"ev_s2_col_001_dist\",\n        \"dynamics\": \"ev_s2_col_001_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_002": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_002_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the distribution (ev_s2_col_002_dist) suggests that the data has been manipulated. The plateau ratio (ev_s2_col_002_plateau_ratio) is 0.11051063274624918, indicating a significant number of discrete steps. The dynamics (ev_s2_col_002_dyn) further support this conclusion, as they are likely to be the result of deliberate action rather than natural variation.",
+    "model_call_id": "call_0002",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_002\": {\n      \"statistics\": {\n        \"mean\": 3664.629988662804,\n        \"std_dev\": 42.9082815841568,\n        \"min_val\": 3308.4,\n        \"max_val\": 3906.7,\n        \"quantiles\": {\n          \"p25\": 3637.3786553528944,\n          \"p50\": 3663.754084745702,\n          \"p75\": 3690.45397468562\n        },\n        \"skewness\": 0.16611659953420385,\n        \"distinct_values\": 4807,\n        \"noise_level\": 48.34120347806263,\n        \"plateau_ratio\": 0.11051063274624918,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_002_mean\",\n        \"std_dev\": \"ev_s2_col_002_stddev\",\n        \"distribution\": \"ev_s2_col_002_dist\",\n        \"dynamics\": \"ev_s2_col_002_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_003": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_003_dyn"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps). This is supported by the column_summaries 'has_plateaus' being true (evidence_id: ev_s2_col_003_dist) and the 'plateau_ratio' being 0.10323666014350946 (evidence_id: ev_s2_col_003_dist).",
+    "model_call_id": "call_0003",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_003\": {\n      \"statistics\": {\n        \"mean\": 4508.765881096149,\n        \"std_dev\": 107.00586219772161,\n        \"min_val\": 3540.7,\n        \"max_val\": 5175.8,\n        \"quantiles\": {\n          \"p25\": 4472.259372102011,\n          \"p50\": 4509.115999683156,\n          \"p75\": 4546.642694580692\n        },\n        \"skewness\": -0.1352540986636547,\n        \"distinct_values\": 14017,\n        \"noise_level\": 145.9729440756487,\n        \"plateau_ratio\": 0.10323666014350946,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_003_mean\",\n        \"std_dev\": \"ev_s2_col_003_stddev\",\n        \"distribution\": \"ev_s2_col_003_dist\",\n        \"dynamics\": \"ev_s2_col_003_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_004": {
+    "inferred_role": "structural_class",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_004_dist"
+    ],
+    "reasoning": "The evidence suggests that the column has plateaus (discrete steps), which is a characteristic of 'manipulated' data. However, the statistical pre-analysis only suggests this as a possibility, and the evidence is not strong enough to assert it with high confidence.",
+    "model_call_id": "call_0004",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_004\": {\n      \"statistics\": {\n        \"mean\": 9.381277741897723,\n        \"std_dev\": 0.3671575632836785,\n        \"min_val\": 6.6399,\n        \"max_val\": 12.24,\n        \"quantiles\": {\n          \"p25\": 9.271327952010479,\n          \"p50\": 9.355385865776732,\n          \"p75\": 9.449132719734111\n        },\n        \"skewness\": 2.170544236905156,\n        \"distinct_values\": 29636,\n        \"noise_level\": 0.5180742050763153,\n        \"plateau_ratio\": 0.08915681669928245,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_004_mean\",\n        \"std_dev\": \"ev_s2_col_004_stddev\",\n        \"distribution\": \"ev_s2_col_004_dist\",\n        \"dynamics\": \"ev_s2_col_004_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_005": {
+    "inferred_role": "measured",
+    "structural_class": "manipulated",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_005_mean",
+      "ev_s2_col_005_stddev"
+    ],
+    "reasoning": "The provided statistical analysis suggests 'measured' due to the low standard deviation (0.22823613188987332) and low skewness (0.009352123820937702). However, the presence of plateaus (discrete steps) in the dynamics (ev_s2_col_005_dyn) makes 'manipulated' a plausible alternative. Further evidence is required to confidently infer the role.",
+    "model_call_id": "call_0005",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_005\": {\n      \"statistics\": {\n        \"mean\": 26.901455842139995,\n        \"std_dev\": 0.22823613188987332,\n        \"min_val\": 25.348,\n        \"max_val\": 28.565,\n        \"quantiles\": {\n          \"p25\": 26.76188875125896,\n          \"p50\": 26.900127134043416,\n          \"p75\": 27.041551913333755\n        },\n        \"skewness\": 0.009352123820937702,\n        \"distinct_values\": 2820,\n        \"noise_level\": 0.2275338924038852,\n        \"plateau_ratio\": 0.15254898891063276,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_005_mean\",\n        \"std_dev\": \"ev_s2_col_005_stddev\",\n        \"distribution\": \"ev_s2_col_005_dist\",\n        \"dynamics\": \"ev_s2_col_005_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_006": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_006_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the column's dynamics (ev_s2_col_006_dyn) suggests that the column is manipulated. The statistical pre-analysis explicitly states this inference.",
+    "model_call_id": "call_0006",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_006\": {\n      \"statistics\": {\n        \"mean\": 42.37013951682708,\n        \"std_dev\": 0.3164790397228716,\n        \"min_val\": 39.656,\n        \"max_val\": 44.653,\n        \"quantiles\": {\n          \"p25\": 42.187153888479244,\n          \"p50\": 42.34942884280362,\n          \"p75\": 42.52320334514399\n        },\n        \"skewness\": 0.8761530493888504,\n        \"distinct_values\": 4217,\n        \"noise_level\": 0.3813686258394917,\n        \"plateau_ratio\": 0.09693933463796478,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_006_mean\",\n        \"std_dev\": \"ev_s2_col_006_stddev\",\n        \"distribution\": \"ev_s2_col_006_dist\",\n        \"dynamics\": \"ev_s2_col_006_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_007": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_007_mean",
+      "ev_s2_col_007_stddev",
+      "ev_s2_col_007_dist",
+      "ev_s2_col_007_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the distribution of col_007 (mean = 2723.4800137305283, std_dev = 76.3701732072604) suggests that this column is manipulated. This is a working assumption supported by the statistical pre-analysis (instructions). The statistics provided in column_summaries also show a high skewness (2.731788667586353) and a large number of distinct values (5538), which are consistent with the characteristics of a manipulated column.",
+    "model_call_id": "call_0007",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_007\": {\n      \"statistics\": {\n        \"mean\": 2723.4800137305283,\n        \"std_dev\": 76.3701732072604,\n        \"min_val\": 2413.8,\n        \"max_val\": 3000.5,\n        \"quantiles\": {\n          \"p25\": 2698.2132594285176,\n          \"p50\": 2705.458589381136,\n          \"p75\": 2713.8596163533425\n        },\n        \"skewness\": 2.731788667586353,\n        \"distinct_values\": 5538,\n        \"noise_level\": 108.98769457396935,\n        \"plateau_ratio\": 0.10339360730593607,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_007_mean\",\n        \"std_dev\": \"ev_s2_col_007_stddev\",\n        \"distribution\": \"ev_s2_col_007_dist\",\n        \"dynamics\": \"ev_s2_col_007_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0002\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_013\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9915735087261349,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0003\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9823899827148078,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0001\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_011\"\n      ],\n      \"value\": {\n        \"correlation\": -0.9064872618541482,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0006\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8535615990201529,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0005\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8163352885066506,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0004\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8004433243366972,\n        \"lag_samples\": 5,\n        \"leader\": \"col_025\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_008": {
+    "inferred_role": "structural_class",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_008_dist"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the data, as indicated by the plateau_ratio of 0.09322309197651664 and the has_plateaus flag being true, suggests that the data has been manipulated. This is consistent with the statistical pre-analysis mentioned in the instructions.",
+    "model_call_id": "call_0008",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_008\": {\n      \"statistics\": {\n        \"mean\": 74.87145568283904,\n        \"std_dev\": 1.2812505173829047,\n        \"min_val\": 61.132,\n        \"max_val\": 87.189,\n        \"quantiles\": {\n          \"p25\": 74.45650015227567,\n          \"p50\": 74.95274088083303,\n          \"p75\": 75.41624999325339\n        },\n        \"skewness\": -1.212734524947142,\n        \"distinct_values\": 21262,\n        \"noise_level\": 1.7136639773869489,\n        \"plateau_ratio\": 0.09322309197651664,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_008_mean\",\n        \"std_dev\": \"ev_s2_col_008_stddev\",\n        \"distribution\": \"ev_s2_col_008_dist\",\n        \"dynamics\": \"ev_s2_col_008_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_009": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_009_dist"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the distribution is strong evidence that the column has been manipulated. The plateau ratio is 0.305275799086758, which suggests that the column has distinct values that are not randomly distributed.",
+    "model_call_id": "call_0009",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_009\": {\n      \"statistics\": {\n        \"mean\": 120.40012273538656,\n        \"std_dev\": 0.06853335457647779,\n        \"min_val\": 119.61,\n        \"max_val\": 121.01,\n        \"quantiles\": {\n          \"p25\": 120.38394799599607,\n          \"p50\": 120.4,\n          \"p75\": 120.41999892692121\n        },\n        \"skewness\": -0.9471393326916717,\n        \"distinct_values\": 139,\n        \"noise_level\": 0.09472102776511572,\n        \"plateau_ratio\": 0.305275799086758,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_009_mean\",\n        \"std_dev\": \"ev_s2_col_009_stddev\",\n        \"distribution\": \"ev_s2_col_009_dist\",\n        \"dynamics\": \"ev_s2_col_009_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_010": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_010_dist",
+      "ev_s2_col_010_dyn"
+    ],
+    "reasoning": "The dataset shows plateaus (discrete steps) in the distribution of column_010, which is a strong indication of a manipulated variable. This is supported by the high plateau ratio (0.090449184605349) and the presence of plateaus in the distribution (has_plateaus: true). The skewness of 3.2431639718691443 further suggests that the distribution is not naturally occurring.",
+    "model_call_id": "call_0010",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_010\": {\n      \"statistics\": {\n        \"mean\": 0.34465382348905965,\n        \"std_dev\": 0.08080114687469551,\n        \"min_val\": 0.018396,\n        \"max_val\": 0.82073,\n        \"quantiles\": {\n          \"p25\": 0.32370513574384197,\n          \"p50\": 0.33616603323388156,\n          \"p75\": 0.34783920773288757\n        },\n        \"skewness\": 3.2431639718691443,\n        \"distinct_values\": 68547,\n        \"noise_level\": 0.11552473859056134,\n        \"plateau_ratio\": 0.090449184605349,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_010_mean\",\n        \"std_dev\": \"ev_s2_col_010_stddev\",\n        \"distribution\": \"ev_s2_col_010_dist\",\n        \"dynamics\": \"ev_s2_col_010_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0008\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_010\",\n        \"col_047\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8863956687170097,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_011": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0001",
+      "ev_s3_0010",
+      "ev_s3_0009",
+      "ev_s3_0013",
+      "ev_s3_0014",
+      "ev_s3_0012"
+    ],
+    "reasoning": "The column is 'manipulated' because it leads other columns in the lagged correlations. The strong negative correlations with 'col_007', 'col_016', and 'col_013' (ev_s3_0001, ev_s3_0010, and ev_s3_0009) and the weak positive correlation with 'col_035' (ev_s3_0013) suggest a manipulated variable. The positive correlation with 'col_036' (ev_s3_0014) and the negative correlation with 'col_031' (ev_s3_0012) further support this conclusion.",
+    "model_call_id": "call_0011",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_011\": {\n      \"statistics\": {\n        \"mean\": 79.73392268167285,\n        \"std_dev\": 1.7731694371520956,\n        \"min_val\": 68.097,\n        \"max_val\": 87.591,\n        \"quantiles\": {\n          \"p25\": 79.8239966846136,\n          \"p50\": 80.09240658444301,\n          \"p75\": 80.33618099817569\n        },\n        \"skewness\": -2.525553730760569,\n        \"distinct_values\": 15751,\n        \"noise_level\": 2.511750074644486,\n        \"plateau_ratio\": 0.0937392694063927,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_011_mean\",\n        \"std_dev\": \"ev_s2_col_011_stddev\",\n        \"distribution\": \"ev_s2_col_011_dist\",\n        \"dynamics\": \"ev_s2_col_011_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0001\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_011\"\n      ],\n      \"value\": {\n        \"correlation\": -0.9064872618541482,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0010\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8952866431078419,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0009\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_013\"\n      ],\n      \"value\": {\n        \"correlation\": -0.895037809819681,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0013\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8860159351825949,\n        \"lag_samples\": 3,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0014\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_036\"\n      ],\n      \"value\": {\n        \"correlation\": 0.798973935955913,\n        \"lag_samples\": 4,\n        \"leader\": \"col_036\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0012\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7651964322755498,\n        \"lag_samples\": 3,\n        \"leader\": \"col_031\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_012": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_012_mean",
+      "ev_s2_col_012_dist"
+    ],
+    "reasoning": "The column has a mean of 49.98552005238235 and a standard deviation of 0.9998867259530504, indicating a narrow distribution. The quantiles show a small spread, with p25, p50, and p75 being 49.29292727459431, 50.006185286973135, and 50.637560815485166 respectively. The skewness is low at 0.01490248490013284, indicating a symmetrical distribution. The distinct values are 8353, which is a large number, but the noise level is low at 0.8928960193042806. The plateau ratio is 0.10378819308545335, indicating the presence of plateaus. The relation summaries show a lagged correlation of 0.9999999535974021 between col_012 and col_048, which is strong evidence for a manipulated column.",
+    "model_call_id": "call_0012",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_012\": {\n      \"statistics\": {\n        \"mean\": 49.98552005238235,\n        \"std_dev\": 0.9998867259530504,\n        \"min_val\": 44.627,\n        \"max_val\": 55.481,\n        \"quantiles\": {\n          \"p25\": 49.29292727459431,\n          \"p50\": 50.006185286973135,\n          \"p75\": 50.637560815485166\n        },\n        \"skewness\": 0.01490248490013284,\n        \"distinct_values\": 8353,\n        \"noise_level\": 0.8928960193042806,\n        \"plateau_ratio\": 0.10378819308545335,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_012_mean\",\n        \"std_dev\": \"ev_s2_col_012_stddev\",\n        \"distribution\": \"ev_s2_col_012_dist\",\n        \"dynamics\": \"ev_s2_col_012_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0015\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_012\",\n        \"col_048\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9999999535974021,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_013": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_013_mean",
+      "ev_s2_col_013_stddev",
+      "ev_s2_col_013_dist"
+    ],
+    "reasoning": "The high confidence in the role 'manipulated' is based on the presence of plateaus (discrete steps) in the distribution of column col_013 (evidence_id: ev_s2_col_013_dist), which is a strong indication of manipulation. The mean value of 2651.5946831964516 (evidence_id: ev_s2_col_013_mean) and standard deviation of 77.26789318090759 (evidence_id: ev_s2_col_013_stddev) also support this conclusion.",
+    "model_call_id": "call_0013",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_013\": {\n      \"statistics\": {\n        \"mean\": 2651.5946831964516,\n        \"std_dev\": 77.26789318090759,\n        \"min_val\": 2317.1,\n        \"max_val\": 2945.4,\n        \"quantiles\": {\n          \"p25\": 2625.9424188242283,\n          \"p50\": 2633.860615535838,\n          \"p75\": 2642.654367277865\n        },\n        \"skewness\": 2.6849466548154095,\n        \"distinct_values\": 5895,\n        \"noise_level\": 110.17994222571053,\n        \"plateau_ratio\": 0.1044897586431833,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_013_mean\",\n        \"std_dev\": \"ev_s2_col_013_stddev\",\n        \"distribution\": \"ev_s2_col_013_dist\",\n        \"dynamics\": \"ev_s2_col_013_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0002\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_013\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9915735087261349,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0016\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9688803211961142,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0009\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_013\"\n      ],\n      \"value\": {\n        \"correlation\": -0.895037809819681,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0019\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8450009921958563,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0018\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7993978272320567,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0017\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7858337231267757,\n        \"lag_samples\": 5,\n        \"leader\": \"col_025\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_014": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_014_dyn"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps). Additionally, the 'has_plateaus' field in the column statistics is true, which indicates that the column has distinct, non-overlapping values, characteristic of a manipulated variable. However, the distribution skewness is slightly negative (-0.10455976197867062), which may indicate some level of underlying noise or variation. Therefore, the confidence level is medium.",
+    "model_call_id": "call_0014",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_014\": {\n      \"statistics\": {\n        \"mean\": 25.112100445597324,\n        \"std_dev\": 1.1066082868417524,\n        \"min_val\": 18.436,\n        \"max_val\": 33.092,\n        \"quantiles\": {\n          \"p25\": 24.39541717171982,\n          \"p50\": 25.126113010175754,\n          \"p75\": 25.849070754259174\n        },\n        \"skewness\": -0.10455976197867062,\n        \"distinct_values\": 10505,\n        \"noise_level\": 1.1078339631432967,\n        \"plateau_ratio\": 0.0972054794520548,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_014_mean\",\n        \"std_dev\": \"ev_s2_col_014_stddev\",\n        \"distribution\": \"ev_s2_col_014_dist\",\n        \"dynamics\": \"ev_s2_col_014_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_015": {
+    "inferred_role": "measured",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_015_mean",
+      "ev_s2_col_015_stddev"
+    ],
+    "reasoning": "The mean and standard deviation of col_015 are very low (49.956 and 1.014, respectively), indicating a highly consistent and regular distribution. This is consistent with the column being measured, as measured variables tend to have small variability.",
+    "model_call_id": "call_0015",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_015\": {\n      \"statistics\": {\n        \"mean\": 49.956268441750495,\n        \"std_dev\": 1.0144792519134673,\n        \"min_val\": 44.311,\n        \"max_val\": 55.912,\n        \"quantiles\": {\n          \"p25\": 49.279091732381644,\n          \"p50\": 49.91407645679489,\n          \"p75\": 50.64238816563491\n        },\n        \"skewness\": 0.07924868622000528,\n        \"distinct_values\": 8640,\n        \"noise_level\": 0.9186618253685268,\n        \"plateau_ratio\": 0.10567977821265492,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_015_mean\",\n        \"std_dev\": \"ev_s2_col_015_stddev\",\n        \"distribution\": \"ev_s2_col_015_dist\",\n        \"dynamics\": \"ev_s2_col_015_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0021\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_015\",\n        \"col_049\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9999999520400428,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_016": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_016_dist"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps). The evidence for this is the 'plateau_ratio' of 0.10854416177429876 in the distribution statistics, as well as the presence of discrete steps in the quantiles, particularly the 'p25', 'p50', and 'p75' values. This is further supported by the fact that the 'skewness' of 3.068964954159951 and the 'distinct_values' of 5635 indicate a non-normal distribution, which is also characteristic of manipulated data.",
+    "model_call_id": "call_0016",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_016\": {\n      \"statistics\": {\n        \"mean\": 3121.2369027198956,\n        \"std_dev\": 77.70349456635321,\n        \"min_val\": 2870.4,\n        \"max_val\": 3452.7,\n        \"quantiles\": {\n          \"p25\": 3096.4715270142915,\n          \"p50\": 3102.6189468760986,\n          \"p75\": 3109.7767253887155\n        },\n        \"skewness\": 3.068964954159951,\n        \"distinct_values\": 5635,\n        \"noise_level\": 111.00702085081585,\n        \"plateau_ratio\": 0.10854416177429876,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_016_mean\",\n        \"std_dev\": \"ev_s2_col_016_stddev\",\n        \"distribution\": \"ev_s2_col_016_dist\",\n        \"dynamics\": \"ev_s2_col_016_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0003\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9823899827148078,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0016\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9688803211961142,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0010\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_016\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8952866431078419,\n        \"lag_samples\": 3,\n        \"leader\": \"col_011\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0023\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8566154920899723,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0024\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8476251867365059,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0022\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8338415592069696,\n        \"lag_samples\": 3,\n        \"leader\": \"col_025\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_017": {
+    "inferred_role": "semantic_role_inference",
+    "structural_class": "manipulated",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_017_dyn"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps). However, this conclusion may be premature without further analysis of the distribution and dynamics of the column. Therefore, I'm assuming 'manipulated' role based on the plateau ratio, but my confidence is low due to the lack of explicit evidence in the provided payload.",
+    "model_call_id": "call_0017",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_017\": {\n      \"statistics\": {\n        \"mean\": 22.931477422896897,\n        \"std_dev\": 0.6471774023799,\n        \"min_val\": 19.137,\n        \"max_val\": 27.239,\n        \"quantiles\": {\n          \"p25\": 22.497459394463508,\n          \"p50\": 22.932617825516907,\n          \"p75\": 23.36400736874417\n        },\n        \"skewness\": 0.004861289070796617,\n        \"distinct_values\": 6261,\n        \"noise_level\": 0.621349864933004,\n        \"plateau_ratio\": 0.10980215264187868,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_017_mean\",\n        \"std_dev\": \"ev_s2_col_017_stddev\",\n        \"distribution\": \"ev_s2_col_017_dist\",\n        \"dynamics\": \"ev_s2_col_017_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_018": {
+    "inferred_role": "structural_class",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_018_mean",
+      "ev_s3_0026",
+      "ev_s3_0027"
+    ],
+    "reasoning": "The mean value of col_018 is 66.00394001774379 (ev_s2_col_018_mean), indicating a moderate value. However, it is highly correlated with col_019 (ev_s3_0026) and moderately correlated with col_050 (ev_s3_0027). These lagged correlations suggest that col_018 may be leading these columns, which is consistent with it being manipulated. However, the evidence is not conclusive, and I am not confident in this answer.",
+    "model_call_id": "call_0018",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_018\": {\n      \"statistics\": {\n        \"mean\": 66.00394001774379,\n        \"std_dev\": 1.7280076512428604,\n        \"min_val\": 52.119,\n        \"max_val\": 74.699,\n        \"quantiles\": {\n          \"p25\": 65.4338103132215,\n          \"p50\": 65.84440397927293,\n          \"p75\": 66.43292987935118\n        },\n        \"skewness\": 0.21122195422665982,\n        \"distinct_values\": 20038,\n        \"noise_level\": 2.456060030496475,\n        \"plateau_ratio\": 0.09472720156555774,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_018_mean\",\n        \"std_dev\": \"ev_s2_col_018_stddev\",\n        \"distribution\": \"ev_s2_col_018_dist\",\n        \"dynamics\": \"ev_s2_col_018_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0026\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_018\",\n        \"col_019\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8258222801330278,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0027\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_018\",\n        \"col_050\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7098297951022343,\n        \"lag_samples\": 1,\n        \"leader\": \"col_018\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_019": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0026",
+      "ev_s3_0028"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations, as evidenced by the high correlation values (0.8258222801330278 and 0.7417074716818144) in relation summaries with evidence_ids 'ev_s3_0026' and 'ev_s3_0028'.",
+    "model_call_id": "call_0019",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_019\": {\n      \"statistics\": {\n        \"mean\": 246.0819304130721,\n        \"std_dev\": 67.13360141989241,\n        \"min_val\": -3.5372,\n        \"max_val\": 466.71,\n        \"quantiles\": {\n          \"p25\": 223.69088272606024,\n          \"p50\": 233.37529187153513,\n          \"p75\": 247.56887880999741\n        },\n        \"skewness\": 1.3541056568930967,\n        \"distinct_values\": 122563,\n        \"noise_level\": 95.7118146197127,\n        \"plateau_ratio\": 0.09216842791911285,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_019_mean\",\n        \"std_dev\": \"ev_s2_col_019_stddev\",\n        \"distribution\": \"ev_s2_col_019_dist\",\n        \"dynamics\": \"ev_s2_col_019_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0026\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_018\",\n        \"col_019\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8258222801330278,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0028\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_019\",\n        \"col_050\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7417074716818144,\n        \"lag_samples\": 1,\n        \"leader\": \"col_019\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_020": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_020_mean",
+      "ev_s2_col_020_dist"
+    ],
+    "reasoning": "The column statistics indicate the presence of plateaus (discrete steps) with a high degree of certainty (evidence_id: 'ev_s2_col_020_dist'). This suggests that the data is likely manipulated (candidate_roles: 'manipulated'). The lagged correlation relations (evidence_ids: 'ev_s3_0030', 'ev_s3_0031', 'ev_s3_0029') provide additional support for this conclusion, as they show strong correlations between the column and other variables, indicating that the column's values are not purely random.",
+    "model_call_id": "call_0020",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_020\": {\n      \"statistics\": {\n        \"mean\": 340.81898157143576,\n        \"std_dev\": 11.137602793215047,\n        \"min_val\": 230.15,\n        \"max_val\": 400.71,\n        \"quantiles\": {\n          \"p25\": 339.5251836723866,\n          \"p50\": 341.3072603897687,\n          \"p75\": 342.9093654980231\n        },\n        \"skewness\": 0.1243791196245162,\n        \"distinct_values\": 13403,\n        \"noise_level\": 15.727576434328276,\n        \"plateau_ratio\": 0.09831487279843444,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_020_mean\",\n        \"std_dev\": \"ev_s2_col_020_stddev\",\n        \"distribution\": \"ev_s2_col_020_dist\",\n        \"dynamics\": \"ev_s2_col_020_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0030\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_029\"\n      ],\n      \"value\": {\n        \"correlation\": 0.822535812566289,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0031\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_038\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8127524616988667,\n        \"lag_samples\": 5,\n        \"leader\": \"col_038\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0029\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_023\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7880069760490006,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_021": {
+    "inferred_role": "measured",
+    "structural_class": "manipulated",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_021_mean",
+      "ev_s2_col_021_stddev"
+    ],
+    "reasoning": "Although the statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps), the mean and standard deviation statistics suggest a normal distribution, which is more characteristic of 'measured' data.",
+    "model_call_id": "call_0021",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_021\": {\n      \"statistics\": {\n        \"mean\": 94.4366122073755,\n        \"std_dev\": 1.238303185880171,\n        \"min_val\": 79.898,\n        \"max_val\": 100.28,\n        \"quantiles\": {\n          \"p25\": 94.4439164083474,\n          \"p50\": 94.58982921098928,\n          \"p75\": 94.73098241863853\n        },\n        \"skewness\": -5.941536165975957,\n        \"distinct_values\": 18924,\n        \"noise_level\": 1.7259721261271141,\n        \"plateau_ratio\": 0.08858343118069145,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_021_mean\",\n        \"std_dev\": \"ev_s2_col_021_stddev\",\n        \"distribution\": \"ev_s2_col_021_dist\",\n        \"dynamics\": \"ev_s2_col_021_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_022": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_022_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the dynamics of column_022 (column_summaries, statistics, has_plateaus: true) suggests manipulation. The statistical pre-analysis also supports this conclusion.",
+    "model_call_id": "call_0022",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_022\": {\n      \"statistics\": {\n        \"mean\": 77.06384846275428,\n        \"std_dev\": 1.3175521483870902,\n        \"min_val\": 62.636,\n        \"max_val\": 83.808,\n        \"quantiles\": {\n          \"p25\": 77.00573599213506,\n          \"p50\": 77.27052944386146,\n          \"p75\": 77.51839927632169\n        },\n        \"skewness\": -3.091274289847346,\n        \"distinct_values\": 18426,\n        \"noise_level\": 1.8593238129686482,\n        \"plateau_ratio\": 0.0965163731245923,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_022_mean\",\n        \"std_dev\": \"ev_s2_col_022_stddev\",\n        \"distribution\": \"ev_s2_col_022_dist\",\n        \"dynamics\": \"ev_s2_col_022_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_023": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_023_mean",
+      "ev_s2_col_023_stddev",
+      "ev_s2_col_023_dist"
+    ],
+    "reasoning": "The data shows plateaus (discrete steps) with a plateau ratio of 0.11074044357469015, indicating that the column is likely manipulated. This is supported by the statistical pre-analysis and the evidence_ids provided.",
+    "model_call_id": "call_0023",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_023\": {\n      \"statistics\": {\n        \"mean\": 32.02088473620502,\n        \"std_dev\": 1.7396391661826285,\n        \"min_val\": 23.225,\n        \"max_val\": 40.211,\n        \"quantiles\": {\n          \"p25\": 31.918027042916407,\n          \"p50\": 32.18304371895057,\n          \"p75\": 32.44352553434946\n        },\n        \"skewness\": -2.311914451284942,\n        \"distinct_values\": 15548,\n        \"noise_level\": 2.470229269080598,\n        \"plateau_ratio\": 0.11074044357469015,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_023_mean\",\n        \"std_dev\": \"ev_s2_col_023_stddev\",\n        \"distribution\": \"ev_s2_col_023_dist\",\n        \"dynamics\": \"ev_s2_col_023_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0032\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_023\",\n        \"col_029\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8427310747458996,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0029\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_023\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7880069760490006,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_024": {
+    "inferred_role": "structural_class",
+    "structural_class": "manipulated",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_024_dyn"
+    ],
+    "reasoning": "The pre-analysis suggests 'manipulated' due to plateaus, but this conclusion is uncertain because the pre-analysis does not provide a clear explanation for the presence of plateaus.",
+    "model_call_id": "call_0024",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_024\": {\n      \"statistics\": {\n        \"mean\": 8.870600310162654,\n        \"std_dev\": 0.22550692510278408,\n        \"min_val\": 7.4438,\n        \"max_val\": 10.345,\n        \"quantiles\": {\n          \"p25\": 8.795111570241643,\n          \"p50\": 8.887256427340366,\n          \"p75\": 8.974242205188691\n        },\n        \"skewness\": -1.3178492478493606,\n        \"distinct_values\": 24202,\n        \"noise_level\": 0.2982168450109263,\n        \"plateau_ratio\": 0.10056033920417481,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_024_mean\",\n        \"std_dev\": \"ev_s2_col_024_stddev\",\n        \"distribution\": \"ev_s2_col_024_dist\",\n        \"dynamics\": \"ev_s2_col_024_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_025": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_025_mean",
+      "ev_s2_col_025_stddev",
+      "ev_s2_col_025_dist",
+      "ev_s3_0033",
+      "ev_s3_0022",
+      "ev_s3_0004",
+      "ev_s3_0017",
+      "ev_s3_0011",
+      "ev_s3_0034"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations. Furthermore, the distribution of 'col_025' is skewed (skewness: 3.3261596761796066) and has a high noise level (2.682248617077428), which is consistent with a manipulated column. Additionally, the plateau ratio is 0.10834487932159165, indicating a plateau in the distribution. The lagged correlations with 'col_025' as the leader (e.g., 'ev_s3_0033', 'ev_s3_0022', 'ev_s3_0004', and 'ev_s3_0017') further support the conclusion that 'col_025' is manipulated. The correlation with 'col_035' (ev_s3_0034) is negative, which is consistent with a manipulated column that is leading the other columns.",
+    "model_call_id": "call_0025",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_025\": {\n      \"statistics\": {\n        \"mean\": 26.770697422571796,\n        \"std_dev\": 1.882953732699,\n        \"min_val\": 16.909,\n        \"max_val\": 36.469,\n        \"quantiles\": {\n          \"p25\": 26.138295492660244,\n          \"p50\": 26.420270394404547,\n          \"p75\": 26.734620811500424\n        },\n        \"skewness\": 3.3261596761796066,\n        \"distinct_values\": 16932,\n        \"noise_level\": 2.682248617077428,\n        \"plateau_ratio\": 0.10834487932159165,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_025_mean\",\n        \"std_dev\": \"ev_s2_col_025_stddev\",\n        \"distribution\": \"ev_s2_col_025_dist\",\n        \"dynamics\": \"ev_s2_col_025_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0033\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_025\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8649992876336665,\n        \"lag_samples\": 2,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0022\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8338415592069696,\n        \"lag_samples\": 3,\n        \"leader\": \"col_025\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0004\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8004433243366972,\n        \"lag_samples\": 5,\n        \"leader\": \"col_025\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0017\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7858337231267757,\n        \"lag_samples\": 5,\n        \"leader\": \"col_025\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0011\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_025\"\n      ],\n      \"value\": {\n        \"correlation\": -0.745000522442293,\n        \"lag_samples\": 2,\n        \"leader\": \"col_025\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0034\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_025\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7351166017802814,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_026": {
+    "inferred_role": "measured",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_026_mean",
+      "ev_s2_col_026_stddev",
+      "ev_s2_col_026_dist"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the distribution (ev_s2_col_026_dist) suggests that the column is manipulated. However, the mean (ev_s2_col_026_mean) and standard deviation (ev_s2_col_026_stddev) values indicate a consistent and normally-distributed pattern, which is more consistent with measured data. Given the statistical analysis, I infer that the column is measured.",
+    "model_call_id": "call_0026",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_026\": {\n      \"statistics\": {\n        \"mean\": 6.871069122779266,\n        \"std_dev\": 0.13503463853754372,\n        \"min_val\": 5.8989,\n        \"max_val\": 7.8854,\n        \"quantiles\": {\n          \"p25\": 6.7964346067998855,\n          \"p50\": 6.877360055563704,\n          \"p75\": 6.955760657768995\n        },\n        \"skewness\": -0.6535739824409366,\n        \"distinct_values\": 15055,\n        \"noise_level\": 0.1505200717925918,\n        \"plateau_ratio\": 0.10268101761252446,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_026_mean\",\n        \"std_dev\": \"ev_s2_col_026_stddev\",\n        \"distribution\": \"ev_s2_col_026_dist\",\n        \"dynamics\": \"ev_s2_col_026_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_027": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_027_dist"
+    ],
+    "reasoning": "The column has plateaus (discrete steps), which is a characteristic of a manipulated column (structural_class: 'manipulated'). This is supported by the high plateau ratio (0.10906366601435094) and the fact that the distribution has been classified as having plateaus (true) (ev_s2_col_027_dist).",
+    "model_call_id": "call_0027",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_027\": {\n      \"statistics\": {\n        \"mean\": 18.676462971559243,\n        \"std_dev\": 0.9945414885935716,\n        \"min_val\": 12.047,\n        \"max_val\": 26.922,\n        \"quantiles\": {\n          \"p25\": 18.518460491165595,\n          \"p50\": 18.777641734300044,\n          \"p75\": 19.03285428928852\n        },\n        \"skewness\": -2.655264867082193,\n        \"distinct_values\": 12863,\n        \"noise_level\": 1.373091793660852,\n        \"plateau_ratio\": 0.10906366601435094,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_027_mean\",\n        \"std_dev\": \"ev_s2_col_027_stddev\",\n        \"distribution\": \"ev_s2_col_027_dist\",\n        \"dynamics\": \"ev_s2_col_027_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0035\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_027\",\n        \"col_033\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7969226922205804,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_028": {
+    "inferred_role": "structural_class",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_028_mean",
+      "ev_s2_col_028_stddev",
+      "ev_s2_col_028_dist"
+    ],
+    "reasoning": "The statistics show that the column has a relatively low standard deviation (0.12681486996789762) and a low noise level (0.1836561769304093), indicating a clear and consistent pattern. The mean and median are also close (1.6286026131271454 and 1.6546871741020628), suggesting a lack of outliers. Furthermore, the skewness is -3.666860429601849, which is significantly negative, indicating that the data is likely to be manipulated. The relation summaries also show a strong lagged correlation with another column (0.755823766366731), which could be evidence of manipulation. Therefore, the column is likely to be manipulated.",
+    "model_call_id": "call_0028",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_028\": {\n      \"statistics\": {\n        \"mean\": 1.6286026131271454,\n        \"std_dev\": 0.12681486996789762,\n        \"min_val\": 0.8848,\n        \"max_val\": 2.1649,\n        \"quantiles\": {\n          \"p25\": 1.6288416789663092,\n          \"p50\": 1.6546871741020628,\n          \"p75\": 1.6774226363672036\n        },\n        \"skewness\": -3.666860429601849,\n        \"distinct_values\": 18207,\n        \"noise_level\": 0.1836561769304093,\n        \"plateau_ratio\": 0.11193365949119374,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_028_mean\",\n        \"std_dev\": \"ev_s2_col_028_stddev\",\n        \"distribution\": \"ev_s2_col_028_dist\",\n        \"dynamics\": \"ev_s2_col_028_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0036\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_028\",\n        \"col_034\"\n      ],\n      \"value\": {\n        \"correlation\": 0.755823766366731,\n        \"lag_samples\": 2,\n        \"leader\": \"col_034\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_029": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_029_mean",
+      "ev_s2_col_029_stddev",
+      "ev_s2_col_029_dist",
+      "ev_s2_col_029_dyn",
+      "ev_s3_0032",
+      "ev_s3_0030"
+    ],
+    "reasoning": "The evidence suggests 'manipulated' because it shows plateaus (discrete steps). Specifically, the distribution of col_029 has plateaus (has_plateaus=true), and the noise level is relatively low (noise_level=3.733162103697223). Additionally, the skewness is negative (-2.242985772662726), which is consistent with a manipulated signal. The high correlation with other columns (correlation=0.8427310747458996 and 0.822535812566289) also suggests a functional role, but the evidence for 'manipulated' is more direct.",
+    "model_call_id": "call_0029",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_029\": {\n      \"statistics\": {\n        \"mean\": 32.714000539465744,\n        \"std_dev\": 2.6191043295969716,\n        \"min_val\": 20.001,\n        \"max_val\": 45.408,\n        \"quantiles\": {\n          \"p25\": 32.62831809040093,\n          \"p50\": 32.94747197105332,\n          \"p75\": 33.25955421291628\n        },\n        \"skewness\": -2.242985772662726,\n        \"distinct_values\": 22835,\n        \"noise_level\": 3.733162103697223,\n        \"plateau_ratio\": 0.10418062622309197,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_029_mean\",\n        \"std_dev\": \"ev_s2_col_029_stddev\",\n        \"distribution\": \"ev_s2_col_029_dist\",\n        \"dynamics\": \"ev_s2_col_029_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0032\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_023\",\n        \"col_029\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8427310747458996,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0030\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_029\"\n      ],\n      \"value\": {\n        \"correlation\": 0.822535812566289,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_030": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_030_dyn"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps). However, this conclusion is not strongly supported by the evidence. The mean, standard deviation, and skewness of the column are relatively stable, suggesting that the column may not be manipulated after all. But the presence of plateaus, indicated by the 'has_plateaus' field, is a strong indicator of manipulation. Therefore, I infer that the column is 'manipulated', but with moderate confidence.",
+    "model_call_id": "call_0030",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_030\": {\n      \"statistics\": {\n        \"mean\": 13.789649326158296,\n        \"std_dev\": 0.2892214707725542,\n        \"min_val\": 11.786,\n        \"max_val\": 15.823,\n        \"quantiles\": {\n          \"p25\": 13.711652774219042,\n          \"p50\": 13.81354178766267,\n          \"p75\": 13.906951485650952\n        },\n        \"skewness\": -1.0718410466863943,\n        \"distinct_values\": 3393,\n        \"noise_level\": 0.391877196118087,\n        \"plateau_ratio\": 0.11700724070450098,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_030_mean\",\n        \"std_dev\": \"ev_s2_col_030_stddev\",\n        \"distribution\": \"ev_s2_col_030_dist\",\n        \"dynamics\": \"ev_s2_col_030_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_031": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_031_mean",
+      "ev_s2_col_031_stddev",
+      "ev_s2_col_031_dist",
+      "ev_s2_col_031_dyn",
+      "ev_s3_0033",
+      "ev_s3_0023",
+      "ev_s3_0005",
+      "ev_s3_0018",
+      "ev_s3_0012",
+      "ev_s3_0037"
+    ],
+    "reasoning": "The column's mean (ev_s2_col_031_mean) is 24.56341085844755, which is relatively high. The standard deviation (ev_s2_col_031_stddev) is 2.8925794197883077, which is relatively low. This suggests that the column is not random noise. The distribution (ev_s2_col_031_dist) is skewed (skewness = 3.5133429021674365), which is consistent with manipulated data. The lagged correlations (ev_s3_0033, ev_s3_0023, ev_s3_0005, ev_s3_0018, ev_s3_0012) show that the column leads other columns, which is consistent with manipulated data. Finally, the plateau ratio (ev_s2_col_031_dist) is 0.10477821265492498, which is low, suggesting that the column is not random noise.",
+    "model_call_id": "call_0031",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_031\": {\n      \"statistics\": {\n        \"mean\": 24.56341085844755,\n        \"std_dev\": 2.8925794197883077,\n        \"min_val\": 10.296,\n        \"max_val\": 39.239,\n        \"quantiles\": {\n          \"p25\": 23.67385320300761,\n          \"p50\": 24.022697036290914,\n          \"p75\": 24.419415585177727\n        },\n        \"skewness\": 3.5133429021674365,\n        \"distinct_values\": 24985,\n        \"noise_level\": 4.135133533220359,\n        \"plateau_ratio\": 0.10477821265492498,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_031_mean\",\n        \"std_dev\": \"ev_s2_col_031_stddev\",\n        \"distribution\": \"ev_s2_col_031_dist\",\n        \"dynamics\": \"ev_s2_col_031_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0033\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_025\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8649992876336665,\n        \"lag_samples\": 2,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0023\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8566154920899723,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0005\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8163352885066506,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0018\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7993978272320567,\n        \"lag_samples\": 5,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0012\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_031\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7651964322755498,\n        \"lag_samples\": 3,\n        \"leader\": \"col_031\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0037\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_031\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7492116149495093,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_032": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_032_dyn"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps). This is supported by the evidence in the 'dynamics' summary for column col_032, where the presence of plateaus is indicated by a 'plateau_ratio' of 0.09597403783431181, which is greater than 0. The 'has_plateaus' flag is also set to true.",
+    "model_call_id": "call_0032",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_032\": {\n      \"statistics\": {\n        \"mean\": 1.248006655069788,\n        \"std_dev\": 0.14949362311453818,\n        \"min_val\": 0.24694,\n        \"max_val\": 2.6509,\n        \"quantiles\": {\n          \"p25\": 1.1765034889723363,\n          \"p50\": 1.2563098623146622,\n          \"p75\": 1.3342286958347283\n        },\n        \"skewness\": -0.8651979923033384,\n        \"distinct_values\": 63015,\n        \"noise_level\": 0.17983193452175794,\n        \"plateau_ratio\": 0.09597403783431181,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_032_mean\",\n        \"std_dev\": \"ev_s2_col_032_stddev\",\n        \"distribution\": \"ev_s2_col_032_dist\",\n        \"dynamics\": \"ev_s2_col_032_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_033": {
+    "inferred_role": "structural_class",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_033_mean",
+      "ev_s2_col_033_dist"
+    ],
+    "reasoning": "The high plateau ratio (0.10266855838225701) and the presence of plateaus (has_plateaus: true) in col_033 suggest that the data is likely manipulated, as this is a characteristic often seen in data that has been manipulated. This is supported by the low skewness (-2.7560711615097344), which is consistent with data that has been manipulated to have a high number of distinct values (17538). The lagged correlation with col_027 (ev_s3_0035) further supports this conclusion, as it indicates a strong relationship between the two columns, which is consistent with manipulated data.",
+    "model_call_id": "call_0033",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_033\": {\n      \"statistics\": {\n        \"mean\": 18.42282841895649,\n        \"std_dev\": 1.3952275709025763,\n        \"min_val\": 9.6631,\n        \"max_val\": 29.76,\n        \"quantiles\": {\n          \"p25\": 18.27328347523454,\n          \"p50\": 18.573979800467043,\n          \"p75\": 18.86358226326788\n        },\n        \"skewness\": -2.7560711615097344,\n        \"distinct_values\": 17538,\n        \"noise_level\": 1.9437328866496084,\n        \"plateau_ratio\": 0.10266855838225701,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_033_mean\",\n        \"std_dev\": \"ev_s2_col_033_stddev\",\n        \"distribution\": \"ev_s2_col_033_dist\",\n        \"dynamics\": \"ev_s2_col_033_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0035\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_027\",\n        \"col_033\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7969226922205804,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_034": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0036"
+    ],
+    "reasoning": "The correlation between col_028 and col_034 is 0.755823766366731, indicating a strong positive relationship. This is consistent with the interpretation that col_034 is a manipulated variable, as it leads other columns in the lagged correlations. Specifically, col_034 has a mean of 2.2221433227658403 and a standard deviation of 0.17292726380930537, suggesting that it has been deliberately controlled or manipulated to produce these values.",
+    "model_call_id": "call_0034",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_034\": {\n      \"statistics\": {\n        \"mean\": 2.2221433227658403,\n        \"std_dev\": 0.17292726380930537,\n        \"min_val\": 1.2549,\n        \"max_val\": 2.973,\n        \"quantiles\": {\n          \"p25\": 2.232917556031458,\n          \"p50\": 2.2609758021393134,\n          \"p75\": 2.28566826313419\n        },\n        \"skewness\": -3.488440319676986,\n        \"distinct_values\": 15231,\n        \"noise_level\": 0.25155169625403917,\n        \"plateau_ratio\": 0.10486151337247228,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_034_mean\",\n        \"std_dev\": \"ev_s2_col_034_stddev\",\n        \"distribution\": \"ev_s2_col_034_dist\",\n        \"dynamics\": \"ev_s2_col_034_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0036\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_028\",\n        \"col_034\"\n      ],\n      \"value\": {\n        \"correlation\": 0.755823766366731,\n        \"lag_samples\": 2,\n        \"leader\": \"col_034\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_035": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_035_mean",
+      "ev_s3_0013",
+      "ev_s3_0006",
+      "ev_s3_0024",
+      "ev_s3_0019"
+    ],
+    "reasoning": "The mean value of col_035 is high and relatively consistent, indicating a manipulation. The lagged correlations with other columns (ev_s3_0013, ev_s3_0006, ev_s3_0024, ev_s3_0019) show a strong positive correlation, suggesting that col_035 is leading the other columns. This is consistent with a manipulated role.",
+    "model_call_id": "call_0035",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_035\": {\n      \"statistics\": {\n        \"mean\": 4.776142282165434,\n        \"std_dev\": 0.3430050671176447,\n        \"min_val\": 3.0393,\n        \"max_val\": 6.4972,\n        \"quantiles\": {\n          \"p25\": 4.77361914672317,\n          \"p50\": 4.841171430395464,\n          \"p75\": 4.904123711890576\n        },\n        \"skewness\": -2.3599782867347137,\n        \"distinct_values\": 28172,\n        \"noise_level\": 0.48281898628942876,\n        \"plateau_ratio\": 0.096606457925636,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_035_mean\",\n        \"std_dev\": \"ev_s2_col_035_stddev\",\n        \"distribution\": \"ev_s2_col_035_dist\",\n        \"dynamics\": \"ev_s2_col_035_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0013\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8860159351825949,\n        \"lag_samples\": 3,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0006\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8535615990201529,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0024\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8476251867365059,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0019\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8450009921958563,\n        \"lag_samples\": 5,\n        \"leader\": \"col_035\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0038\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_035\",\n        \"col_036\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7799755844717362,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0037\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_031\",\n        \"col_035\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7492116149495093,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_036": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s3_0014"
+    ],
+    "reasoning": "The high correlation between col_036 and other columns (evidence_id: ev_s3_0014) suggests that col_036 is being manipulated to lead other columns. The statistical pre-analysis also supports this conclusion.",
+    "model_call_id": "call_0036",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_036\": {\n      \"statistics\": {\n        \"mean\": 2.263345127292979,\n        \"std_dev\": 0.18173592848983858,\n        \"min_val\": 1.3402,\n        \"max_val\": 3.1193,\n        \"quantiles\": {\n          \"p25\": 2.24498918297211,\n          \"p50\": 2.295927727500342,\n          \"p75\": 2.3436375866553893\n        },\n        \"skewness\": -2.311397325447978,\n        \"distinct_values\": 15730,\n        \"noise_level\": 0.2527384508443548,\n        \"plateau_ratio\": 0.10004259621656882,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_036_mean\",\n        \"std_dev\": \"ev_s2_col_036_stddev\",\n        \"distribution\": \"ev_s2_col_036_dist\",\n        \"dynamics\": \"ev_s2_col_036_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0014\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_011\",\n        \"col_036\"\n      ],\n      \"value\": {\n        \"correlation\": 0.798973935955913,\n        \"lag_samples\": 4,\n        \"leader\": \"col_036\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0038\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_035\",\n        \"col_036\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7799755844717362,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0025\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_016\",\n        \"col_036\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7648459229346046,\n        \"lag_samples\": 5,\n        \"leader\": \"col_036\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0007\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_007\",\n        \"col_036\"\n      ],\n      \"value\": {\n        \"correlation\": -0.7582545991722023,\n        \"lag_samples\": 5,\n        \"leader\": \"col_036\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0020\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_013\",\n        \"col_036\"\n      ],\n      \"value\": {\n        \"correlation\": -0.748655448423285,\n        \"lag_samples\": 5,\n        \"leader\": \"col_036\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_037": {
+    "inferred_role": "semantic_role_inference",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_037_dyn"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps). The dynamics of the column (ev_s2_col_037_dyn) indicate the presence of plateaus, which is a strong indicator of manipulation.",
+    "model_call_id": "call_0037",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_037\": {\n      \"statistics\": {\n        \"mean\": 0.017869074754933375,\n        \"std_dev\": 0.01019732849675434,\n        \"min_val\": -0.030974,\n        \"max_val\": 0.066926,\n        \"quantiles\": {\n          \"p25\": 0.01099588704311198,\n          \"p50\": 0.01787262875791347,\n          \"p75\": 0.02477147979844205\n        },\n        \"skewness\": -0.008176532100814218,\n        \"distinct_values\": 223331,\n        \"noise_level\": 0.009355062312442503,\n        \"plateau_ratio\": 0.10438721461187214,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_037_mean\",\n        \"std_dev\": \"ev_s2_col_037_stddev\",\n        \"distribution\": \"ev_s2_col_037_dist\",\n        \"dynamics\": \"ev_s2_col_037_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_038": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_038_mean",
+      "ev_s3_0031"
+    ],
+    "reasoning": "The distribution of col_038 has a high mean (0.8365) and a relatively low standard deviation (0.0916), indicating that the data is not highly variable. The quantiles (p25=0.8183, p50=0.8359, p75=0.8539) are also relatively close to the mean, suggesting that the data is skewed but not extremely so. Furthermore, the lagged correlation with col_020 is negative (-0.813), indicating that col_038 is likely influencing col_020, which is consistent with a manipulated variable. However, the evidence is not entirely conclusive, as the distribution is not perfectly symmetrical and the lagged correlation is not extremely strong.",
+    "model_call_id": "call_0038",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_038\": {\n      \"statistics\": {\n        \"mean\": 0.8364804510666667,\n        \"std_dev\": 0.09163425099179584,\n        \"min_val\": 0.38907,\n        \"max_val\": 1.7097,\n        \"quantiles\": {\n          \"p25\": 0.8183166600348589,\n          \"p50\": 0.8358785125676041,\n          \"p75\": 0.8539765063008804\n        },\n        \"skewness\": -0.4622037831474203,\n        \"distinct_values\": 61903,\n        \"noise_level\": 0.12844839592933133,\n        \"plateau_ratio\": 0.10084142204827136,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_038_mean\",\n        \"std_dev\": \"ev_s2_col_038_stddev\",\n        \"distribution\": \"ev_s2_col_038_dist\",\n        \"dynamics\": \"ev_s2_col_038_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0031\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_020\",\n        \"col_038\"\n      ],\n      \"value\": {\n        \"correlation\": -0.8127524616988667,\n        \"lag_samples\": 5,\n        \"leader\": \"col_038\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it leads other columns in the lagged correlations.\"\n}"
+  },
+  "col_039": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_039_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the data distribution, as indicated by the 'has_plateaus' key with value `true` in the 'col_039' statistics, suggests that the column is manipulated. This is consistent with the statistical pre-analysis provided in the instructions.",
+    "model_call_id": "call_0039",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_039\": {\n      \"statistics\": {\n        \"mean\": 0.09734161446476211,\n        \"std_dev\": 0.013301296173208963,\n        \"min_val\": 0.020311,\n        \"max_val\": 0.17369,\n        \"quantiles\": {\n          \"p25\": 0.09011656655278838,\n          \"p50\": 0.09820009586718019,\n          \"p75\": 0.1058250202458277\n        },\n        \"skewness\": -0.6029620132661395,\n        \"distinct_values\": 62907,\n        \"noise_level\": 0.015375139951553556,\n        \"plateau_ratio\": 0.1064426614481409,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_039_mean\",\n        \"std_dev\": \"ev_s2_col_039_stddev\",\n        \"distribution\": \"ev_s2_col_039_dist\",\n        \"dynamics\": \"ev_s2_col_039_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_040": {
+    "inferred_role": "measured",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_040_mean",
+      "ev_s2_col_040_stddev",
+      "ev_s2_col_040_dist"
+    ],
+    "reasoning": "The column has a relatively low standard deviation (0.5857630866731539) compared to its mean (53.73542711643231), suggesting a single, stable measurement. The skewness is -0.09334316474841384, which is close to 0, further indicating a normal distribution. The mean and median are nearly identical (53.73542711643231 and 53.73545104550547, respectively), which is consistent with a measured value. The distribution is described as 'normal' in the evidence_id 'ev_s2_col_040_dist'.",
+    "model_call_id": "call_0040",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_040\": {\n      \"statistics\": {\n        \"mean\": 53.73542711643231,\n        \"std_dev\": 0.5857630866731539,\n        \"min_val\": 50.03,\n        \"max_val\": 57.124,\n        \"quantiles\": {\n          \"p25\": 53.36357050160738,\n          \"p50\": 53.73545104550547,\n          \"p75\": 54.1148067043405\n        },\n        \"skewness\": -0.09334316474841384,\n        \"distinct_values\": 5453,\n        \"noise_level\": 0.6151319520136479,\n        \"plateau_ratio\": 0.12410593607305936,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_040_mean\",\n        \"std_dev\": \"ev_s2_col_040_stddev\",\n        \"distribution\": \"ev_s2_col_040_dist\",\n        \"dynamics\": \"ev_s2_col_040_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_041": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_041_dist"
+    ],
+    "reasoning": "The presence of plateaus in the distribution (quantiles.p75 - quantiles.p25 = 0.7652953387352097) is a strong indicator of a manipulated signal. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).",
+    "model_call_id": "call_0041",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_041\": {\n      \"statistics\": {\n        \"mean\": 43.804360729296214,\n        \"std_dev\": 0.6115602218517403,\n        \"min_val\": 40.024,\n        \"max_val\": 47.344,\n        \"quantiles\": {\n          \"p25\": 43.4252456170006,\n          \"p50\": 43.81463991853294,\n          \"p75\": 44.19054095673511\n        },\n        \"skewness\": -0.036178817858455344,\n        \"distinct_values\": 5705,\n        \"noise_level\": 0.6652010426683299,\n        \"plateau_ratio\": 0.12157410306588388,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_041_mean\",\n        \"std_dev\": \"ev_s2_col_041_stddev\",\n        \"distribution\": \"ev_s2_col_041_dist\",\n        \"dynamics\": \"ev_s2_col_041_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_042": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_042_dyn"
+    ],
+    "reasoning": "The statistics indicate a 'has_plateaus' value of true, which suggests a manipulated column. This is consistent with the pre-analysis note that plateaus are indicative of manipulation.",
+    "model_call_id": "call_0042",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_042\": {\n      \"statistics\": {\n        \"mean\": 63.85588841585112,\n        \"std_dev\": 4.75554563137913,\n        \"min_val\": 28.116,\n        \"max_val\": 100.0,\n        \"quantiles\": {\n          \"p25\": 62.63915881101899,\n          \"p50\": 63.09052624209562,\n          \"p75\": 63.56432245032006\n        },\n        \"skewness\": 6.298841223399755,\n        \"distinct_values\": 45344,\n        \"noise_level\": 6.692596863132238,\n        \"plateau_ratio\": 0.10887893020221788,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_042_mean\",\n        \"std_dev\": \"ev_s2_col_042_stddev\",\n        \"distribution\": \"ev_s2_col_042_dist\",\n        \"dynamics\": \"ev_s2_col_042_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_043": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_043_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the distribution (ev_s2_col_043_dist) is suggestive of manipulation, which is consistent with the statistical pre-analysis. However, the high skewness (5.115454149637897) and noise level (9.630378796302962) are not typically associated with manipulated variables, and the distribution shape is not clearly indicative of manipulation. Therefore, while the evidence supports a 'manipulated' role, the confidence is only 'medium' due to these countervailing factors.",
+    "model_call_id": "call_0043",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_043\": {\n      \"statistics\": {\n        \"mean\": 54.56397666349546,\n        \"std_dev\": 6.753466723340147,\n        \"min_val\": 7.3484,\n        \"max_val\": 100.0,\n        \"quantiles\": {\n          \"p25\": 53.53709300010491,\n          \"p50\": 53.97818221706705,\n          \"p75\": 54.42676783475276\n        },\n        \"skewness\": 5.115454149637897,\n        \"distinct_values\": 67098,\n        \"noise_level\": 9.630378796302962,\n        \"plateau_ratio\": 0.10510489236790607,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_043_mean\",\n        \"std_dev\": \"ev_s2_col_043_stddev\",\n        \"distribution\": \"ev_s2_col_043_dist\",\n        \"dynamics\": \"ev_s2_col_043_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_044": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_044_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the distribution suggests manipulation. The statistical pre-analysis explicitly states that the 'statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps)'. The evidence_ids for this conclusion is ev_s2_col_044_dyn, which matches the 'dynamics' entry in the evidence_ids dictionary.",
+    "model_call_id": "call_0044",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_044\": {\n      \"statistics\": {\n        \"mean\": 29.480435721234244,\n        \"std_dev\": 19.395444251158136,\n        \"min_val\": -0.35866,\n        \"max_val\": 100.21,\n        \"quantiles\": {\n          \"p25\": 22.25588172432814,\n          \"p50\": 25.07738072794404,\n          \"p75\": 28.297666819577543\n        },\n        \"skewness\": 2.4220754145197256,\n        \"distinct_values\": 230849,\n        \"noise_level\": 27.72996337458487,\n        \"plateau_ratio\": 0.09490789302022179,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_044_mean\",\n        \"std_dev\": \"ev_s2_col_044_stddev\",\n        \"distribution\": \"ev_s2_col_044_dist\",\n        \"dynamics\": \"ev_s2_col_044_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_045": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_045_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the dynamics of column 045, as indicated by the plateau ratio of 0.09203639921722113 (ev_s2_col_045_dyn), supports the inference that the column is manipulated.",
+    "model_call_id": "call_0045",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_045\": {\n      \"statistics\": {\n        \"mean\": 63.46107132855357,\n        \"std_dev\": 8.219345479948354,\n        \"min_val\": -0.0052226,\n        \"max_val\": 100.02,\n        \"quantiles\": {\n          \"p25\": 60.347078415301176,\n          \"p50\": 61.485750037826556,\n          \"p75\": 62.76051044877397\n        },\n        \"skewness\": 3.1017825416486753,\n        \"distinct_values\": 63452,\n        \"noise_level\": 11.338484048874214,\n        \"plateau_ratio\": 0.09203639921722113,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_045_mean\",\n        \"std_dev\": \"ev_s2_col_045_stddev\",\n        \"distribution\": \"ev_s2_col_045_dist\",\n        \"dynamics\": \"ev_s2_col_045_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_046": {
+    "inferred_role": "structural_class",
+    "structural_class": "manipulated",
+    "confidence": "low",
+    "epistemic_status": "assumed",
+    "evidence_ids": [
+      "ev_s2_col_046_dyn"
+    ],
+    "reasoning": "The pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps), but the evidence supporting this claim is based on the 'dynamics' summary which does not provide explicit details on plateaus. The evidence is thin and supports only a low confidence 'manipulated' answer.",
+    "model_call_id": "call_0046",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_046\": {\n      \"statistics\": {\n        \"mean\": 23.12505785710855,\n        \"std_dev\": 11.922722381411292,\n        \"min_val\": -0.10688,\n        \"max_val\": 100.11,\n        \"quantiles\": {\n          \"p25\": 21.52646942537387,\n          \"p50\": 22.140845930478214,\n          \"p75\": 22.692961208708628\n        },\n        \"skewness\": 5.125338999227508,\n        \"distinct_values\": 97020,\n        \"noise_level\": 16.8423324932183,\n        \"plateau_ratio\": 0.09029941291585127,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_046_mean\",\n        \"std_dev\": \"ev_s2_col_046_stddev\",\n        \"distribution\": \"ev_s2_col_046_dist\",\n        \"dynamics\": \"ev_s2_col_046_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_047": {
+    "inferred_role": "measured",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_047_mean",
+      "ev_s2_col_047_stddev"
+    ],
+    "reasoning": "The mean and standard deviation of column 047 are within normal limits (mean: 39.51, std dev: 12.80), indicating a continuous distribution. The skewness (0.27) is within the normal range, and the plateaus ratio (0.09) suggests that the distribution is not excessively irregular. The dynamics of the column are likely continuous, as indicated by the 'has_plateaus' field being 'true', which contradicts the assumption of a manipulated variable.",
+    "model_call_id": "call_0047",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_047\": {\n      \"statistics\": {\n        \"mean\": 39.50934852152156,\n        \"std_dev\": 12.79515263981884,\n        \"min_val\": 0.0,\n        \"max_val\": 97.528,\n        \"quantiles\": {\n          \"p25\": 38.3913313341046,\n          \"p50\": 39.94783005824809,\n          \"p75\": 41.39040354970928\n        },\n        \"skewness\": 0.2727308344602701,\n        \"distinct_values\": 189224,\n        \"noise_level\": 18.153049941217038,\n        \"plateau_ratio\": 0.0915928245270711,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_047_mean\",\n        \"std_dev\": \"ev_s2_col_047_stddev\",\n        \"distribution\": \"ev_s2_col_047_dist\",\n        \"dynamics\": \"ev_s2_col_047_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0008\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_010\",\n        \"col_047\"\n      ],\n      \"value\": {\n        \"correlation\": 0.8863956687170097,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_048": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_048_mean",
+      "ev_s2_col_048_stddev",
+      "ev_s2_col_048_dist",
+      "ev_s2_col_048_dyn",
+      "ev_s3_0015"
+    ],
+    "reasoning": "The statistics show plateaus (discrete steps) in the distribution, as indicated by a 'plateau_ratio' of 0.09459771689497717 and a 'has_plateaus' of true (ev_s2_col_048_dist and ev_s2_col_048_dyn). Furthermore, the lagged correlation between col_012 and col_048 is nearly perfect (correlation of 0.9999999535974021), suggesting that col_048 is likely a manipulated variable (ev_s3_0015).",
+    "model_call_id": "call_0048",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_048\": {\n      \"statistics\": {\n        \"mean\": 38.05738590613158,\n        \"std_dev\": 2.9425253060288745,\n        \"min_val\": 22.288,\n        \"max_val\": 54.23,\n        \"quantiles\": {\n          \"p25\": 36.01768444620145,\n          \"p50\": 38.1253598466895,\n          \"p75\": 39.98209580209179\n        },\n        \"skewness\": 0.014902048750970908,\n        \"distinct_values\": 23169,\n        \"noise_level\": 2.6234804495331687,\n        \"plateau_ratio\": 0.09459771689497717,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_048_mean\",\n        \"std_dev\": \"ev_s2_col_048_stddev\",\n        \"distribution\": \"ev_s2_col_048_dist\",\n        \"dynamics\": \"ev_s2_col_048_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0015\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_012\",\n        \"col_048\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9999999535974021,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_049": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_049_mean",
+      "ev_s2_col_049_stddev",
+      "ev_s2_col_049_dist",
+      "ev_s2_col_049_dyn"
+    ],
+    "reasoning": "The mean of column 049 is 46.432792414739325 (ev_s2_col_049_mean), with a standard deviation of 2.347795998873838 (ev_s2_col_049_stddev). The distribution is continuous and does not show any significant deviations (ev_s2_col_049_dist). The dynamics of the column suggest a plateau ratio of 0.09765035877364645 (ev_s2_col_049_dyn), indicating discrete steps. Furthermore, the relation summary shows a lagged correlation of 0.9999999520400428 (ev_s3_0021) between columns 015 and 049, indicating a strong relationship between the two. These statistics and relations support the conclusion that column 049 is manipulated.",
+    "model_call_id": "call_0049",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_049\": {\n      \"statistics\": {\n        \"mean\": 46.432792414739325,\n        \"std_dev\": 2.347795998873838,\n        \"min_val\": 33.369,\n        \"max_val\": 60.216,\n        \"quantiles\": {\n          \"p25\": 44.86291679714075,\n          \"p50\": 46.33602546416759,\n          \"p75\": 48.02149153859096\n        },\n        \"skewness\": 0.07924808816146935,\n        \"distinct_values\": 18990,\n        \"noise_level\": 2.1215571751410245,\n        \"plateau_ratio\": 0.09765035877364645,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_049_mean\",\n        \"std_dev\": \"ev_s2_col_049_stddev\",\n        \"distribution\": \"ev_s2_col_049_dist\",\n        \"dynamics\": \"ev_s2_col_049_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0021\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_015\",\n        \"col_049\"\n      ],\n      \"value\": {\n        \"correlation\": 0.9999999520400428,\n        \"lag_samples\": 0,\n        \"leader\": \"concurrent\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_050": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "medium",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_050_mean",
+      "ev_s2_col_050_stddev"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the data suggests that the column has been manipulated. This is supported by the statistics, which show a plateau ratio of 0.08994083496412264 (ev_s2_col_050_mean) and a noise level of 24.335756647984752 (ev_s2_col_050_stddev). The statistical pre-analysis also suggests 'manipulated' as the most likely role.",
+    "model_call_id": "call_0050",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_050\": {\n      \"statistics\": {\n        \"mean\": 49.876491307228264,\n        \"std_dev\": 17.144150490176017,\n        \"min_val\": -0.68342,\n        \"max_val\": 100.58,\n        \"quantiles\": {\n          \"p25\": 45.47265584536401,\n          \"p50\": 48.03920221288259,\n          \"p75\": 51.41242049905686\n        },\n        \"skewness\": 0.7752975669469384,\n        \"distinct_values\": 184310,\n        \"noise_level\": 24.335756647984752,\n        \"plateau_ratio\": 0.08994083496412264,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_050_mean\",\n        \"std_dev\": \"ev_s2_col_050_stddev\",\n        \"distribution\": \"ev_s2_col_050_dist\",\n        \"dynamics\": \"ev_s2_col_050_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [\n    {\n      \"evidence_id\": \"ev_s3_0028\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_019\",\n        \"col_050\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7417074716818144,\n        \"lag_samples\": 1,\n        \"leader\": \"col_019\"\n      }\n    },\n    {\n      \"evidence_id\": \"ev_s3_0027\",\n      \"kind\": \"lagged_correlation\",\n      \"subject\": [\n        \"col_018\",\n        \"col_050\"\n      ],\n      \"value\": {\n        \"correlation\": 0.7098297951022343,\n        \"lag_samples\": 1,\n        \"leader\": \"col_018\"\n      }\n    }\n  ],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_051": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_051_dyn"
+    ],
+    "reasoning": "The presence of plateaus (discrete steps) in the data distribution indicates that the column has been manipulated. This is a statistical pre-analysis suggestion, which is supported by the dynamics evidence ('ev_s2_col_051_dyn'). The dynamics evidence shows that the data has a plateau ratio of 0.08776001304631442, indicating that the data has been artificially controlled or manipulated.",
+    "model_call_id": "call_0051",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_051\": {\n      \"statistics\": {\n        \"mean\": 41.96304970126017,\n        \"std_dev\": 11.003192691499263,\n        \"min_val\": -0.51565,\n        \"max_val\": 100.61,\n        \"quantiles\": {\n          \"p25\": 40.61334209892332,\n          \"p50\": 41.18935987145626,\n          \"p75\": 41.8495234705981\n        },\n        \"skewness\": 2.226711967410915,\n        \"distinct_values\": 193879,\n        \"noise_level\": 15.54667828191473,\n        \"plateau_ratio\": 0.08776001304631442,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_051_mean\",\n        \"std_dev\": \"ev_s2_col_051_stddev\",\n        \"distribution\": \"ev_s2_col_051_dist\",\n        \"dynamics\": \"ev_s2_col_051_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  },
+  "col_052": {
+    "inferred_role": "manipulated",
+    "structural_class": "manipulated",
+    "confidence": "high",
+    "epistemic_status": "inferred",
+    "evidence_ids": [
+      "ev_s2_col_052_dyn"
+    ],
+    "reasoning": "The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps). Specifically, the presence of plateaus is indicated by a 'plateau_ratio' of 0.09729380300065231, which is above 0 (though the exact threshold is not specified). The distribution is also skewed, with a 'skewness' of 6.920010957998312, further supporting the presence of plateaus.",
+    "model_call_id": "call_0052",
+    "source": "model",
+    "human_override": null,
+    "debug_prompt_generated": "{\n  \"column_summaries\": {\n    \"col_052\": {\n      \"statistics\": {\n        \"mean\": 19.159706780796544,\n        \"std_dev\": 7.64251859284823,\n        \"min_val\": -0.0067742,\n        \"max_val\": 100.01,\n        \"quantiles\": {\n          \"p25\": 17.12412691333833,\n          \"p50\": 18.262572157931697,\n          \"p75\": 19.48345180842509\n        },\n        \"skewness\": 6.920010957998312,\n        \"distinct_values\": 133491,\n        \"noise_level\": 10.649530729337231,\n        \"plateau_ratio\": 0.09729380300065231,\n        \"has_plateaus\": true\n      },\n      \"evidence_ids\": {\n        \"mean\": \"ev_s2_col_052_mean\",\n        \"std_dev\": \"ev_s2_col_052_stddev\",\n        \"distribution\": \"ev_s2_col_052_dist\",\n        \"dynamics\": \"ev_s2_col_052_dyn\"\n      }\n    }\n  },\n  \"relation_summaries\": [],\n  \"candidate_roles\": [\n    \"measured\",\n    \"manipulated\",\n    \"undetermined\"\n  ],\n  \"instructions\": \"Infer the functional role of the single column described in column_summaries. Use only the statistics and relations in this payload. Choose structural_class from candidate_roles. Cite evidence_ids exactly as they appear in the payload; never invent an id. If the evidence does not support a confident answer, use confidence 'low' and epistemic_status 'assumed' or 'uncertain'. epistemic_status: 'inferred' follows from the cited evidence, 'assumed' is a working assumption, 'uncertain' means the evidence is thin or conflicting. The statistical pre-analysis suggests 'manipulated' because it shows plateaus (discrete steps).\"\n}"
+  }
+}
